@@ -232,6 +232,76 @@
   </style>
 </head>
 <body class="min-h-screen flex flex-col md:flex-row overflow-x-hidden selection:bg-sky-500 selection:text-white">
+
+  <!-- MODAL SIGN IN / LOGIN (BARU) -->
+  <div id="authModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
+    <div class="az-glass max-w-md w-full p-6 md:p-8 relative border border-slate-700/60 shadow-2xl space-y-6">
+      <button onclick="closeAuthModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white text-lg transition">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      
+      <!-- Modal Header -->
+      <div class="text-center space-y-2">
+        <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-sky-400 to-blue-600 flex items-center justify-center text-white mx-auto text-xl shadow-lg">
+          <i class="fa-solid fa-user-lock"></i>
+        </div>
+        <h3 id="authTitle" class="text-xl font-bold">Masuk ke Akun</h3>
+        <p id="authSubtitle" class="text-xs text-slate-400">Silakan masukkan akun Armuzna Laundry Anda</p>
+      </div>
+
+      <!-- Tab Navigation Switcher -->
+      <div class="flex rounded-xl bg-slate-900/80 p-1 border border-slate-800">
+        <button id="tabLoginBtn" onclick="switchAuthTab('login')" class="flex-1 py-2 rounded-lg text-xs font-bold transition bg-sky-500 text-slate-950">
+          Masuk / Login
+        </button>
+        <button id="tabRegisterBtn" onclick="switchAuthTab('register')" class="flex-1 py-2 rounded-lg text-xs font-bold transition text-slate-400 hover:text-white">
+          Daftar / Sign Up
+        </button>
+      </div>
+
+      <!-- FORM LOGIN -->
+      <form id="loginForm" onsubmit="handleAuthSubmit(event, 'login')" class="space-y-4">
+        <div>
+          <label class="block text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-1">Email / Username</label>
+          <input type="text" required placeholder="admin@armuzna.com" class="w-full px-4 py-2.5 rounded-xl text-xs">
+        </div>
+        <div>
+          <label class="block text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-1">Kata Sandi</label>
+          <input type="password" required placeholder="••••••••" class="w-full px-4 py-2.5 rounded-xl text-xs">
+        </div>
+        <div class="flex items-center justify-between text-[11px]">
+          <label class="flex items-center gap-2 text-slate-400 cursor-pointer">
+            <input type="checkbox" class="rounded accent-sky-500">
+            <span>Ingat Saya</span>
+          </label>
+          <a href="#" class="text-sky-400 hover:underline">Lupa password?</a>
+        </div>
+        <button type="submit" class="w-full bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-400 hover:to-blue-500 text-slate-950 font-bold py-3 rounded-xl text-xs transition">
+          Masuk Sekarang
+        </button>
+      </form>
+
+      <!-- FORM REGISTER (SIGN UP) -->
+      <form id="registerForm" onsubmit="handleAuthSubmit(event, 'register')" class="space-y-4 hidden">
+        <div>
+          <label class="block text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-1">Nama Lengkap</label>
+          <input type="text" required placeholder="Nama Anda" class="w-full px-4 py-2.5 rounded-xl text-xs">
+        </div>
+        <div>
+          <label class="block text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-1">Email</label>
+          <input type="email" required placeholder="email@domain.com" class="w-full px-4 py-2.5 rounded-xl text-xs">
+        </div>
+        <div>
+          <label class="block text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-1">Kata Sandi Baru</label>
+          <input type="password" required placeholder="••••••••" class="w-full px-4 py-2.5 rounded-xl text-xs">
+        </div>
+        <button type="submit" class="w-full bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 text-slate-950 font-bold py-3 rounded-xl text-xs transition">
+          Buat Akun Baru
+        </button>
+      </form>
+    </div>
+  </div>
+
   <!-- SIDEBAR NAVIGATION -->
   <aside class="w-full md:w-72 bg-slate-950/80 backdrop-blur-2xl border-r border-slate-800/80 flex flex-col justify-between p-6 min-h-screen shrink-0 z-40 relative">
     <div class="space-y-8">
@@ -293,8 +363,17 @@
         </button>
       </nav>
     </div>
-    <!-- Tombol Sign Out -->
-    <div class="pt-6 border-t border-slate-800/80">
+    
+    <!-- Tombol Auth & Sign Out Sidebar (BARU) -->
+    <div class="pt-6 border-t border-slate-800/80 space-y-1">
+      <button onclick="openAuthModal('login')" class="w-full flex items-center justify-between px-4 py-2.5 rounded-xl text-xs font-semibold text-sky-400 hover:bg-sky-500/10 transition group">
+        <div class="flex items-center gap-3">
+          <i class="fa-solid fa-right-to-bracket text-sm"></i>
+          <span>Sign In / Login</span>
+        </div>
+        <i class="fa-solid fa-chevron-right text-[10px] opacity-0 group-hover:opacity-100 transition"></i>
+      </button>
+
       <button onclick="alert('Anda keluar dari sesi sistem.')" class="w-full flex items-center justify-between px-4 py-3 rounded-xl text-xs font-semibold text-rose-400 hover:bg-rose-500/10 transition group">
         <div class="flex items-center gap-3">
           <i class="fa-solid fa-right-from-bracket text-sm"></i>
@@ -316,7 +395,7 @@
           <input type="text" placeholder="Cari transaksi, pelanggan, promo, atau nota..." class="w-full pl-10 pr-4 py-2.5 rounded-2xl text-xs border border-slate-800 bg-slate-900/60 focus:outline-none transition">
         </div>
       </div>
-      <div class="flex items-center gap-4">
+      <div class="flex items-center gap-3 md:gap-4">
         <!-- TOGGLE MODE TERANG & GELAP -->
         <div onclick="toggleTheme()" class="flex items-center gap-2 bg-slate-900/60 border border-slate-800 px-3 py-1.5 rounded-full text-xs cursor-pointer select-none hover:border-slate-700 transition">
           <i class="fa-solid fa-sun text-amber-400 text-xs"></i>
@@ -333,8 +412,15 @@
             <i class="fa-regular fa-bell text-sm"></i>
           </button>
         </div>
+
+        <!-- TOMBOL SIGN IN / LOGIN HEADER (BARU) -->
+        <button onclick="openAuthModal('login')" class="hidden sm:flex items-center gap-2 bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-400 hover:to-blue-500 text-slate-950 px-3.5 py-2 rounded-2xl text-xs font-bold transition transform active:scale-95">
+          <i class="fa-solid fa-user-check"></i>
+          <span>Sign In</span>
+        </button>
+
         <!-- PROFILE BADGE -->
-        <div class="flex items-center gap-3 border-l border-slate-800/80 pl-5">
+        <div class="flex items-center gap-3 border-l border-slate-800/80 pl-3 md:pl-5">
           <img src="1111.jpg" alt="Achmad Efendi" class="w-9 h-9 rounded-full object-cover ring-2 ring-white/10">
           <div class="hidden sm:block">
             <p class="text-xs font-bold leading-tight">Achmad Efendi</p>
@@ -343,6 +429,7 @@
         </div>
       </div>
     </header>
+
     <!-- CONTAINER KONTEN HALAMAN -->
     <main class="p-6 md:p-8 flex-grow space-y-8">
       
@@ -458,7 +545,8 @@
           </div>
         </div>
       </div>
-      <!-- HALAMAN AGEN AI (BARU) -->
+
+      <!-- HALAMAN AGEN AI -->
       <div id="page-agen" class="hidden space-y-6">
         <!-- Banner Modul AI -->
         <div class="bg-gradient-to-r from-slate-950 via-cyan-950 to-slate-900 text-white p-6 rounded-3xl border border-cyan-500/20 flex items-center justify-between">
@@ -507,7 +595,6 @@
         </div>
         <!-- Chat Workspace & Panel AI -->
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          <!-- Chat AI Interface -->
           <div class="az-glass p-6 lg:col-span-2 flex flex-col justify-between h-[500px]">
             <div class="flex items-center justify-between border-b border-slate-800/80 pb-4">
               <div class="flex items-center gap-3">
@@ -528,7 +615,7 @@
                   <i class="fa-solid fa-robot"></i>
                 </div>
                 <div class="bg-slate-900/80 border border-slate-800 p-3 rounded-2xl max-w-md text-slate-300">
-                  Hal! Saya Agen AI Armuzna. Saya siap membantu menganalisis laporan, menyusun promo otomatis, atau membalas pesan pelanggan. Apa yang ingin Anda lakukan hari ini?
+                  Halo! Saya Agen AI Armuzna. Saya siap membantu menganalisis laporan, menyusun promo otomatis, atau membalas pesan pelanggan. Apa yang ingin Anda lakukan hari ini?
                 </div>
               </div>
             </div>
@@ -542,7 +629,6 @@
           </div>
           <!-- Setting & Quick Prompt Panel -->
           <div class="space-y-6">
-            <!-- Quick Prompts -->
             <div class="az-glass p-6 space-y-4">
               <h3 class="font-bold text-sm flex items-center gap-2 text-cyan-400">
                 <i class="fa-solid fa-bolt"></i> Instruksi Cepat (Quick Prompt)
@@ -562,7 +648,6 @@
                 </button>
               </div>
             </div>
-            <!-- Controls Panel -->
             <div class="az-glass p-6 space-y-4">
               <h3 class="font-bold text-sm flex items-center gap-2">
                 <i class="fa-solid fa-sliders text-amber-400"></i> Konfigurasi Otomatisasi
@@ -585,6 +670,7 @@
           </div>
         </div>
       </div>
+
       <!-- 2. HALAMAN DAFTAR HARGA -->
       <div id="page-layanan" class="hidden space-y-6">
         <div>
@@ -592,7 +678,6 @@
           <p class="text-xs text-slate-400 mt-1">Pilihan paket perawatan pakaian berkualitas untuk pelanggan Anda.</p>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          <!-- 1. Cuci Kiloan -->
           <div class="az-glass p-6 text-center space-y-4">
             <div class="w-16 h-16 bg-sky-500/10 text-sky-400 border border-sky-500/20 rounded-2xl flex items-center justify-center mx-auto text-2xl">
               <i class="fa-solid fa-weight-scale"></i>
@@ -603,7 +688,6 @@
               <i class="fa-solid fa-weight-scale text-sm"></i> Pilih Transaksi
             </button>
           </div>
-          <!-- 2. Cuci Setrika -->
           <div class="az-glass p-6 text-center space-y-4">
             <div class="w-16 h-16 bg-amber-500/10 text-amber-400 border border-amber-500/20 rounded-2xl flex items-center justify-center mx-auto text-2xl">
               <i class="fa-solid fa-shirt"></i>
@@ -614,7 +698,6 @@
               <i class="fa-solid fa-shirt text-sm"></i> Pilih Transaksi
             </button>
           </div>
-          <!-- 3. Express 1 Hari -->
           <div class="az-glass p-6 text-center space-y-4">
             <div class="w-16 h-16 bg-rose-500/10 text-rose-400 border border-rose-500/20 rounded-2xl flex items-center justify-center mx-auto text-2xl">
               <i class="fa-solid fa-bolt"></i>
@@ -625,7 +708,6 @@
               <i class="fa-solid fa-bolt text-sm"></i> Pilih Transaksi
             </button>
           </div>
-          <!-- 4. Dry Clean -->
           <div class="az-glass p-6 text-center space-y-4">
             <div class="w-16 h-16 bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 rounded-2xl flex items-center justify-center mx-auto text-2xl">
               <i class="fa-solid fa-wand-magic-sparkles"></i>
@@ -636,7 +718,6 @@
               <i class="fa-solid fa-wand-magic-sparkles text-sm"></i> Pilih Transaksi
             </button>
           </div>
-          <!-- 5. Cuci Sepatu -->
           <div class="az-glass p-6 text-center space-y-4">
             <div class="w-16 h-16 bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 rounded-2xl flex items-center justify-center mx-auto text-2xl">
               <i class="fa-solid fa-shoe-prints"></i>
@@ -647,7 +728,6 @@
               <i class="fa-solid fa-shoe-prints text-sm"></i> Pilih Transaksi
             </button>
           </div>
-          <!-- 6. Cuci Karpet -->
           <div class="az-glass p-6 text-center space-y-4">
             <div class="w-16 h-16 bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 rounded-2xl flex items-center justify-center mx-auto text-2xl">
               <i class="fa-solid fa-rug"></i>
@@ -658,7 +738,6 @@
               <i class="fa-solid fa-rug text-sm"></i> Pilih Transaksi
             </button>
           </div>
-          <!-- 7. Bed Cover -->
           <div class="az-glass p-6 text-center space-y-4">
             <div class="w-16 h-16 bg-purple-500/10 text-purple-400 border border-purple-500/20 rounded-2xl flex items-center justify-center mx-auto text-2xl">
               <i class="fa-solid fa-bed"></i>
@@ -669,7 +748,6 @@
               <i class="fa-solid fa-bed text-sm"></i> Pilih Transaksi
             </button>
           </div>
-          <!-- 8. Cuci Sprei -->
           <div class="az-glass p-6 text-center space-y-4">
             <div class="w-16 h-16 bg-teal-500/10 text-teal-400 border border-teal-500/20 rounded-2xl flex items-center justify-center mx-auto text-2xl">
               <i class="fa-solid fa-scroll"></i>
@@ -682,9 +760,9 @@
           </div>
         </div>
       </div>
-      <!-- 3. HALAMAN PROMOSI & DISKON (HALAMAN BARU) -->
+
+      <!-- 3. HALAMAN PROMOSI & DISKON -->
       <div id="page-promosi" class="hidden space-y-6">
-        <!-- STATISTIK PROMOSI -->
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-5">
           <div class="az-glass p-5 flex items-center justify-between">
             <div>
@@ -715,7 +793,6 @@
           </div>
         </div>
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          <!-- FORM TAMBAH / EDIT PROMO -->
           <section class="az-glass p-6 lg:col-span-1 space-y-4">
             <h2 id="promoFormTitle" class="text-base font-bold flex items-center gap-2 text-amber-400">
               <i class="fa-solid fa-circle-plus"></i> Buat Promosi Baru
@@ -754,7 +831,6 @@
               </div>
             </form>
           </section>
-          <!-- TABEL DAFTAR PROMO AKTIF -->
           <section class="az-glass p-6 lg:col-span-2 space-y-4">
             <h2 class="text-base font-bold flex items-center gap-2">
               <i class="fa-solid fa-rectangle-ad text-amber-400"></i> Promosi dam Discount 
@@ -777,6 +853,7 @@
           </section>
         </div>
       </div>
+
       <!-- 4. HALAMAN TRANSAKSI -->
       <div id="page-kasir" class="hidden space-y-6">
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-5">
@@ -827,7 +904,6 @@
                 <input type="hidden" id="serviceType" value="7000">
                 <input type="hidden" id="serviceName" value="Cuci Kiloan">
                 
-                <!-- GRID PILIHAN LAYANAN -->
                 <div id="servicePicker" class="grid grid-cols-2 gap-2">
                   <button type="button" onclick="selectTransactionService('7000','Cuci Kiloan')" class="service-choice active p-3 rounded-xl text-left text-xs font-semibold flex items-center gap-2.5" data-service="7000">
                     <i class="fa-solid fa-weight-scale text-sky-400 text-sm"></i>
@@ -966,9 +1042,9 @@
           </section>
         </div>
       </div>
-      <!-- 5. HALAMAN DATA PELANGGAN (MENU BARU) -->
+
+      <!-- 5. HALAMAN DATA PELANGGAN -->
       <div id="page-pelanggan" class="hidden space-y-6">
-        <!-- STATISTIK RINGKAS PELANGGAN -->
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-5">
           <div class="az-glass p-5 flex items-center justify-between">
             <div>
@@ -999,7 +1075,6 @@
           </div>
         </div>
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          <!-- FORM TAMBAH / EDIT PELANGGAN -->
           <section class="az-glass p-6 lg:col-span-1 space-y-4">
             <h2 id="custFormTitle" class="text-base font-bold flex items-center gap-2 text-sky-400">
               <i class="fa-solid fa-user-plus"></i> Tambah Pelanggan Baru
@@ -1035,7 +1110,6 @@
               </div>
             </form>
           </section>
-          <!-- TABEL KELOLA PELANGGAN -->
           <section class="az-glass p-6 lg:col-span-2 space-y-4">
             <h2 class="text-base font-bold flex items-center gap-2">
               <i class="fa-solid fa-address-book text-sky-400"></i> Membership Armuzna Laundry
@@ -1066,6 +1140,7 @@
           </section>
         </div>
       </div>
+
       <!-- 6. HALAMAN PENGELUARAN -->
       <div id="page-pengeluaran" class="hidden grid grid-cols-1 lg:grid-cols-3 gap-6">
         <section class="az-glass-expense p-6 lg:col-span-1 space-y-4">
@@ -1122,6 +1197,7 @@
           </div>
         </section>
       </div>
+
       <!-- 7. HALAMAN CEK STATUS -->
       <div id="page-lacak" class="hidden space-y-6">
         <div class="az-glass p-8 max-w-xl mx-auto text-center space-y-4">
@@ -1141,9 +1217,9 @@
         </div>
         <div id="searchResultArea" class="max-w-xl mx-auto hidden space-y-4"></div>
       </div>
+
       <!-- 8. HALAMAN BUSINESS ANALYTICS -->
       <div id="page-analytics" class="hidden space-y-6">
-        <!-- KPI Analytics -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
           <div class="az-glass p-5 flex items-center justify-between">
             <div>
@@ -1182,7 +1258,7 @@
             </div>
           </div>
         </div>
-        <!-- ROW 1 CHART ANALYTICS -->
+
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
           <div class="az-glass p-6 lg:col-span-2 space-y-3 flex flex-col justify-between">
             <div>
@@ -1213,9 +1289,8 @@
             </div>
           </div>
         </div>
-        <!-- ROW 2 CHART BARU: JAM SIBUK & RADAR PERFORMA -->
+
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <!-- 1. Analisis Jam Sibuk Transaksi (Peak Hours) -->
           <div class="az-glass p-6 space-y-3 flex flex-col justify-between">
             <div>
               <div class="flex justify-between items-center">
@@ -1230,7 +1305,7 @@
               <canvas id="peakHoursChart"></canvas>
             </div>
           </div>
-          <!-- 2. Radar Performa & Kepuasan -->
+
           <div class="az-glass p-6 space-y-3 flex flex-col justify-between">
             <div>
               <div class="flex justify-between items-center">
@@ -1254,6 +1329,7 @@
       &copy; 2026 Armuzna Laundry Management System. All rights reserved.
     </footer>
   </div>
+
   <!-- JAVASCRIPT SYSTEM -->
   <script>
     // Pemetaan Icon Berdasarkan Nama Layanan
@@ -1281,6 +1357,7 @@
     ];
     let expenses = [];
     let charts = {};
+
     document.addEventListener("DOMContentLoaded", () => {
       const today = new Date().toISOString().split('T')[0];
       if(document.getElementById('expenseDate')) document.getElementById('expenseDate').value = today;
@@ -1290,7 +1367,6 @@
       renderExpenses();
       renderPromos();
       
-      // Auto routing berdasarkan URL Hash
       const currentHash = window.location.hash.replace('#', '');
       if (currentHash) {
         switchPage(currentHash, false);
@@ -1306,6 +1382,56 @@
         document.getElementById('notifDot')?.classList.remove('hidden');
       }
     });
+
+    /* =========================================================
+       FUNGSI MANAJEMEN AUTHENTICATION MODAL (BARU)
+       ========================================================= */
+    function openAuthModal(mode = 'login') {
+      document.getElementById('authModal').classList.remove('hidden');
+      switchAuthTab(mode);
+    }
+
+    function closeAuthModal() {
+      document.getElementById('authModal').classList.add('hidden');
+    }
+
+    function switchAuthTab(type) {
+      const loginForm = document.getElementById('loginForm');
+      const registerForm = document.getElementById('registerForm');
+      const tabLoginBtn = document.getElementById('tabLoginBtn');
+      const tabRegisterBtn = document.getElementById('tabRegisterBtn');
+      const authTitle = document.getElementById('authTitle');
+      const authSubtitle = document.getElementById('authSubtitle');
+
+      if (type === 'login') {
+        loginForm.classList.remove('hidden');
+        registerForm.classList.add('hidden');
+        tabLoginBtn.className = "flex-1 py-2 rounded-lg text-xs font-bold transition bg-sky-500 text-slate-950";
+        tabRegisterBtn.className = "flex-1 py-2 rounded-lg text-xs font-bold transition text-slate-400 hover:text-white";
+        authTitle.innerText = "Masuk ke Akun";
+        authSubtitle.innerText = "Silakan masukkan akun Armuzna Laundry Anda";
+      } else {
+        loginForm.classList.add('hidden');
+        registerForm.classList.remove('hidden');
+        tabRegisterBtn.className = "flex-1 py-2 rounded-lg text-xs font-bold transition bg-emerald-500 text-slate-950";
+        tabLoginBtn.className = "flex-1 py-2 rounded-lg text-xs font-bold transition text-slate-400 hover:text-white";
+        authTitle.innerText = "Daftar Akun Baru";
+        authSubtitle.innerText = "Buat akun untuk mengakses penuh sistem Armuzna";
+      }
+    }
+
+    function handleAuthSubmit(event, type) {
+      event.preventDefault();
+      closeAuthModal();
+      if(type === 'login') {
+        sendNotification("Berhasil Masuk!", "Selamat datang kembali di Armuzna Laundry System.");
+        alert('Login berhasil! Selamat datang kembali.');
+      } else {
+        sendNotification("Pendaftaran Berhasil!", "Akun baru Anda telah berhasil dibuat.");
+        alert('Pendaftaran berhasil! Silakan masuk dengan akun baru Anda.');
+      }
+    }
+
     function requestNotificationPermission() {
       if ("Notification" in window) {
         Notification.requestPermission().then((permission) => {
@@ -1320,6 +1446,7 @@
         alert("Browser Anda tidak mendukung Notifikasi Web.");
       }
     }
+
     function sendNotification(title, body) {
       if ("Notification" in window && Notification.permission === "granted") {
         new Notification(title, {
@@ -1328,11 +1455,13 @@
         });
       }
     }
+
     function toggleTheme() {
       const isLight = !document.body.classList.contains('light-mode');
       applyTheme(isLight);
       localStorage.setItem('theme', isLight ? 'light' : 'dark');
     }
+
     function applyTheme(isLight) {
       const dot = document.getElementById('themeDot');
       const slider = document.getElementById('themeSlider');
@@ -1352,7 +1481,6 @@
         }
         if (slider) slider.classList.replace('bg-amber-400', 'bg-sky-500');
       }
-      // Re-render chart agar warna grid/label sesuai tema
       Object.keys(charts).forEach(id => {
         if(charts[id]) {
           charts[id].destroy();
@@ -1361,8 +1489,8 @@
       });
       initCharts();
     }
+
     function switchPage(pageId, updateHash = true) {
-      // DITAMBAHKAN ROUTE 'agen'
       const pages = ['beranda', 'agen', 'layanan', 'promosi', 'kasir', 'pelanggan', 'pengeluaran', 'lacak', 'analytics'];
       pages.forEach(p => {
         const el = document.getElementById(`page-${p}`);
@@ -1381,7 +1509,7 @@
         history.replaceState(null, '', '#' + pageId);
       }
     }
-    // INTERAKSI AGEN AI
+
     function sendAiMessage(e) {
       e.preventDefault();
       const input = document.getElementById('aiInput');
@@ -1389,7 +1517,6 @@
       if(!val) return;
       appendChatMessage('user', val);
       input.value = '';
-      // Simulasi Respon AI
       setTimeout(() => {
         let reply = "Terima Kasih Atas Kunjungan Di Website App Armuzna Laundry";
         if(val.toLowerCase().includes('promo')) {
@@ -1398,10 +1525,12 @@
         appendChatMessage('agent', reply);
       }, 700);
     }
+
     function triggerQuickPrompt(text) {
       document.getElementById('aiInput').value = text;
       sendAiMessage(new Event('submit'));
     }
+
     function appendChatMessage(sender, text) {
       const chatContainer = document.getElementById('chatContainer');
       const div = document.createElement('div');
@@ -1430,6 +1559,7 @@
       chatContainer.appendChild(div);
       chatContainer.scrollTop = chatContainer.scrollHeight;
     }
+
     /* =========================================================
        INISIALISASI & KONFIGURASI CHART.JS
        ========================================================= */
@@ -1437,7 +1567,7 @@
       const isLight = document.body.classList.contains('light-mode');
       const textColor = isLight ? '#475569' : '#9ca3af';
       const gridColor = isLight ? 'rgba(226, 232, 240, 0.8)' : 'rgba(255, 255, 255, 0.08)';
-      // 1. Chart Mini Dashboard
+      
       const miniEl = document.getElementById('dashboardMiniChart');
       if (miniEl && !charts['dashboardMiniChart']) {
         charts['dashboardMiniChart'] = new Chart(miniEl, {
@@ -1464,7 +1594,7 @@
           }
         });
       }
-      // 2. Chart Area Tren Arus Kas
+
       const areaEl = document.getElementById('dashboardAreaChart');
       if (areaEl && !charts['dashboardAreaChart']) {
         charts['dashboardAreaChart'] = new Chart(areaEl, {
@@ -1489,7 +1619,7 @@
           }
         });
       }
-      // 3. Financial Trend Chart
+
       const finEl = document.getElementById('financialTrendChart');
       if (finEl && !charts['financialTrendChart']) {
         charts['financialTrendChart'] = new Chart(finEl, {
@@ -1512,7 +1642,7 @@
           }
         });
       }
-      // 4. Service Distribution Chart
+
       const distEl = document.getElementById('serviceDistributionChart');
       if (distEl && !charts['serviceDistributionChart']) {
         charts['serviceDistributionChart'] = new Chart(distEl, {
@@ -1532,7 +1662,7 @@
           }
         });
       }
-      // 5. CHART BARU: Analisis Jam Sibuk Transaksi (Peak Hours)
+
       const peakEl = document.getElementById('peakHoursChart');
       if (peakEl && !charts['peakHoursChart']) {
         charts['peakHoursChart'] = new Chart(peakEl, {
@@ -1575,7 +1705,7 @@
           }
         });
       }
-      // 6. CHART BARU MODEREN: Radar Performa & Kepuasan (Bar Chart Horizontal Modern)
+
       const radarEl = document.getElementById('performanceRadarChart');
       if (radarEl && !charts['performanceRadarChart']) {
         charts['performanceRadarChart'] = new Chart(radarEl, {
@@ -1634,7 +1764,7 @@
         });
       }
     }
-    // --- MANAJEMEN PROMOSI & DISKON ---
+
     function savePromo(e) {
       e.preventDefault();
       const editId = document.getElementById('promoEditId').value;
@@ -1657,6 +1787,7 @@
       resetPromoForm();
       renderPromos();
     }
+
     function renderPromos() {
       const tbody = document.getElementById('promoTableBody');
       const promoSelect = document.getElementById('appliedPromo');
@@ -1691,11 +1822,13 @@
       });
       document.getElementById('statTotalPromos').innerText = `${activeCount} Promo`;
     }
+
     function applyPromoToOrder() {
       const promoValue = parseFloat(document.getElementById('appliedPromo').value) || 0;
       document.getElementById('discount').value = promoValue;
       calculateTotal();
     }
+
     function editPromo(id) {
       const p = promos.find(item => item.id == id);
       if (!p) return;
@@ -1708,22 +1841,26 @@
       document.getElementById('promoFormTitle').innerHTML = `<i class="fa-solid fa-pen-to-square"></i> Edit Promosi`;
       document.getElementById('btnCancelPromo').classList.remove('hidden');
     }
+
     function resetPromoForm() {
       document.getElementById('promoEditId').value = '';
       document.getElementById('promoForm').reset();
       document.getElementById('promoFormTitle').innerHTML = `<i class="fa-solid fa-circle-plus"></i> Buat Promosi Baru`;
       document.getElementById('btnCancelPromo').classList.add('hidden');
     }
+
     function deletePromo(id) {
       if (confirm('Hapus program promosi ini?')) {
         promos = promos.filter(p => p.id != id);
         renderPromos();
       }
     }
+
     function selectServiceFromPrice(price, serviceName) {
       switchPage('kasir');
       selectTransactionService(price, serviceName);
     }
+
     function selectTransactionService(price, serviceName) {
       document.getElementById('serviceType').value = price;
       document.getElementById('serviceName').value = serviceName;
@@ -1732,6 +1869,7 @@
       });
       calculateTotal();
     }
+
     function calculateTotal() {
       const price = parseFloat(document.getElementById('serviceType').value) || 0;
       const weight = parseFloat(document.getElementById('weight').value) || 0;
@@ -1740,6 +1878,7 @@
       document.getElementById('totalPreview').innerText = 'Rp ' + Math.round(total).toLocaleString('id-ID');
       return total;
     }
+
     function addOrder(event) {
       event.preventDefault();
       const custName = document.getElementById('custName').value.trim();
@@ -1775,6 +1914,7 @@
       sendNotification("Transaksi Baru Disimpan!", `Nota ${newOrder.id} a.n ${newOrder.name} (${newOrder.service}) berhasil dibuat.`);
       alert(`Transaksi tersimpan dengan Kode: ${newOrder.id}`);
     }
+
     function renderOrders() {
       const tbody = document.getElementById('orderTableBody');
       if (!tbody) return;
@@ -1803,6 +1943,7 @@
       document.getElementById('statTotalIncome').innerText = `Rp ${totalIncome.toLocaleString('id-ID')}`;
       document.getElementById('statUnpaidOrders').innerText = `${unpaidCount} Nota`;
     }
+
     function saveCustomer(e) {
       e.preventDefault();
       const editId = document.getElementById('custEditId').value;
@@ -1810,7 +1951,6 @@
       const phone = document.getElementById('custFormPhone').value.trim();
       const type = document.getElementById('custFormType').value;
       const address = document.getElementById('custFormAddress').value.trim() || '-';
-
       if (editId) {
         const idx = customers.findIndex(c => c.id == editId);
         if (idx !== -1) {
@@ -1825,6 +1965,7 @@
       resetCustomerForm();
       renderCustomers();
     }
+
     function renderCustomers() {
       const tbody = document.getElementById('customerTableBody');
       if (!tbody) return;
@@ -1842,15 +1983,19 @@
         const matchesType = filterType === 'Semua' || c.type === filterType;
 
         if (matchesSearch && matchesType) {
-          const totalNota = orders.filter(o => o.phone === c.phone || o.name.toLowerCase() === c.name.toLowerCase()).length;
+          const custOrders = orders.filter(o => o.phone === c.phone || o.name.toLowerCase() === c.name.toLowerCase()).length;
           const tr = document.createElement('tr');
           tr.className = "hover:bg-slate-800/30 transition";
           tr.innerHTML = `
-            <td class="p-3.5 font-semibold">${c.name}</td>
-            <td class="p-3.5 text-slate-300">${c.phone}</td>
+            <td class="p-3.5 font-bold">${c.name}</td>
+            <td class="p-3.5 text-slate-400">${c.phone}</td>
             <td class="p-3.5 text-slate-400 max-w-xs truncate">${c.address}</td>
-            <td class="p-3.5"><span class="${c.type === 'VIP' ? 'bg-amber-500/10 border-amber-400/20 text-amber-400' : 'bg-indigo-500/10 border-indigo-400/20 text-indigo-400'} border px-2.5 py-0.5 rounded-full text-[10px] font-semibold">${c.type}</span></td>
-            <td class="p-3.5 text-center font-bold text-sky-400">${totalNota}</td>
+            <td class="p-3.5">
+              <span class="${c.type === 'VIP' ? 'bg-amber-500/10 border-amber-500/20 text-amber-400' : 'bg-indigo-500/10 border-indigo-500/20 text-indigo-400'} border px-2.5 py-0.5 rounded-full text-[10px] font-semibold">
+                ${c.type}
+              </span>
+            </td>
+            <td class="p-3.5 text-center font-bold text-sky-400">${custOrders} Nota</td>
             <td class="p-3.5 text-center space-x-1">
               <button onclick="editCustomer(${c.id})" class="text-sky-400 hover:text-sky-300 p-1.5 transition"><i class="fa-solid fa-pen-to-square"></i></button>
               <button onclick="deleteCustomer(${c.id})" class="text-rose-400 hover:text-rose-300 p-1.5 transition"><i class="fa-solid fa-trash"></i></button>
@@ -1859,10 +2004,12 @@
           tbody.appendChild(tr);
         }
       });
-      document.getElementById('statTotalCustomers').innerText = `${customers.length} Orang`;
-      document.getElementById('statVipCustomers').innerText = `${vipCount} Orang`;
-      document.getElementById('statRegularCustomers').innerText = `${regCount} Orang`;
+
+      if(document.getElementById('statTotalCustomers')) document.getElementById('statTotalCustomers').innerText = `${customers.length} Orang`;
+      if(document.getElementById('statVipCustomers')) document.getElementById('statVipCustomers').innerText = `${vipCount} Orang`;
+      if(document.getElementById('statRegularCustomers')) document.getElementById('statRegularCustomers').innerText = `${regCount} Orang`;
     }
+
     function editCustomer(id) {
       const c = customers.find(item => item.id == id);
       if (!c) return;
@@ -1870,45 +2017,51 @@
       document.getElementById('custFormName').value = c.name;
       document.getElementById('custFormPhone').value = c.phone;
       document.getElementById('custFormType').value = c.type;
-      document.getElementById('custFormAddress').value = c.address === '-' ? '' : c.address;
-      document.getElementById('custFormTitle').innerHTML = `<i class="fa-solid fa-user-pen"></i> Edit Pelanggan`;
+      document.getElementById('custFormAddress').value = c.address;
+      document.getElementById('custFormTitle').innerHTML = `<i class="fa-solid fa-pen-to-square"></i> Edit Data Pelanggan`;
       document.getElementById('btnCancelCustomer').classList.remove('hidden');
     }
+
     function resetCustomerForm() {
       document.getElementById('custEditId').value = '';
       document.getElementById('customerForm').reset();
       document.getElementById('custFormTitle').innerHTML = `<i class="fa-solid fa-user-plus"></i> Tambah Pelanggan Baru`;
       document.getElementById('btnCancelCustomer').classList.add('hidden');
     }
+
     function deleteCustomer(id) {
       if (confirm('Hapus data pelanggan ini?')) {
         customers = customers.filter(c => c.id != id);
         renderCustomers();
       }
     }
+
     function addExpense(e) {
       e.preventDefault();
-      const desc = document.getElementById('expenseName').value.trim();
+      const name = document.getElementById('expenseName').value.trim();
       const amount = parseFloat(document.getElementById('expenseAmount').value) || 0;
       const date = document.getElementById('expenseDate').value;
-
-      expenses.unshift({ id: Date.now(), desc, amount, date });
-      renderExpenses();
+      
+      expenses.unshift({ id: Date.now(), name, amount, date });
       document.getElementById('expenseForm').reset();
       document.getElementById('expenseDate').value = new Date().toISOString().split('T')[0];
+      renderExpenses();
+      sendNotification("Pengeluaran Dicatat!", `${name} sebesar Rp ${amount.toLocaleString('id-ID')} ditambahkan.`);
     }
+
     function renderExpenses() {
       const tbody = document.getElementById('expenseTableBody');
       if (!tbody) return;
       tbody.innerHTML = '';
       let total = 0;
+
       expenses.forEach(ex => {
         total += ex.amount;
         const tr = document.createElement('tr');
         tr.className = "hover:bg-slate-800/30 transition";
         tr.innerHTML = `
           <td class="p-3.5 text-slate-400">${ex.date}</td>
-          <td class="p-3.5 font-semibold">${ex.desc}</td>
+          <td class="p-3.5 font-semibold">${ex.name}</td>
           <td class="p-3.5 font-bold text-rose-400">Rp ${ex.amount.toLocaleString('id-ID')}</td>
           <td class="p-3.5 text-center">
             <button onclick="deleteExpense(${ex.id})" class="text-rose-400 hover:text-rose-300 p-1.5 transition"><i class="fa-solid fa-trash"></i></button>
@@ -1916,32 +2069,46 @@
         `;
         tbody.appendChild(tr);
       });
-      document.getElementById('totalExpenseDisplay').innerText = `Rp ${total.toLocaleString('id-ID')}`;
+
+      if(document.getElementById('totalExpenseDisplay')) {
+        document.getElementById('totalExpenseDisplay').innerText = `Rp ${total.toLocaleString('id-ID')}`;
+      }
     }
+
     function deleteExpense(id) {
-      expenses = expenses.filter(ex => ex.id != id);
-      renderExpenses();
+      if(confirm('Hapus catatan pengeluaran ini?')) {
+        expenses = expenses.filter(e => e.id != id);
+        renderExpenses();
+      }
     }
+
     function searchInvoice(e) {
       e.preventDefault();
       const kw = document.getElementById('searchKeyword').value.trim().toLowerCase();
-      const resultArea = document.getElementById('searchResultArea');
-      resultArea.classList.remove('hidden');
-      
-      const matched = orders.filter(o => o.id.toLowerCase().includes(kw) || o.phone.includes(kw));
-      if (matched.length === 0) {
-        resultArea.innerHTML = `<div class="az-glass p-5 text-center text-xs text-rose-400 font-semibold">Transaksi tidak ditemukan.</div>`;
+      const resArea = document.getElementById('searchResultArea');
+      resArea.classList.remove('hidden');
+
+      const found = orders.filter(o => o.id.toLowerCase().includes(kw) || o.phone.includes(kw));
+      if (found.length === 0) {
+        resArea.innerHTML = `<div class="az-glass p-6 text-center text-slate-400 text-xs">Data transaksi tidak ditemukan.</div>`;
         return;
       }
-      resultArea.innerHTML = matched.map(o => `
-        <div class="az-glass p-5 space-y-2 text-xs">
-          <div class="flex justify-between font-bold">
-            <span class="text-sky-400">${o.id}</span>
-            <span class="bg-sky-500/10 text-sky-400 px-2 py-0.5 rounded-full border border-sky-400/20">${o.status}</span>
+
+      resArea.innerHTML = found.map(o => `
+        <div class="az-glass p-6 space-y-3">
+          <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+            <div>
+              <span class="font-extrabold text-sky-400 text-sm">${o.id}</span>
+              <p class="text-[10px] text-slate-400">${o.date}</p>
+            </div>
+            <span class="bg-sky-500/10 border border-sky-400/20 text-sky-400 px-3 py-1 rounded-full text-xs font-semibold">${o.status}</span>
           </div>
-          <p class="text-slate-300">Pelanggan: <span class="font-semibold">${o.name}</span> (${o.phone})</p>
-          <p class="text-slate-300">Layanan: <span class="font-semibold">${o.service}</span></p>
-          <p class="text-slate-300">Total: <span class="font-bold text-emerald-400">Rp ${o.amount.toLocaleString('id-ID')}</span> (${o.payStatus})</p>
+          <div class="grid grid-cols-2 gap-2 text-xs">
+            <div><p class="text-slate-400 text-[10px]">Pelanggan</p><p class="font-semibold">${o.name}</p></div>
+            <div><p class="text-slate-400 text-[10px]">Layanan</p><p class="font-semibold">${o.service}</p></div>
+            <div><p class="text-slate-400 text-[10px]">Total Bayar</p><p class="font-bold text-emerald-400">Rp ${o.amount.toLocaleString('id-ID')}</p></div>
+            <div><p class="text-slate-400 text-[10px]">Status Bayar</p><p class="font-semibold">${o.payStatus}</p></div>
+          </div>
         </div>
       `).join('');
     }
