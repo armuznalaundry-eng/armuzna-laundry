@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Armuzna LAUNDRY - Solusi Pakaian Bersih & Estetik</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    colors: {
+                        aesthetic: {
+                            dark: '#1e293b',      
+                            blue: '#38bdf8',       
+                            sky: '#f0f9ff',       
+                            accent: '#fb923c',     
+                            accentLighter: '#fff7ed', 
+                            bgLight: '#f8fafc',  
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        section {
+            scroll-margin-top: 90px;
+        }
+    </style>
+</head>
+<body class="font-sans text-slate-700 bg-white antialiased overflow-x-hidden">
+    <header class="w-full bg-white/90 backdrop-blur-md sticky top-0 z-50 border-b border-slate-100">
+        <div class="max-w-7xl mx-auto px-6 lg:px-16 py-4 flex items-center justify-between">
+            <a href="#beranda" class="flex items-center space-x-2">
+                <span class="font-serif text-2xl font-extrabold text-aesthetic-dark tracking-tight">Armuzna<span class="text-aesthetic-blue">Laundry</span></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-aesthetic-accent anime-pulse"></span>
+            </a>
+            <nav class="hidden md:flex items-center space-x-8 font-semibold text-slate-600 text-sm">
+                <a href="#beranda" class="hover:text-aesthetic-blue transition">Beranda</a>
+                <a href="#layanan" class="hover:text-aesthetic-blue transition">Layanan</a>
+                <a href="#harga" class="hover:text-aesthetic-blue transition">Harga</a>
+                <a href="#cara-kerja" class="hover:text-aesthetic-blue transition">Alur</a>
+                <a href="#kontak" class="hover:text-aesthetic-blue transition">Kontak</a>
+            </nav>
+            <div>
+                <a href="#kontak" class="bg-aesthetic-dark text-white font-bold px-6 py-3 rounded-full hover:bg-aesthetic-accent transition text-sm shadow-sm">
+                    Request
+                </a>
+            </div>
+        </div>
+    </header>
+    <section id="beranda" class="max-w-7xl mx-auto px-6 lg:px-16 pt-16 pb-24 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <div class="lg:col-span-7 space-y-7">
+            <div class="inline-flex items-center space-x-2 bg-aesthetic-accentLighter text-aesthetic-accent px-4 py-2 rounded-full font-bold text-xs tracking-wider uppercase border border-aesthetic-accent/20">
+                <span>?</span>
+                <span>Kemurnian & Kesegaran Pakaian Terbaik</span>
+            </div>
+            <h1 class="font-serif text-5xl md:text-6xl lg:text-7xl text-aesthetic-dark leading-tight font-extrabold tracking-tight">
+               Cuci Mencuci<br><span class="text-aesthetic-blue">Di Armuzna Laundry Balikpapan</span>
+            </h1>
+            <p class="text-slate-500 text-base md:text-lg max-w-2xl leading-relaxed">
+                Kami mengubah tumpukan baju kotor menjadi pakaian yang bersih higienis, disetrika dengan presisi, serta memiliki keharuman mewah yang tahan lama. Nikmati kepraktisan lewat jasa laundry terbaik yang dilengkapi kurir antar-jemput.
+            </p>
+            <div class="flex flex-wrap gap-3 pt-2">
+                <div class="flex items-center space-x-2 border border-slate-100 bg-aesthetic-bgLight px-5 py-2.5 rounded-full text-sm font-semibold text-aesthetic-dark shadow-inner">
+                    <span class="text-aesthetic-accent">??</span>
+                    <span>Layanan Jemput-Antar</span>
+                </div>
+                <div class="flex items-center space-x-2 border border-slate-100 bg-aesthetic-bgLight px-5 py-2.5 rounded-full text-sm font-semibold text-aesthetic-dark shadow-inner">
+                    <span class="text-aesthetic-accent">?</span>
+                    <span>Selesai Tepat Waktu</span>
+                </div>
+            </div>
+            <div class="flex flex-wrap gap-4 pt-5">
+                <a href="#kontak" class="bg-aesthetic-accent text-white font-bold px-10 py-4 rounded-full shadow-lg shadow-aesthetic-accent/20 hover:opacity-90 transition text-base">
+                    Mulai Laundry
+                </a>
+                <a href="#harga" class="border-2 border-aesthetic-dark text-aesthetic-dark font-bold px-10 py-4 rounded-full flex items-center space-x-2 hover:bg-slate-50 transition text-base">
+                    <span>Cek Pricelist</span>
+                    <span>?</span>
+                </a>
+            </div>
+        </div>
+        <div class="lg:col-span-5 relative w-full h-[400px] md:h-[500px]">
+            <div class="w-full h-full rounded-[50px] overflow-hidden shadow-2xl shadow-slate-200 bg-slate-100 relative border-4 border-white">
+                <img src="https://images.unsplash.com/photo-1582735689369-4fe89db7114c?q=80&w=1000&auto=format&fit=crop" alt="Tumpukan handuk dan baju putih bersih estetik" class="w-full h-full object-cover">
+                <div class="absolute bottom-8 right-8 bg-white/95 backdrop-blur-sm text-aesthetic-dark px-6 py-3.5 rounded-full shadow-lg flex items-center space-x-2.5 font-extrabold text-sm border border-slate-100">
+                    <span class="text-aesthetic-accent text-lg">??</span>
+                    <span>Dipercaya Keluarga Indonesia </span>
+                </div>
+            </div>
+            <div class="absolute -top-10 -left-10 w-32 h-32 bg-aesthetic-sky rounded-full -z-10"></div>
+            <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-aesthetic-accentLighter rounded-full -z-10"></div>
+        </div>
+    </section>
+    <section class="bg-gradient-to-b from-aesthetic-sky to-white pt-10 pb-28">
+        <div class="max-w-7xl mx-auto px-6 lg:px-16 grid grid-cols-1 md:grid-cols-3 gap-8 transform -translate-y-16">
+            <div class="bg-white rounded-[35px] p-9 text-center shadow-2xl shadow-slate-100 flex flex-col items-center space-y-3 border border-slate-50/50">
+                <div class="w-14 h-14 rounded-full bg-aesthetic-sky flex items-center justify-center text-aesthetic-blue text-2xl shadow-inner border border-aesthetic-blue/20">?</div>
+                <h3 class="font-serif text-4xl font-extrabold text-aesthetic-dark">5000+</h3>
+                <p class="text-slate-400 text-xs font-bold uppercase tracking-widest">Mitra Rumah Tangga</p>
+            </div>
+            <div class="bg-white rounded-[35px] p-9 text-center shadow-2xl shadow-slate-100 flex flex-col items-center space-y-3 border border-slate-50/50">
+                <div class="w-14 h-14 rounded-full bg-aesthetic-accentLighter flex items-center justify-center text-aesthetic-accent text-2xl shadow-inner border border-aesthetic-accent/20">??</div>
+                <h3 class="font-serif text-4xl font-extrabold text-aesthetic-dark">Express</h3>
+                <p class="text-slate-400 text-xs font-bold uppercase tracking-widest">Durasi Kilat Tersedia</p>
+            </div>
+            <div class="bg-white rounded-[35px] p-9 text-center shadow-2xl shadow-slate-100 flex flex-col items-center space-y-3 border border-slate-50/50">
+                <div class="w-14 h-14 rounded-full bg-aesthetic-sky flex items-center justify-center text-aesthetic-blue text-2xl shadow-inner border border-aesthetic-blue/20">??</div>
+                <h3 class="font-serif text-4xl font-extrabold text-aesthetic-dark">Free Ongkir</h3>
+                <p class="text-slate-400 text-xs font-bold uppercase tracking-widest">S&K Berlaku Area Terdekat</p>
+            </div>
+        </div>
+        <div id="layanan" class="max-w-7xl mx-auto px-6 lg:px-16 pt-10 text-center md:text-left">
+            <span class="text-sm uppercase tracking-widest text-aesthetic-accent font-bold block mb-2">Pelayanan Terbaik Kami</span>
+            <h2 class="font-serif text-4xl md:text-5xl text-aesthetic-dark font-extrabold max-w-2xl leading-tight tracking-tight">
+                Kategori Perawatan Pakaian yang Kami Sediakan
+            </h2>
+            <p class="text-slate-500 text-base mt-4 max-w-xl leading-relaxed">
+                Mulai dari pakaian kasual harian hingga kain eksklusif sensitif, kami tangani dengan penuh kehati-hatian.
+            </p>
+        </div>
+        <div class="max-w-7xl mx-auto px-6 lg:px-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 pt-16">
+            <div class="bg-white rounded-[35px] overflow-hidden shadow-xl shadow-slate-100 border border-slate-100 flex flex-col h-full hover:shadow-aesthetic-blue/10 hover:-translate-y-1 transition-all duration-300">
+                <div class="h-52 overflow-hidden bg-slate-100 border-b border-slate-100">
+                    <img src="https://images.unsplash.com/photo-1545173168-9f18d8be2749?q=80&w=600&auto=format&fit=crop" alt="Deretan mesin cuci modern estetik" class="w-full h-full object-cover">
+                </div>
+                <div class="p-7 flex flex-col flex-grow space-y-3">
+                    <h3 class="font-serif font-bold text-xl text-aesthetic-dark">Cuci Lipat Kiloan</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed flex-grow">Opsi ekonomis khusus sandang harian seperti kaos, celana, jins, dan handuk. Ditimbang adil dengan deterjen ramah serat.</p>
+                    <a href="#harga" class="text-aesthetic-blue font-bold text-sm flex items-center space-x-1.5 pt-3 hover:text-aesthetic-accent transition"><span>Lihat Tarif</span> <span class="text-base">?</span></a>
+                </div>
+            </div>
+            <div class="bg-white rounded-[35px] overflow-hidden shadow-xl shadow-slate-100 border border-slate-100 flex flex-col h-full hover:shadow-aesthetic-blue/10 hover:-translate-y-1 transition-all duration-300">
+                <div class="h-52 overflow-hidden bg-slate-100 border-b border-slate-100">
+                    <img src="https://images.unsplash.com/photo-1604335399105-a0c585fd81a1?q=80&w=600&auto=format&fit=crop" alt="Kurir menjemput keranjang laundry kotor" class="w-full h-full object-cover">
+                </div>
+                <div class="p-7 flex flex-col flex-grow space-y-3">
+                    <h3 class="font-serif font-bold text-xl text-aesthetic-dark">Premium Satuan</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed flex-grow">Penanganan khusus per helai untuk gaun, batik tulis, jas formal, hingga kebaya agar tekstur kain dan payet tetap terjaga prima.</p>
+                    <a href="#kontak" class="text-aesthetic-blue font-bold text-sm flex items-center space-x-1.5 pt-3 hover:text-aesthetic-accent transition"><span>Hubungi Admin</span> <span class="text-base">?</span></a>
+                </div>
+            </div>
+            <div class="bg-white rounded-[35px] overflow-hidden shadow-xl shadow-slate-100 border border-slate-100 flex flex-col h-full hover:shadow-aesthetic-blue/10 hover:-translate-y-1 transition-all duration-300">
+                <div class="h-52 overflow-hidden bg-slate-100 border-b border-slate-100">
+                    <img src="https://images.unsplash.com/photo-1511556820780-d912e42b4980?q=80&w=600&auto=format&fit=crop" alt="Sepatu sneakers putih bersih" class="w-full h-full object-cover">
+                </div>
+                <div class="p-7 flex flex-col flex-grow space-y-3">
+                    <h3 class="font-serif font-bold text-xl text-aesthetic-dark">Shoe Care & Spa</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed flex-grow">Pembersihan mendalam untuk sepatu kasual maupun olahraga. Menghilangkan noda membandel sekaligus bakteri penyebab bau.</p>
+                    <a href="#kontak" class="text-aesthetic-blue font-bold text-sm flex items-center space-x-1.5 pt-3 hover:text-aesthetic-accent transition"><span>Konsultasi</span> <span class="text-base">?</span></a>
+                </div>
+            </div>
+            <div class="bg-white rounded-[35px] overflow-hidden shadow-xl shadow-slate-100 border border-slate-100 flex flex-col h-full hover:shadow-aesthetic-blue/10 hover:-translate-y-1 transition-all duration-300">
+                <div class="h-52 overflow-hidden bg-slate-100 border-b border-slate-100">
+                    <img src="https://images.unsplash.com/photo-1489274495757-95c7c837b101?q=80&w=600&auto=format&fit=crop" alt="Proses menyetrika uap" class="w-full h-full object-cover">
+                </div>
+                <div class="p-7 flex flex-col flex-grow space-y-3">
+                    <h3 class="font-serif font-bold text-xl text-aesthetic-dark">Pressing & Setrika</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed flex-grow">Sudah mencuci sendiri tapi malas menyetrika? Serahkan ke kami untuk digosok menggunakan uap panas hingga rapi.</p>
+                    <a href="#harga" class="text-aesthetic-blue font-bold text-sm flex items-center space-x-1.5 pt-3 hover:text-aesthetic-accent transition"><span>Lihat Tarif</span> <span class="text-base">?</span></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="harga" class="max-w-7xl mx-auto px-6 lg:px-16 py-16 text-center">
+        <span class="text-sm uppercase tracking-widest text-aesthetic-accent font-bold block mb-2">Transparansi Biaya</span>
+        <h2 class="font-serif text-4xl md:text-5xl text-aesthetic-dark font-extrabold mb-4 tracking-tight">Paket Hemat Sesuai Kebutuhan</h2>
+        <p class="text-slate-500 text-base md:text-lg max-w-xl mx-auto mb-20 leading-relaxed">
+            Tanpa tambahan ongkos tersembunyi. Tentukan durasi pengerjaan yang paling ideal bagi aktivitas harian Anda.
+        </p>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-10 items-stretch max-w-6xl mx-auto">
+            <div class="bg-white rounded-[35px] p-10 shadow-xl border border-slate-100 flex flex-col text-left justify-between hover:border-aesthetic-blue/20 transition group">
+                <div>
+                    <h3 class="font-serif text-2xl font-bold text-aesthetic-dark mb-5">Reguler (Santai)</h3>
+                    <div class="flex items-baseline mb-3">
+                        <span class="text-5xl font-serif font-extrabold text-aesthetic-dark">Rp7.000</span>
+                        <span class="text-slate-400 text-sm font-medium ml-1.5">/kg</span>
+                    </div>
+                    <div class="text-slate-400 text-sm font-semibold mb-8 pb-8 border-b border-slate-100 flex items-center gap-2">?? Durasi Estimasi 48 Jam</div>
+                    <ul class="space-y-4 text-sm text-slate-600 mb-10">
+                        <li class="flex items-center gap-2"> <span class="text-aesthetic-blue">?</span> Proses Cuci-Kering-Setrika</li>
+                        <li class="flex items-center gap-2"> <span class="text-aesthetic-blue">?</span> Pengharum Linen Standar</li>
+                        <li class="flex items-center gap-2"> <span class="text-aesthetic-blue">?</span> Packing Plastik Higienis</li>
+                        <li class="flex items-center gap-2"> <span class="text-aesthetic-blue">?</span> Minimum Order 5kg</li>
+                    </ul>
+                </div>
+                <a href="#kontak" class="w-full text-center bg-aesthetic-dark text-white font-bold py-4 rounded-2xl group-hover:bg-aesthetic-blue transition block text-base shadow-sm">Pilih Paket Reguler</a>
+            </div>
+            <div class="bg-white rounded-[35px] p-10 shadow-2xl shadow-aesthetic-accent/10 border-4 border-aesthetic-accent flex flex-col text-left justify-between relative transform lg:-translate-y-4">
+                <span class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-aesthetic-accent text-white text-xs font-bold px-6 py-1.5 rounded-full uppercase tracking-widest shadow-md">Pilihan Utama</span>
+                <div>
+                    <h3 class="font-serif text-2xl font-bold text-aesthetic-dark mb-5">Express (Kilat)</h3>
+                    <div class="flex items-baseline mb-3">
+                        <span class="text-5xl font-serif font-extrabold text-aesthetic-dark">Rp12.000</span>
+                        <span class="text-slate-400 text-sm font-medium ml-1.5">/kg</span>
+                    </div>
+                    <div class="text-aesthetic-accent text-sm font-bold mb-8 pb-8 border-b border-slate-100 flex items-center gap-2">?? Selesai Dalam 24 Jam</div>
+                    <ul class="space-y-4 text-sm text-slate-600 mb-10">
+                        <li class="flex items-center gap-2"> <span class="text-aesthetic-accent">?</span> Prioritas Antrean Mesin Utama</li>
+                        <li class="flex items-center gap-2"> <span class="text-aesthetic-accent">?</span> Bebas Pilih Varian Parfum Luxury</li>
+                        <li class="flex items-center gap-2"> <span class="text-aesthetic-accent">?</span> Packing Lipat Rapi Bebas Kusut</li>
+                        <li class="flex items-center gap-2"> <span class="text-aesthetic-accent">?</span> Penjemputan Prioritas</li>
+                    </ul>
+                </div>
+                <a href="#kontak" class="w-full text-center bg-aesthetic-accent text-white font-extrabold py-4 rounded-2xl hover:opacity-90 transition block text-base shadow-lg shadow-aesthetic-accent/20">Pesan Paket Kilat</a>
+            </div>
+            <div class="bg-white rounded-[35px] p-10 shadow-xl border border-slate-100 flex flex-col text-left justify-between hover:border-aesthetic-blue/20 transition group">
+                <div>
+                    <h3 class="font-serif text-2xl font-bold text-aesthetic-dark mb-5">Setrika Uap Only</h3>
+                    <div class="flex items-baseline mb-3">
+                        <span class="text-5xl font-serif font-extrabold text-aesthetic-dark">Rp5.000</span>
+                        <span class="text-slate-400 text-sm font-medium ml-1.5">/kg</span>
+                    </div>
+                    <div class="text-slate-400 text-sm font-semibold mb-8 pb-8 border-b border-slate-100 flex items-center gap-2">?? Durasi Estimasi 24 Jam</div>
+                    <ul class="space-y-4 text-sm text-slate-600 mb-10">
+                        <li class="flex items-center gap-2"> <span class="text-aesthetic-blue">?</span> Setrika Boiler Khusus</li>
+                        <li class="flex items-center gap-2"> <span class="text-aesthetic-blue">?</span> Semprotan Pewangi Serat Kain</li>
+                        <li class="flex items-center gap-2"> <span class="text-aesthetic-blue">?</span> Proteksi Gantungan / Plastik</li>
+                        <li class="flex items-center gap-2"> <span class="text-aesthetic-blue">?</span> Fleksibel Tanpa Minimum Order</li>
+                    </ul>
+                </div>
+                <a href="#kontak" class="w-full text-center bg-aesthetic-dark text-white font-bold py-4 rounded-2xl group-hover:bg-aesthetic-blue transition block text-base shadow-sm">Pilih Paket Setrika</a>
+            </div>
+        </div>
+    </section>
+    <section id="cara-kerja" class="max-w-7xl mx-auto px-6 lg:px-16 py-20 bg-aesthetic-bgLight my-16 rounded-[50px] border border-slate-100 shadow-inner">
+        <div class="text-center md:text-left mb-16">
+            <span class="text-sm uppercase tracking-widest text-aesthetic-blue font-bold block mb-2">Sistematis & Praktis</span>
+            <h2 class="font-serif text-4xl md:text-5xl text-aesthetic-dark font-extrabold tracking-tight">4 Alur Mudah Laundry di Sini</h2>
+            <p class="text-slate-500 text-base mt-3 max-w-xl">Duduk manis di sofa rumah Anda, serahkan siklus perawatan pakaian sepenuhnya pada tim ahli kami.</p>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="space-y-5 bg-white p-6 rounded-3xl border border-slate-100 shadow-xl shadow-slate-50 transition hover:border-aesthetic-blue/30">
+                <div class="h-40 rounded-2xl overflow-hidden bg-slate-100 border border-slate-100">
+                    <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=600&auto=format&fit=crop" alt="Memegang handphone chat CS" class="w-full h-full object-cover">
+                </div>
+                <div class="flex items-center space-x-3">
+                    <span class="w-7 h-7 rounded-full bg-aesthetic-sky text-aesthetic-blue font-bold text-sm flex items-center justify-center border border-aesthetic-blue/20 shadow-inner">1</span>
+                    <h4 class="font-serif font-bold text-lg text-aesthetic-dark">Kirim Pesan Chat</h4>
+                </div>
+                <p class="text-slate-500 text-sm leading-relaxed">Kirim rincian alamat dan jenis layanan yang Anda perlukan melalui WhatsApp admin kami.</p>
+            </div>
+            <div class="space-y-5 bg-white p-6 rounded-3xl border border-slate-100 shadow-xl shadow-slate-50 transition hover:border-aesthetic-blue/30">
+                <div class="h-40 rounded-2xl overflow-hidden bg-slate-100 border border-slate-100">
+                    <img src="https://images.unsplash.com/photo-1604335399105-a0c585fd81a1?q=80&w=600&auto=format&fit=crop" alt="Kurir menjemput keranjang laundry kotor" class="w-full h-full object-cover">
+                </div>
+                <div class="flex items-center space-x-3">
+                    <span class="w-7 h-7 rounded-full bg-aesthetic-accentLighter text-aesthetic-accent font-bold text-sm flex items-center justify-center border border-aesthetic-accent/20 shadow-inner">2</span>
+                    <h4 class="font-serif font-bold text-lg text-aesthetic-dark">Penjemputan Kain</h4>
+                </div>
+                <p class="text-slate-500 text-sm leading-relaxed">Driver kami meluncur ke lokasimu untuk mengambil tas laundry kotor sesuai jadwal yang ditentukan.</p>
+            </div>
+            <div class="space-y-5 bg-white p-6 rounded-3xl border border-slate-100 shadow-xl shadow-slate-50 transition hover:border-aesthetic-blue/30">
+                <div class="h-40 rounded-2xl overflow-hidden bg-slate-100 border border-slate-100">
+                    <img src="https://images.unsplash.com/photo-1610557892470-55d9e80c0bce?q=80&w=600&auto=format&fit=crop" alt="Proses cuci baju bersih higienis" class="w-full h-full object-cover">
+                </div>
+                <div class="flex items-center space-x-3">
+                    <span class="w-7 h-7 rounded-full bg-aesthetic-sky text-aesthetic-blue font-bold text-sm flex items-center justify-center border border-aesthetic-blue/20 shadow-inner">3</span>
+                    <h4 class="font-serif font-bold text-lg text-aesthetic-dark">Sanitasi & Cuci</h4>
+                </div>
+                <p class="text-slate-500 text-sm leading-relaxed">Pakaian dipilah, dicuci bersih terpisah demi higienitas, dan disetrika uap hingga lembut.</p>
+            </div>
+            <div class="space-y-5 bg-white p-6 rounded-3xl border border-slate-100 shadow-xl shadow-slate-50 transition hover:border-aesthetic-blue/30">
+                <div class="h-40 rounded-2xl overflow-hidden bg-slate-100 border border-slate-100">
+                    <img src="https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?q=80&w=600&auto=format&fit=crop" alt="Mengantar pakaian bersih terbungkus rapi" class="w-full h-full object-cover">
+                </div>
+                <div class="flex items-center space-x-3">
+                    <span class="w-7 h-7 rounded-full bg-aesthetic-accentLighter text-aesthetic-accent font-bold text-sm flex items-center justify-center border border-aesthetic-accent/20 shadow-inner">4</span>
+                    <h4 class="font-serif font-bold text-lg text-aesthetic-dark">Dihantar Pulang</h4>
+                </div>
+                <p class="text-slate-500 text-sm leading-relaxed">Pakaian wangi parfum eksklusif siap dikirimkan kembali ke rumah Anda dengan proteksi rapi.</p>
+            </div>
+        </div>
+    </section>
+    <section class="bg-aesthetic-dark text-white py-24 rounded-[50px] max-w-7xl mx-auto px-6 lg:px-16 my-16 shadow-2xl shadow-slate-300">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+            <div class="lg:col-span-5 space-y-5">
+                <span class="text-sm uppercase tracking-widest text-aesthetic-blue font-bold block">Mengapa Memilih Kami</span>
+                <h2 class="font-serif text-4xl md:text-5xl font-extrabold leading-tight tracking-tight">Nilai Tambah untuk Lemari Pakaian Anda</h2>
+                <p class="text-slate-300 text-base leading-relaxed">
+                    Kami tidak sekadar mencuci asal bersih. FreshWash menerapkan standar kontrol kualitas berlapis untuk memastikan ketahanan umur kain kesayangan Anda.
+                </p>
+            </div>
+            <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-12 text-sm">
+                <div class="space-y-2">
+                    <h4 class="font-serif font-bold text-white text-lg flex items-center gap-2"><span class="text-aesthetic-blue">??</span> Higienitas Ekstra 1 Mesin 1 Pelanggan</h4>
+                    <p class="text-slate-400 leading-relaxed text-sm">Kami menjamin pakaian Anda tidak akan pernah dicampur dengan cucian orang lain demi menjaga kebersihan maksimal.</p>
+                </div>
+                <div class="space-y-2">
+                    <h4 class="font-serif font-bold text-white text-lg flex items-center gap-2"><span class="text-aesthetic-accent">??</span> Proteksi Garansi Cuci Ulang</h4>
+                    <p class="text-slate-400 leading-relaxed text-sm">Masih menemukan noda tersisa atau merasa kurang wangi? Kami cuci kembali tanpa membebankan tagihan baru.</p>
+                </div>
+                <div class="space-y-2">
+                    <h4 class="font-serif font-bold text-white text-lg flex items-center gap-2"><span class="text-aesthetic-blue">??</span> Harga Sesuai Timbangan Aktual</h4>
+                    <p class="text-slate-400 leading-relaxed text-sm">Penghitungan transparan menggunakan timbangan digital akurat di depan konsumen atau via konfirmasi foto timbang.</p>
+                </div>
+                <div class="space-y-2">
+                    <h4 class="font-serif font-bold text-white text-lg flex items-center gap-2"><span class="text-aesthetic-accent">??</span> Deterjen Ramah Lingkungan</h4>
+                    <p class="text-slate-400 leading-relaxed text-sm">Formula sabun cair ramah serat yang efektif merontokkan kerak kotoran tanpa membuat pakaian pudar kusam.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="kontak" class="max-w-7xl mx-auto px-6 lg:px-16 py-24">
+        <div class="w-full max-w-5xl mx-auto rounded-[50px] bg-gradient-to-br from-aesthetic-sky via-white to-aesthetic-accentLighter border-2 border-aesthetic-blue/10 p-12 md:p-20 text-center shadow-2xl shadow-slate-100 flex flex-col items-center space-y-6 relative overflow-hidden">
+            <span class="text-3xl p-4 bg-white rounded-full shadow-inner border border-slate-100">??</span>
+            <h2 class="font-serif text-4xl md:text-5xl text-aesthetic-dark font-extrabold leading-tight tracking-tight max-w-2xl">
+                Agenda Padat & Tak Sempat Menyetrika?
+            </h2>
+            <p class="text-slate-600 text-base md:text-lg max-w-xl leading-relaxed">
+                Biarkan tim FreshWash menyelesaikan urusan domestik rumah tangga Anda. Pakaian beres, pikiran tenang, Anda pun siap beraktivitas harian dengan nyaman.
+            </p>
+            <div class="pt-6 w-full sm:w-auto z-10">
+                <a href="https://wa.me/6281234567890" target="_blank" class="bg-aesthetic-accent text-white font-extrabold px-12 py-5 rounded-full flex items-center justify-center space-x-3 shadow-xl shadow-aesthetic-accent/20 hover:scale-105 transition duration-300 text-base">
+                    <span class="text-xl">??</span>
+                    <span>Hubungi CS WhatsApp</span>
+                </a>
+            </div>
+            <div class="flex flex-wrap items-center justify-center gap-x-10 gap-y-3 pt-8 text-sm text-slate-400 font-semibold uppercase tracking-widest z-10">
+                <div class="flex items-center space-x-2"><span>??</span><span>Sudirman Avenue No. 45, Jakarta</span></div>
+                <div class="flex items-center space-x-2"><span>??</span><span>Setiap Hari (08.00 - 20.00 WIB)</span></div>
+            </div>
+            <div class="absolute -top-10 -left-10 w-40 h-40 bg-white rounded-full opacity-50"></div>
+            <div class="absolute -bottom-16 -right-16 w-56 h-56 bg-aesthetic-accent rounded-full opacity-10"></div>
+        </div>
+    </section>
+    <footer class="text-center py-10 border-t border-slate-100 text-slate-400 text-xs tracking-wider">
+        © 2023 FreshWash Laundry. All rights reserved. Estetik & Higienis.
+    </footer>
+</body>
+</html>
