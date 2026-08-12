@@ -1,340 +1,1950 @@
 <!DOCTYPE html>
-<html lang="id" class="scroll-smooth">
+<html lang="id" class="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Armuzna LAUNDRY - Solusi Pakaian Bersih & Estetik</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Plus Jakarta Sans', 'sans-serif'],
-                        serif: ['Playfair Display', 'serif'],
-                    },
-                    colors: {
-                        aesthetic: {
-                            dark: '#1e293b',      
-                            blue: '#38bdf8',       
-                            sky: '#f0f9ff',       
-                            accent: '#fb923c',     
-                            accentLighter: '#fff7ed', 
-                            bgLight: '#f8fafc',  
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        section {
-            scroll-margin-top: 90px;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Armuzna Laundry - Next-Gen Modern Dashboard</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Font Google: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome 6 Pro / Free -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+  
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    :root {
+      --az-font: 'Plus Jakarta Sans', sans-serif;
+      --az-bg: #030712;
+      --az-card-bg: rgba(17, 24, 39, 0.65);
+      --az-card-border: rgba(255, 255, 255, 0.08);
+      --az-card-hover-border: rgba(56, 189, 248, 0.35);
+      --az-card-shadow: none;
+      --az-input-bg: rgba(15, 23, 42, 0.7);
+      --az-text-main: #f9fafb;
+      --az-text-muted: #9ca3af;
+      
+      /* Active Navigation Shadow */
+      --az-nav-active-shadow: none;
+      --az-logo-shadow: none;
+      /* Expense Section Variables (Dark Mode Default) */
+      --az-expense-bg: linear-gradient(135deg, rgba(3, 7, 18, 0.95), rgba(30, 27, 75, 0.8));
+      --az-expense-border: rgba(99, 102, 241, 0.3);
+      --az-expense-text-title: #f1f5f9;
+      --az-expense-text-sub: #a5b4fc;
+    }
+    /* =========================================================
+       KUSTOMISASI TEMA TERANG (LIGHT MODE)
+       ========================================================= */
+    body.light-mode {
+      --az-bg: #f8fafc;
+      --az-card-bg: #ffffff;
+      --az-card-border: #e2e8f0;
+      --az-card-hover-border: rgba(2, 132, 199, 0.4);
+      --az-card-shadow: none;
+      --az-input-bg: #ffffff;
+      --az-text-main: #0f172a;
+      --az-text-muted: #64748b;
+      --az-nav-active-shadow: none;
+      --az-logo-shadow: none;
+      
+      /* Expense Section Variables saat Mode Terang */
+      --az-expense-bg: #ffffff;
+      --az-expense-border: #e2e8f0;
+      --az-expense-text-title: #0f172a;
+      --az-expense-text-sub: #475569;
+    }
+    body {
+      font-family: var(--az-font);
+      background-color: var(--az-bg) !important;
+      color: var(--az-text-main);
+      background-image: 
+        radial-gradient(circle at 0% 0%, rgba(56, 189, 248, 0.08) 0px, transparent 40%),
+        radial-gradient(circle at 100% 100%, rgba(99, 102, 241, 0.08) 0px, transparent 40%),
+        radial-gradient(circle at 50% 50%, rgba(14, 165, 233, 0.03) 0px, transparent 60%);
+      background-attachment: fixed;
+    }
+    body.light-mode {
+      background-image: 
+        radial-gradient(circle at 0% 0%, rgba(14, 165, 233, 0.05) 0px, transparent 40%),
+        radial-gradient(circle at 100% 100%, rgba(99, 102, 241, 0.05) 0px, transparent 40%);
+    }
+    /* Logo Icon Shadow Dynamic Class */
+    .az-brand-icon {
+      box-shadow: none !important;
+    }
+    /* Glassmorphic / White Card Container */
+    .az-glass {
+      background: var(--az-card-bg) !important;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--az-card-border);
+      border-radius: 24px;
+      box-shadow: none !important;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .az-glass:hover {
+      border-color: var(--az-card-hover-border);
+      transform: translateY(-2px);
+      box-shadow: none !important;
+    }
+    /* Style khusus Halaman Pengeluaran */
+    .az-glass-expense {
+      background: var(--az-expense-bg) !important;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--az-expense-border);
+      border-radius: 24px;
+      box-shadow: none !important;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .az-glass-expense .expense-title {
+      color: var(--az-expense-text-title) !important;
+    }
+    .az-glass-expense .expense-sub {
+      color: var(--az-expense-text-sub) !important;
+    }
+    /* Adjust Elemen UI pada Mode Terang */
+    body.light-mode aside, 
+    body.light-mode header {
+      background-color: rgba(255, 255, 255, 0.9) !important;
+      border-color: #e2e8f0 !important;
+    }
+    body.light-mode footer {
+      color: #64748b !important;
+      border-color: #e2e8f0 !important;
+      background-color: rgba(255, 255, 255, 0.8) !important;
+    }
+    body.light-mode input, 
+    body.light-mode select, 
+    body.light-mode textarea {
+      background: #ffffff !important;
+      color: #0f172a !important;
+      border-color: #cbd5e1 !important;
+    }
+    body.light-mode table thead {
+      background: #f1f5f9 !important;
+      color: #334155 !important;
+    }
+    body.light-mode table tbody tr {
+      border-color: #f1f5f9 !important;
+    }
+    body.light-mode tr:hover {
+      background: rgba(241, 245, 249, 0.9) !important;
+    }
+    body.light-mode .bg-slate-900\/40,
+    body.light-mode .bg-slate-900\/50,
+    body.light-mode .bg-slate-900\/60,
+    body.light-mode .bg-slate-900\/80 {
+      background-color: #f8fafc !important;
+      border-color: #e2e8f0 !important;
+      color: #0f172a !important;
+    }
+    body.light-mode .text-slate-400 {
+      color: #64748b !important;
+    }
+    body.light-mode .text-slate-300 {
+      color: #334155 !important;
+    }
+    /* Navigation Button */
+    .sidebar-nav button {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 12px 18px;
+      border-radius: 16px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--az-text-muted);
+      transition: all 0.25s ease;
+      background: transparent;
+      border: 1px solid transparent;
+      cursor: pointer;
+    }
+    .sidebar-nav button:hover {
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--az-text-main);
+      transform: translateX(4px);
+    }
+    body.light-mode .sidebar-nav button:hover {
+      background: rgba(0, 0, 0, 0.04);
+      color: #0f172a;
+    }
+    /* NAVIGASI AKTIF TANPA BAYANGAN */
+    .sidebar-nav button.az-active {
+      background: linear-gradient(135deg, #0ea5e9, #2563eb);
+      color: #ffffff !important;
+      box-shadow: none !important;
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+    /* Input & Form Styling */
+    input, select, textarea {
+      background: var(--az-input-bg) !important;
+      border: 1px solid var(--az-card-border) !important;
+      color: inherit;
+      transition: all 0.2s ease;
+      box-shadow: none !important;
+    }
+    input:focus, select:focus, textarea:focus {
+      border-color: #38bdf8 !important;
+      box-shadow: none !important;
+      outline: none;
+    }
+    /* Service Choice Buttons */
+    .service-choice {
+      background: rgba(15, 23, 42, 0.5) !important;
+      border: 1px solid var(--az-card-border) !important;
+      color: var(--az-text-muted);
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: none !important;
+    }
+    body.light-mode .service-choice {
+      background: #f8fafc !important;
+      border-color: #e2e8f0 !important;
+      color: #475569 !important;
+    }
+    .service-choice:hover {
+      border-color: rgba(56, 189, 248, 0.4) !important;
+      color: var(--az-text-main);
+      transform: translateY(-2px);
+    }
+    .service-choice.active {
+      background: linear-gradient(135deg, #0284c7, #2563eb) !important;
+      color: #ffffff !important;
+      border-color: #38bdf8 !important;
+      box-shadow: none !important;
+    }
+    .service-choice.active i {
+      color: #ffffff !important;
+    }
+    /* Scrollbar Aesthetics */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: rgba(148, 163, 184, 0.25); border-radius: 99px; }
+    ::-webkit-scrollbar-thumb:hover { background: rgba(148, 163, 184, 0.45); }
+  </style>
 </head>
-<body class="font-sans text-slate-700 bg-white antialiased overflow-x-hidden">
-    <header class="w-full bg-white/90 backdrop-blur-md sticky top-0 z-50 border-b border-slate-100">
-        <div class="max-w-7xl mx-auto px-6 lg:px-16 py-4 flex items-center justify-between">
-            <a href="#beranda" class="flex items-center space-x-2">
-                <span class="font-serif text-2xl font-extrabold text-aesthetic-dark tracking-tight">Armuzna<span class="text-aesthetic-blue">Laundry</span></span>
-                <span class="w-2.5 h-2.5 rounded-full bg-aesthetic-accent anime-pulse"></span>
-            </a>
-            <nav class="hidden md:flex items-center space-x-8 font-semibold text-slate-600 text-sm">
-                <a href="#beranda" class="hover:text-aesthetic-blue transition">Beranda</a>
-                <a href="#layanan" class="hover:text-aesthetic-blue transition">Layanan</a>
-                <a href="#harga" class="hover:text-aesthetic-blue transition">Harga</a>
-                <a href="#cara-kerja" class="hover:text-aesthetic-blue transition">Alur</a>
-                <a href="#kontak" class="hover:text-aesthetic-blue transition">Kontak</a>
-            </nav>
-            <div>
-                <a href="#kontak" class="bg-aesthetic-dark text-white font-bold px-6 py-3 rounded-full hover:bg-aesthetic-accent transition text-sm shadow-sm">
-                    Request
-                </a>
-            </div>
+<body class="min-h-screen flex flex-col md:flex-row overflow-x-hidden selection:bg-sky-500 selection:text-white">
+  <!-- SIDEBAR NAVIGATION -->
+  <aside class="w-full md:w-72 bg-slate-950/80 backdrop-blur-2xl border-r border-slate-800/80 flex flex-col justify-between p-6 min-h-screen shrink-0 z-40 relative">
+    <div class="space-y-8">
+      <!-- Logo Brand -->
+      <div class="flex items-center space-x-3.5 cursor-pointer px-1" onclick="switchPage('beranda')">
+        <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-sky-400 via-blue-500 to-indigo-600 flex items-center justify-center text-white az-brand-icon ring-1 ring-white/20">
+          <i class="fa-solid fa-soap text-xl"></i>
         </div>
+        <div>
+          <h1 class="text-lg font-extrabold tracking-tight">Armuzna</h1>
+          <p class="text-[10px] text-sky-400 font-bold tracking-widest uppercase">Laundry System</p>
+        </div>
+      </div>
+      <!-- Menu Navigasi Sidebar -->
+      <nav class="sidebar-nav space-y-2">
+        <button id="nav-beranda" onclick="switchPage('beranda')" class="az-active">
+          <i class="fa-solid fa-house w-5 text-center text-base"></i>
+          <span>Beranda</span>
+        </button>
+        <!-- NAVIGASI AGEN AI (BARU) -->
+        <button id="nav-agen" onclick="switchPage('agen')" class="justify-between">
+          <div class="flex items-center gap-3.5">
+            <i class="fa-solid fa-robot w-5 text-center text-base text-cyan-400"></i>
+            <span>Agen AI</span>
+          </div>
+          <span class="bg-gradient-to-r from-sky-500 to-indigo-500 text-white text-[9px] font-extrabold px-2 py-0.5 rounded-full uppercase">Smart</span>
+        </button>
+        <button id="nav-layanan" onclick="switchPage('layanan')">
+          <i class="fa-solid fa-tags w-5 text-center text-base"></i>
+          <span>Daftar Harga</span>
+        </button>
+        <!-- NAVIGASI PROMOSI BARU -->
+        <button id="nav-promosi" onclick="switchPage('promosi')" class="justify-between">
+          <div class="flex items-center gap-3.5">
+            <i class="fa-solid fa-bullhorn w-5 text-center text-base"></i>
+            <span>Promosi & Diskon</span>
+          </div>
+        </button>
+        <button id="nav-kasir" onclick="switchPage('kasir')">
+          <i class="fa-solid fa-cash-register w-5 text-center text-base"></i>
+          <span>Kasir & Transaksi</span>
+        </button>
+        <!-- MENU BARU: DATA PELANGGAN -->
+        <button id="nav-pelanggan" onclick="switchPage('pelanggan')">
+          <i class="fa-solid fa-users w-5 text-center text-base"></i>
+          <span>Data Pelanggan</span>
+        </button>
+        <button id="nav-pengeluaran" onclick="switchPage('pengeluaran')">
+          <i class="fa-solid fa-wallet w-5 text-center text-base"></i>
+          <span>Pengeluaran</span>
+        </button>
+        <button id="nav-lacak" onclick="switchPage('lacak')">
+          <i class="fa-solid fa-magnifying-glass w-5 text-center text-base"></i>
+          <span>Cek Status</span>
+        </button>
+        <button id="nav-analytics" onclick="switchPage('analytics')">
+          <i class="fa-solid fa-chart-pie w-5 text-center text-base"></i>
+          <span>Business Analytics</span>
+        </button>
+      </nav>
+    </div>
+    <!-- Tombol Sign Out -->
+    <div class="pt-6 border-t border-slate-800/80">
+      <button onclick="alert('Anda keluar dari sesi sistem.')" class="w-full flex items-center justify-between px-4 py-3 rounded-xl text-xs font-semibold text-rose-400 hover:bg-rose-500/10 transition group">
+        <div class="flex items-center gap-3">
+          <i class="fa-solid fa-right-from-bracket text-sm"></i>
+          <span>Keluar Sesi</span>
+        </div>
+        <i class="fa-solid fa-chevron-right text-[10px] opacity-0 group-hover:opacity-100 transition"></i>
+      </button>
+    </div>
+  </aside>
+  
+  <!-- KONTEN UTAMA DASHBOARD -->
+  <div class="flex-grow flex flex-col min-w-0">
+    
+    <!-- Top Header Bar -->
+    <header class="h-20 border-b border-slate-800/80 bg-slate-950/40 backdrop-blur-xl px-6 md:px-8 flex items-center justify-between sticky top-0 z-30">
+      <div class="flex items-center gap-3 w-full max-w-md">
+        <div class="relative w-full">
+          <i class="fa-solid fa-magnifying-glass absolute left-4 top-3.5 text-slate-400 text-xs"></i>
+          <input type="text" placeholder="Cari transaksi, pelanggan, promo, atau nota..." class="w-full pl-10 pr-4 py-2.5 rounded-2xl text-xs border border-slate-800 bg-slate-900/60 focus:outline-none transition">
+        </div>
+      </div>
+      <div class="flex items-center gap-4">
+        <!-- TOGGLE MODE TERANG & GELAP -->
+        <div onclick="toggleTheme()" class="flex items-center gap-2 bg-slate-900/60 border border-slate-800 px-3 py-1.5 rounded-full text-xs cursor-pointer select-none hover:border-slate-700 transition">
+          <i class="fa-solid fa-sun text-amber-400 text-xs"></i>
+          <span id="themeSlider" class="w-8 h-4 bg-sky-500 rounded-full relative inline-block transition-all">
+            <span id="themeDot" class="w-4 h-4 bg-white rounded-full absolute right-0 top-0 transition-all"></span>
+          </span>
+          <i class="fa-solid fa-moon text-slate-400 text-xs"></i>
+        </div>
+        
+        <!-- TOMBOL NOTIFIKASI -->
+        <div class="relative">
+          <span id="notifDot" class="absolute -top-1 -right-1 w-2.5 h-2.5 bg-rose-500 rounded-full hidden ring-4 ring-slate-950"></span>
+          <button onclick="requestNotificationPermission()" class="w-10 h-10 rounded-2xl bg-slate-900/60 border border-slate-800 flex items-center justify-center text-slate-300 hover:text-white hover:border-sky-500/50 transition" title="Aktifkan Notifikasi">
+            <i class="fa-regular fa-bell text-sm"></i>
+          </button>
+        </div>
+        <!-- PROFILE BADGE -->
+        <div class="flex items-center gap-3 border-l border-slate-800/80 pl-5">
+          <img src="1111.jpg" alt="Achmad Efendi" class="w-9 h-9 rounded-full object-cover ring-2 ring-white/10">
+          <div class="hidden sm:block">
+            <p class="text-xs font-bold leading-tight">Achmad Efendi</p>
+            <p class="text-[10px] text-slate-400 font-medium">Administrator</p>
+          </div>
+        </div>
+      </div>
     </header>
-    <section id="beranda" class="max-w-7xl mx-auto px-6 lg:px-16 pt-16 pb-24 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-        <div class="lg:col-span-7 space-y-7">
-            <div class="inline-flex items-center space-x-2 bg-aesthetic-accentLighter text-aesthetic-accent px-4 py-2 rounded-full font-bold text-xs tracking-wider uppercase border border-aesthetic-accent/20">
-                <span>?</span>
-                <span>Kemurnian & Kesegaran Pakaian Terbaik</span>
-            </div>
-            <h1 class="font-serif text-5xl md:text-6xl lg:text-7xl text-aesthetic-dark leading-tight font-extrabold tracking-tight">
-               Cuci Mencuci<br><span class="text-aesthetic-blue">Di Armuzna Laundry Balikpapan</span>
-            </h1>
-            <p class="text-slate-500 text-base md:text-lg max-w-2xl leading-relaxed">
-                Kami mengubah tumpukan baju kotor menjadi pakaian yang bersih higienis, disetrika dengan presisi, serta memiliki keharuman mewah yang tahan lama. Nikmati kepraktisan lewat jasa laundry terbaik yang dilengkapi kurir antar-jemput.
-            </p>
-            <div class="flex flex-wrap gap-3 pt-2">
-                <div class="flex items-center space-x-2 border border-slate-100 bg-aesthetic-bgLight px-5 py-2.5 rounded-full text-sm font-semibold text-aesthetic-dark shadow-inner">
-                    <span class="text-aesthetic-accent">??</span>
-                    <span>Layanan Jemput-Antar</span>
-                </div>
-                <div class="flex items-center space-x-2 border border-slate-100 bg-aesthetic-bgLight px-5 py-2.5 rounded-full text-sm font-semibold text-aesthetic-dark shadow-inner">
-                    <span class="text-aesthetic-accent">?</span>
-                    <span>Selesai Tepat Waktu</span>
-                </div>
-            </div>
-            <div class="flex flex-wrap gap-4 pt-5">
-                <a href="#kontak" class="bg-aesthetic-accent text-white font-bold px-10 py-4 rounded-full shadow-lg shadow-aesthetic-accent/20 hover:opacity-90 transition text-base">
-                    Mulai Laundry
-                </a>
-                <a href="#harga" class="border-2 border-aesthetic-dark text-aesthetic-dark font-bold px-10 py-4 rounded-full flex items-center space-x-2 hover:bg-slate-50 transition text-base">
-                    <span>Cek Pricelist</span>
-                    <span>?</span>
-                </a>
-            </div>
-        </div>
-        <div class="lg:col-span-5 relative w-full h-[400px] md:h-[500px]">
-            <div class="w-full h-full rounded-[50px] overflow-hidden shadow-2xl shadow-slate-200 bg-slate-100 relative border-4 border-white">
-                <img src="https://images.unsplash.com/photo-1582735689369-4fe89db7114c?q=80&w=1000&auto=format&fit=crop" alt="Tumpukan handuk dan baju putih bersih estetik" class="w-full h-full object-cover">
-                <div class="absolute bottom-8 right-8 bg-white/95 backdrop-blur-sm text-aesthetic-dark px-6 py-3.5 rounded-full shadow-lg flex items-center space-x-2.5 font-extrabold text-sm border border-slate-100">
-                    <span class="text-aesthetic-accent text-lg">??</span>
-                    <span>Dipercaya Keluarga Indonesia </span>
-                </div>
-            </div>
-            <div class="absolute -top-10 -left-10 w-32 h-32 bg-aesthetic-sky rounded-full -z-10"></div>
-            <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-aesthetic-accentLighter rounded-full -z-10"></div>
-        </div>
-    </section>
-    <section class="bg-gradient-to-b from-aesthetic-sky to-white pt-10 pb-28">
-        <div class="max-w-7xl mx-auto px-6 lg:px-16 grid grid-cols-1 md:grid-cols-3 gap-8 transform -translate-y-16">
-            <div class="bg-white rounded-[35px] p-9 text-center shadow-2xl shadow-slate-100 flex flex-col items-center space-y-3 border border-slate-50/50">
-                <div class="w-14 h-14 rounded-full bg-aesthetic-sky flex items-center justify-center text-aesthetic-blue text-2xl shadow-inner border border-aesthetic-blue/20">?</div>
-                <h3 class="font-serif text-4xl font-extrabold text-aesthetic-dark">5000+</h3>
-                <p class="text-slate-400 text-xs font-bold uppercase tracking-widest">Mitra Rumah Tangga</p>
-            </div>
-            <div class="bg-white rounded-[35px] p-9 text-center shadow-2xl shadow-slate-100 flex flex-col items-center space-y-3 border border-slate-50/50">
-                <div class="w-14 h-14 rounded-full bg-aesthetic-accentLighter flex items-center justify-center text-aesthetic-accent text-2xl shadow-inner border border-aesthetic-accent/20">??</div>
-                <h3 class="font-serif text-4xl font-extrabold text-aesthetic-dark">Express</h3>
-                <p class="text-slate-400 text-xs font-bold uppercase tracking-widest">Durasi Kilat Tersedia</p>
-            </div>
-            <div class="bg-white rounded-[35px] p-9 text-center shadow-2xl shadow-slate-100 flex flex-col items-center space-y-3 border border-slate-50/50">
-                <div class="w-14 h-14 rounded-full bg-aesthetic-sky flex items-center justify-center text-aesthetic-blue text-2xl shadow-inner border border-aesthetic-blue/20">??</div>
-                <h3 class="font-serif text-4xl font-extrabold text-aesthetic-dark">Free Ongkir</h3>
-                <p class="text-slate-400 text-xs font-bold uppercase tracking-widest">S&K Berlaku Area Terdekat</p>
-            </div>
-        </div>
-        <div id="layanan" class="max-w-7xl mx-auto px-6 lg:px-16 pt-10 text-center md:text-left">
-            <span class="text-sm uppercase tracking-widest text-aesthetic-accent font-bold block mb-2">Pelayanan Terbaik Kami</span>
-            <h2 class="font-serif text-4xl md:text-5xl text-aesthetic-dark font-extrabold max-w-2xl leading-tight tracking-tight">
-                Kategori Perawatan Pakaian yang Kami Sediakan
+    <!-- CONTAINER KONTEN HALAMAN -->
+    <main class="p-6 md:p-8 flex-grow space-y-8">
+      
+      <!-- 1. HALAMAN BERANDA -->
+      <div id="page-beranda" class="space-y-8">
+        <!-- Banner Dashboard Soft Modern -->
+        <div class="bg-gradient-to-r from-slate-950 via-indigo-950 to-slate-900 text-white p-8 rounded-3xl relative overflow-hidden border border-indigo-500/20">
+          <div class="relative z-10 max-w-2xl space-y-3.5">
+            <span class="bg-sky-500/10 text-sky-300 text-[10px] font-bold px-3.5 py-1.5 rounded-full uppercase tracking-wider inline-flex items-center gap-1.5 border border-sky-400/20">
+              <span class="w-1.5 h-1.5 rounded-full bg-sky-400 animate-pulse"></span>
+              Selamat Datang Kembali ??
+            </span>
+            <h2 class="text-2xl md:text-3xl font-extrabold tracking-tight leading-snug">
+              Armuzna Laundry
             </h2>
-            <p class="text-slate-500 text-base mt-4 max-w-xl leading-relaxed">
-                Mulai dari pakaian kasual harian hingga kain eksklusif sensitif, kami tangani dengan penuh kehati-hatian.
+            <p class="text-slate-300 text-xs md:text-sm leading-relaxed">
+              Kelola aktivitas laundry, statistik transaksi, promosi spesial, dan keuangan operasional secara real-time dengan tampilan modern & efisien.
             </p>
+            <div class="pt-3 flex flex-wrap gap-3">
+              <button onclick="switchPage('kasir')" class="bg-sky-500 hover:bg-sky-400 text-slate-950 font-bold px-5 py-3 rounded-2xl text-xs transition flex items-center gap-2 transform active:scale-95">
+                <i class="fa-solid fa-plus-circle text-sm"></i> Buat Transaksi
+              </button>
+              <button onclick="switchPage('promosi')" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-5 py-3 rounded-2xl text-xs transition flex items-center gap-2 transform active:scale-95">
+                <i class="fa-solid fa-bullhorn text-sm"></i> Kelola Promosi
+              </button>
+            </div>
+          </div>
+          <i class="fa-solid fa-soap absolute -right-8 -bottom-8 text-[220px] text-white/[0.03] pointer-events-none"></i>
         </div>
-        <div class="max-w-7xl mx-auto px-6 lg:px-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 pt-16">
-            <div class="bg-white rounded-[35px] overflow-hidden shadow-xl shadow-slate-100 border border-slate-100 flex flex-col h-full hover:shadow-aesthetic-blue/10 hover:-translate-y-1 transition-all duration-300">
-                <div class="h-52 overflow-hidden bg-slate-100 border-b border-slate-100">
-                    <img src="https://images.unsplash.com/photo-1545173168-9f18d8be2749?q=80&w=600&auto=format&fit=crop" alt="Deretan mesin cuci modern estetik" class="w-full h-full object-cover">
-                </div>
-                <div class="p-7 flex flex-col flex-grow space-y-3">
-                    <h3 class="font-serif font-bold text-xl text-aesthetic-dark">Cuci Lipat Kiloan</h3>
-                    <p class="text-slate-500 text-sm leading-relaxed flex-grow">Opsi ekonomis khusus sandang harian seperti kaos, celana, jins, dan handuk. Ditimbang adil dengan deterjen ramah serat.</p>
-                    <a href="#harga" class="text-aesthetic-blue font-bold text-sm flex items-center space-x-1.5 pt-3 hover:text-aesthetic-accent transition"><span>Lihat Tarif</span> <span class="text-base">?</span></a>
-                </div>
+        <!-- STATISTIK & STATUS PENGERJAAN -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div class="az-glass p-6 lg:col-span-2 space-y-4">
+            <div class="flex justify-between items-center">
+              <div>
+                <h3 class="font-bold text-sm">Statistik Transaksi Bulanan </h3>
+                <p class="text-[11px] text-slate-400">Ringkasan pergerakan volume layanan laundry.</p>
+              </div>
+              <div class="flex items-center gap-2 text-xs bg-slate-900/60 px-3.5 py-2 rounded-xl border border-slate-800">
+                <span>Agustus 2026</span>
+                <i class="fa-solid fa-chevron-down text-[10px] text-slate-400"></i>
+              </div>
             </div>
-            <div class="bg-white rounded-[35px] overflow-hidden shadow-xl shadow-slate-100 border border-slate-100 flex flex-col h-full hover:shadow-aesthetic-blue/10 hover:-translate-y-1 transition-all duration-300">
-                <div class="h-52 overflow-hidden bg-slate-100 border-b border-slate-100">
-                    <img src="https://images.unsplash.com/photo-1604335399105-a0c585fd81a1?q=80&w=600&auto=format&fit=crop" alt="Kurir menjemput keranjang laundry kotor" class="w-full h-full object-cover">
-                </div>
-                <div class="p-7 flex flex-col flex-grow space-y-3">
-                    <h3 class="font-serif font-bold text-xl text-aesthetic-dark">Premium Satuan</h3>
-                    <p class="text-slate-500 text-sm leading-relaxed flex-grow">Penanganan khusus per helai untuk gaun, batik tulis, jas formal, hingga kebaya agar tekstur kain dan payet tetap terjaga prima.</p>
-                    <a href="#kontak" class="text-aesthetic-blue font-bold text-sm flex items-center space-x-1.5 pt-3 hover:text-aesthetic-accent transition"><span>Hubungi Admin</span> <span class="text-base">?</span></a>
-                </div>
+            <div class="relative h-64 w-full">
+              <canvas id="dashboardMiniChart"></canvas>
             </div>
-            <div class="bg-white rounded-[35px] overflow-hidden shadow-xl shadow-slate-100 border border-slate-100 flex flex-col h-full hover:shadow-aesthetic-blue/10 hover:-translate-y-1 transition-all duration-300">
-                <div class="h-52 overflow-hidden bg-slate-100 border-b border-slate-100">
-                    <img src="https://images.unsplash.com/photo-1511556820780-d912e42b4980?q=80&w=600&auto=format&fit=crop" alt="Sepatu sneakers putih bersih" class="w-full h-full object-cover">
+          </div>
+          <div class="az-glass p-6 space-y-4">
+            <h3 class="font-bold text-sm">Status Pengerjaan</h3>
+            <p class="text-[11px] text-slate-400">Distribusi status cucian pelanggan saat ini.</p>
+            <div class="space-y-3 pt-1">
+              <div class="flex items-center justify-between p-3.5 rounded-2xl bg-slate-900/40 border border-slate-800/80">
+                <div class="text-xs">
+                  <p class="font-semibold">Cuci Kiloan</p>
+                  <p class="text-[10px] text-slate-400">78 Terdaftar</p>
                 </div>
-                <div class="p-7 flex flex-col flex-grow space-y-3">
-                    <h3 class="font-serif font-bold text-xl text-aesthetic-dark">Shoe Care & Spa</h3>
-                    <p class="text-slate-500 text-sm leading-relaxed flex-grow">Pembersihan mendalam untuk sepatu kasual maupun olahraga. Menghilangkan noda membandel sekaligus bakteri penyebab bau.</p>
-                    <a href="#kontak" class="text-aesthetic-blue font-bold text-sm flex items-center space-x-1.5 pt-3 hover:text-aesthetic-accent transition"><span>Konsultasi</span> <span class="text-base">?</span></a>
+                <div class="w-10 h-10 rounded-2xl bg-sky-500/10 border border-sky-400/30 flex items-center justify-center text-xs font-extrabold text-sky-400">32%</div>
+              </div>
+              <div class="flex items-center justify-between p-3.5 rounded-2xl bg-slate-900/40 border border-slate-800/80">
+                <div class="text-xs">
+                  <p class="font-semibold">Cuci Setrika</p>
+                  <p class="text-[10px] text-slate-400">60 Terdaftar</p>
                 </div>
+                <div class="w-10 h-10 rounded-2xl bg-emerald-500/10 border border-emerald-400/30 flex items-center justify-center text-xs font-extrabold text-emerald-400">43%</div>
+              </div>
+              <div class="flex items-center justify-between p-3.5 rounded-2xl bg-slate-900/40 border border-slate-800/80">
+                <div class="text-xs">
+                  <p class="font-semibold">Express 1 Hari</p>
+                  <p class="text-[10px] text-slate-400">80 Terdaftar</p>
+                </div>
+                <div class="w-10 h-10 rounded-2xl bg-amber-500/10 border border-amber-400/30 flex items-center justify-center text-xs font-extrabold text-amber-400">67%</div>
+              </div>
             </div>
-            <div class="bg-white rounded-[35px] overflow-hidden shadow-xl shadow-slate-100 border border-slate-100 flex flex-col h-full hover:shadow-aesthetic-blue/10 hover:-translate-y-1 transition-all duration-300">
-                <div class="h-52 overflow-hidden bg-slate-100 border-b border-slate-100">
-                    <img src="https://images.unsplash.com/photo-1489274495757-95c7c837b101?q=80&w=600&auto=format&fit=crop" alt="Proses menyetrika uap" class="w-full h-full object-cover">
-                </div>
-                <div class="p-7 flex flex-col flex-grow space-y-3">
-                    <h3 class="font-serif font-bold text-xl text-aesthetic-dark">Pressing & Setrika</h3>
-                    <p class="text-slate-500 text-sm leading-relaxed flex-grow">Sudah mencuci sendiri tapi malas menyetrika? Serahkan ke kami untuk digosok menggunakan uap panas hingga rapi.</p>
-                    <a href="#harga" class="text-aesthetic-blue font-bold text-sm flex items-center space-x-1.5 pt-3 hover:text-aesthetic-accent transition"><span>Lihat Tarif</span> <span class="text-base">?</span></a>
-                </div>
-            </div>
+          </div>
         </div>
-    </section>
-    <section id="harga" class="max-w-7xl mx-auto px-6 lg:px-16 py-16 text-center">
-        <span class="text-sm uppercase tracking-widest text-aesthetic-accent font-bold block mb-2">Transparansi Biaya</span>
-        <h2 class="font-serif text-4xl md:text-5xl text-aesthetic-dark font-extrabold mb-4 tracking-tight">Paket Hemat Sesuai Kebutuhan</h2>
-        <p class="text-slate-500 text-base md:text-lg max-w-xl mx-auto mb-20 leading-relaxed">
-            Tanpa tambahan ongkos tersembunyi. Tentukan durasi pengerjaan yang paling ideal bagi aktivitas harian Anda.
-        </p>
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-10 items-stretch max-w-6xl mx-auto">
-            <div class="bg-white rounded-[35px] p-10 shadow-xl border border-slate-100 flex flex-col text-left justify-between hover:border-aesthetic-blue/20 transition group">
+        <!-- TREN ARUS KAS & AKTIVITAS TIM -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div class="az-glass p-6 lg:col-span-2 space-y-4">
+            <div class="flex justify-between items-center">
+              <h3 class="font-bold text-sm">Tren Arus Kas Mingguan</h3>
+              <span class="text-xs text-sky-400 font-semibold cursor-pointer hover:underline" onclick="switchPage('analytics')">Lihat Detail</span>
+            </div>
+            <div class="relative h-52 w-full">
+              <canvas id="dashboardAreaChart"></canvas>
+            </div>
+          </div>
+          <div class="az-glass p-6 space-y-4">
+            <div class="flex justify-between items-center">
+              <h3 class="font-bold text-sm">Aktivitas Tim</h3>
+              <span class="text-xs text-sky-400 font-semibold cursor-pointer hover:underline">Lihat Semua</span>
+            </div>
+            <div class="space-y-3">
+              <div class="flex items-center justify-between p-3.5 rounded-2xl bg-slate-900/40 border border-slate-800/80">
+                <div class="flex items-center gap-3">
+                  <div class="w-9 h-9 rounded-xl bg-blue-500/10 text-blue-400 border border-blue-500/20 flex items-center justify-center text-xs font-bold">AE</div>
+                  <div class="text-xs">
+                    <p class="font-semibold">Armuzna</p>
+                    <p class="text-[10px] text-slate-400">Creator/Developemnt/AnalystSystems</p>
+                  </div>
+                </div>
+                <span class="text-[10px] font-medium text-slate-400">10:00</span>
+              </div>
+              <div class="flex items-center justify-between p-3.5 rounded-2xl bg-slate-900/40 border border-slate-800/80">
+                <div class="flex items-center gap-3">
+                  <div class="w-9 h-9 rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 flex items-center justify-center text-xs font-bold">HN</div>
+                  <div class="text-xs">
+                    <p class="font-semibold">HANA</p>
+                    <p class="text-[10px] text-slate-400">Menambahkan pengeluaran baru</p>
+                  </div>
+                </div>
+                <span class="text-[10px] font-medium text-slate-400">10:30</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- HALAMAN AGEN AI (BARU) -->
+      <div id="page-agen" class="hidden space-y-6">
+        <!-- Banner Modul AI -->
+        <div class="bg-gradient-to-r from-slate-950 via-cyan-950 to-slate-900 text-white p-6 rounded-3xl border border-cyan-500/20 flex items-center justify-between">
+          <div class="space-y-2 max-w-xl">
+            <span class="bg-cyan-500/10 text-cyan-300 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider inline-flex items-center gap-1.5 border border-cyan-400/20">
+              <i class="fa-solid fa-sparkles text-cyan-400"></i> AI Virtual Assistant & Automation
+            </span>
+            <h2 class="text-2xl font-extrabold tracking-tight">Armuzna AI Assistant</h2>
+            <p class="text-slate-300 text-xs leading-relaxed">
+              Asisten kecerdasan buatan terintegrasi untuk otomatisasi balasan pelanggan WhatsApp, analisis prediktif transaksi, dan rekomendasi strategi bisnis laundry.
+            </p>
+          </div>
+          <div class="hidden sm:flex w-16 h-16 rounded-2xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 items-center justify-center text-3xl shrink-0">
+            <i class="fa-solid fa-robot animate-bounce"></i>
+          </div>
+        </div>
+        <!-- Metric KPI AI -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-5">
+          <div class="az-glass p-5 flex items-center justify-between">
+            <div>
+              <p class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Respons Otomatis WA</p>
+              <h3 class="text-2xl font-extrabold text-cyan-400 mt-1">142 Pesan</h3>
+            </div>
+            <div class="w-12 h-12 bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 rounded-2xl flex items-center justify-center text-lg">
+              <i class="fa-solid fa-comments"></i>
+            </div>
+          </div>
+          <div class="az-glass p-5 flex items-center justify-between">
+            <div>
+              <p class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Akurasi Prediksi CRM</p>
+              <h3 class="text-2xl font-extrabold text-emerald-400 mt-1">98.4%</h3>
+            </div>
+            <div class="w-12 h-12 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 rounded-2xl flex items-center justify-center text-lg">
+              <i class="fa-solid fa-bullseye"></i>
+            </div>
+          </div>
+          <div class="az-glass p-5 flex items-center justify-between">
+            <div>
+              <p class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Status Agen AI</p>
+              <h3 class="text-2xl font-extrabold text-amber-400 mt-1">Aktif & Siap</h3>
+            </div>
+            <div class="w-12 h-12 bg-amber-500/10 border border-amber-500/20 text-amber-400 rounded-2xl flex items-center justify-center text-lg">
+              <i class="fa-solid fa-shield-halved"></i>
+            </div>
+          </div>
+        </div>
+        <!-- Chat Workspace & Panel AI -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <!-- Chat AI Interface -->
+          <div class="az-glass p-6 lg:col-span-2 flex flex-col justify-between h-[500px]">
+            <div class="flex items-center justify-between border-b border-slate-800/80 pb-4">
+              <div class="flex items-center gap-3">
+                <div class="w-3 h-3 rounded-full bg-emerald-400 animate-ping"></div>
                 <div>
-                    <h3 class="font-serif text-2xl font-bold text-aesthetic-dark mb-5">Reguler (Santai)</h3>
-                    <div class="flex items-baseline mb-3">
-                        <span class="text-5xl font-serif font-extrabold text-aesthetic-dark">Rp7.000</span>
-                        <span class="text-slate-400 text-sm font-medium ml-1.5">/kg</span>
-                    </div>
-                    <div class="text-slate-400 text-sm font-semibold mb-8 pb-8 border-b border-slate-100 flex items-center gap-2">?? Durasi Estimasi 48 Jam</div>
-                    <ul class="space-y-4 text-sm text-slate-600 mb-10">
-                        <li class="flex items-center gap-2"> <span class="text-aesthetic-blue">?</span> Proses Cuci-Kering-Setrika</li>
-                        <li class="flex items-center gap-2"> <span class="text-aesthetic-blue">?</span> Pengharum Linen Standar</li>
-                        <li class="flex items-center gap-2"> <span class="text-aesthetic-blue">?</span> Packing Plastik Higienis</li>
-                        <li class="flex items-center gap-2"> <span class="text-aesthetic-blue">?</span> Minimum Order 5kg</li>
-                    </ul>
+                  <h3 class="font-bold text-sm">Konsultasi Agen AI Armuzna</h3>
+                  <p class="text-[10px] text-slate-400">Model: Armuzna-LLM v2.5 (Online)</p>
                 </div>
-                <a href="#kontak" class="w-full text-center bg-aesthetic-dark text-white font-bold py-4 rounded-2xl group-hover:bg-aesthetic-blue transition block text-base shadow-sm">Pilih Paket Reguler</a>
+              </div>
+              <button onclick="document.getElementById('chatContainer').innerHTML=''" class="text-xs text-slate-400 hover:text-rose-400 transition">
+                <i class="fa-solid fa-rotate-right mr-1"></i> Reset
+              </button>
             </div>
-            <div class="bg-white rounded-[35px] p-10 shadow-2xl shadow-aesthetic-accent/10 border-4 border-aesthetic-accent flex flex-col text-left justify-between relative transform lg:-translate-y-4">
-                <span class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-aesthetic-accent text-white text-xs font-bold px-6 py-1.5 rounded-full uppercase tracking-widest shadow-md">Pilihan Utama</span>
-                <div>
-                    <h3 class="font-serif text-2xl font-bold text-aesthetic-dark mb-5">Express (Kilat)</h3>
-                    <div class="flex items-baseline mb-3">
-                        <span class="text-5xl font-serif font-extrabold text-aesthetic-dark">Rp12.000</span>
-                        <span class="text-slate-400 text-sm font-medium ml-1.5">/kg</span>
-                    </div>
-                    <div class="text-aesthetic-accent text-sm font-bold mb-8 pb-8 border-b border-slate-100 flex items-center gap-2">?? Selesai Dalam 24 Jam</div>
-                    <ul class="space-y-4 text-sm text-slate-600 mb-10">
-                        <li class="flex items-center gap-2"> <span class="text-aesthetic-accent">?</span> Prioritas Antrean Mesin Utama</li>
-                        <li class="flex items-center gap-2"> <span class="text-aesthetic-accent">?</span> Bebas Pilih Varian Parfum Luxury</li>
-                        <li class="flex items-center gap-2"> <span class="text-aesthetic-accent">?</span> Packing Lipat Rapi Bebas Kusut</li>
-                        <li class="flex items-center gap-2"> <span class="text-aesthetic-accent">?</span> Penjemputan Prioritas</li>
-                    </ul>
+            <!-- Chat Container -->
+            <div id="chatContainer" class="flex-grow overflow-y-auto my-4 space-y-3 pr-2 text-xs">
+              <div class="flex items-start gap-2.5">
+                <div class="w-7 h-7 rounded-xl bg-cyan-500/20 border border-cyan-400/30 text-cyan-400 flex items-center justify-center shrink-0 text-xs">
+                  <i class="fa-solid fa-robot"></i>
                 </div>
-                <a href="#kontak" class="w-full text-center bg-aesthetic-accent text-white font-extrabold py-4 rounded-2xl hover:opacity-90 transition block text-base shadow-lg shadow-aesthetic-accent/20">Pesan Paket Kilat</a>
-            </div>
-            <div class="bg-white rounded-[35px] p-10 shadow-xl border border-slate-100 flex flex-col text-left justify-between hover:border-aesthetic-blue/20 transition group">
-                <div>
-                    <h3 class="font-serif text-2xl font-bold text-aesthetic-dark mb-5">Setrika Uap Only</h3>
-                    <div class="flex items-baseline mb-3">
-                        <span class="text-5xl font-serif font-extrabold text-aesthetic-dark">Rp5.000</span>
-                        <span class="text-slate-400 text-sm font-medium ml-1.5">/kg</span>
-                    </div>
-                    <div class="text-slate-400 text-sm font-semibold mb-8 pb-8 border-b border-slate-100 flex items-center gap-2">?? Durasi Estimasi 24 Jam</div>
-                    <ul class="space-y-4 text-sm text-slate-600 mb-10">
-                        <li class="flex items-center gap-2"> <span class="text-aesthetic-blue">?</span> Setrika Boiler Khusus</li>
-                        <li class="flex items-center gap-2"> <span class="text-aesthetic-blue">?</span> Semprotan Pewangi Serat Kain</li>
-                        <li class="flex items-center gap-2"> <span class="text-aesthetic-blue">?</span> Proteksi Gantungan / Plastik</li>
-                        <li class="flex items-center gap-2"> <span class="text-aesthetic-blue">?</span> Fleksibel Tanpa Minimum Order</li>
-                    </ul>
+                <div class="bg-slate-900/80 border border-slate-800 p-3 rounded-2xl max-w-md text-slate-300">
+                  Hal! Saya Agen AI Armuzna. Saya siap membantu menganalisis laporan, menyusun promo otomatis, atau membalas pesan pelanggan. Apa yang ingin Anda lakukan hari ini?
                 </div>
-                <a href="#kontak" class="w-full text-center bg-aesthetic-dark text-white font-bold py-4 rounded-2xl group-hover:bg-aesthetic-blue transition block text-base shadow-sm">Pilih Paket Setrika</a>
+              </div>
             </div>
+            <!-- Chat Input -->
+            <form onsubmit="sendAiMessage(event)" class="flex gap-2 pt-2 border-t border-slate-800/80">
+              <input type="text" id="aiInput" placeholder="Tanyakan saran promo, analisa transaksi, atau instruksi AI..." class="w-full px-4 py-3 rounded-xl text-xs">
+              <button type="submit" class="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-slate-950 font-bold px-5 py-3 rounded-xl text-xs transition flex items-center gap-2">
+                <i class="fa-solid fa-paper-plane"></i>
+              </button>
+            </form>
+          </div>
+          <!-- Setting & Quick Prompt Panel -->
+          <div class="space-y-6">
+            <!-- Quick Prompts -->
+            <div class="az-glass p-6 space-y-4">
+              <h3 class="font-bold text-sm flex items-center gap-2 text-cyan-400">
+                <i class="fa-solid fa-bolt"></i> Instruksi Cepat (Quick Prompt)
+              </h3>
+              <div class="space-y-2 text-xs">
+                <button onclick="triggerQuickPrompt('Buatkan draft promosi WhatsApp untuk pelanggan VIP')" class="w-full p-3 rounded-xl bg-slate-900/50 border border-slate-800/80 hover:border-cyan-500/50 text-left transition flex justify-between items-center group">
+                  <span>Draft WA Promo VIP</span>
+                  <i class="fa-solid fa-chevron-right text-[10px] text-slate-500 group-hover:text-cyan-400"></i>
+                </button>
+                <button onclick="triggerQuickPrompt('Analisis jam tersibuk dan berikan saran penambahan staf')" class="w-full p-3 rounded-xl bg-slate-900/50 border border-slate-800/80 hover:border-cyan-500/50 text-left transition flex justify-between items-center group">
+                  <span>Analisis Beban Kerja Staff</span>
+                  <i class="fa-solid fa-chevron-right text-[10px] text-slate-500 group-hover:text-cyan-400"></i>
+                </button>
+                <button onclick="triggerQuickPrompt('Hitung estimasi penghematan pengeluaran bahan cuci')" class="w-full p-3 rounded-xl bg-slate-900/50 border border-slate-800/80 hover:border-cyan-500/50 text-left transition flex justify-between items-center group">
+                  <span>Estimasi Penghematan Bahan</span>
+                  <i class="fa-solid fa-chevron-right text-[10px] text-slate-500 group-hover:text-cyan-400"></i>
+                </button>
+              </div>
+            </div>
+            <!-- Controls Panel -->
+            <div class="az-glass p-6 space-y-4">
+              <h3 class="font-bold text-sm flex items-center gap-2">
+                <i class="fa-solid fa-sliders text-amber-400"></i> Konfigurasi Otomatisasi
+              </h3>
+              <div class="space-y-3 text-xs">
+                <div class="flex items-center justify-between p-2.5 rounded-xl bg-slate-900/40 border border-slate-800">
+                  <span>Auto-reply WhatsApp</span>
+                  <input type="checkbox" checked class="w-4 h-4 rounded accent-sky-500">
+                </div>
+                <div class="flex items-center justify-between p-2.5 rounded-xl bg-slate-900/40 border border-slate-800">
+                  <span>Notifikasi Pelanggan Otomatis</span>
+                  <input type="checkbox" checked class="w-4 h-4 rounded accent-sky-500">
+                </div>
+                <div class="flex items-center justify-between p-2.5 rounded-xl bg-slate-900/40 border border-slate-800">
+                  <span>Peringatan Stok Deterjen</span>
+                  <input type="checkbox" checked class="w-4 h-4 rounded accent-sky-500">
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-    </section>
-    <section id="cara-kerja" class="max-w-7xl mx-auto px-6 lg:px-16 py-20 bg-aesthetic-bgLight my-16 rounded-[50px] border border-slate-100 shadow-inner">
-        <div class="text-center md:text-left mb-16">
-            <span class="text-sm uppercase tracking-widest text-aesthetic-blue font-bold block mb-2">Sistematis & Praktis</span>
-            <h2 class="font-serif text-4xl md:text-5xl text-aesthetic-dark font-extrabold tracking-tight">4 Alur Mudah Laundry di Sini</h2>
-            <p class="text-slate-500 text-base mt-3 max-w-xl">Duduk manis di sofa rumah Anda, serahkan siklus perawatan pakaian sepenuhnya pada tim ahli kami.</p>
+      </div>
+      <!-- 2. HALAMAN DAFTAR HARGA -->
+      <div id="page-layanan" class="hidden space-y-6">
+        <div>
+          <h2 class="text-xl font-bold">Daftar Harga Layanan</h2>
+          <p class="text-xs text-slate-400 mt-1">Pilihan paket perawatan pakaian berkualitas untuk pelanggan Anda.</p>
         </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div class="space-y-5 bg-white p-6 rounded-3xl border border-slate-100 shadow-xl shadow-slate-50 transition hover:border-aesthetic-blue/30">
-                <div class="h-40 rounded-2xl overflow-hidden bg-slate-100 border border-slate-100">
-                    <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=600&auto=format&fit=crop" alt="Memegang handphone chat CS" class="w-full h-full object-cover">
-                </div>
-                <div class="flex items-center space-x-3">
-                    <span class="w-7 h-7 rounded-full bg-aesthetic-sky text-aesthetic-blue font-bold text-sm flex items-center justify-center border border-aesthetic-blue/20 shadow-inner">1</span>
-                    <h4 class="font-serif font-bold text-lg text-aesthetic-dark">Kirim Pesan Chat</h4>
-                </div>
-                <p class="text-slate-500 text-sm leading-relaxed">Kirim rincian alamat dan jenis layanan yang Anda perlukan melalui WhatsApp admin kami.</p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <!-- 1. Cuci Kiloan -->
+          <div class="az-glass p-6 text-center space-y-4">
+            <div class="w-16 h-16 bg-sky-500/10 text-sky-400 border border-sky-500/20 rounded-2xl flex items-center justify-center mx-auto text-2xl">
+              <i class="fa-solid fa-weight-scale"></i>
             </div>
-            <div class="space-y-5 bg-white p-6 rounded-3xl border border-slate-100 shadow-xl shadow-slate-50 transition hover:border-aesthetic-blue/30">
-                <div class="h-40 rounded-2xl overflow-hidden bg-slate-100 border border-slate-100">
-                    <img src="https://images.unsplash.com/photo-1604335399105-a0c585fd81a1?q=80&w=600&auto=format&fit=crop" alt="Kurir menjemput keranjang laundry kotor" class="w-full h-full object-cover">
-                </div>
-                <div class="flex items-center space-x-3">
-                    <span class="w-7 h-7 rounded-full bg-aesthetic-accentLighter text-aesthetic-accent font-bold text-sm flex items-center justify-center border border-aesthetic-accent/20 shadow-inner">2</span>
-                    <h4 class="font-serif font-bold text-lg text-aesthetic-dark">Penjemputan Kain</h4>
-                </div>
-                <p class="text-slate-500 text-sm leading-relaxed">Driver kami meluncur ke lokasimu untuk mengambil tas laundry kotor sesuai jadwal yang ditentukan.</p>
+            <h3 class="font-bold text-sm">Cuci Kiloan</h3>
+            <p class="text-sky-400 font-extrabold text-2xl">Rp 7.000 <span class="text-[10px] font-normal text-slate-400">/ kg</span></p>
+            <button onclick="selectServiceFromPrice('7000','Cuci Kiloan')" class="w-full bg-sky-500 hover:bg-sky-400 text-slate-950 font-bold py-3 rounded-xl text-xs transition flex items-center justify-center gap-2">
+              <i class="fa-solid fa-weight-scale text-sm"></i> Pilih Transaksi
+            </button>
+          </div>
+          <!-- 2. Cuci Setrika -->
+          <div class="az-glass p-6 text-center space-y-4">
+            <div class="w-16 h-16 bg-amber-500/10 text-amber-400 border border-amber-500/20 rounded-2xl flex items-center justify-center mx-auto text-2xl">
+              <i class="fa-solid fa-shirt"></i>
             </div>
-            <div class="space-y-5 bg-white p-6 rounded-3xl border border-slate-100 shadow-xl shadow-slate-50 transition hover:border-aesthetic-blue/30">
-                <div class="h-40 rounded-2xl overflow-hidden bg-slate-100 border border-slate-100">
-                    <img src="https://images.unsplash.com/photo-1610557892470-55d9e80c0bce?q=80&w=600&auto=format&fit=crop" alt="Proses cuci baju bersih higienis" class="w-full h-full object-cover">
-                </div>
-                <div class="flex items-center space-x-3">
-                    <span class="w-7 h-7 rounded-full bg-aesthetic-sky text-aesthetic-blue font-bold text-sm flex items-center justify-center border border-aesthetic-blue/20 shadow-inner">3</span>
-                    <h4 class="font-serif font-bold text-lg text-aesthetic-dark">Sanitasi & Cuci</h4>
-                </div>
-                <p class="text-slate-500 text-sm leading-relaxed">Pakaian dipilah, dicuci bersih terpisah demi higienitas, dan disetrika uap hingga lembut.</p>
+            <h3 class="font-bold text-sm">Cuci Setrika</h3>
+            <p class="text-sky-400 font-extrabold text-2xl">Rp 10.000 <span class="text-[10px] font-normal text-slate-400">/ kg</span></p>
+            <button onclick="selectServiceFromPrice('10000','Cuci Setrika')" class="w-full bg-sky-500 hover:bg-sky-400 text-slate-950 font-bold py-3 rounded-xl text-xs transition flex items-center justify-center gap-2">
+              <i class="fa-solid fa-shirt text-sm"></i> Pilih Transaksi
+            </button>
+          </div>
+          <!-- 3. Express 1 Hari -->
+          <div class="az-glass p-6 text-center space-y-4">
+            <div class="w-16 h-16 bg-rose-500/10 text-rose-400 border border-rose-500/20 rounded-2xl flex items-center justify-center mx-auto text-2xl">
+              <i class="fa-solid fa-bolt"></i>
             </div>
-            <div class="space-y-5 bg-white p-6 rounded-3xl border border-slate-100 shadow-xl shadow-slate-50 transition hover:border-aesthetic-blue/30">
-                <div class="h-40 rounded-2xl overflow-hidden bg-slate-100 border border-slate-100">
-                    <img src="https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?q=80&w=600&auto=format&fit=crop" alt="Mengantar pakaian bersih terbungkus rapi" class="w-full h-full object-cover">
-                </div>
-                <div class="flex items-center space-x-3">
-                    <span class="w-7 h-7 rounded-full bg-aesthetic-accentLighter text-aesthetic-accent font-bold text-sm flex items-center justify-center border border-aesthetic-accent/20 shadow-inner">4</span>
-                    <h4 class="font-serif font-bold text-lg text-aesthetic-dark">Dihantar Pulang</h4>
-                </div>
-                <p class="text-slate-500 text-sm leading-relaxed">Pakaian wangi parfum eksklusif siap dikirimkan kembali ke rumah Anda dengan proteksi rapi.</p>
+            <h3 class="font-bold text-sm">Express 1 Hari</h3>
+            <p class="text-sky-400 font-extrabold text-2xl">Rp 15.000 <span class="text-[10px] font-normal text-slate-400">/ kg</span></p>
+            <button onclick="selectServiceFromPrice('15000','Express 1 Hari')" class="w-full bg-sky-500 hover:bg-sky-400 text-slate-950 font-bold py-3 rounded-xl text-xs transition flex items-center justify-center gap-2">
+              <i class="fa-solid fa-bolt text-sm"></i> Pilih Transaksi
+            </button>
+          </div>
+          <!-- 4. Dry Clean -->
+          <div class="az-glass p-6 text-center space-y-4">
+            <div class="w-16 h-16 bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 rounded-2xl flex items-center justify-center mx-auto text-2xl">
+              <i class="fa-solid fa-wand-magic-sparkles"></i>
             </div>
+            <h3 class="font-bold text-sm">Dry Clean</h3>
+            <p class="text-sky-400 font-extrabold text-2xl">Rp 30.000 <span class="text-[10px] font-normal text-slate-400">/ pcs</span></p>
+            <button onclick="selectServiceFromPrice('30000','Dry Clean')" class="w-full bg-sky-500 hover:bg-sky-400 text-slate-950 font-bold py-3 rounded-xl text-xs transition flex items-center justify-center gap-2">
+              <i class="fa-solid fa-wand-magic-sparkles text-sm"></i> Pilih Transaksi
+            </button>
+          </div>
+          <!-- 5. Cuci Sepatu -->
+          <div class="az-glass p-6 text-center space-y-4">
+            <div class="w-16 h-16 bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 rounded-2xl flex items-center justify-center mx-auto text-2xl">
+              <i class="fa-solid fa-shoe-prints"></i>
+            </div>
+            <h3 class="font-bold text-sm">Cuci Sepatu</h3>
+            <p class="text-sky-400 font-extrabold text-2xl">Rp 25.000 <span class="text-[10px] font-normal text-slate-400">/ pasang</span></p>
+            <button onclick="selectServiceFromPrice('25000','Cuci Sepatu')" class="w-full bg-sky-500 hover:bg-sky-400 text-slate-950 font-bold py-3 rounded-xl text-xs transition flex items-center justify-center gap-2">
+              <i class="fa-solid fa-shoe-prints text-sm"></i> Pilih Transaksi
+            </button>
+          </div>
+          <!-- 6. Cuci Karpet -->
+          <div class="az-glass p-6 text-center space-y-4">
+            <div class="w-16 h-16 bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 rounded-2xl flex items-center justify-center mx-auto text-2xl">
+              <i class="fa-solid fa-rug"></i>
+            </div>
+            <h3 class="font-bold text-sm">Cuci Karpet</h3>
+            <p class="text-sky-400 font-extrabold text-2xl">Rp 20.000 <span class="text-[10px] font-normal text-slate-400">/ m²</span></p>
+            <button onclick="selectServiceFromPrice('20000','Cuci Karpet')" class="w-full bg-sky-500 hover:bg-sky-400 text-slate-950 font-bold py-3 rounded-xl text-xs transition flex items-center justify-center gap-2">
+              <i class="fa-solid fa-rug text-sm"></i> Pilih Transaksi
+            </button>
+          </div>
+          <!-- 7. Bed Cover -->
+          <div class="az-glass p-6 text-center space-y-4">
+            <div class="w-16 h-16 bg-purple-500/10 text-purple-400 border border-purple-500/20 rounded-2xl flex items-center justify-center mx-auto text-2xl">
+              <i class="fa-solid fa-bed"></i>
+            </div>
+            <h3 class="font-bold text-sm">Bed Cover</h3>
+            <p class="text-sky-400 font-extrabold text-2xl">Rp 35.000 <span class="text-[10px] font-normal text-slate-400">/ pcs</span></p>
+            <button onclick="selectServiceFromPrice('35000','Bed Cover')" class="w-full bg-sky-500 hover:bg-sky-400 text-slate-950 font-bold py-3 rounded-xl text-xs transition flex items-center justify-center gap-2">
+              <i class="fa-solid fa-bed text-sm"></i> Pilih Transaksi
+            </button>
+          </div>
+          <!-- 8. Cuci Sprei -->
+          <div class="az-glass p-6 text-center space-y-4">
+            <div class="w-16 h-16 bg-teal-500/10 text-teal-400 border border-teal-500/20 rounded-2xl flex items-center justify-center mx-auto text-2xl">
+              <i class="fa-solid fa-scroll"></i>
+            </div>
+            <h3 class="font-bold text-sm">Cuci Sprei</h3>
+            <p class="text-sky-400 font-extrabold text-2xl">Rp 15.000 <span class="text-[10px] font-normal text-slate-400">/ pcs</span></p>
+            <button onclick="selectServiceFromPrice('15000','Cuci Sprei')" class="w-full bg-sky-500 hover:bg-sky-400 text-slate-950 font-bold py-3 rounded-xl text-xs transition flex items-center justify-center gap-2">
+              <i class="fa-solid fa-scroll text-sm"></i> Pilih Transaksi
+            </button>
+          </div>
         </div>
-    </section>
-    <section class="bg-aesthetic-dark text-white py-24 rounded-[50px] max-w-7xl mx-auto px-6 lg:px-16 my-16 shadow-2xl shadow-slate-300">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
-            <div class="lg:col-span-5 space-y-5">
-                <span class="text-sm uppercase tracking-widest text-aesthetic-blue font-bold block">Mengapa Memilih Kami</span>
-                <h2 class="font-serif text-4xl md:text-5xl font-extrabold leading-tight tracking-tight">Nilai Tambah untuk Lemari Pakaian Anda</h2>
-                <p class="text-slate-300 text-base leading-relaxed">
-                    Kami tidak sekadar mencuci asal bersih. FreshWash menerapkan standar kontrol kualitas berlapis untuk memastikan ketahanan umur kain kesayangan Anda.
-                </p>
+      </div>
+      <!-- 3. HALAMAN PROMOSI & DISKON (HALAMAN BARU) -->
+      <div id="page-promosi" class="hidden space-y-6">
+        <!-- STATISTIK PROMOSI -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-5">
+          <div class="az-glass p-5 flex items-center justify-between">
+            <div>
+              <p class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Total Promo Active</p>
+              <h3 id="statTotalPromos" class="text-2xl font-extrabold text-amber-400 mt-1">0 Promo</h3>
             </div>
-            <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-12 text-sm">
-                <div class="space-y-2">
-                    <h4 class="font-serif font-bold text-white text-lg flex items-center gap-2"><span class="text-aesthetic-blue">??</span> Higienitas Ekstra 1 Mesin 1 Pelanggan</h4>
-                    <p class="text-slate-400 leading-relaxed text-sm">Kami menjamin pakaian Anda tidak akan pernah dicampur dengan cucian orang lain demi menjaga kebersihan maksimal.</p>
-                </div>
-                <div class="space-y-2">
-                    <h4 class="font-serif font-bold text-white text-lg flex items-center gap-2"><span class="text-aesthetic-accent">??</span> Proteksi Garansi Cuci Ulang</h4>
-                    <p class="text-slate-400 leading-relaxed text-sm">Masih menemukan noda tersisa atau merasa kurang wangi? Kami cuci kembali tanpa membebankan tagihan baru.</p>
-                </div>
-                <div class="space-y-2">
-                    <h4 class="font-serif font-bold text-white text-lg flex items-center gap-2"><span class="text-aesthetic-blue">??</span> Harga Sesuai Timbangan Aktual</h4>
-                    <p class="text-slate-400 leading-relaxed text-sm">Penghitungan transparan menggunakan timbangan digital akurat di depan konsumen atau via konfirmasi foto timbang.</p>
-                </div>
-                <div class="space-y-2">
-                    <h4 class="font-serif font-bold text-white text-lg flex items-center gap-2"><span class="text-aesthetic-accent">??</span> Deterjen Ramah Lingkungan</h4>
-                    <p class="text-slate-400 leading-relaxed text-sm">Formula sabun cair ramah serat yang efektif merontokkan kerak kotoran tanpa membuat pakaian pudar kusam.</p>
-                </div>
+            <div class="w-12 h-12 bg-amber-500/10 border border-amber-500/20 text-amber-400 rounded-2xl flex items-center justify-center text-lg">
+              <i class="fa-solid fa-bullhorn"></i>
             </div>
+          </div>
+          <div class="az-glass p-5 flex items-center justify-between">
+            <div>
+              <p class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Voucher Digunakan</p>
+              <h3 id="statPromoUsed" class="text-2xl font-extrabold text-sky-400 mt-1">42 Kali</h3>
+            </div>
+            <div class="w-12 h-12 bg-sky-500/10 border border-sky-500/20 text-sky-400 rounded-2xl flex items-center justify-center text-lg">
+              <i class="fa-solid fa-ticket"></i>
+            </div>
+          </div>
+          <div class="az-glass p-5 flex items-center justify-between">
+            <div>
+              <p class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Klaim Promo Bulan Ini</p>
+              <h3 id="statPromoValue" class="text-2xl font-extrabold text-emerald-400 mt-1">Rp 210.000</h3>
+            </div>
+            <div class="w-12 h-12 bg-emerald-500/10 border border-emerald-400/20 text-emerald-400 rounded-2xl flex items-center justify-center text-lg">
+              <i class="fa-solid fa-tags"></i>
+            </div>
+          </div>
         </div>
-    </section>
-    <section id="kontak" class="max-w-7xl mx-auto px-6 lg:px-16 py-24">
-        <div class="w-full max-w-5xl mx-auto rounded-[50px] bg-gradient-to-br from-aesthetic-sky via-white to-aesthetic-accentLighter border-2 border-aesthetic-blue/10 p-12 md:p-20 text-center shadow-2xl shadow-slate-100 flex flex-col items-center space-y-6 relative overflow-hidden">
-            <span class="text-3xl p-4 bg-white rounded-full shadow-inner border border-slate-100">??</span>
-            <h2 class="font-serif text-4xl md:text-5xl text-aesthetic-dark font-extrabold leading-tight tracking-tight max-w-2xl">
-                Agenda Padat & Tak Sempat Menyetrika?
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <!-- FORM TAMBAH / EDIT PROMO -->
+          <section class="az-glass p-6 lg:col-span-1 space-y-4">
+            <h2 id="promoFormTitle" class="text-base font-bold flex items-center gap-2 text-amber-400">
+              <i class="fa-solid fa-circle-plus"></i> Buat Promosi Baru
             </h2>
-            <p class="text-slate-600 text-base md:text-lg max-w-xl leading-relaxed">
-                Biarkan tim FreshWash menyelesaikan urusan domestik rumah tangga Anda. Pakaian beres, pikiran tenang, Anda pun siap beraktivitas harian dengan nyaman.
-            </p>
-            <div class="pt-6 w-full sm:w-auto z-10">
-                <a href="https://wa.me/6281234567890" target="_blank" class="bg-aesthetic-accent text-white font-extrabold px-12 py-5 rounded-full flex items-center justify-center space-x-3 shadow-xl shadow-aesthetic-accent/20 hover:scale-105 transition duration-300 text-base">
-                    <span class="text-xl">??</span>
-                    <span>Hubungi CS WhatsApp</span>
-                </a>
+            <form id="promoForm" onsubmit="savePromo(event)" class="space-y-4">
+              <input type="hidden" id="promoEditId" value="">
+              <div>
+                <label class="block text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-1.5">Kode Voucher Promo</label>
+                <input type="text" id="promoCode" required placeholder="Code Promo" class="w-full px-4 py-2.5 rounded-xl text-xs uppercase tracking-wider font-bold">
+              </div>
+              <div>
+                <label class="block text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-1.5">Nama Program Promosi</label>
+                <input type="text" id="promoName" required placeholder="Diskon Kemerdekaan 5rb" class="w-full px-4 py-2.5 rounded-xl text-xs">
+              </div>
+              <div class="grid grid-cols-2 gap-3">
+                <div>
+                  <label class="block text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-1.5">Potongan (Rp)</label>
+                  <input type="number" id="promoDiscount" required min="1000" step="500" placeholder="5000" class="w-full px-4 py-2.5 rounded-xl text-xs">
+                </div>
+                <div>
+                  <label class="block text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-1.5">Min. Order (Rp)</label>
+                  <input type="number" id="promoMinOrder" min="0" placeholder="20000" class="w-full px-4 py-2.5 rounded-xl text-xs">
+                </div>
+              </div>
+              <div>
+                <label class="block text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-1.5">Tanggal Berakhir</label>
+                <input type="date" id="promoExpiry" required class="w-full px-4 py-2.5 rounded-xl text-xs">
+              </div>
+              <div class="flex gap-2">
+                <button type="submit" class="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold py-3.5 rounded-2xl text-xs transition flex justify-center items-center gap-2">
+                  <i class="fa-solid fa-floppy-disk"></i> Simpan Promosi
+                </button>
+                <button type="button" id="btnCancelPromo" onclick="resetPromoForm()" class="hidden bg-slate-800 hover:bg-slate-700 text-white px-4 py-3.5 rounded-2xl text-xs font-semibold">
+                  Batal
+                </button>
+              </div>
+            </form>
+          </section>
+          <!-- TABEL DAFTAR PROMO AKTIF -->
+          <section class="az-glass p-6 lg:col-span-2 space-y-4">
+            <h2 class="text-base font-bold flex items-center gap-2">
+              <i class="fa-solid fa-rectangle-ad text-amber-400"></i> Promosi dam Discount 
+            </h2>
+            <div class="overflow-x-auto rounded-2xl border border-slate-800/80">
+              <table class="w-full text-left text-xs">
+                <thead class="bg-slate-900/80 text-slate-400 uppercase text-[10px] tracking-wider">
+                  <tr>
+                    <th class="p-3.5">Kode & Nama Promo</th>
+                    <th class="p-3.5">Diskon</th>
+                    <th class="p-3.5">Min. Belanja</th>
+                    <th class="p-3.5">Berlaku s/d</th>
+                    <th class="p-3.5">Status</th>
+                    <th class="p-3.5 text-center">Aksi</th>
+                  </tr>
+                </thead>
+                <tbody id="promoTableBody" class="divide-y divide-slate-800/60"></tbody>
+              </table>
             </div>
-            <div class="flex flex-wrap items-center justify-center gap-x-10 gap-y-3 pt-8 text-sm text-slate-400 font-semibold uppercase tracking-widest z-10">
-                <div class="flex items-center space-x-2"><span>??</span><span>Sudirman Avenue No. 45, Jakarta</span></div>
-                <div class="flex items-center space-x-2"><span>??</span><span>Setiap Hari (08.00 - 20.00 WIB)</span></div>
-            </div>
-            <div class="absolute -top-10 -left-10 w-40 h-40 bg-white rounded-full opacity-50"></div>
-            <div class="absolute -bottom-16 -right-16 w-56 h-56 bg-aesthetic-accent rounded-full opacity-10"></div>
+          </section>
         </div>
-    </section>
-    <footer class="text-center py-10 border-t border-slate-100 text-slate-400 text-xs tracking-wider">
-        © 2023 FreshWash Laundry. All rights reserved. Estetik & Higienis.
+      </div>
+      <!-- 4. HALAMAN TRANSAKSI -->
+      <div id="page-kasir" class="hidden space-y-6">
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-5">
+          <div class="az-glass p-5 flex items-center justify-between">
+            <div>
+              <p class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Total Transaksi</p>
+              <h3 id="statTotalOrders" class="text-2xl font-extrabold mt-1">0 Nota</h3>
+            </div>
+            <div class="w-12 h-12 bg-sky-500/10 border border-sky-500/20 text-sky-400 rounded-2xl flex items-center justify-center text-lg">
+              <i class="fa-solid fa-receipt"></i>
+            </div>
+          </div>
+          <div class="az-glass p-5 flex items-center justify-between">
+            <div>
+              <p class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Omset Kasir</p>
+              <h3 id="statTotalIncome" class="text-2xl font-extrabold text-emerald-400 mt-1">Rp 0</h3>
+            </div>
+            <div class="w-12 h-12 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 rounded-2xl flex items-center justify-center text-lg">
+              <i class="fa-solid fa-arrow-trend-up"></i>
+            </div>
+          </div>
+          <div class="az-glass p-5 flex items-center justify-between">
+            <div>
+              <p class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Belum Lunas</p>
+              <h3 id="statUnpaidOrders" class="text-2xl font-extrabold text-amber-400 mt-1">0 Nota</h3>
+            </div>
+            <div class="w-12 h-12 bg-amber-500/10 border border-amber-500/20 text-amber-400 rounded-2xl flex items-center justify-center text-lg">
+              <i class="fa-solid fa-clock"></i>
+            </div>
+          </div>
+        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <section class="az-glass p-6 lg:col-span-1 space-y-4">
+            <h2 class="text-base font-bold flex items-center gap-2 text-sky-400">
+              <i class="fa-solid fa-cart-plus"></i> Transaksi Baru
+            </h2>
+            <form id="laundryForm" onsubmit="addOrder(event)" class="space-y-4">
+              <div>
+                <label class="block text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-1.5">Nama Pelanggan</label>
+                <input type="text" id="custName" required placeholder="Armuzna Laundry" class="w-full px-4 py-2.5 rounded-xl text-xs">
+              </div>
+              <div>
+                <label class="block text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-1.5">No. WhatsApp</label>
+                <input type="tel" id="custPhone" placeholder="08889009698" required class="w-full px-4 py-2.5 rounded-xl text-xs">
+              </div>
+              <div>
+                <label class="block text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-1.5">Pilih Layanan</label>
+                <input type="hidden" id="serviceType" value="7000">
+                <input type="hidden" id="serviceName" value="Cuci Kiloan">
+                
+                <!-- GRID PILIHAN LAYANAN -->
+                <div id="servicePicker" class="grid grid-cols-2 gap-2">
+                  <button type="button" onclick="selectTransactionService('7000','Cuci Kiloan')" class="service-choice active p-3 rounded-xl text-left text-xs font-semibold flex items-center gap-2.5" data-service="7000">
+                    <i class="fa-solid fa-weight-scale text-sky-400 text-sm"></i>
+                    <div class="truncate">
+                      <p class="leading-tight">Cuci Kiloan</p>
+                      <p class="text-[10px] font-normal opacity-70">Rp 7.000/kg</p>
+                    </div>
+                  </button>
+                  <button type="button" onclick="selectTransactionService('10000','Cuci Setrika')" class="service-choice p-3 rounded-xl text-left text-xs font-semibold flex items-center gap-2.5" data-service="10000">
+                    <i class="fa-solid fa-shirt text-amber-400 text-sm"></i>
+                    <div class="truncate">
+                      <p class="leading-tight">Cuci Setrika</p>
+                      <p class="text-[10px] font-normal opacity-70">Rp 10.000/kg</p>
+                    </div>
+                  </button>
+                  <button type="button" onclick="selectTransactionService('15000','Express 1 Hari')" class="service-choice p-3 rounded-xl text-left text-xs font-semibold flex items-center gap-2.5" data-service="15000">
+                    <i class="fa-solid fa-bolt text-rose-400 text-sm"></i>
+                    <div class="truncate">
+                      <p class="leading-tight">Express 1 Hari</p>
+                      <p class="text-[10px] font-normal opacity-70">Rp 15.000/kg</p>
+                    </div>
+                  </button>
+                  <button type="button" onclick="selectTransactionService('30000','Dry Clean')" class="service-choice p-3 rounded-xl text-left text-xs font-semibold flex items-center gap-2.5" data-service="30000">
+                    <i class="fa-solid fa-wand-magic-sparkles text-cyan-400 text-sm"></i>
+                    <div class="truncate">
+                      <p class="leading-tight">Dry Clean</p>
+                      <p class="text-[10px] font-normal opacity-70">Rp 30.000/pcs</p>
+                    </div>
+                  </button>
+                  <button type="button" onclick="selectTransactionService('25000','Cuci Sepatu')" class="service-choice p-3 rounded-xl text-left text-xs font-semibold flex items-center gap-2.5" data-service="25000">
+                    <i class="fa-solid fa-shoe-prints text-emerald-400 text-sm"></i>
+                    <div class="truncate">
+                      <p class="leading-tight">Cuci Sepatu</p>
+                      <p class="text-[10px] font-normal opacity-70">Rp 25.000/psg</p>
+                    </div>
+                  </button>
+                  <button type="button" onclick="selectTransactionService('20000','Cuci Karpet')" class="service-choice p-3 rounded-xl text-left text-xs font-semibold flex items-center gap-2.5" data-service="20000">
+                    <i class="fa-solid fa-rug text-indigo-400 text-sm"></i>
+                    <div class="truncate">
+                      <p class="leading-tight">Cuci Karpet</p>
+                      <p class="text-[10px] font-normal opacity-70">Rp 20.000/m²</p>
+                    </div>
+                  </button>
+                  <button type="button" onclick="selectTransactionService('35000','Bed Cover')" class="service-choice p-3 rounded-xl text-left text-xs font-semibold flex items-center gap-2.5" data-service="35000">
+                    <i class="fa-solid fa-bed text-purple-400 text-sm"></i>
+                    <div class="truncate">
+                      <p class="leading-tight">Bed Cover</p>
+                      <p class="text-[10px] font-normal opacity-70">Rp 35.000/pcs</p>
+                    </div>
+                  </button>
+                  <button type="button" onclick="selectTransactionService('15000','Cuci Sprei')" class="service-choice p-3 rounded-xl text-left text-xs font-semibold flex items-center gap-2.5" data-service="15000">
+                    <i class="fa-solid fa-scroll text-teal-400 text-sm"></i>
+                    <div class="truncate">
+                      <p class="leading-tight">Cuci Sprei</p>
+                      <p class="text-[10px] font-normal opacity-70">Rp 15.000/pcs</p>
+                    </div>
+                  </button>
+                </div>
+              </div>
+              <div class="grid grid-cols-2 gap-3">
+                <div>
+                  <label class="block text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-1.5">Jumlah/Berat</label>
+                  <input type="number" id="weight" value="1" min="0.5" step="0.5" oninput="calculateTotal()" required class="w-full px-4 py-2.5 rounded-xl text-xs">
+                </div>
+                <div>
+                  <label class="block text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-1.5">Pilih Promo / Diskon</label>
+                  <select id="appliedPromo" onchange="applyPromoToOrder()" class="w-full px-4 py-2.5 rounded-xl text-xs">
+                    <option value="0">Tanpa Promo</option>
+                  </select>
+                </div>
+              </div>
+              <div class="grid grid-cols-2 gap-3">
+                <div>
+                  <label class="block text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-1.5">Diskon Tambahan (Rp)</label>
+                  <input type="number" id="discount" value="0" min="0" oninput="calculateTotal()" class="w-full px-4 py-2.5 rounded-xl text-xs">
+                </div>
+                <div>
+                  <label class="block text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-1.5">Metode Bayar</label>
+                  <select id="payMethod" class="w-full px-4 py-2.5 rounded-xl text-xs">
+                    <option value="Tunai">Tunai</option>
+                    <option value="QRIS">QRIS / E-Wallet</option>
+                    <option value="Transfer">Transfer Bank</option>
+                  </select>
+                </div>
+              </div>
+              <div>
+                <label class="block text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-1.5">Status Bayar</label>
+                <select id="payStatus" class="w-full px-4 py-2.5 rounded-xl text-xs">
+                  <option value="Lunas">Lunas</option>
+                  <option value="Belum Lunas">Belum Lunas</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-1.5">Catatan</label>
+                <input type="text" id="orderNote" placeholder="Catatan khusus..." class="w-full px-4 py-2.5 rounded-xl text-xs">
+              </div>
+              <div class="pt-2">
+                <label class="block text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-1.5">Total Akhir</label>
+                <div id="totalPreview" class="px-4 py-3 bg-slate-900/80 border border-slate-800 rounded-2xl font-extrabold text-sky-400 text-xl">
+                  Rp 7.000
+                </div>
+              </div>
+              <button type="submit" class="w-full bg-sky-500 hover:bg-sky-400 text-slate-950 font-bold py-3.5 rounded-2xl text-xs transition flex justify-center items-center gap-2">
+                <i class="fa-solid fa-floppy-disk"></i> Simpan Transaksi
+              </button>
+            </form>
+          </section>
+          <section class="az-glass p-6 lg:col-span-2 space-y-4">
+            <h2 class="text-base font-bold flex items-center gap-2">
+              <i class="fa-solid fa-list-check text-sky-400"></i> Kelola Transaksi
+            </h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <input type="text" id="filterSearch" onkeyup="renderOrders()" placeholder="Cari Nota / Nama..." class="px-4 py-2.5 rounded-xl text-xs">
+              <select id="filterStatus" onchange="renderOrders()" class="px-4 py-2.5 rounded-xl text-xs">
+                <option value="Semua">Semua Status</option>
+                <option value="Proses">Proses</option>
+                <option value="Selesai">Selesai</option>
+                <option value="Sudah Diambil">Sudah Diambil</option>
+              </select>
+            </div>
+            <div class="overflow-x-auto rounded-2xl border border-slate-800/80">
+              <table class="w-full text-left text-xs">
+                <thead class="bg-slate-900/80 text-slate-400 uppercase text-[10px] tracking-wider">
+                  <tr>
+                    <th class="p-3.5">Nota & Tanggal</th>
+                    <th class="p-3.5">Pelanggan</th>
+                    <th class="p-3.5">Layanan</th>
+                    <th class="p-3.5">Total</th>
+                    <th class="p-3.5">Status</th>
+                    <th class="p-3.5 text-center">Aksi</th>
+                  </tr>
+                </thead>
+                <tbody id="orderTableBody" class="divide-y divide-slate-800/60"></tbody>
+              </table>
+            </div>
+          </section>
+        </div>
+      </div>
+      <!-- 5. HALAMAN DATA PELANGGAN (MENU BARU) -->
+      <div id="page-pelanggan" class="hidden space-y-6">
+        <!-- STATISTIK RINGKAS PELANGGAN -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-5">
+          <div class="az-glass p-5 flex items-center justify-between">
+            <div>
+              <p class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Total Pelanggan</p>
+              <h3 id="statTotalCustomers" class="text-2xl font-extrabold mt-1">0 Orang</h3>
+            </div>
+            <div class="w-12 h-12 bg-sky-500/10 border border-sky-500/20 text-sky-400 rounded-2xl flex items-center justify-center text-lg">
+              <i class="fa-solid fa-users"></i>
+            </div>
+          </div>
+          <div class="az-glass p-5 flex items-center justify-between">
+            <div>
+              <p class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Pelanggan VIP</p>
+              <h3 id="statVipCustomers" class="text-2xl font-extrabold text-amber-400 mt-1">0 Orang</h3>
+            </div>
+            <div class="w-12 h-12 bg-amber-500/10 border border-amber-500/20 text-amber-400 rounded-2xl flex items-center justify-center text-lg">
+              <i class="fa-solid fa-crown"></i>
+            </div>
+          </div>
+          <div class="az-glass p-5 flex items-center justify-between">
+            <div>
+              <p class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Pelanggan Reguler</p>
+              <h3 id="statRegularCustomers" class="text-2xl font-extrabold text-indigo-400 mt-1">0 Orang</h3>
+            </div>
+            <div class="w-12 h-12 bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 rounded-2xl flex items-center justify-center text-lg">
+              <i class="fa-solid fa-user-check"></i>
+            </div>
+          </div>
+        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <!-- FORM TAMBAH / EDIT PELANGGAN -->
+          <section class="az-glass p-6 lg:col-span-1 space-y-4">
+            <h2 id="custFormTitle" class="text-base font-bold flex items-center gap-2 text-sky-400">
+              <i class="fa-solid fa-user-plus"></i> Tambah Pelanggan Baru
+            </h2>
+            <form id="customerForm" onsubmit="saveCustomer(event)" class="space-y-4">
+              <input type="hidden" id="custEditId" value="">
+              <div>
+                <label class="block text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-1.5">Nama Lengkap</label>
+                <input type="text" id="custFormName" required placeholder="Armuzna Laundry" class="w-full px-4 py-2.5 rounded-xl text-xs">
+              </div>
+              <div>
+                <label class="block text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-1.5">No. WhatsApp</label>
+                <input type="tel" id="custFormPhone" required placeholder="08123456789" class="w-full px-4 py-2.5 rounded-xl text-xs">
+              </div>
+              <div>
+                <label class="block text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-1.5">Tipe Pelanggan</label>
+                <select id="custFormType" class="w-full px-4 py-2.5 rounded-xl text-xs">
+                  <option value="Reguler">Reguler</option>
+                  <option value="VIP">VIP</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-1.5">Alamat</label>
+                <textarea id="custFormAddress" rows="3" placeholder="Alamat rumah / domisili..." class="w-full px-4 py-2.5 rounded-xl text-xs"></textarea>
+              </div>
+              <div class="flex gap-2">
+                <button type="submit" class="w-full bg-sky-500 hover:bg-sky-400 text-slate-950 font-bold py-3.5 rounded-2xl text-xs transition flex justify-center items-center gap-2">
+                  <i class="fa-solid fa-floppy-disk"></i> Simpan Pelanggan
+                </button>
+                <button type="button" id="btnCancelCustomer" onclick="resetCustomerForm()" class="hidden bg-slate-800 hover:bg-slate-700 text-white px-4 py-3.5 rounded-2xl text-xs font-semibold">
+                  Batal
+                </button>
+              </div>
+            </form>
+          </section>
+          <!-- TABEL KELOLA PELANGGAN -->
+          <section class="az-glass p-6 lg:col-span-2 space-y-4">
+            <h2 class="text-base font-bold flex items-center gap-2">
+              <i class="fa-solid fa-address-book text-sky-400"></i> Membership Armuzna Laundry
+            </h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <input type="text" id="custSearch" onkeyup="renderCustomers()" placeholder="Cari Nama / WhatsApp / Alamat..." class="px-4 py-2.5 rounded-xl text-xs">
+              <select id="custFilterType" onchange="renderCustomers()" class="px-4 py-2.5 rounded-xl text-xs">
+                <option value="Semua">Semua Tipe</option>
+                <option value="Reguler">Reguler</option>
+                <option value="VIP">VIP</option>
+              </select>
+            </div>
+            <div class="overflow-x-auto rounded-2xl border border-slate-800/80">
+              <table class="w-full text-left text-xs">
+                <thead class="bg-slate-900/80 text-slate-400 uppercase text-[10px] tracking-wider">
+                  <tr>
+                    <th class="p-3.5">Pelanggan</th>
+                    <th class="p-3.5">WhatsApp</th>
+                    <th class="p-3.5">Alamat</th>
+                    <th class="p-3.5">Tipe</th>
+                    <th class="p-3.5 text-center">Total Nota</th>
+                    <th class="p-3.5 text-center">Aksi</th>
+                  </tr>
+                </thead>
+                <tbody id="customerTableBody" class="divide-y divide-slate-800/60"></tbody>
+              </table>
+            </div>
+          </section>
+        </div>
+      </div>
+      <!-- 6. HALAMAN PENGELUARAN -->
+      <div id="page-pengeluaran" class="hidden grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <section class="az-glass-expense p-6 lg:col-span-1 space-y-4">
+          <div class="flex items-center gap-3.5">
+            <div class="w-11 h-11 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 flex items-center justify-center">
+              <i class="fa-solid fa-file-invoice-dollar text-xl"></i>
+            </div>
+            <div>
+              <h2 class="text-base font-bold expense-title">Catat Pengeluaran</h2>
+              <p class="text-[11px] expense-sub">Input operasional bisnis laundry</p>
+            </div>
+          </div>
+          
+          <form id="expenseForm" onsubmit="addExpense(event)" class="space-y-4 pt-2">
+            <div>
+              <label class="block text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-1.5">Deskripsi</label>
+              <input type="text" id="expenseName" required placeholder="Beli Deterjen / Listrik" class="w-full px-4 py-2.5 rounded-xl text-xs focus:border-indigo-400">
+            </div>
+            <div>
+              <label class="block text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-1.5">Nominal (Rp)</label>
+              <input type="number" id="expenseAmount" required placeholder="50000" class="w-full px-4 py-2.5 rounded-xl text-xs focus:border-indigo-400">
+            </div>
+            <div>
+              <label class="block text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-1.5">Tanggal</label>
+              <input type="date" id="expenseDate" required class="w-full px-4 py-2.5 rounded-xl text-xs focus:border-indigo-400">
+            </div>
+            <button type="submit" class="w-full bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-500 hover:to-blue-500 text-white font-bold py-3.5 rounded-2xl text-xs transition">
+              Tambah Pengeluaran
+            </button>
+          </form>
+        </section>
+        <section class="lg:col-span-2 space-y-4">
+          <div class="az-glass-expense p-6 flex justify-between items-center">
+            <div>
+              <p class="text-[10px] uppercase font-bold expense-sub tracking-wider">Total Pengeluaran Bulan Ini</p>
+              <h3 id="totalExpenseDisplay" class="text-3xl font-extrabold mt-1 text-sky-500">Rp 0</h3>
+            </div>
+            <div class="w-14 h-14 bg-indigo-500/10 border border-indigo-400/20 rounded-2xl flex items-center justify-center text-sky-400">
+              <i class="fa-solid fa-arrow-trend-down text-2xl"></i>
+            </div>
+          </div>
+          <div class="az-glass p-6 overflow-x-auto">
+            <table class="w-full text-left text-xs">
+              <thead class="bg-slate-900/50 text-slate-400 uppercase text-[10px] tracking-wider">
+                <tr>
+                  <th class="p-3.5">Tanggal</th>
+                  <th class="p-3.5">Deskripsi</th>
+                  <th class="p-3.5">Nominal</th>
+                  <th class="p-3.5 text-center">Aksi</th>
+                </tr>
+              </thead>
+              <tbody id="expenseTableBody" class="divide-y divide-slate-800/60"></tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+      <!-- 7. HALAMAN CEK STATUS -->
+      <div id="page-lacak" class="hidden space-y-6">
+        <div class="az-glass p-8 max-w-xl mx-auto text-center space-y-4">
+          <div class="w-16 h-16 bg-sky-500/10 border border-sky-500/20 text-sky-400 rounded-2xl flex items-center justify-center mx-auto text-2xl">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </div>
+          <div>
+            <h2 class="text-xl font-bold">Cek Status Cucian Anda</h2>
+            <p class="text-xs text-slate-400 mt-1">Masukkan Nomor Nota atau No. WhatsApp terdaftar.</p>
+          </div>
+          <form onsubmit="searchInvoice(event)" class="flex gap-2.5 pt-2">
+            <input type="text" id="searchKeyword" required placeholder="Ketik No. Nota / No. HP..." class="w-full px-4 py-3 rounded-2xl text-xs">
+            <button type="submit" class="bg-sky-500 hover:bg-sky-400 text-slate-950 font-bold px-6 py-3 rounded-2xl text-xs transition whitespace-nowrap">
+              Cari
+            </button>
+          </form>
+        </div>
+        <div id="searchResultArea" class="max-w-xl mx-auto hidden space-y-4"></div>
+      </div>
+      <!-- 8. HALAMAN BUSINESS ANALYTICS -->
+      <div id="page-analytics" class="hidden space-y-6">
+        <!-- KPI Analytics -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div class="az-glass p-5 flex items-center justify-between">
+            <div>
+              <p class="text-[10px] text-slate-400 uppercase font-bold tracking-wider">Pendapatan</p>
+              <h3 class="text-xl font-extrabold text-sky-400 mt-1">Rp 18.000.000</h3>
+            </div>
+            <div class="w-11 h-11 bg-sky-500/10 border border-sky-500/20 text-sky-400 rounded-2xl flex items-center justify-center text-lg">
+              <i class="fa-solid fa-arrow-trend-up"></i>
+            </div>
+          </div>
+          <div class="az-glass p-5 flex items-center justify-between">
+            <div>
+              <p class="text-[10px] text-slate-400 uppercase font-bold tracking-wider">Total Transaksi</p>
+              <h3 class="text-xl font-extrabold mt-1">184 Nota</h3>
+            </div>
+            <div class="w-11 h-11 bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 rounded-2xl flex items-center justify-center text-lg">
+              <i class="fa-solid fa-receipt"></i>
+            </div>
+          </div>
+          <div class="az-glass p-5 flex items-center justify-between">
+            <div>
+              <p class="text-[10px] text-slate-400 uppercase font-bold tracking-wider">Pengeluaran</p>
+              <h3 class="text-xl font-extrabold text-rose-400 mt-1">Rp 3.820.000</h3>
+            </div>
+            <div class="w-11 h-11 bg-rose-500/10 border border-rose-500/20 text-rose-400 rounded-2xl flex items-center justify-center text-lg">
+              <i class="fa-solid fa-arrow-trend-down"></i>
+            </div>
+          </div>
+          <div class="az-glass p-5 flex items-center justify-between">
+            <div>
+              <p class="text-[10px] text-slate-400 uppercase font-bold tracking-wider">Profit Bersih</p>
+              <h3 class="text-xl font-extrabold text-emerald-400 mt-1">Rp 8.630.000</h3>
+            </div>
+            <div class="w-11 h-11 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 rounded-2xl flex items-center justify-center text-lg">
+              <i class="fa-solid fa-chart-line"></i>
+            </div>
+          </div>
+        </div>
+        <!-- ROW 1 CHART ANALYTICS -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div class="az-glass p-6 lg:col-span-2 space-y-3 flex flex-col justify-between">
+            <div>
+              <h3 class="font-bold text-sm">Arus Kas & Tren Finansial</h3>
+              <p class="text-[11px] text-slate-400">Statistik mingguan perputaran keuangan.</p>
+            </div>
+            <div class="relative h-72 w-full mt-2">
+              <canvas id="financialTrendChart"></canvas>
+            </div>
+          </div>
+          <div class="az-glass p-6 space-y-4 flex flex-col justify-between">
+            <div>
+              <h3 class="font-bold text-sm">Distribusi Layanan</h3>
+              <p class="text-[11px] text-slate-400">Popularitas jenis layanan laundry.</p>
+            </div>
+            
+            <div class="relative w-full h-56 flex items-center justify-center my-auto">
+              <canvas id="serviceDistributionChart"></canvas>
+            </div>
+            <div class="grid grid-cols-2 gap-2 text-[10px] pt-3 border-t border-slate-800/80">
+              <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-pink-500"></span><span class="text-slate-300">Kiloan (30%)</span></div>
+              <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-sky-400"></span><span class="text-slate-300">Setrika (20%)</span></div>
+              <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span><span class="text-slate-300">Express (15%)</span></div>
+              <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span><span class="text-slate-300">Sepatu (10%)</span></div>
+              <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-purple-500"></span><span class="text-slate-300">Karpet (10%)</span></div>
+              <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-rose-400"></span><span class="text-slate-300">Bed Cover (10%)</span></div>
+              <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-teal-400"></span><span class="text-slate-300">Sprei (5%)</span></div>
+            </div>
+          </div>
+        </div>
+        <!-- ROW 2 CHART BARU: JAM SIBUK & RADAR PERFORMA -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <!-- 1. Analisis Jam Sibuk Transaksi (Peak Hours) -->
+          <div class="az-glass p-6 space-y-3 flex flex-col justify-between">
+            <div>
+              <div class="flex justify-between items-center">
+                <h3 class="font-bold text-sm flex items-center gap-2 text-sky-400">
+                  <i class="fa-solid fa-clock flex-shrink-0"></i> Analisis Jam Sibuk Transaksi (Peak Hours)
+                </h3>
+                <span class="text-[10px] bg-sky-500/10 text-sky-400 px-2.5 py-1 rounded-full border border-sky-400/20 font-semibold">Real-time Traffic</span>
+              </div>
+              <p class="text-[11px] text-slate-400 mt-1">Distribusi jumlah transaksi laundry berdasarkan jam operasional harian.</p>
+            </div>
+            <div class="relative h-64 w-full mt-2">
+              <canvas id="peakHoursChart"></canvas>
+            </div>
+          </div>
+          <!-- 2. Radar Performa & Kepuasan -->
+          <div class="az-glass p-6 space-y-3 flex flex-col justify-between">
+            <div>
+              <div class="flex justify-between items-center">
+                <h3 class="font-bold text-sm flex items-center gap-2 text-amber-400">
+                  <i class="fa-solid fa-award flex-shrink-0"></i> Radar Performa & Kepuasan
+                </h3>
+                <span class="text-[10px] bg-amber-500/10 text-amber-400 px-2.5 py-1 rounded-full border border-amber-400/20 font-semibold">KPI Score</span>
+              </div>
+              <p class="text-[11px] text-slate-400 mt-1">Evaluasi pencapaian target kualitas & kepuasan pelanggan (Skala 0-100%).</p>
+            </div>
+            <div class="relative h-64 w-full mt-2 flex items-center justify-center">
+              <canvas id="performanceRadarChart"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="border-t border-slate-800/80 bg-slate-950/40 backdrop-blur-md text-center py-5 text-xs text-slate-500 transition-colors">
+      &copy; 2026 Armuzna Laundry Management System. All rights reserved.
     </footer>
+  </div>
+  <!-- JAVASCRIPT SYSTEM -->
+  <script>
+    // Pemetaan Icon Berdasarkan Nama Layanan
+    const serviceIconMap = {
+      'Cuci Kiloan': 'fa-weight-scale text-sky-400',
+      'Cuci Setrika': 'fa-shirt text-amber-400',
+      'Express 1 Hari': 'fa-bolt text-rose-400',
+      'Dry Clean': 'fa-wand-magic-sparkles text-cyan-400',
+      'Cuci Sepatu': 'fa-shoe-prints text-emerald-400',
+      'Cuci Karpet': 'fa-rug text-indigo-400',
+      'Bed Cover': 'fa-bed text-purple-400',
+      'Cuci Sprei': 'fa-scroll text-teal-400'
+    };
+    let orders = [
+      { id: 'NOTA-101', name: 'Armuzna Laundry', phone: '085927262579', service: 'Cuci Setrika', amount: 30000, discount: 0, payMethod: 'Tunai', status: 'Proses', payStatus: 'Lunas', date: '2026-08-08', note: 'Baju putih dipisah' },
+      { id: 'NOTA-102', name: 'Achmad Efendi', phone: '0889009698', service: 'Express 1 Hari', amount: 45000, discount: 5000, payMethod: 'QRIS', status: 'Selesai', payStatus: 'Lunas', date: '2026-08-09', note: '-' }
+    ];
+    let customers = [
+      { id: 1, name: 'Armuzna Laundry', phone: '085927262579', address: 'Jl. Utama No. 12, Jakarta', type: 'VIP' },
+      { id: 2, name: 'Achmad Efendi', phone: '0889009698', address: 'Jl. Pemuda No. 45, Surabaya', type: 'Reguler' }
+    ];
+    let promos = [
+      { id: 101, code: 'BERSIH5K', name: 'Promo Hemat Rp 5.000', discount: 5000, minOrder: 20000, expiry: '2026-12-31', status: 'Aktif' },
+      { id: 102, code: 'MEMBERVIP', name: 'Diskon Spesial VIP', discount: 10000, minOrder: 35000, expiry: '2026-12-31', status: 'Aktif' }
+    ];
+    let expenses = [];
+    let charts = {};
+    document.addEventListener("DOMContentLoaded", () => {
+      const today = new Date().toISOString().split('T')[0];
+      if(document.getElementById('expenseDate')) document.getElementById('expenseDate').value = today;
+      if(document.getElementById('promoExpiry')) document.getElementById('promoExpiry').value = today;
+      renderOrders();
+      renderCustomers();
+      renderExpenses();
+      renderPromos();
+      
+      // Auto routing berdasarkan URL Hash
+      const currentHash = window.location.hash.replace('#', '');
+      if (currentHash) {
+        switchPage(currentHash, false);
+      } else {
+        switchPage('beranda', false);
+      }
+      if (localStorage.getItem('theme') === 'light') {
+        applyTheme(true);
+      } else {
+        applyTheme(false);
+      }
+      if ("Notification" in window && Notification.permission === "granted") {
+        document.getElementById('notifDot')?.classList.remove('hidden');
+      }
+    });
+    function requestNotificationPermission() {
+      if ("Notification" in window) {
+        Notification.requestPermission().then((permission) => {
+          if (permission === "granted") {
+            document.getElementById('notifDot')?.classList.remove('hidden');
+            sendNotification("Notifikasi Berhasil Diaktifkan!", "Anda akan menerima pemberitahuan setiap ada aktivitas baru.");
+          } else if (permission === "denied") {
+            alert("Izin notifikasi ditolak. Anda dapat mengaktifkannya secara manual melalui pengaturan browser.");
+          }
+        });
+      } else {
+        alert("Browser Anda tidak mendukung Notifikasi Web.");
+      }
+    }
+    function sendNotification(title, body) {
+      if ("Notification" in window && Notification.permission === "granted") {
+        new Notification(title, {
+          body: body,
+          icon: "https://cdn-icons-png.flaticon.com/512/3003/3003248.png"
+        });
+      }
+    }
+    function toggleTheme() {
+      const isLight = !document.body.classList.contains('light-mode');
+      applyTheme(isLight);
+      localStorage.setItem('theme', isLight ? 'light' : 'dark');
+    }
+    function applyTheme(isLight) {
+      const dot = document.getElementById('themeDot');
+      const slider = document.getElementById('themeSlider');
+      
+      if (isLight) {
+        document.body.classList.add('light-mode');
+        if (dot) {
+          dot.style.right = 'auto';
+          dot.style.left = '0';
+        }
+        if (slider) slider.classList.replace('bg-sky-500', 'bg-amber-400');
+      } else {
+        document.body.classList.remove('light-mode');
+        if (dot) {
+          dot.style.left = 'auto';
+          dot.style.right = '0';
+        }
+        if (slider) slider.classList.replace('bg-amber-400', 'bg-sky-500');
+      }
+      // Re-render chart agar warna grid/label sesuai tema
+      Object.keys(charts).forEach(id => {
+        if(charts[id]) {
+          charts[id].destroy();
+          delete charts[id];
+        }
+      });
+      initCharts();
+    }
+    function switchPage(pageId, updateHash = true) {
+      // DITAMBAHKAN ROUTE 'agen'
+      const pages = ['beranda', 'agen', 'layanan', 'promosi', 'kasir', 'pelanggan', 'pengeluaran', 'lacak', 'analytics'];
+      pages.forEach(p => {
+        const el = document.getElementById(`page-${p}`);
+        const nav = document.getElementById(`nav-${p}`);
+        if (el) el.classList.add('hidden');
+        if (nav) nav.classList.remove('az-active');
+      });
+      const activeEl = document.getElementById(`page-${pageId}`);
+      const activeNavBtn = document.getElementById(`nav-${pageId}`);
+      if (activeEl) activeEl.classList.remove('hidden');
+      if (activeNavBtn) activeNavBtn.classList.add('az-active');
+      if (pageId === 'beranda' || pageId === 'analytics') {
+        initCharts();
+      }
+      if (updateHash) {
+        history.replaceState(null, '', '#' + pageId);
+      }
+    }
+    // INTERAKSI AGEN AI
+    function sendAiMessage(e) {
+      e.preventDefault();
+      const input = document.getElementById('aiInput');
+      const val = input.value.trim();
+      if(!val) return;
+      appendChatMessage('user', val);
+      input.value = '';
+      // Simulasi Respon AI
+      setTimeout(() => {
+        let reply = "Terima Kasih Atas Kunjungan Di Website App Armuzna Laundry";
+        if(val.toLowerCase().includes('promo')) {
+          reply = "Rekomendasi Promo WA VIP:\n'Halo Kak! Nikmati Diskon Spesial VIP 15% khusus layanan Express 1 Hari minggu ini di Armuzna Laundry. Gunakan kode: VIPEXPRESS'";
+        }
+        appendChatMessage('agent', reply);
+      }, 700);
+    }
+    function triggerQuickPrompt(text) {
+      document.getElementById('aiInput').value = text;
+      sendAiMessage(new Event('submit'));
+    }
+    function appendChatMessage(sender, text) {
+      const chatContainer = document.getElementById('chatContainer');
+      const div = document.createElement('div');
+      div.className = "flex items-start gap-2.5";
+      if(sender === 'user') {
+        div.innerHTML = `
+          <div class="ml-auto flex items-start gap-2.5 justify-end w-full">
+            <div class="bg-sky-600 border border-sky-500 text-white p-3 rounded-2xl max-w-md text-xs">
+              ${text}
+            </div>
+            <div class="w-7 h-7 rounded-xl bg-slate-800 text-slate-300 flex items-center justify-center shrink-0 text-xs">
+              <i class="fa-solid fa-user"></i>
+            </div>
+          </div>
+        `;
+      } else {
+        div.innerHTML = `
+          <div class="w-7 h-7 rounded-xl bg-cyan-500/20 border border-cyan-400/30 text-cyan-400 flex items-center justify-center shrink-0 text-xs">
+            <i class="fa-solid fa-robot"></i>
+          </div>
+          <div class="bg-slate-900/80 border border-slate-800 p-3 rounded-2xl max-w-md text-slate-300 whitespace-pre-line">
+            ${text}
+          </div>
+        `;
+      }
+      chatContainer.appendChild(div);
+      chatContainer.scrollTop = chatContainer.scrollHeight;
+    }
+    /* =========================================================
+       INISIALISASI & KONFIGURASI CHART.JS
+       ========================================================= */
+    function initCharts() {
+      const isLight = document.body.classList.contains('light-mode');
+      const textColor = isLight ? '#475569' : '#9ca3af';
+      const gridColor = isLight ? 'rgba(226, 232, 240, 0.8)' : 'rgba(255, 255, 255, 0.08)';
+      // 1. Chart Mini Dashboard
+      const miniEl = document.getElementById('dashboardMiniChart');
+      if (miniEl && !charts['dashboardMiniChart']) {
+        charts['dashboardMiniChart'] = new Chart(miniEl, {
+          type: 'line',
+          data: {
+            labels: ['Minggu 1', 'Minggu 2', 'Minggu 3', 'Minggu 4'],
+            datasets: [{
+              label: 'Jumlah Order',
+              data: [42, 58, 65, 80],
+              borderColor: '#38bdf8',
+              backgroundColor: 'rgba(56, 189, 248, 0.15)',
+              fill: true,
+              tension: 0.4
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: { legend: { display: false } },
+            scales: {
+              x: { ticks: { color: textColor }, grid: { color: gridColor } },
+              y: { ticks: { color: textColor }, grid: { color: gridColor } }
+            }
+          }
+        });
+      }
+      // 2. Chart Area Tren Arus Kas
+      const areaEl = document.getElementById('dashboardAreaChart');
+      if (areaEl && !charts['dashboardAreaChart']) {
+        charts['dashboardAreaChart'] = new Chart(areaEl, {
+          type: 'bar',
+          data: {
+            labels: ['Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab', 'Min'],
+            datasets: [{
+              label: 'Pemasukan (Rp)',
+              data: [450000, 620000, 580000, 710000, 950000, 1200000, 1100000],
+              backgroundColor: '#0ea5e9',
+              borderRadius: 8
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: { legend: { display: false } },
+            scales: {
+              x: { ticks: { color: textColor }, grid: { display: false } },
+              y: { ticks: { color: textColor }, grid: { color: gridColor } }
+            }
+          }
+        });
+      }
+      // 3. Financial Trend Chart
+      const finEl = document.getElementById('financialTrendChart');
+      if (finEl && !charts['financialTrendChart']) {
+        charts['financialTrendChart'] = new Chart(finEl, {
+          type: 'line',
+          data: {
+            labels: ['Minggu 1', 'Minggu 2', 'Minggu 3', 'Minggu 4'],
+            datasets: [
+              { label: 'Pendapatan', data: [2800000, 3200000, 2900000, 3550000], borderColor: '#10b981', tension: 0.3 },
+              { label: 'Pengeluaran', data: [900000, 1100000, 850000, 970000], borderColor: '#f43f5e', tension: 0.3 }
+            ]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: { legend: { labels: { color: textColor } } },
+            scales: {
+              x: { ticks: { color: textColor }, grid: { color: gridColor } },
+              y: { ticks: { color: textColor }, grid: { color: gridColor } }
+            }
+          }
+        });
+      }
+      // 4. Service Distribution Chart
+      const distEl = document.getElementById('serviceDistributionChart');
+      if (distEl && !charts['serviceDistributionChart']) {
+        charts['serviceDistributionChart'] = new Chart(distEl, {
+          type: 'doughnut',
+          data: {
+            labels: ['Kiloan', 'Setrika', 'Express', 'Sepatu', 'Karpet', 'Bed Cover', 'Sprei'],
+            datasets: [{
+              data: [30, 20, 15, 10, 10, 10, 5],
+              backgroundColor: ['#ec4899', '#38bdf8', '#fbbf24', '#34d399', '#a855f7', '#fb7185', '#2dd4bf'],
+              borderWidth: 0
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: { legend: { display: false } }
+          }
+        });
+      }
+      // 5. CHART BARU: Analisis Jam Sibuk Transaksi (Peak Hours)
+      const peakEl = document.getElementById('peakHoursChart');
+      if (peakEl && !charts['peakHoursChart']) {
+        charts['peakHoursChart'] = new Chart(peakEl, {
+          type: 'bar',
+          data: {
+            labels: ['07:00-09:00', '09:00-11:00', '11:00-13:00', '13:00-15:00', '15:00-17:00', '17:00-19:00', '19:00-21:00'],
+            datasets: [{
+              label: 'Jumlah Transaksi',
+              data: [18, 35, 22, 28, 56, 48, 20],
+              backgroundColor: function(context) {
+                const chart = context.chart;
+                const {ctx, chartArea} = chart;
+                if (!chartArea) return '#38bdf8';
+                const gradient = ctx.createLinearGradient(0, chartArea.bottom, 0, chartArea.top);
+                gradient.addColorStop(0, '#0284c7');
+                gradient.addColorStop(1, '#38bdf8');
+                return gradient;
+              },
+              borderRadius: 10,
+              hoverBackgroundColor: '#818cf8'
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: { display: false },
+              tooltip: {
+                callbacks: {
+                  label: function(context) {
+                    return ` ${context.parsed.y} Transaksi Masuk`;
+                  }
+                }
+              }
+            },
+            scales: {
+              x: { ticks: { color: textColor, font: { size: 10 } }, grid: { display: false } },
+              y: { ticks: { color: textColor, font: { size: 10 } }, grid: { color: gridColor }, beginAtZero: true }
+            }
+          }
+        });
+      }
+      // 6. CHART BARU MODEREN: Radar Performa & Kepuasan (Bar Chart Horizontal Modern)
+      const radarEl = document.getElementById('performanceRadarChart');
+      if (radarEl && !charts['performanceRadarChart']) {
+        charts['performanceRadarChart'] = new Chart(radarEl, {
+          type: 'bar',
+          data: {
+            labels: ['Kecepatan', 'Kebersihan', 'Kerapihan', 'Ketepatan Waktu', 'Pelayanan', 'Akurasi Promo'],
+            datasets: [
+              {
+                label: 'Target Skenario',
+                data: [90, 95, 90, 95, 90, 85],
+                backgroundColor: 'rgba(99, 102, 241, 0.4)',
+                borderColor: '#6366f1',
+                borderWidth: 1,
+                borderRadius: 6
+              },
+              {
+                label: 'Realisasi Rating',
+                data: [92, 98, 94, 91, 96, 90],
+                backgroundColor: 'rgba(245, 158, 11, 0.85)',
+                borderColor: '#f59e0b',
+                borderWidth: 1,
+                borderRadius: 6
+              }
+            ]
+          },
+          options: {
+            indexAxis: 'y',
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: {
+                position: 'top',
+                labels: { color: textColor, font: { size: 10, weight: 'bold' } }
+              },
+              tooltip: {
+                callbacks: {
+                  label: function(context) {
+                    return ` ${context.dataset.label}: ${context.parsed.x}%`;
+                  }
+                }
+              }
+            },
+            scales: {
+              x: {
+                min: 50,
+                max: 100,
+                ticks: { color: textColor, font: { size: 10 } },
+                grid: { color: gridColor }
+              },
+              y: {
+                ticks: { color: textColor, font: { size: 10, weight: 'bold' } },
+                grid: { display: false }
+              }
+            }
+          }
+        });
+      }
+    }
+    // --- MANAJEMEN PROMOSI & DISKON ---
+    function savePromo(e) {
+      e.preventDefault();
+      const editId = document.getElementById('promoEditId').value;
+      const code = document.getElementById('promoCode').value.trim().toUpperCase();
+      const name = document.getElementById('promoName').value.trim();
+      const discount = parseFloat(document.getElementById('promoDiscount').value) || 0;
+      const minOrder = parseFloat(document.getElementById('promoMinOrder').value) || 0;
+      const expiry = document.getElementById('promoExpiry').value;
+      if (editId) {
+        const idx = promos.findIndex(p => p.id == editId);
+        if (idx !== -1) {
+          promos[idx] = { ...promos[idx], code, name, discount, minOrder, expiry };
+          sendNotification("Promosi Diperbarui!", `Promo ${code} berhasil diperbarui.`);
+        }
+      } else {
+        const newPromo = { id: Date.now(), code, name, discount, minOrder, expiry, status: 'Aktif' };
+        promos.unshift(newPromo);
+        sendNotification("Promosi Baru Ditambahkan!", `Promo ${code} (${name}) aktif.`);
+      }
+      resetPromoForm();
+      renderPromos();
+    }
+    function renderPromos() {
+      const tbody = document.getElementById('promoTableBody');
+      const promoSelect = document.getElementById('appliedPromo');
+      if (!tbody) return;
+      tbody.innerHTML = '';
+      let activeCount = 0;
+      if (promoSelect) {
+        promoSelect.innerHTML = '<option value="0">Tanpa Promo</option>';
+      }
+      promos.forEach(p => {
+        if (p.status === 'Aktif') activeCount++;
+        const tr = document.createElement('tr');
+        tr.className = "hover:bg-slate-800/30 transition";
+        tr.innerHTML = `
+          <td class="p-3.5"><span class="font-bold text-amber-400 uppercase">${p.code}</span><br><span class="text-[10px] text-slate-400">${p.name}</span></td>
+          <td class="p-3.5 font-bold text-emerald-400">Rp ${p.discount.toLocaleString('id-ID')}</td>
+          <td class="p-3.5 text-slate-300">Rp ${p.minOrder.toLocaleString('id-ID')}</td>
+          <td class="p-3.5 text-slate-400">${p.expiry}</td>
+          <td class="p-3.5"><span class="bg-amber-500/10 border border-amber-400/20 text-amber-400 px-2.5 py-0.5 rounded-full text-[10px] font-semibold">${p.status}</span></td>
+          <td class="p-3.5 text-center space-x-1">
+            <button onclick="editPromo(${p.id})" class="text-sky-400 hover:text-sky-300 p-1.5 transition"><i class="fa-solid fa-pen-to-square"></i></button>
+            <button onclick="deletePromo(${p.id})" class="text-rose-400 hover:text-rose-300 p-1.5 transition"><i class="fa-solid fa-trash"></i></button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+        if (promoSelect && p.status === 'Aktif') {
+          const opt = document.createElement('option');
+          opt.value = p.discount;
+          opt.innerText = `${p.code} - Potongan Rp ${p.discount.toLocaleString('id-ID')}`;
+          promoSelect.appendChild(opt);
+        }
+      });
+      document.getElementById('statTotalPromos').innerText = `${activeCount} Promo`;
+    }
+    function applyPromoToOrder() {
+      const promoValue = parseFloat(document.getElementById('appliedPromo').value) || 0;
+      document.getElementById('discount').value = promoValue;
+      calculateTotal();
+    }
+    function editPromo(id) {
+      const p = promos.find(item => item.id == id);
+      if (!p) return;
+      document.getElementById('promoEditId').value = p.id;
+      document.getElementById('promoCode').value = p.code;
+      document.getElementById('promoName').value = p.name;
+      document.getElementById('promoDiscount').value = p.discount;
+      document.getElementById('promoMinOrder').value = p.minOrder;
+      document.getElementById('promoExpiry').value = p.expiry;
+      document.getElementById('promoFormTitle').innerHTML = `<i class="fa-solid fa-pen-to-square"></i> Edit Promosi`;
+      document.getElementById('btnCancelPromo').classList.remove('hidden');
+    }
+    function resetPromoForm() {
+      document.getElementById('promoEditId').value = '';
+      document.getElementById('promoForm').reset();
+      document.getElementById('promoFormTitle').innerHTML = `<i class="fa-solid fa-circle-plus"></i> Buat Promosi Baru`;
+      document.getElementById('btnCancelPromo').classList.add('hidden');
+    }
+    function deletePromo(id) {
+      if (confirm('Hapus program promosi ini?')) {
+        promos = promos.filter(p => p.id != id);
+        renderPromos();
+      }
+    }
+    function selectServiceFromPrice(price, serviceName) {
+      switchPage('kasir');
+      selectTransactionService(price, serviceName);
+    }
+    function selectTransactionService(price, serviceName) {
+      document.getElementById('serviceType').value = price;
+      document.getElementById('serviceName').value = serviceName;
+      document.querySelectorAll('.service-choice').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.service === String(price) && btn.innerText.includes(serviceName));
+      });
+      calculateTotal();
+    }
+    function calculateTotal() {
+      const price = parseFloat(document.getElementById('serviceType').value) || 0;
+      const weight = parseFloat(document.getElementById('weight').value) || 0;
+      const discount = parseFloat(document.getElementById('discount').value) || 0;
+      let total = Math.max(0, (price * weight) - discount);
+      document.getElementById('totalPreview').innerText = 'Rp ' + Math.round(total).toLocaleString('id-ID');
+      return total;
+    }
+    function addOrder(event) {
+      event.preventDefault();
+      const custName = document.getElementById('custName').value.trim();
+      const custPhone = document.getElementById('custPhone').value.trim();
+      const newOrder = {
+        id: 'NOTA-' + (100 + orders.length + 1),
+        name: custName,
+        phone: custPhone,
+        service: document.getElementById('serviceName').value,
+        amount: calculateTotal(),
+        discount: parseFloat(document.getElementById('discount').value) || 0,
+        payMethod: document.getElementById('payMethod').value,
+        status: 'Proses',
+        payStatus: document.getElementById('payStatus').value,
+        date: new Date().toISOString().split('T')[0],
+        note: document.getElementById('orderNote').value || '-'
+      };
+      orders.unshift(newOrder);
+      const existingCust = customers.find(c => c.phone === custPhone || c.name.toLowerCase() === custName.toLowerCase());
+      if (!existingCust) {
+        customers.push({
+          id: Date.now(),
+          name: custName,
+          phone: custPhone,
+          address: '-',
+          type: 'Reguler'
+        });
+        renderCustomers();
+      }
+      renderOrders();
+      document.getElementById('laundryForm').reset();
+      selectTransactionService('7000', 'Cuci Kiloan');
+      sendNotification("Transaksi Baru Disimpan!", `Nota ${newOrder.id} a.n ${newOrder.name} (${newOrder.service}) berhasil dibuat.`);
+      alert(`Transaksi tersimpan dengan Kode: ${newOrder.id}`);
+    }
+    function renderOrders() {
+      const tbody = document.getElementById('orderTableBody');
+      if (!tbody) return;
+      tbody.innerHTML = '';
+      let totalIncome = 0, unpaidCount = 0;
+      orders.forEach(o => {
+        totalIncome += o.amount;
+        if(o.payStatus === 'Belum Lunas') unpaidCount++;
+        
+        const iconClass = serviceIconMap[o.service] || 'fa-basket-shopping text-sky-400';
+        const tr = document.createElement('tr');
+        tr.className = "hover:bg-slate-800/30 transition";
+        tr.innerHTML = `
+          <td class="p-3.5"><span class="font-bold text-sky-400">${o.id}</span><br><span class="text-[10px] text-slate-400">${o.date}</span></td>
+          <td class="p-3.5"><span class="font-semibold">${o.name}</span><br><span class="text-[10px] text-slate-400">${o.phone}</span></td>
+          <td class="p-3.5"><div class="flex items-center gap-1.5"><i class="fa-solid ${iconClass} text-xs"></i><span>${o.service}</span></div></td>
+          <td class="p-3.5 font-bold text-emerald-400">Rp ${o.amount.toLocaleString('id-ID')}</td>
+          <td class="p-3.5"><span class="bg-sky-500/10 border border-sky-400/20 text-sky-400 px-2.5 py-0.5 rounded-full text-[10px] font-semibold">${o.status}</span></td>
+          <td class="p-3.5 text-center">
+            <button onclick="alert('Cetak Nota ${o.id}')" class="text-slate-400 hover:text-white p-1.5 transition"><i class="fa-solid fa-print"></i></button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+      document.getElementById('statTotalOrders').innerText = `${orders.length} Nota`;
+      document.getElementById('statTotalIncome').innerText = `Rp ${totalIncome.toLocaleString('id-ID')}`;
+      document.getElementById('statUnpaidOrders').innerText = `${unpaidCount} Nota`;
+    }
+    function saveCustomer(e) {
+      e.preventDefault();
+      const editId = document.getElementById('custEditId').value;
+      const name = document.getElementById('custFormName').value.trim();
+      const phone = document.getElementById('custFormPhone').value.trim();
+      const type = document.getElementById('custFormType').value;
+      const address = document.getElementById('custFormAddress').value.trim() || '-';
+
+      if (editId) {
+        const idx = customers.findIndex(c => c.id == editId);
+        if (idx !== -1) {
+          customers[idx] = { ...customers[idx], name, phone, type, address };
+          sendNotification("Data Pelanggan Perbarui!", `Data ${name} berhasil disimpan.`);
+        }
+      } else {
+        const newCust = { id: Date.now(), name, phone, type, address };
+        customers.unshift(newCust);
+        sendNotification("Pelanggan Baru!", `${name} telah didaftarkan.`);
+      }
+      resetCustomerForm();
+      renderCustomers();
+    }
+    function renderCustomers() {
+      const tbody = document.getElementById('customerTableBody');
+      if (!tbody) return;
+      tbody.innerHTML = '';
+      let vipCount = 0, regCount = 0;
+      
+      const search = (document.getElementById('custSearch')?.value || '').toLowerCase();
+      const filterType = document.getElementById('custFilterType')?.value || 'Semua';
+
+      customers.forEach(c => {
+        if (c.type === 'VIP') vipCount++;
+        else regCount++;
+
+        const matchesSearch = c.name.toLowerCase().includes(search) || c.phone.includes(search) || c.address.toLowerCase().includes(search);
+        const matchesType = filterType === 'Semua' || c.type === filterType;
+
+        if (matchesSearch && matchesType) {
+          const totalNota = orders.filter(o => o.phone === c.phone || o.name.toLowerCase() === c.name.toLowerCase()).length;
+          const tr = document.createElement('tr');
+          tr.className = "hover:bg-slate-800/30 transition";
+          tr.innerHTML = `
+            <td class="p-3.5 font-semibold">${c.name}</td>
+            <td class="p-3.5 text-slate-300">${c.phone}</td>
+            <td class="p-3.5 text-slate-400 max-w-xs truncate">${c.address}</td>
+            <td class="p-3.5"><span class="${c.type === 'VIP' ? 'bg-amber-500/10 border-amber-400/20 text-amber-400' : 'bg-indigo-500/10 border-indigo-400/20 text-indigo-400'} border px-2.5 py-0.5 rounded-full text-[10px] font-semibold">${c.type}</span></td>
+            <td class="p-3.5 text-center font-bold text-sky-400">${totalNota}</td>
+            <td class="p-3.5 text-center space-x-1">
+              <button onclick="editCustomer(${c.id})" class="text-sky-400 hover:text-sky-300 p-1.5 transition"><i class="fa-solid fa-pen-to-square"></i></button>
+              <button onclick="deleteCustomer(${c.id})" class="text-rose-400 hover:text-rose-300 p-1.5 transition"><i class="fa-solid fa-trash"></i></button>
+            </td>
+          `;
+          tbody.appendChild(tr);
+        }
+      });
+      document.getElementById('statTotalCustomers').innerText = `${customers.length} Orang`;
+      document.getElementById('statVipCustomers').innerText = `${vipCount} Orang`;
+      document.getElementById('statRegularCustomers').innerText = `${regCount} Orang`;
+    }
+    function editCustomer(id) {
+      const c = customers.find(item => item.id == id);
+      if (!c) return;
+      document.getElementById('custEditId').value = c.id;
+      document.getElementById('custFormName').value = c.name;
+      document.getElementById('custFormPhone').value = c.phone;
+      document.getElementById('custFormType').value = c.type;
+      document.getElementById('custFormAddress').value = c.address === '-' ? '' : c.address;
+      document.getElementById('custFormTitle').innerHTML = `<i class="fa-solid fa-user-pen"></i> Edit Pelanggan`;
+      document.getElementById('btnCancelCustomer').classList.remove('hidden');
+    }
+    function resetCustomerForm() {
+      document.getElementById('custEditId').value = '';
+      document.getElementById('customerForm').reset();
+      document.getElementById('custFormTitle').innerHTML = `<i class="fa-solid fa-user-plus"></i> Tambah Pelanggan Baru`;
+      document.getElementById('btnCancelCustomer').classList.add('hidden');
+    }
+    function deleteCustomer(id) {
+      if (confirm('Hapus data pelanggan ini?')) {
+        customers = customers.filter(c => c.id != id);
+        renderCustomers();
+      }
+    }
+    function addExpense(e) {
+      e.preventDefault();
+      const desc = document.getElementById('expenseName').value.trim();
+      const amount = parseFloat(document.getElementById('expenseAmount').value) || 0;
+      const date = document.getElementById('expenseDate').value;
+
+      expenses.unshift({ id: Date.now(), desc, amount, date });
+      renderExpenses();
+      document.getElementById('expenseForm').reset();
+      document.getElementById('expenseDate').value = new Date().toISOString().split('T')[0];
+    }
+    function renderExpenses() {
+      const tbody = document.getElementById('expenseTableBody');
+      if (!tbody) return;
+      tbody.innerHTML = '';
+      let total = 0;
+      expenses.forEach(ex => {
+        total += ex.amount;
+        const tr = document.createElement('tr');
+        tr.className = "hover:bg-slate-800/30 transition";
+        tr.innerHTML = `
+          <td class="p-3.5 text-slate-400">${ex.date}</td>
+          <td class="p-3.5 font-semibold">${ex.desc}</td>
+          <td class="p-3.5 font-bold text-rose-400">Rp ${ex.amount.toLocaleString('id-ID')}</td>
+          <td class="p-3.5 text-center">
+            <button onclick="deleteExpense(${ex.id})" class="text-rose-400 hover:text-rose-300 p-1.5 transition"><i class="fa-solid fa-trash"></i></button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+      document.getElementById('totalExpenseDisplay').innerText = `Rp ${total.toLocaleString('id-ID')}`;
+    }
+    function deleteExpense(id) {
+      expenses = expenses.filter(ex => ex.id != id);
+      renderExpenses();
+    }
+    function searchInvoice(e) {
+      e.preventDefault();
+      const kw = document.getElementById('searchKeyword').value.trim().toLowerCase();
+      const resultArea = document.getElementById('searchResultArea');
+      resultArea.classList.remove('hidden');
+      
+      const matched = orders.filter(o => o.id.toLowerCase().includes(kw) || o.phone.includes(kw));
+      if (matched.length === 0) {
+        resultArea.innerHTML = `<div class="az-glass p-5 text-center text-xs text-rose-400 font-semibold">Transaksi tidak ditemukan.</div>`;
+        return;
+      }
+      resultArea.innerHTML = matched.map(o => `
+        <div class="az-glass p-5 space-y-2 text-xs">
+          <div class="flex justify-between font-bold">
+            <span class="text-sky-400">${o.id}</span>
+            <span class="bg-sky-500/10 text-sky-400 px-2 py-0.5 rounded-full border border-sky-400/20">${o.status}</span>
+          </div>
+          <p class="text-slate-300">Pelanggan: <span class="font-semibold">${o.name}</span> (${o.phone})</p>
+          <p class="text-slate-300">Layanan: <span class="font-semibold">${o.service}</span></p>
+          <p class="text-slate-300">Total: <span class="font-bold text-emerald-400">Rp ${o.amount.toLocaleString('id-ID')}</span> (${o.payStatus})</p>
+        </div>
+      `).join('');
+    }
+  </script>
 </body>
 </html>
