@@ -582,16 +582,16 @@ button.bg-white:hover{background:#11416c!important}
               <div>
                 <label class="block text-xs font-semibold uppercase text-slate-500 mb-1">Metode Bayar</label>
                 <select id="payMethod" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm bg-white az-card">
-                  <option value="Tunai">?? Tunai</option>
-                  <option value="QRIS">?? QRIS / E-Wallet</option>
-                  <option value="Transfer">?? Transfer Bank</option>
+                  <option value="Tunai">Tunai</option>
+                  <option value="QRIS">QRIS / E-Wallet</option>
+                  <option value="Transfer">Transfer Bank</option>
                 </select>
               </div>
               <div>
                 <label class="block text-xs font-semibold uppercase text-slate-500 mb-1">Status Bayar</label>
                 <select id="payStatus" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm bg-white az-card">
-                  <option value="Lunas">? Lunas</option>
-                  <option value="Belum Lunas">? Belum Lunas</option>
+                  <option value="Lunas">Lunas</option>
+                  <option value="Belum Lunas">Belum Lunas</option>
                 </select>
               </div>
             </div>
@@ -630,7 +630,7 @@ button.bg-white:hover{background:#11416c!important}
             <!-- Toolbar Fitur Filter & Pencarian -->
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
               <div>
-                <input type="text" id="filterSearch" onkeyup="renderOrders()" placeholder="?? Cari Nota / Nama..." 
+                <input type="text" id="filterSearch" onkeyup="renderOrders()" placeholder="Searching" 
                   class="w-full px-3 py-1.5 border rounded-lg text-xs focus:ring-2 focus:ring-indigo-500 focus:outline-none">
               </div>
               <div>
@@ -883,7 +883,7 @@ button.bg-white:hover{background:#11416c!important}
       <div class="text-center border-b border-dashed pb-3">
         <i class="fa-solid fa-soap text-indigo-600 text-3xl mb-1"></i>
         <h3 class="font-bold text-slate-800 text-lg">Armuzna Laundry</h3>
-        <p class="text-[11px] text-slate-500">Jl. Raya Utama No. 45 • WA: 08123456789</p>
+        <p class="text-[11px] text-slate-500">Jl. Raya Utama No. 45 Â• WA: 08123456789</p>
       </div>
 
       <div id="receiptContent" class="text-xs space-y-2"></div>
@@ -1053,7 +1053,7 @@ button.bg-white:hover{background:#11416c!important}
       });
 
       const label = document.getElementById('selectedServiceLabel');
-      if (label) label.textContent = `Layanan dipilih: ${serviceName} • Rp ${Number(price).toLocaleString('id-ID')} / ${unit}`;
+      if (label) label.textContent = `Layanan dipilih: ${serviceName} Â• Rp ${Number(price).toLocaleString('id-ID')} / ${unit}`;
       calculateTotal();
     }
 
@@ -1330,7 +1330,7 @@ button.bg-white:hover{background:#11416c!important}
               <div>
                 <span class="text-xs font-bold text-indigo-600 bg-indigo-50 px-2 py-1 rounded-md">${item.id}</span>
                 <h3 class="font-bold text-slate-800 text-base mt-1">${item.name}</h3>
-                <p class="text-xs text-slate-400">${item.phone} • Tanggal Masuk: ${item.date}</p>
+                <p class="text-xs text-slate-400">${item.phone} Â• Tanggal Masuk: ${item.date}</p>
               </div>
               <span class="${statusBadgeClass} text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1">
                 <i class="fa-solid ${isFinished ? 'fa-check-circle' : 'fa-clock'}"></i> ${item.status}
