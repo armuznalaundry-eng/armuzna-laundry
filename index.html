@@ -9,6 +9,199 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
   <!-- Chart.js CDN -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style id="armuzna-dark-blue-system">
+:root{
+  --az-bg:#02060d;
+  --az-bg2:#050d18;
+  --az-card:#091b31;
+  --az-card2:#0c2542;
+  --az-card3:#103153;
+  --az-border:#17466f;
+  --az-border2:#1d5b8f;
+  --az-blue:#0b5cab;
+  --az-blue2:#083b73;
+  --az-accent:#38bdf8;
+  --az-text:#eaf4ff;
+  --az-muted:#91a9c2;
+}
+html,body{background:var(--az-bg)!important;color:var(--az-text)!important}
+body{
+  background:
+    radial-gradient(circle at 8% 0%,rgba(16,72,130,.30),transparent 27%),
+    radial-gradient(circle at 92% 4%,rgba(14,79,145,.20),transparent 24%),
+    linear-gradient(180deg,#02060d,#050b14 45%,#02060d)!important;
+}
+header{
+  background:linear-gradient(90deg,#020711,#061a32 50%,#082b51)!important;
+  border-bottom:1px solid #17466f!important;
+}
+header nav button{
+  background:linear-gradient(145deg,#09213a,#0b2d4f)!important;
+  border:1px solid #17466f!important;
+  color:#bcd8f0!important;
+  box-shadow:0 4px 12px rgba(0,0,0,.22)!important;
+}
+header nav button:hover{
+  background:linear-gradient(145deg,#0d3962,#0d4e83)!important;
+  color:#fff!important;
+  border-color:#2584c5!important;
+}
+header nav button.az-active{
+  background:linear-gradient(145deg,#0c5fae,#083d77)!important;
+  color:#fff!important;
+  border-color:#38a9ee!important;
+  box-shadow:0 0 0 1px rgba(56,189,248,.15),0 7px 20px rgba(0,0,0,.35)!important;
+}
+main{background:transparent!important}
+footer{
+  background:#020711!important;
+  border-top:1px solid #123552!important;
+}
+.bg-white{
+  background:linear-gradient(145deg,var(--az-card),#071629)!important;
+  color:var(--az-text)!important;
+  border-color:var(--az-border)!important;
+}
+.bg-slate-50{background:#0a1d33!important;color:#dcecff!important}
+.bg-slate-100{background:#071426!important;color:#dcecff!important}
+.bg-slate-200{background:#0c2948!important;color:#dcecff!important}
+.text-slate-800,.text-slate-700,.text-slate-600{color:#e6f1fc!important}
+.text-slate-500,.text-slate-400{color:var(--az-muted)!important}
+.border-slate-200,.border-slate-100,.border-slate-300{border-color:var(--az-border)!important}
+input,select,textarea{
+  background:#061426!important;
+  color:#eaf4ff!important;
+  border-color:#1b4a74!important;
+}
+input:focus,select:focus,textarea:focus{
+  border-color:#38a9ee!important;
+  box-shadow:0 0 0 3px rgba(56,189,248,.12)!important;
+}
+input::placeholder,textarea::placeholder{color:#66839f!important}
+table thead{background:#0d2b4a!important;color:#eaf4ff!important}
+tr:hover{background:rgba(28,91,145,.15)!important}
+.shadow-sm,.shadow-md,.shadow-lg,.shadow-xl,.shadow-2xl{
+  box-shadow:0 14px 35px rgba(0,0,0,.32)!important;
+}
+.bg-gradient-to-r.from-indigo-700,
+.bg-gradient-to-r.from-indigo-700.via-indigo-600.to-sky-600{
+  background:linear-gradient(135deg,#06162a 0%,#0a3970 55%,#075e91 100%)!important;
+}
+[class*="bg-indigo-"]{border-color:#1b4e79}
+.bg-indigo-50{background:#0b2948!important}
+.bg-indigo-100{background:#0d3356!important}
+.bg-indigo-600{background:#0b5ca9!important}
+.bg-indigo-700{background:#084b8d!important}
+.bg-indigo-800{background:#07396d!important}
+.text-indigo-600,.text-indigo-700,.text-indigo-800{color:#54b9f4!important}
+.text-indigo-100{color:#c5def2!important}
+.hover\:bg-indigo-500:hover{background:#0d4777!important}
+.hover\:bg-indigo-700:hover{background:#073c72!important}
+.bg-sky-600{background:#0874b8!important}
+.text-sky-600{color:#42bdf4!important}
+.bg-emerald-600{background:#087a58!important}
+.bg-rose-600{background:#a52b4b!important}
+.bg-amber-500{background:#9a6505!important}
+.service-choice{
+  background:#071b30!important;
+  color:#bcd5eb!important;
+  border-color:#1a466d!important;
+}
+.service-choice.active{
+  background:linear-gradient(145deg,#0c5da5,#083d76)!important;
+  color:#fff!important;
+  border-color:#36aaf1!important;
+}
+.az-card{
+  background:linear-gradient(145deg,#0a213b,#07182b)!important;
+  border:1px solid #17466f!important;
+  border-radius:18px!important;
+}
+.az-card:hover{border-color:#236a9d!important}
+.az-kpi{
+  background:linear-gradient(145deg,#0b2746,#08182b)!important;
+  border:1px solid #17466f!important;
+}
+.az-kpi i{color:#45bdf5!important}
+.modal-dark .bg-white{background:#091b31!important}
+</style>
+
+
+<style>
+button.bg-white, .bg-white button{background:#0d2948!important;color:#dff1ff!important;border-color:#1b4e79!important}
+button.bg-white:hover{background:#11416c!important}
+</style>
+
+
+<style id="pengeluaran-nav-card-color">
+/* Warna khusus navigasi Pengeluaran */
+#nav-pengeluaran{
+  background:linear-gradient(145deg,#123b68,#0a2545)!important;
+  border:1px solid #286ca5!important;
+  color:#dff3ff!important;
+  box-shadow:0 5px 16px rgba(0,0,0,.28)!important;
+}
+#nav-pengeluaran:hover{
+  background:linear-gradient(145deg,#185487,#0e345d)!important;
+  border-color:#3ba9ed!important;
+  color:#ffffff!important;
+}
+#nav-pengeluaran.az-active{
+  background:linear-gradient(145deg,#0878c9,#075096)!important;
+  border:1px solid #4bc4ff!important;
+  color:#ffffff!important;
+  box-shadow:0 0 0 2px rgba(56,189,248,.12),0 8px 22px rgba(0,0,0,.38)!important;
+}
+#nav-pengeluaran i{
+  color:#5dcaff!important;
+}
+#nav-pengeluaran.az-active i{
+  color:#ffffff!important;
+}
+</style>
+
+
+<style id="pengeluaran-no-red">
+#nav-pengeluaran,
+#nav-pengeluaran.az-active{
+  background:linear-gradient(145deg,#0b3157,#061b32)!important;
+  border:1px solid #1b527f!important;
+  color:#dcefff!important;
+  box-shadow:0 5px 18px rgba(0,0,0,.32)!important;
+}
+#nav-pengeluaran:hover{
+  background:linear-gradient(145deg,#104875,#082845)!important;
+  border-color:#2b80b8!important;
+  color:#ffffff!important;
+}
+#nav-pengeluaran.az-active{
+  background:linear-gradient(145deg,#0c5b98,#083b67)!important;
+  border-color:#38a9df!important;
+  box-shadow:0 0 0 2px rgba(56,189,248,.12),0 8px 22px rgba(0,0,0,.38)!important;
+}
+#nav-pengeluaran i,
+#nav-pengeluaran.az-active i{
+  color:#55c5f5!important;
+}
+</style>
+
+
+<style id="total-pengeluaran-dark-blue">
+/* Card TOTAL PENGELUARAN: merah -> dark blue */
+#page-pengeluaran .bg-gradient-to-r.from-rose-500.to-red-600{
+  background:linear-gradient(135deg,#0b3157 0%,#0a2543 52%,#06182d 100%)!important;
+  border:1px solid #1b527f!important;
+  box-shadow:0 12px 28px rgba(0,0,0,.35)!important;
+}
+#page-pengeluaran .bg-gradient-to-r.from-rose-500.to-red-600 .text-rose-100{
+  color:#9fd3f2!important;
+}
+#page-pengeluaran .bg-gradient-to-r.from-rose-500.to-red-600 .text-3xl{
+  color:#f1f8ff!important;
+}
+</style>
+
 </head>
 <body class="bg-slate-100 text-slate-800 font-sans min-h-screen flex flex-col justify-between">
 
@@ -61,7 +254,7 @@
             Menyediakan layanan perawatan pakaian dan perlengkapan rumah tangga terbaik dengan standar kebersihan tinggi dan teknologi terkini.
           </p>
           <div class="pt-2 flex flex-wrap gap-3">
-            <button onclick="switchPage('kasir')" class="bg-white text-indigo-700 hover:bg-slate-100 font-bold px-5 py-2.5 rounded-xl text-sm shadow transition flex items-center gap-2">
+            <button onclick="switchPage('kasir')" class="bg-white text-indigo-700 hover:bg-slate-100 font-bold px-5 py-2.5 rounded-xl text-sm shadow transition flex items-center gap-2 az-card">
               <i class="fa-solid fa-plus-circle"></i> Buat Transaksi
             </button>
             <button onclick="switchPage('layanan')" class="bg-indigo-800/60 hover:bg-indigo-800 text-white font-semibold px-5 py-2.5 rounded-xl text-sm border border-indigo-400/40 transition flex items-center gap-2">
@@ -84,7 +277,7 @@
             <i class="fa-solid fa-chart-line"></i> Buka Business Analytics
           </button>
         </div>
-        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
+        <div class="bg-white p-5 rounded-2xl border border-slate-200 az-card shadow-sm az-card">
           <div class="relative h-64 w-full">
             <canvas id="dashboardMiniChart"></canvas>
           </div>
@@ -100,7 +293,7 @@
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
           <!-- Card Visi -->
-          <div class="bg-white p-6 rounded-2xl shadow-md border border-slate-200 space-y-3 relative overflow-hidden">
+          <div class="bg-white p-6 rounded-2xl shadow-md border border-slate-200 space-y-3 relative overflow-hidden az-card">
             <div class="w-12 h-12 bg-indigo-100 text-indigo-600 rounded-xl flex items-center justify-center text-xl font-bold mb-2">
               <i class="fa-solid fa-eye"></i>
             </div>
@@ -111,7 +304,7 @@
           </div>
 
           <!-- Card Misi -->
-          <div class="bg-white p-6 rounded-2xl shadow-md border border-slate-200 space-y-3 relative overflow-hidden">
+          <div class="bg-white p-6 rounded-2xl shadow-md border border-slate-200 space-y-3 relative overflow-hidden az-card">
             <div class="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-xl flex items-center justify-center text-xl font-bold mb-2">
               <i class="fa-solid fa-bullseye"></i>
             </div>
@@ -124,7 +317,7 @@
           </div>
 
           <!-- Card Tujuan -->
-          <div class="bg-white p-6 rounded-2xl shadow-md border border-slate-200 space-y-3 relative overflow-hidden">
+          <div class="bg-white p-6 rounded-2xl shadow-md border border-slate-200 space-y-3 relative overflow-hidden az-card">
             <div class="w-12 h-12 bg-sky-100 text-sky-600 rounded-xl flex items-center justify-center text-xl font-bold mb-2">
               <i class="fa-solid fa-trophy"></i>
             </div>
@@ -147,7 +340,7 @@
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
           <!-- Artikel 1 -->
-          <article class="bg-white rounded-2xl shadow-md border border-slate-200 overflow-hidden flex flex-col justify-between">
+          <article class="bg-white rounded-2xl shadow-md border border-slate-200 overflow-hidden flex flex-col justify-between az-card">
             <div class="p-6 space-y-3">
               <span class="bg-indigo-50 text-indigo-600 text-[10px] font-bold px-2.5 py-1 rounded-md uppercase">Tips Perawatan</span>
               <h4 class="font-bold text-slate-800 text-base leading-snug">Cara Merawat Baju Bahan Satin & Sutra Agar Tidak Rusak</h4>
@@ -161,7 +354,7 @@
           </article>
 
           <!-- Artikel 2 -->
-          <article class="bg-white rounded-2xl shadow-md border border-slate-200 overflow-hidden flex flex-col justify-between">
+          <article class="bg-white rounded-2xl shadow-md border border-slate-200 overflow-hidden flex flex-col justify-between az-card">
             <div class="p-6 space-y-3">
               <span class="bg-emerald-50 text-emerald-600 text-[10px] font-bold px-2.5 py-1 rounded-md uppercase">Edukasi Higienis</span>
               <h4 class="font-bold text-slate-800 text-base leading-snug">Rahasia Menghilangkan Bau Apek Pada Pakaian Musim Hujan</h4>
@@ -175,7 +368,7 @@
           </article>
 
           <!-- Artikel 3 -->
-          <article class="bg-white rounded-2xl shadow-md border border-slate-200 overflow-hidden flex flex-col justify-between">
+          <article class="bg-white rounded-2xl shadow-md border border-slate-200 overflow-hidden flex flex-col justify-between az-card">
             <div class="p-6 space-y-3">
               <span class="bg-amber-50 text-amber-600 text-[10px] font-bold px-2.5 py-1 rounded-md uppercase">Panduan Laundry</span>
               <h4 class="font-bold text-slate-800 text-base leading-snug">Mengapa Memisahkan Pakaian Putih dan Berwarna Sangat Penting?</h4>
@@ -195,7 +388,7 @@
     <div id="page-layanan" class="hidden space-y-6">
       
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div class="bg-white p-5 rounded-xl border shadow-sm text-center space-y-3">
+        <div class="bg-white p-5 rounded-xl border shadow-sm text-center space-y-3 az-card">
           <div class="w-16 h-16 bg-sky-100 text-sky-600 rounded-full flex items-center justify-center mx-auto text-2xl shadow-inner mb-3">
             <i class="fa-solid fa-jug-detergent"></i>
           </div>
@@ -206,7 +399,7 @@
           </button>
         </div>
 
-        <div class="bg-white p-5 rounded-xl border shadow-sm text-center space-y-3">
+        <div class="bg-white p-5 rounded-xl border shadow-sm text-center space-y-3 az-card">
           <div class="w-16 h-16 bg-amber-100 text-amber-600 rounded-full flex items-center justify-center mx-auto text-2xl shadow-inner mb-3">
             <i class="fa-solid fa-temperature-high"></i>
           </div>
@@ -217,7 +410,7 @@
           </button>
         </div>
 
-        <div class="bg-white p-5 rounded-xl border shadow-sm text-center space-y-3">
+        <div class="bg-white p-5 rounded-xl border shadow-sm text-center space-y-3 az-card">
           <div class="w-16 h-16 bg-rose-100 text-rose-600 rounded-full flex items-center justify-center mx-auto text-2xl shadow-inner mb-3">
             <i class="fa-solid fa-bolt-lightning"></i>
           </div>
@@ -228,7 +421,7 @@
           </button>
         </div>
 
-        <div class="bg-white p-5 rounded-xl border shadow-sm text-center space-y-3">
+        <div class="bg-white p-5 rounded-xl border shadow-sm text-center space-y-3 az-card">
           <div class="w-16 h-16 bg-cyan-100 text-cyan-600 rounded-full flex items-center justify-center mx-auto text-2xl shadow-inner mb-3">
             <i class="fa-solid fa-shirt"></i>
           </div>
@@ -239,7 +432,7 @@
           </button>
         </div>
 
-        <div class="bg-white p-5 rounded-xl border shadow-sm text-center space-y-3">
+        <div class="bg-white p-5 rounded-xl border shadow-sm text-center space-y-3 az-card">
           <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto text-2xl shadow-inner mb-3">
             <i class="fa-solid fa-rug"></i>
           </div>
@@ -250,7 +443,7 @@
           </button>
         </div>
 
-        <div class="bg-white p-5 rounded-xl border shadow-sm text-center space-y-3">
+        <div class="bg-white p-5 rounded-xl border shadow-sm text-center space-y-3 az-card">
           <div class="w-16 h-16 bg-violet-100 text-violet-600 rounded-full flex items-center justify-center mx-auto text-2xl shadow-inner mb-3">
             <i class="fa-solid fa-bag-shopping"></i>
           </div>
@@ -261,7 +454,7 @@
           </button>
         </div>
 
-        <div class="bg-white p-5 rounded-xl border shadow-sm text-center space-y-3">
+        <div class="bg-white p-5 rounded-xl border shadow-sm text-center space-y-3 az-card">
           <div class="w-16 h-16 bg-orange-100 text-orange-600 rounded-full flex items-center justify-center mx-auto text-2xl shadow-inner mb-3">
             <i class="fa-solid fa-couch"></i>
           </div>
@@ -272,7 +465,7 @@
           </button>
         </div>
 
-        <div class="bg-white p-5 rounded-xl border shadow-sm text-center space-y-3">
+        <div class="bg-white p-5 rounded-xl border shadow-sm text-center space-y-3 az-card">
           <div class="w-16 h-16 bg-pink-100 text-pink-600 rounded-full flex items-center justify-center mx-auto text-2xl shadow-inner mb-3">
             <i class="fa-solid fa-bed"></i>
           </div>
@@ -290,7 +483,7 @@
       
       <!-- Summary Cards untuk Kasir -->
       <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex items-center justify-between">
+        <div class="bg-white p-4 rounded-xl border border-slate-200 az-card shadow-sm flex items-center justify-between az-card">
           <div>
             <p class="text-xs text-slate-400 font-bold uppercase">Total Transaksi</p>
             <h3 id="statTotalOrders" class="text-xl font-bold text-slate-800 mt-1">0 Nota</h3>
@@ -299,7 +492,7 @@
             <i class="fa-solid fa-receipt"></i>
           </div>
         </div>
-        <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex items-center justify-between">
+        <div class="bg-white p-4 rounded-xl border border-slate-200 az-card shadow-sm flex items-center justify-between az-card">
           <div>
             <p class="text-xs text-slate-400 font-bold uppercase">Omset Kasir</p>
             <h3 id="statTotalIncome" class="text-xl font-bold text-emerald-600 mt-1">Rp 0</h3>
@@ -308,7 +501,7 @@
             <i class="fa-solid fa-money-bill-wave"></i>
           </div>
         </div>
-        <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex items-center justify-between">
+        <div class="bg-white p-4 rounded-xl border border-slate-200 az-card shadow-sm flex items-center justify-between az-card">
           <div>
             <p class="text-xs text-slate-400 font-bold uppercase">Belum Lunas</p>
             <h3 id="statUnpaidOrders" class="text-xl font-bold text-amber-600 mt-1">0 Nota</h3>
@@ -321,7 +514,7 @@
 
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <!-- Form Tambah Transaksi -->
-        <section class="bg-white p-5 rounded-xl shadow-md border border-slate-200 lg:col-span-1 space-y-4">
+        <section class="bg-white p-5 rounded-xl shadow-md border border-slate-200 lg:col-span-1 space-y-4 az-card">
           <h2 class="text-lg font-bold flex items-center gap-2 text-indigo-700">
             <i class="fa-solid fa-cart-plus"></i> Buat Transaksi Baru
           </h2>
@@ -347,25 +540,25 @@
                 <button type="button" onclick="selectTransactionService('7000','Cuci Kiloan','fa-jug-detergent','kg')" class="service-choice active flex flex-col items-center justify-center gap-1 p-3 rounded-xl border-2 border-indigo-600 bg-indigo-50 text-indigo-700 transition" data-service="7000">
                   <i class="fa-solid fa-jug-detergent text-xl"></i><span class="text-xs font-bold">Cuci Kiloan</span><span class="text-[10px]">Rp 7.000/kg</span>
                 </button>
-                <button type="button" onclick="selectTransactionService('10000','Cuci Setrika','fa-temperature-high','kg')" class="service-choice flex flex-col items-center justify-center gap-1 p-3 rounded-xl border-2 border-slate-200 bg-white text-slate-600 hover:border-indigo-300 hover:bg-indigo-50 transition" data-service="10000">
+                <button type="button" onclick="selectTransactionService('10000','Cuci Setrika','fa-temperature-high','kg')" class="service-choice flex flex-col items-center justify-center gap-1 p-3 rounded-xl border-2 border-slate-200 bg-white text-slate-600 hover:border-indigo-300 hover:bg-indigo-50 transition az-card" data-service="10000">
                   <i class="fa-solid fa-temperature-high text-xl"></i><span class="text-xs font-bold">Cuci Setrika</span><span class="text-[10px]">Rp 10.000/kg</span>
                 </button>
-                <button type="button" onclick="selectTransactionService('15000','Express 1 Hari','fa-bolt','kg')" class="service-choice flex flex-col items-center justify-center gap-1 p-3 rounded-xl border-2 border-slate-200 bg-white text-slate-600 hover:border-indigo-300 hover:bg-indigo-50 transition" data-service="15000">
+                <button type="button" onclick="selectTransactionService('15000','Express 1 Hari','fa-bolt','kg')" class="service-choice flex flex-col items-center justify-center gap-1 p-3 rounded-xl border-2 border-slate-200 bg-white text-slate-600 hover:border-indigo-300 hover:bg-indigo-50 transition az-card" data-service="15000">
                   <i class="fa-solid fa-bolt text-xl"></i><span class="text-xs font-bold">Express 1 Hari</span><span class="text-[10px]">Rp 15.000/kg</span>
                 </button>
-                <button type="button" onclick="selectTransactionService('30000','Dry Clean','fa-shirt','pcs')" class="service-choice flex flex-col items-center justify-center gap-1 p-3 rounded-xl border-2 border-slate-200 bg-white text-slate-600 hover:border-indigo-300 hover:bg-indigo-50 transition" data-service="30000">
+                <button type="button" onclick="selectTransactionService('30000','Dry Clean','fa-shirt','pcs')" class="service-choice flex flex-col items-center justify-center gap-1 p-3 rounded-xl border-2 border-slate-200 bg-white text-slate-600 hover:border-indigo-300 hover:bg-indigo-50 transition az-card" data-service="30000">
                   <i class="fa-solid fa-shirt text-xl"></i><span class="text-xs font-bold">Dry Clean</span><span class="text-[10px]">Rp 30.000/pcs</span>
                 </button>
-                <button type="button" onclick="selectTransactionService('25000','Cuci Karpet','fa-rug','pcs')" class="service-choice flex flex-col items-center justify-center gap-1 p-3 rounded-xl border-2 border-slate-200 bg-white text-slate-600 hover:border-indigo-300 hover:bg-indigo-50 transition" data-service="25000">
+                <button type="button" onclick="selectTransactionService('25000','Cuci Karpet','fa-rug','pcs')" class="service-choice flex flex-col items-center justify-center gap-1 p-3 rounded-xl border-2 border-slate-200 bg-white text-slate-600 hover:border-indigo-300 hover:bg-indigo-50 transition az-card" data-service="25000">
                   <i class="fa-solid fa-rug text-xl"></i><span class="text-xs font-bold">Cuci Karpet</span><span class="text-[10px]">Rp 25.000/pcs</span>
                 </button>
-                <button type="button" onclick="selectTransactionService('35000','Cuci Tas','fa-bag-shopping','pcs')" class="service-choice flex flex-col items-center justify-center gap-1 p-3 rounded-xl border-2 border-slate-200 bg-white text-slate-600 hover:border-indigo-300 hover:bg-indigo-50 transition" data-service="35000">
+                <button type="button" onclick="selectTransactionService('35000','Cuci Tas','fa-bag-shopping','pcs')" class="service-choice flex flex-col items-center justify-center gap-1 p-3 rounded-xl border-2 border-slate-200 bg-white text-slate-600 hover:border-indigo-300 hover:bg-indigo-50 transition az-card" data-service="35000">
                   <i class="fa-solid fa-bag-shopping text-xl"></i><span class="text-xs font-bold">Cuci Tas</span><span class="text-[10px]">Rp 35.000/pcs</span>
                 </button>
-                <button type="button" onclick="selectTransactionService('50000','Cuci Sofa','fa-couch','unit')" class="service-choice flex flex-col items-center justify-center gap-1 p-3 rounded-xl border-2 border-slate-200 bg-white text-slate-600 hover:border-indigo-300 hover:bg-indigo-50 transition" data-service="50000">
+                <button type="button" onclick="selectTransactionService('50000','Cuci Sofa','fa-couch','unit')" class="service-choice flex flex-col items-center justify-center gap-1 p-3 rounded-xl border-2 border-slate-200 bg-white text-slate-600 hover:border-indigo-300 hover:bg-indigo-50 transition az-card" data-service="50000">
                   <i class="fa-solid fa-couch text-xl"></i><span class="text-xs font-bold">Cuci Sofa</span><span class="text-[10px]">Rp 50.000/unit</span>
                 </button>
-                <button type="button" onclick="selectTransactionService('40000','Bad Cover Besar','fa-bed','pcs')" class="service-choice flex flex-col items-center justify-center gap-1 p-3 rounded-xl border-2 border-slate-200 bg-white text-slate-600 hover:border-indigo-300 hover:bg-indigo-50 transition" data-service="40000">
+                <button type="button" onclick="selectTransactionService('40000','Bad Cover Besar','fa-bed','pcs')" class="service-choice flex flex-col items-center justify-center gap-1 p-3 rounded-xl border-2 border-slate-200 bg-white text-slate-600 hover:border-indigo-300 hover:bg-indigo-50 transition az-card" data-service="40000">
                   <i class="fa-solid fa-bed text-xl"></i><span class="text-xs font-bold">Bad Cover Besar</span><span class="text-[10px]">Rp 40.000/pcs</span>
                 </button>
               </div>
@@ -388,24 +581,24 @@
             <div class="grid grid-cols-2 gap-3">
               <div>
                 <label class="block text-xs font-semibold uppercase text-slate-500 mb-1">Metode Bayar</label>
-                <select id="payMethod" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm bg-white">
-                  <option value="Tunai">Tunai</option>
-                  <option value="QRIS">QRIS/E-Wallet</option>
-                  <option value="Transfer">Transfer Bank</option>
+                <select id="payMethod" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm bg-white az-card">
+                  <option value="Tunai">?? Tunai</option>
+                  <option value="QRIS">?? QRIS / E-Wallet</option>
+                  <option value="Transfer">?? Transfer Bank</option>
                 </select>
               </div>
               <div>
                 <label class="block text-xs font-semibold uppercase text-slate-500 mb-1">Status Bayar</label>
-                <select id="payStatus" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm bg-white">
-                  <option value="Lunas">Lunas</option>
-                  <option value="Belum Lunas">Belum Lunas</option>
+                <select id="payStatus" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm bg-white az-card">
+                  <option value="Lunas">? Lunas</option>
+                  <option value="Belum Lunas">? Belum Lunas</option>
                 </select>
               </div>
             </div>
 
             <div>
               <label class="block text-xs font-semibold uppercase text-slate-500 mb-1">Catatan Khusus (Opsional)</label>
-              <input type="text" id="orderNote" placeholder="Baju putih dipisah"
+              <input type="text" id="orderNote" placeholder="Khusus Pioritas"
                 class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm">
             </div>
 
@@ -425,7 +618,7 @@
 
         <!-- Tabel & Filter Transaksi -->
         <section class="lg:col-span-2 space-y-4">
-          <div class="bg-white p-5 rounded-xl shadow-md border border-slate-200 space-y-4">
+          <div class="bg-white p-5 rounded-xl shadow-md border border-slate-200 space-y-4 az-card">
             
             <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 border-b pb-3">
               <h2 class="text-lg font-bold text-slate-800 flex items-center gap-2">
@@ -437,11 +630,11 @@
             <!-- Toolbar Fitur Filter & Pencarian -->
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
               <div>
-                <input type="text" id="filterSearch" onkeyup="renderOrders()" placeholder="Searching" 
+                <input type="text" id="filterSearch" onkeyup="renderOrders()" placeholder="?? Cari Nota / Nama..." 
                   class="w-full px-3 py-1.5 border rounded-lg text-xs focus:ring-2 focus:ring-indigo-500 focus:outline-none">
               </div>
               <div>
-                <select id="filterStatus" onchange="renderOrders()" class="w-full px-3 py-1.5 border rounded-lg text-xs bg-white focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+                <select id="filterStatus" onchange="renderOrders()" class="w-full px-3 py-1.5 border rounded-lg text-xs bg-white focus:ring-2 focus:ring-indigo-500 focus:outline-none az-card">
                   <option value="Semua">Semua Status Cucian</option>
                   <option value="Proses Cuci">Proses Cuci</option>
                   <option value="Selesai">Selesai</option>
@@ -449,7 +642,7 @@
                 </select>
               </div>
               <div>
-                <select id="filterPayment" onchange="renderOrders()" class="w-full px-3 py-1.5 border rounded-lg text-xs bg-white focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+                <select id="filterPayment" onchange="renderOrders()" class="w-full px-3 py-1.5 border rounded-lg text-xs bg-white focus:ring-2 focus:ring-indigo-500 focus:outline-none az-card">
                   <option value="Semua">Semua Pembayaran</option>
                   <option value="Lunas">Lunas</option>
                   <option value="Belum Lunas">Belum Lunas</option>
@@ -484,7 +677,7 @@
 
     <!-- 4. HALAMAN MANAJEMEN PENGELUARAN -->
     <div id="page-pengeluaran" class="hidden grid grid-cols-1 lg:grid-cols-3 gap-6">
-      <section class="bg-white p-5 rounded-xl shadow-md border border-slate-200 lg:col-span-1">
+      <section class="bg-white p-5 rounded-xl shadow-md border border-slate-200 lg:col-span-1 az-card">
         <h2 class="text-lg font-bold mb-4 flex items-center gap-2 text-rose-600">
           <i class="fa-solid fa-file-invoice-dollar"></i> Catat Pengeluaran
         </h2>
@@ -518,7 +711,7 @@
           </div>
           <i class="fa-solid fa-wallet text-3xl opacity-80"></i>
         </div>
-        <div class="bg-white p-5 rounded-xl shadow-md border border-slate-200">
+        <div class="bg-white p-5 rounded-xl shadow-md border border-slate-200 az-card">
           <table class="w-full text-left text-sm">
             <thead class="bg-slate-50 border-b text-slate-500 uppercase text-xs">
               <tr>
@@ -536,13 +729,13 @@
 
     <!-- 5. HALAMAN CEK STATUS -->
     <div id="page-lacak" class="hidden space-y-6">
-      <div class="bg-white p-6 md:p-8 rounded-2xl shadow-md border border-slate-200 max-w-2xl mx-auto text-center space-y-4">
+      <div class="bg-white p-6 md:p-8 rounded-2xl shadow-md border border-slate-200 max-w-2xl mx-auto text-center space-y-4 az-card">
         <div class="w-12 h-12 bg-indigo-100 text-indigo-600 rounded-xl flex items-center justify-center mx-auto text-xl">
           <i class="fa-solid fa-magnifying-glass"></i>
         </div>
         <div>
           <h2 class="text-xl font-bold text-slate-800">Cek Status Cucian Anda</h2>
-          <p class="text-xs text-slate-500 mt-1">Masukkan Nomor Nota Armuzna Laundry atau Nomor WhatsApp yang terdaftar.</p>
+          <p class="text-xs text-slate-500 mt-1">Sign Number Memo / Nota atau Nomor WhatsApp yang terdaftar.</p>
         </div>
 
         <form onsubmit="searchInvoice(event)" class="flex flex-col sm:flex-row gap-3 pt-2">
@@ -585,10 +778,10 @@
 
       <!-- Ringkasan KPIs -->
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between">
+        <div class="bg-white p-5 rounded-2xl border border-slate-200 az-card shadow-sm flex items-center justify-between az-card">
           <div>
             <p class="text-xs text-slate-400 uppercase font-bold">Pendapatan Bulan Ini</p>
-            <h3 class="text-xl font-extrabold text-indigo-600 mt-1">Rp 120.000.000</h3>
+            <h3 class="text-xl font-extrabold text-indigo-600 mt-1">Rp 12.450.000</h3>
             <span class="text-[11px] text-emerald-600 font-semibold"><i class="fa-solid fa-arrow-up"></i> +12.5% vs bln lalu</span>
           </div>
           <div class="w-12 h-12 bg-indigo-50 text-indigo-600 rounded-xl flex items-center justify-center text-xl">
@@ -596,10 +789,10 @@
           </div>
         </div>
 
-        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between">
+        <div class="bg-white p-5 rounded-2xl border border-slate-200 az-card shadow-sm flex items-center justify-between az-card">
           <div>
             <p class="text-xs text-slate-400 uppercase font-bold">Total Transaksi</p>
-            <h3 class="text-xl font-extrabold text-slate-800 mt-1">1888 Nota</h3>
+            <h3 class="text-xl font-extrabold text-slate-800 mt-1">184 Nota</h3>
             <span class="text-[11px] text-emerald-600 font-semibold"><i class="fa-solid fa-arrow-up"></i> +8% minggu ini</span>
           </div>
           <div class="w-12 h-12 bg-sky-50 text-sky-600 rounded-xl flex items-center justify-center text-xl">
@@ -607,10 +800,10 @@
           </div>
         </div>
 
-        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between">
+        <div class="bg-white p-5 rounded-2xl border border-slate-200 az-card shadow-sm flex items-center justify-between az-card">
           <div>
             <p class="text-xs text-slate-400 uppercase font-bold">Pengeluaran Operasional</p>
-            <h3 class="text-xl font-extrabold text-rose-600 mt-1">Rp 12.820.000</h3>
+            <h3 class="text-xl font-extrabold text-rose-600 mt-1">Rp 3.820.000</h3>
             <span class="text-[11px] text-slate-400 font-medium">Bahan & Listrik</span>
           </div>
           <div class="w-12 h-12 bg-rose-50 text-rose-600 rounded-xl flex items-center justify-center text-xl">
@@ -618,7 +811,7 @@
           </div>
         </div>
 
-        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between">
+        <div class="bg-white p-5 rounded-2xl border border-slate-200 az-card shadow-sm flex items-center justify-between az-card">
           <div>
             <p class="text-xs text-slate-400 uppercase font-bold">Profit Bersih (Estimasi)</p>
             <h3 class="text-xl font-extrabold text-emerald-600 mt-1">Rp 8.630.000</h3>
@@ -632,7 +825,7 @@
 
       <!-- Grid Grafik Performa -->
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm lg:col-span-2 space-y-3">
+        <div class="bg-white p-5 rounded-2xl border border-slate-200 az-card shadow-sm lg:col-span-2 space-y-3 az-card">
           <div class="flex justify-between items-center">
             <h3 class="font-bold text-slate-800 text-sm flex items-center gap-2">
               <i class="fa-solid fa-chart-area text-indigo-600"></i> Arus Kas & Tren Finansial (6 Bulan)
@@ -644,10 +837,11 @@
           </div>
         </div>
 
-        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-3">
+        <div class="bg-white p-5 rounded-2xl border border-slate-200 az-card shadow-sm space-y-3 az-card">
           <h3 class="font-bold text-slate-800 text-sm flex items-center gap-2">
             <i class="fa-solid fa-chart-pie text-indigo-600"></i> Distribusi Layanan
           </h3>
+          <p class="text-[10px] text-slate-400">Mengikuti seluruh layanan pada Daftar Harga & Transaksi</p>
           <div class="relative h-64 w-full flex items-center justify-center">
             <canvas id="serviceDistributionChart"></canvas>
           </div>
@@ -656,7 +850,7 @@
 
       <!-- Grid Grafik Sekunder -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-3">
+        <div class="bg-white p-5 rounded-2xl border border-slate-200 az-card shadow-sm space-y-3 az-card">
           <h3 class="font-bold text-slate-800 text-sm flex items-center gap-2">
             <i class="fa-solid fa-chart-column text-indigo-600"></i> Volume Transaksi Mingguan (Hari)
           </h3>
@@ -665,7 +859,7 @@
           </div>
         </div>
 
-        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-3">
+        <div class="bg-white p-5 rounded-2xl border border-slate-200 az-card shadow-sm space-y-3 az-card">
           <h3 class="font-bold text-slate-800 text-sm flex items-center gap-2">
             <i class="fa-solid fa-wallet text-indigo-600"></i> Metode Pembayaran Digunakan
           </h3>
@@ -680,8 +874,8 @@
   </main>
 
   <!-- MODAL CETAK STRUK -->
-  <div id="receiptModal" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm hidden items-center justify-center z-50 p-4">
-    <div class="bg-white rounded-2xl max-w-sm w-full p-6 space-y-4 shadow-2xl relative">
+  <div id="receiptModal" class="fixed inset-0 bg-black/75 backdrop-blur-sm hidden items-center justify-center z-50 p-4">
+    <div class="bg-white rounded-2xl max-w-sm w-full p-6 space-y-4 shadow-2xl relative az-card">
       <button onclick="closeReceiptModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600">
         <i class="fa-solid fa-xmark text-lg"></i>
       </button>
@@ -689,7 +883,7 @@
       <div class="text-center border-b border-dashed pb-3">
         <i class="fa-solid fa-soap text-indigo-600 text-3xl mb-1"></i>
         <h3 class="font-bold text-slate-800 text-lg">Armuzna Laundry</h3>
-        <p class="text-[11px] text-slate-500">Jl. Raya Utama No. 45 Â• WA: 08123456789</p>
+        <p class="text-[11px] text-slate-500">Jl. Raya Utama No. 45 • WA: 08123456789</p>
       </div>
 
       <div id="receiptContent" class="text-xs space-y-2"></div>
@@ -706,8 +900,8 @@
   </div>
 
   <!-- MODAL ARTIKEL -->
-  <div id="articleModal" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm hidden items-center justify-center z-50 p-4">
-    <div class="bg-white rounded-2xl max-w-lg w-full p-6 space-y-4 shadow-2xl relative">
+  <div id="articleModal" class="fixed inset-0 bg-black/75 backdrop-blur-sm hidden items-center justify-center z-50 p-4">
+    <div class="bg-white rounded-2xl max-w-lg w-full p-6 space-y-4 shadow-2xl relative az-card">
       <button onclick="closeArticleModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600">
         <i class="fa-solid fa-xmark text-lg"></i>
       </button>
@@ -730,8 +924,8 @@
   <!-- JAVASCRIPT SYSTEM -->
   <script>
     let orders = [
-      { id: 'NOTA-101', name: 'Budi Santoso', phone: '08123456789', service: 'Cuci Setrika', amount: 30000, discount: 0, payMethod: 'Tunai', status: 'Proses Cuci', payStatus: 'Lunas', date: '2026-08-08', note: 'Baju putih dipisah' },
-      { id: 'NOTA-102', name: 'Siti Rahma', phone: '085927262579', service: 'Express (1 Hari)', amount: 45000, discount: 5000, payMethod: 'QRIS', status: 'Selesai', payStatus: 'Lunas', date: '2026-08-09', note: '-' }
+      { id: 'NOTA-101', name: 'Armuzna Laundry', phone: '085927262579', service: 'Cuci Setrika', amount: 30000, discount: 0, payMethod: 'Tunai', status: 'Proses Cuci', payStatus: 'Lunas', date: '2026-08-08', note: 'Baju putih dipisah' },
+      { id: 'NOTA-102', name: 'Achmad Efendi, SE,MM ', phone: '0889009698', service: 'Express (1 Hari)', amount: 45000, discount: 5000, payMethod: 'QRIS', status: 'Selesai', payStatus: 'Lunas', date: '2026-10-09', note: '-' }
     ];
     let expenses = [];
     let chartsInitialized = false;
@@ -755,13 +949,13 @@
         const el = document.getElementById(`page-${p}`);
         const nav = document.getElementById(`nav-${p}`);
         if (el) el.classList.add('hidden');
-        if (nav) nav.className = "px-3 py-2 rounded-lg hover:bg-indigo-500 text-indigo-100 transition flex items-center gap-2 whitespace-nowrap";
+        if (nav) nav.className = "px-3 py-2 rounded-lg text-indigo-100 transition flex items-center gap-2 whitespace-nowrap";
       });
 
       const activeEl = document.getElementById(`page-${pageId}`);
       const activeNav = document.getElementById(`nav-${pageId}`);
       if (activeEl) activeEl.classList.remove('hidden');
-      if (activeNav) activeNav.className = "px-3 py-2 rounded-lg bg-indigo-700 text-white transition flex items-center gap-2 whitespace-nowrap";
+      if (activeNav) { activeNav.className = "px-3 py-2 rounded-lg text-white transition flex items-center gap-2 whitespace-nowrap az-active"; }
 
       if (pageId === 'analytics') {
         initCharts();
@@ -859,7 +1053,7 @@
       });
 
       const label = document.getElementById('selectedServiceLabel');
-      if (label) label.textContent = `Layanan dipilih: ${serviceName} Â• Rp ${Number(price).toLocaleString('id-ID')} / ${unit}`;
+      if (label) label.textContent = `Layanan dipilih: ${serviceName} • Rp ${Number(price).toLocaleString('id-ID')} / ${unit}`;
       calculateTotal();
     }
 
@@ -1116,7 +1310,7 @@
 
       if (matchedOrders.length === 0) {
         resultArea.innerHTML = `
-          <div class="bg-white p-6 rounded-2xl shadow-md border border-slate-200 text-center space-y-2">
+          <div class="bg-white p-6 rounded-2xl shadow-md border border-slate-200 text-center space-y-2 az-card">
             <i class="fa-solid fa-circle-exclamation text-3xl text-rose-500"></i>
             <h3 class="font-bold text-slate-800">Nota Tidak Ditemukan</h3>
             <p class="text-xs text-slate-500">Pastikan Kode Nota atau Nomor WhatsApp yang Anda masukkan sudah benar.</p>
@@ -1131,12 +1325,12 @@
         const statusBadgeClass = isFinished ? 'bg-emerald-100 text-emerald-700' : 'bg-amber-100 text-amber-700';
 
         htmlContent += `
-          <div class="bg-white p-6 rounded-2xl shadow-md border border-slate-200 space-y-4">
+          <div class="bg-white p-6 rounded-2xl shadow-md border border-slate-200 space-y-4 az-card">
             <div class="flex justify-between items-start border-b border-slate-100 pb-3">
               <div>
                 <span class="text-xs font-bold text-indigo-600 bg-indigo-50 px-2 py-1 rounded-md">${item.id}</span>
                 <h3 class="font-bold text-slate-800 text-base mt-1">${item.name}</h3>
-                <p class="text-xs text-slate-400">${item.phone} Â• Tanggal Masuk: ${item.date}</p>
+                <p class="text-xs text-slate-400">${item.phone} • Tanggal Masuk: ${item.date}</p>
               </div>
               <span class="${statusBadgeClass} text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1">
                 <i class="fa-solid ${isFinished ? 'fa-check-circle' : 'fa-clock'}"></i> ${item.status}
@@ -1175,13 +1369,27 @@
       }
     }
 
+    // Sumber layanan dibuat sama dengan Daftar Harga & Transaksi.
+    // Urutan ini menjadi sumber tunggal untuk Chart Distribusi Layanan.
+    const SERVICE_CATALOG = [
+      { name: 'Cuci Kiloan', price: 7000, unit: 'kg', icon: 'fa-jug-detergent' },
+      { name: 'Cuci Setrika', price: 10000, unit: 'kg', icon: 'fa-temperature-high' },
+      { name: 'Express 1 Hari', price: 15000, unit: 'kg', icon: 'fa-bolt' },
+      { name: 'Dry Clean', price: 30000, unit: 'pcs', icon: 'fa-shirt' },
+      { name: 'Cuci Karpet', price: 25000, unit: 'pcs', icon: 'fa-rug' },
+      { name: 'Cuci Tas', price: 35000, unit: 'pcs', icon: 'fa-bag-shopping' },
+      { name: 'Cuci Sofa', price: 50000, unit: 'unit', icon: 'fa-couch' },
+      { name: 'Bad Cover Besar', price: 40000, unit: 'pcs', icon: 'fa-bed' }
+    ];
+
     function getServiceStats() {
-      const stats = { 'Cuci Kiloan': 0, 'Cuci Setrika': 0, 'Express': 0, 'Dry Clean': 0 };
+      const stats = Object.fromEntries(SERVICE_CATALOG.map(service => [service.name, 0]));
       orders.forEach(o => {
-        if (o.service.includes('Cuci Kiloan')) stats['Cuci Kiloan']++;
-        else if (o.service.includes('Cuci Setrika')) stats['Cuci Setrika']++;
-        else if (o.service.includes('Express')) stats['Express']++;
-        else if (o.service.includes('Dry Clean')) stats['Dry Clean']++;
+        const serviceName = String(o.service || '').trim();
+        const matched = SERVICE_CATALOG.find(service =>
+          serviceName === service.name || serviceName.includes(service.name)
+        );
+        if (matched) stats[matched.name]++;
       });
       return stats;
     }
@@ -1233,13 +1441,61 @@
       destroyChart('serviceDistributionChart');
       const ctxService = document.getElementById('serviceDistributionChart')?.getContext('2d');
       if (ctxService) {
+        const serviceLabels = SERVICE_CATALOG.map(service => service.name);
+        const serviceValues = SERVICE_CATALOG.map(service => serviceStats[service.name] || 0);
+        const totalServices = serviceValues.reduce((sum, value) => sum + value, 0);
+
         chartInstances.serviceDistributionChart = new Chart(ctxService, {
           type: 'doughnut',
           data: {
-            labels: Object.keys(serviceStats),
-            datasets: [{ data: Object.values(serviceStats) }]
+            labels: serviceLabels,
+            datasets: [{
+              label: 'Jumlah Transaksi',
+              data: serviceValues,
+              backgroundColor: [
+                '#2563eb', // Cuci Kiloan - blue
+                '#06b6d4', // Cuci Setrika - cyan
+                '#8b5cf6', // Express 1 Hari - violet
+                '#f59e0b', // Dry Clean - amber
+                '#10b981', // Cuci Karpet - emerald
+                '#ec4899', // Cuci Tas - pink
+                '#6366f1', // Cuci Sofa - indigo
+                '#14b8a6'  // Bad Cover Besar - teal
+              ],
+              hoverBackgroundColor: [
+                '#1d4ed8', '#0891b2', '#7c3aed', '#d97706',
+                '#059669', '#db2777', '#4f46e5', '#0f766e'
+              ],
+              borderWidth: 3,
+              borderColor: '#0f172a',
+              hoverOffset: 8
+            }]
           },
-          options: { responsive: true, maintainAspectRatio: false }
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            cutout: '58%',
+            plugins: {
+              legend: {
+                position: 'bottom',
+                labels: {
+                  boxWidth: 12,
+                  padding: 10,
+                  font: { size: 10 }
+                }
+              },
+              tooltip: {
+                callbacks: {
+                  label: function(context) {
+                    const value = context.parsed || 0;
+                    const percentage = totalServices > 0 ? ((value / totalServices) * 100).toFixed(1) : '0.0';
+                    const percent = totalServices ? ((value / totalServices) * 100).toFixed(1) : '0.0';
+                    return ` ${context.label}: ${value} transaksi (${percent}%)`;
+                  }
+                }
+              }
+            }
+          }
         });
       }
 
