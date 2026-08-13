@@ -1,1273 +1,2052 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" class="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Armuzna Laundry - System Complete Edition</title>
+  <title>Armuzna Laundry - Next-Gen Modern Dashboard</title>
+  
+  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Font Awesome 6 -->
+  
+  <!-- Font Google: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome 6 Pro / Free -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+  
   <!-- Chart.js CDN -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-<style id="armuzna-dark-blue-system">
-:root{
-  --az-bg:#02060d;
-  --az-bg2:#050d18;
-  --az-card:#091b31;
-  --az-card2:#0c2542;
-  --az-card3:#103153;
-  --az-border:#17466f;
-  --az-border2:#1d5b8f;
-  --az-blue:#0b5cab;
-  --az-blue2:#083b73;
-  --az-accent:#38bdf8;
-  --az-text:#eaf4ff;
-  --az-muted:#91a9c2;
-}
-html,body{background:var(--az-bg)!important;color:var(--az-text)!important}
-body{
-  background:
-    radial-gradient(circle at 8% 0%,rgba(16,72,130,.30),transparent 27%),
-    radial-gradient(circle at 92% 4%,rgba(14,79,145,.20),transparent 24%),
-    linear-gradient(180deg,#02060d,#050b14 45%,#02060d)!important;
-}
-
-/* Sidebar Styling */
-aside#sidebar {
-  background: linear-gradient(180deg, #020711 0%, #061a32 50%, #082b51 100%) !important;
-  border-right: 1px solid #17466f !important;
-}
-aside#sidebar nav button {
-  background: linear-gradient(145deg,#09213a,#0b2d4f) !important;
-  border: 1px solid #17466f !important;
-  color: #bcd8f0 !important;
-  box-shadow: 0 4px 12px rgba(0,0,0,.22) !important;
-  width: 100%;
-  text-align: left;
-}
-aside#sidebar nav button:hover {
-  background: linear-gradient(145deg,#0d3962,#0d4e83) !important;
-  color: #fff !important;
-  border-color: #2584c5 !important;
-}
-aside#sidebar nav button.az-active {
-  background: linear-gradient(145deg,#0c5fae,#083d77) !important;
-  color: #fff !important;
-  border-color: #38a9ee !important;
-  box-shadow: 0 0 0 1px rgba(56,189,248,.15),0 7px 20px rgba(0,0,0,.35) !important;
-}
-
-main { background: transparent !important; }
-footer {
-  background: #020711 !important;
-  border-top: 1px solid #123552 !important;
-}
-.bg-white{
-  background:linear-gradient(145deg,var(--az-card),#071629)!important;
-  color:var(--az-text)!important;
-  border-color:var(--az-border)!important;
-}
-.bg-slate-50{background:#0a1d33!important;color:#dcecff!important}
-.bg-slate-100{background:#071426!important;color:#dcecff!important}
-.bg-slate-200{background:#0c2948!important;color:#dcecff!important}
-.text-slate-800,.text-slate-700,.text-slate-600{color:#e6f1fc!important}
-.text-slate-500,.text-slate-400{color:var(--az-muted)!important}
-.border-slate-200,.border-slate-100,.border-slate-300{border-color:var(--az-border)!important}
-input,select,textarea{
-  background:#061426!important;
-  color:#eaf4ff!important;
-  border-color:#1b4a74!important;
-}
-input:focus,select:focus,textarea:focus{
-  border-color:#38a9ee!important;
-  box-shadow:0 0 0 3px rgba(56,189,248,.12)!important;
-}
-input::placeholder,textarea::placeholder{color:#66839f!important}
-table thead{background:#0d2b4a!important;color:#eaf4ff!important}
-tr:hover{background:rgba(28,91,145,.15)!important}
-.shadow-sm,.shadow-md,.shadow-lg,.shadow-xl,.shadow-2xl{
-  box-shadow:0 14px 35px rgba(0,0,0,.32)!important;
-}
-.bg-gradient-to-r.from-indigo-700,
-.bg-gradient-to-r.from-indigo-700.via-indigo-600.to-sky-600{
-  background:linear-gradient(135deg,#06162a 0%,#0a3970 55%,#075e91 100%)!important;
-}
-[class*="bg-indigo-"]{border-color:#1b4e79}
-.bg-indigo-50{background:#0b2948!important}
-.bg-indigo-100{background:#0d3356!important}
-.bg-indigo-600{background:#0b5ca9!important}
-.bg-indigo-700{background:#084b8d!important}
-.bg-indigo-800{background:#07396d!important}
-.text-indigo-600,.text-indigo-700,.text-indigo-800{color:#54b9f4!important}
-.text-indigo-100{color:#c5def2!important}
-.hover\:bg-indigo-500:hover{background:#0d4777!important}
-.hover\:bg-indigo-700:hover{background:#073c72!important}
-.bg-sky-600{background:#0874b8!important}
-.text-sky-600{color:#42bdf4!important}
-.bg-emerald-600{background:#087a58!important}
-.bg-rose-600{background:#a52b4b!important}
-.bg-amber-500{background:#9a6505!important}
-.service-choice{
-  background:#071b30!important;
-  color:#bcd5eb!important;
-  border-color:#1a466d!important;
-}
-.service-choice.active{
-  background:linear-gradient(145deg,#0c5da5,#083d76)!important;
-  color:#fff!important;
-  border-color:#36aaf1!important;
-}
-.az-card{
-  background:linear-gradient(145deg,#0a213b,#07182b)!important;
-  border:1px solid #17466f!important;
-  border-radius:18px!important;
-}
-.az-card:hover{border-color:#236a9d!important}
-.az-kpi{
-  background:linear-gradient(145deg,#0b2746,#08182b)!important;
-  border:1px solid #17466f!important;
-}
-.az-kpi i{color:#45bdf5!important}
-.modal-dark .bg-white{background:#091b31!important}
-</style>
-
-<style>
-button.bg-white, .bg-white button{background:#0d2948!important;color:#dff1ff!important;border-color:#1b4e79!important}
-button.bg-white:hover{background:#11416c!important}
-</style>
-
-<style id="pengeluaran-nav-card-color">
-#nav-pengeluaran{
-  background:linear-gradient(145deg,#123b68,#0a2545)!important;
-  border:1px solid #286ca5!important;
-  color:#dff3ff!important;
-  box-shadow:0 5px 16px rgba(0,0,0,.28)!important;
-}
-#nav-pengeluaran:hover{
-  background:linear-gradient(145deg,#185487,#0e345d)!important;
-  border-color:#3ba9ed!important;
-  color:#ffffff!important;
-}
-#nav-pengeluaran.az-active{
-  background:linear-gradient(145deg,#0878c9,#075096)!important;
-  border:1px solid #4bc4ff!important;
-  color:#ffffff!important;
-  shadow:0 0 0 2px rgba(56,189,248,.12),0 8px 22px rgba(0,0,0,.38)!important;
-}
-#nav-pengeluaran i{ color:#5dcaff!important; }
-#nav-pengeluaran.az-active i{ color:#ffffff!important; }
-</style>
-
-<style id="pengeluaran-no-red">
-#nav-pengeluaran,
-#nav-pengeluaran.az-active{
-  background:linear-gradient(145deg,#0b3157,#061b32)!important;
-  border:1px solid #1b527f!important;
-  color:#dcefff!important;
-  box-shadow:0 5px 18px rgba(0,0,0,.32)!important;
-}
-#nav-pengeluaran:hover{
-  background:linear-gradient(145deg,#104875,#082845)!important;
-  border-color:#2b80b8!important;
-  color:#ffffff!important;
-}
-#nav-pengeluaran.az-active{
-  background:linear-gradient(145deg,#0c5b98,#083b67)!important;
-  border-color:#38a9df!important;
-  box-shadow:0 0 0 2px rgba(56,189,248,.12),0 8px 22px rgba(0,0,0,.38)!important;
-}
-#nav-pengeluaran i,
-#nav-pengeluaran.az-active i{ color:#55c5f5!important; }
-</style>
-
-<style id="total-pengeluaran-dark-blue">
-#page-pengeluaran .bg-gradient-to-r.from-rose-500.to-red-600{
-  background:linear-gradient(135deg,#0b3157 0%,#0a2543 52%,#06182d 100%)!important;
-  border:1px solid #1b527f!important;
-  box-shadow:0 12px 28px rgba(0,0,0,.35)!important;
-}
-#page-pengeluaran .bg-gradient-to-r.from-rose-500.to-red-600 .text-rose-100{ color:#9fd3f2!important; }
-#page-pengeluaran .bg-gradient-to-r.from-rose-500.to-red-600 .text-3xl{ color:#f1f8ff!important; }
-</style>
+  <style>
+    :root {
+      --az-font: 'Plus Jakarta Sans', sans-serif;
+      --az-bg: #030712;
+      --az-card-bg: rgba(17, 24, 39, 0.65);
+      --az-card-border: rgba(255, 255, 255, 0.08);
+      --az-card-hover-border: rgba(56, 189, 248, 0.35);
+      --az-card-shadow: none;
+      --az-input-bg: rgba(15, 23, 42, 0.7);
+      --az-text-main: #f9fafb;
+      --az-text-muted: #9ca3af;
+      
+      /* Active Navigation Shadow */
+      --az-nav-active-shadow: none;
+      --az-logo-shadow: none;
+      /* Expense Section Variables (Dark Mode Default) */
+      --az-expense-bg: linear-gradient(135deg, rgba(3, 7, 18, 0.95), rgba(30, 27, 75, 0.8));
+      --az-expense-border: rgba(99, 102, 241, 0.3);
+      --az-expense-text-title: #f1f5f9;
+      --az-expense-text-sub: #a5b4fc;
+    }
+    /* =========================================================
+       KUSTOMISASI TEMA TERANG (LIGHT MODE)
+       ========================================================= */
+    body.light-mode {
+      --az-bg: #f8fafc;
+      --az-card-bg: #ffffff;
+      --az-card-border: #e2e8f0;
+      --az-card-hover-border: rgba(2, 132, 199, 0.4);
+      --az-card-shadow: none;
+      --az-input-bg: #ffffff;
+      --az-text-main: #0f172a;
+      --az-text-muted: #64748b;
+      --az-nav-active-shadow: none;
+      --az-logo-shadow: none;
+      
+      /* Expense Section Variables saat Mode Terang */
+      --az-expense-bg: #ffffff;
+      --az-expense-border: #e2e8f0;
+      --az-expense-text-title: #0f172a;
+      --az-expense-text-sub: #475569;
+    }
+    body {
+      font-family: var(--az-font);
+      background-color: var(--az-bg) !important;
+      color: var(--az-text-main);
+      background-image: 
+        radial-gradient(circle at 0% 0%, rgba(56, 189, 248, 0.08) 0px, transparent 40%),
+        radial-gradient(circle at 100% 100%, rgba(99, 102, 241, 0.08) 0px, transparent 40%),
+        radial-gradient(circle at 50% 50%, rgba(14, 165, 233, 0.03) 0px, transparent 60%);
+      background-attachment: fixed;
+    }
+    body.light-mode {
+      background-image: 
+        radial-gradient(circle at 0% 0%, rgba(14, 165, 233, 0.05) 0px, transparent 40%),
+        radial-gradient(circle at 100% 100%, rgba(99, 102, 241, 0.05) 0px, transparent 40%);
+    }
+    /* Logo Icon Shadow Dynamic Class */
+    .az-brand-icon {
+      box-shadow: none !important;
+    }
+    /* Glassmorphic / White Card Container */
+    .az-glass {
+      background: var(--az-card-bg) !important;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--az-card-border);
+      border-radius: 24px;
+      box-shadow: none !important;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .az-glass:hover {
+      border-color: var(--az-card-hover-border);
+      transform: translateY(-2px);
+      box-shadow: none !important;
+    }
+    /* Style khusus Halaman Pengeluaran */
+    .az-glass-expense {
+      background: var(--az-expense-bg) !important;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--az-expense-border);
+      border-radius: 24px;
+      box-shadow: none !important;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .az-glass-expense .expense-title {
+      color: var(--az-expense-text-title) !important;
+    }
+    .az-glass-expense .expense-sub {
+      color: var(--az-expense-text-sub) !important;
+    }
+    /* Adjust Elemen UI pada Mode Terang */
+    body.light-mode aside, 
+    body.light-mode header {
+      background-color: rgba(255, 255, 255, 0.9) !important;
+      border-color: #e2e8f0 !important;
+    }
+    body.light-mode footer {
+      color: #64748b !important;
+      border-color: #e2e8f0 !important;
+      background-color: rgba(255, 255, 255, 0.8) !important;
+    }
+    body.light-mode input, 
+    body.light-mode select, 
+    body.light-mode textarea {
+      background: #ffffff !important;
+      color: #0f172a !important;
+      border-color: #cbd5e1 !important;
+    }
+    body.light-mode table thead {
+      background: #f1f5f9 !important;
+      color: #334155 !important;
+    }
+    body.light-mode table tbody tr {
+      border-color: #f1f5f9 !important;
+    }
+    body.light-mode tr:hover {
+      background: rgba(241, 245, 249, 0.9) !important;
+    }
+    body.light-mode .bg-slate-900\/40,
+    body.light-mode .bg-slate-900\/50,
+    body.light-mode .bg-slate-900\/60,
+    body.light-mode .bg-slate-900\/80 {
+      background-color: #f8fafc !important;
+      border-color: #e2e8f0 !important;
+      color: #0f172a !important;
+    }
+    body.light-mode .text-slate-400 {
+      color: #64748b !important;
+    }
+    body.light-mode .text-slate-300 {
+      color: #334155 !important;
+    }
+    /* Navigation Button */
+    .sidebar-nav button {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 12px 18px;
+      border-radius: 16px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--az-text-muted);
+      transition: all 0.25s ease;
+      background: transparent;
+      border: 1px solid transparent;
+      cursor: pointer;
+    }
+    .sidebar-nav button:hover {
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--az-text-main);
+      transform: translateX(4px);
+    }
+    body.light-mode .sidebar-nav button:hover {
+      background: rgba(0, 0, 0, 0.04);
+      color: #0f172a;
+    }
+    /* NAVIGASI AKTIF TANPA BAYANGAN */
+    .sidebar-nav button.az-active {
+      background: linear-gradient(135deg, #0ea5e9, #2563eb);
+      color: #ffffff !important;
+      box-shadow: none !important;
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+    /* Input & Form Styling */
+    input, select, textarea {
+      background: var(--az-input-bg) !important;
+      border: 1px solid var(--az-card-border) !important;
+      color: inherit;
+      transition: all 0.2s ease;
+      box-shadow: none !important;
+    }
+    input:focus, select:focus, textarea:focus {
+      border-color: #38bdf8 !important;
+      box-shadow: none !important;
+      outline: none;
+    }
+    /* Service Choice Buttons */
+    .service-choice {
+      background: rgba(15, 23, 42, 0.5) !important;
+      border: 1px solid var(--az-card-border) !important;
+      color: var(--az-text-muted);
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: none !important;
+    }
+    body.light-mode .service-choice {
+      background: #f8fafc !important;
+      border-color: #e2e8f0 !important;
+      color: #475569 !important;
+    }
+    .service-choice:hover {
+      border-color: rgba(56, 189, 248, 0.4) !important;
+      color: var(--az-text-main);
+      transform: translateY(-2px);
+    }
+    .service-choice.active {
+      background: linear-gradient(135deg, #0284c7, #2563eb) !important;
+      color: #ffffff !important;
+      border-color: #38bdf8 !important;
+      box-shadow: none !important;
+    }
+    .service-choice.active i {
+      color: #ffffff !important;
+    }
+    /* Scrollbar Aesthetics */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: rgba(148, 163, 184, 0.25); border-radius: 99px; }
+    ::-webkit-scrollbar-thumb:hover { background: rgba(148, 163, 184, 0.45); }
+  </style>
 </head>
+<body class="min-h-screen flex flex-col md:flex-row overflow-x-hidden selection:bg-sky-500 selection:text-white">
 
-<body class="bg-slate-100 text-slate-800 font-sans min-h-screen flex flex-col justify-between">
+  <!-- MODAL SIGN IN / LOGIN (BARU) -->
+  <div id="authModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
+    <div class="az-glass max-w-md w-full p-6 md:p-8 relative border border-slate-700/60 shadow-2xl space-y-6">
+      <button onclick="closeAuthModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white text-lg transition">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      
+      <!-- Modal Header -->
+      <div class="text-center space-y-2">
+        <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-sky-400 to-blue-600 flex items-center justify-center text-white mx-auto text-xl shadow-lg">
+          <i class="fa-solid fa-user-lock"></i>
+        </div>
+        <h3 id="authTitle" class="text-xl font-bold">Masuk ke Akun</h3>
+        <p id="authSubtitle" class="text-xs text-slate-400">Silakan masukkan akun Armuzna Laundry Anda</p>
+      </div>
 
-  <!-- LAYOUT APPS (SIDEBAR + MAIN CONTENT) -->
-  <div class="flex-grow flex flex-col md:flex-row min-h-screen w-full">
+      <!-- Tab Navigation Switcher -->
+      <div class="flex rounded-xl bg-slate-900/80 p-1 border border-slate-800">
+        <button id="tabLoginBtn" onclick="switchAuthTab('login')" class="flex-1 py-2 rounded-lg text-xs font-bold transition bg-sky-500 text-slate-950">
+          Masuk / Login
+        </button>
+        <button id="tabRegisterBtn" onclick="switchAuthTab('register')" class="flex-1 py-2 rounded-lg text-xs font-bold transition text-slate-400 hover:text-white">
+          Daftar / Sign Up
+        </button>
+      </div>
 
-    <!-- NAVIGASI SIDEBAR (SISI KIRI) -->
-    <aside id="sidebar" class="w-full md:w-64 flex-shrink-0 p-4 flex flex-col justify-between">
-      <div class="space-y-6">
-        <!-- Logo Brand -->
-        <div class="flex items-center space-x-3 cursor-pointer px-2 py-2" onclick="switchPage('beranda')">
-          <i class="fa-solid fa-soap text-3xl text-cyan-300"></i>
-          <h1 class="text-lg font-bold tracking-wide text-white leading-tight">Armuzna<br/><span class="text-xs text-sky-400 font-normal">Laundry System</span></h1>
+      <!-- FORM LOGIN -->
+      <form id="loginForm" onsubmit="handleAuthSubmit(event, 'login')" class="space-y-4">
+        <div>
+          <label class="block text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-1">Email / Username</label>
+          <input type="text" required placeholder="admin@armuzna.com" class="w-full px-4 py-2.5 rounded-xl text-xs">
+        </div>
+        <div>
+          <label class="block text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-1">Kata Sandi</label>
+          <input type="password" required placeholder="••••••••" class="w-full px-4 py-2.5 rounded-xl text-xs">
+        </div>
+        <div class="flex items-center justify-between text-[11px]">
+          <label class="flex items-center gap-2 text-slate-400 cursor-pointer">
+            <input type="checkbox" class="rounded accent-sky-500">
+            <span>Ingat Saya</span>
+          </label>
+          <a href="#" class="text-sky-400 hover:underline">Lupa password?</a>
+        </div>
+        <button type="submit" class="w-full bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-400 hover:to-blue-500 text-slate-950 font-bold py-3 rounded-xl text-xs transition">
+          Masuk Sekarang
+        </button>
+      </form>
+
+      <!-- FORM REGISTER (SIGN UP) -->
+      <form id="registerForm" onsubmit="handleAuthSubmit(event, 'register')" class="space-y-4 hidden">
+        <div>
+          <label class="block text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-1">Nama Lengkap</label>
+          <input type="text" required placeholder="Nama Anda" class="w-full px-4 py-2.5 rounded-xl text-xs">
+        </div>
+        <div>
+          <label class="block text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-1">Email</label>
+          <input type="email" required placeholder="email@domain.com" class="w-full px-4 py-2.5 rounded-xl text-xs">
+        </div>
+        <div>
+          <label class="block text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-1">Kata Sandi Baru</label>
+          <input type="password" required placeholder="••••••••" class="w-full px-4 py-2.5 rounded-xl text-xs">
+        </div>
+        <button type="submit" class="w-full bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 text-slate-950 font-bold py-3 rounded-xl text-xs transition">
+          Buat Akun Baru
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- SIDEBAR NAVIGATION -->
+  <aside class="w-full md:w-72 bg-slate-950/80 backdrop-blur-2xl border-r border-slate-800/80 flex flex-col justify-between p-6 min-h-screen shrink-0 z-40 relative">
+    <div class="space-y-8">
+      <!-- Logo Brand -->
+      <div class="flex items-center space-x-3.5 cursor-pointer px-1" onclick="switchPage('beranda')">
+        <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-sky-400 via-blue-500 to-indigo-600 flex items-center justify-center text-white az-brand-icon ring-1 ring-white/20">
+          <i class="fa-solid fa-soap text-xl"></i>
+        </div>
+        <div>
+          <h1 class="text-lg font-extrabold tracking-tight">Armuzna</h1>
+          <p class="text-[10px] text-sky-400 font-bold tracking-widest uppercase">Laundry System</p>
+        </div>
+      </div>
+      <!-- Menu Navigasi Sidebar -->
+      <nav class="sidebar-nav space-y-2">
+        <button id="nav-beranda" onclick="switchPage('beranda')" class="az-active">
+          <i class="fa-solid fa-house w-5 text-center text-base"></i>
+          <span>Beranda</span>
+        </button>
+        <!-- NAVIGASI AGEN AI (BARU) -->
+        <button id="nav-agen" onclick="switchPage('agen')" class="justify-between">
+          <div class="flex items-center gap-3.5">
+            <i class="fa-solid fa-robot w-5 text-center text-base text-cyan-400"></i>
+            <span>Agen AI</span>
+          </div>
+          <span class="bg-gradient-to-r from-sky-500 to-indigo-500 text-white text-[9px] font-extrabold px-2 py-0.5 rounded-full uppercase">Smart</span>
+        </button>
+        <button id="nav-layanan" onclick="switchPage('layanan')">
+          <i class="fa-solid fa-tags w-5 text-center text-base"></i>
+          <span>Daftar Harga</span>
+        </button>
+        <!-- NAVIGASI PROMOSI BARU -->
+        <button id="nav-promosi" onclick="switchPage('promosi')" class="justify-between">
+          <div class="flex items-center gap-3.5">
+            <i class="fa-solid fa-bullhorn w-5 text-center text-base"></i>
+            <span>Promosi & Diskon</span>
+          </div>
+        </button>
+        <button id="nav-kasir" onclick="switchPage('kasir')">
+          <i class="fa-solid fa-cash-register w-5 text-center text-base"></i>
+          <span>Kasir & Transaksi</span>
+        </button>
+        <!-- MENU BARU: DATA PELANGGAN -->
+        <button id="nav-pelanggan" onclick="switchPage('pelanggan')">
+          <i class="fa-solid fa-users w-5 text-center text-base"></i>
+          <span>Data Pelanggan</span>
+        </button>
+        <button id="nav-pengeluaran" onclick="switchPage('pengeluaran')">
+          <i class="fa-solid fa-wallet w-5 text-center text-base"></i>
+          <span>Pengeluaran</span>
+        </button>
+        <button id="nav-lacak" onclick="switchPage('lacak')">
+          <i class="fa-solid fa-magnifying-glass w-5 text-center text-base"></i>
+          <span>Cek Status</span>
+        </button>
+        <button id="nav-analytics" onclick="switchPage('analytics')">
+          <i class="fa-solid fa-chart-pie w-5 text-center text-base"></i>
+          <span>Business Analytics</span>
+        </button>
+      </nav>
+    </div>
+    
+    <!-- Tombol Auth & Sign Out Sidebar (BARU) -->
+    <div class="pt-6 border-t border-slate-800/80 space-y-1">
+      <button onclick="openAuthModal('login')" class="w-full flex items-center justify-between px-4 py-2.5 rounded-xl text-xs font-semibold text-sky-400 hover:bg-sky-500/10 transition group">
+        <div class="flex items-center gap-3">
+          <i class="fa-solid fa-right-to-bracket text-sm"></i>
+          <span>Sign In / Login</span>
+        </div>
+        <i class="fa-solid fa-chevron-right text-[10px] opacity-0 group-hover:opacity-100 transition"></i>
+      </button>
+
+      <button onclick="alert('Anda keluar dari sesi sistem.')" class="w-full flex items-center justify-between px-4 py-3 rounded-xl text-xs font-semibold text-rose-400 hover:bg-rose-500/10 transition group">
+        <div class="flex items-center gap-3">
+          <i class="fa-solid fa-right-from-bracket text-sm"></i>
+          <span>Keluar Sesi</span>
+        </div>
+        <i class="fa-solid fa-chevron-right text-[10px] opacity-0 group-hover:opacity-100 transition"></i>
+      </button>
+    </div>
+  </aside>
+  
+  <!-- KONTEN UTAMA DASHBOARD -->
+  <div class="flex-grow flex flex-col min-w-0">
+    
+    <!-- Top Header Bar -->
+    <header class="h-20 border-b border-slate-800/80 bg-slate-950/40 backdrop-blur-xl px-6 md:px-8 flex items-center justify-between sticky top-0 z-30">
+      <div class="flex items-center gap-3 w-full max-w-md">
+        <div class="relative w-full">
+          <i class="fa-solid fa-magnifying-glass absolute left-4 top-3.5 text-slate-400 text-xs"></i>
+          <input type="text" placeholder="Cari transaksi, pelanggan, promo, atau nota..." class="w-full pl-10 pr-4 py-2.5 rounded-2xl text-xs border border-slate-800 bg-slate-900/60 focus:outline-none transition">
+        </div>
+      </div>
+      <div class="flex items-center gap-3 md:gap-4">
+        <!-- TOGGLE MODE TERANG & GELAP -->
+        <div onclick="toggleTheme()" class="flex items-center gap-2 bg-slate-900/60 border border-slate-800 px-3 py-1.5 rounded-full text-xs cursor-pointer select-none hover:border-slate-700 transition">
+          <i class="fa-solid fa-sun text-amber-400 text-xs"></i>
+          <span id="themeSlider" class="w-8 h-4 bg-sky-500 rounded-full relative inline-block transition-all">
+            <span id="themeDot" class="w-4 h-4 bg-white rounded-full absolute right-0 top-0 transition-all"></span>
+          </span>
+          <i class="fa-solid fa-moon text-slate-400 text-xs"></i>
+        </div>
+        
+        <!-- TOMBOL NOTIFIKASI -->
+        <div class="relative">
+          <span id="notifDot" class="absolute -top-1 -right-1 w-2.5 h-2.5 bg-rose-500 rounded-full hidden ring-4 ring-slate-950"></span>
+          <button onclick="requestNotificationPermission()" class="w-10 h-10 rounded-2xl bg-slate-900/60 border border-slate-800 flex items-center justify-center text-slate-300 hover:text-white hover:border-sky-500/50 transition" title="Aktifkan Notifikasi">
+            <i class="fa-regular fa-bell text-sm"></i>
+          </button>
         </div>
 
-        <!-- Menu Navigasi Vertikal -->
-        <nav class="space-y-2 text-sm font-medium">
-          <button id="nav-beranda" onclick="switchPage('beranda')" class="px-4 py-3 rounded-xl transition flex items-center gap-3">
-            <i class="fa-solid fa-house w-5 text-center"></i> Beranda
-          </button>
-          <button id="nav-layanan" onclick="switchPage('layanan')" class="px-4 py-3 rounded-xl transition flex items-center gap-3">
-            <i class="fa-solid fa-tags w-5 text-center"></i> Daftar Harga
-          </button>
-          <button id="nav-kasir" onclick="switchPage('kasir')" class="px-4 py-3 rounded-xl transition flex items-center gap-3">
-            <i class="fa-solid fa-cash-register w-5 text-center"></i> Transaksi
-          </button>
-          <button id="nav-pengeluaran" onclick="switchPage('pengeluaran')" class="px-4 py-3 rounded-xl transition flex items-center gap-3">
-            <i class="fa-solid fa-wallet w-5 text-center"></i> Pengeluaran
-          </button>
-          <button id="nav-lacak" onclick="switchPage('lacak')" class="px-4 py-3 rounded-xl transition flex items-center gap-3">
-            <i class="fa-solid fa-magnifying-glass w-5 text-center"></i> Cek Status
-          </button>
-          <button id="nav-analytics" onclick="switchPage('analytics')" class="px-4 py-3 rounded-xl transition flex items-center gap-3">
-            <i class="fa-solid fa-chart-pie w-5 text-center"></i> Analytics
-          </button>
-        </nav>
+        <!-- TOMBOL SIGN IN / LOGIN HEADER (BARU) -->
+        <button onclick="openAuthModal('login')" class="hidden sm:flex items-center gap-2 bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-400 hover:to-blue-500 text-slate-950 px-3.5 py-2 rounded-2xl text-xs font-bold transition transform active:scale-95">
+          <i class="fa-solid fa-user-check"></i>
+          <span>Sign In</span>
+        </button>
+
+        <!-- PROFILE BADGE -->
+        <div class="flex items-center gap-3 border-l border-slate-800/80 pl-3 md:pl-5">
+          <img src="1111.jpg" alt="Achmad Efendi" class="w-9 h-9 rounded-full object-cover ring-2 ring-white/10">
+          <div class="hidden sm:block">
+            <p class="text-xs font-bold leading-tight">Achmad Efendi</p>
+            <p class="text-[10px] text-slate-400 font-medium">Administrator</p>
+          </div>
+        </div>
       </div>
+    </header>
 
-      <!-- Info Tambahan Sidebar -->
-      <div class="pt-6 border-t border-slate-800 text-xs text-slate-400 px-2">
-        <p class="font-semibold text-slate-300">Armuzna System v2.0</p>
-        <p class="text-[10px] text-slate-500 mt-1">Status: Online</p>
-      </div>
-    </aside>
-
-    <!-- CONTAINER KONTEN UTAMA -->
-    <main class="flex-1 p-4 md:p-8 overflow-y-auto">
-
+    <!-- CONTAINER KONTEN HALAMAN -->
+    <main class="p-6 md:p-8 flex-grow space-y-8">
+      
       <!-- 1. HALAMAN BERANDA -->
-      <div id="page-beranda" class="space-y-10">
-        <!-- Banner Utama -->
-        <div class="bg-gradient-to-r from-indigo-700 via-indigo-600 to-sky-600 text-white p-8 md:p-12 rounded-2xl shadow-xl relative overflow-hidden">
-          <div class="relative z-10 max-w-2xl space-y-4">
-            <span class="bg-indigo-500/40 text-cyan-200 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider inline-block border border-cyan-400/30">
-              Selamat Datang di Armuzna Laundry
+      <div id="page-beranda" class="space-y-8">
+        <!-- Banner Dashboard Soft Modern -->
+        <div class="bg-gradient-to-r from-slate-950 via-indigo-950 to-slate-900 text-white p-8 rounded-3xl relative overflow-hidden border border-indigo-500/20">
+          <div class="relative z-10 max-w-2xl space-y-3.5">
+            <span class="bg-sky-500/10 text-sky-300 text-[10px] font-bold px-3.5 py-1.5 rounded-full uppercase tracking-wider inline-flex items-center gap-1.5 border border-sky-400/20">
+              <span class="w-1.5 h-1.5 rounded-full bg-sky-400 animate-pulse"></span>
+              Selamat Datang Kembali ??
             </span>
-            <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight leading-tight">
-              Solusi Laundry Modern, Higienis & Profesional
+            <h2 class="text-2xl md:text-3xl font-extrabold tracking-tight leading-snug">
+              Armuzna Laundry
             </h2>
-            <p class="text-indigo-100 text-sm md:text-base leading-relaxed">
-              Menyediakan layanan perawatan pakaian dan perlengkapan rumah tangga terbaik dengan standar kebersihan tinggi dan teknologi terkini.
+            <p class="text-slate-300 text-xs md:text-sm leading-relaxed">
+              Kelola aktivitas laundry, statistik transaksi, promosi spesial, dan keuangan operasional secara real-time dengan tampilan modern & efisien.
             </p>
-            <div class="pt-2 flex flex-wrap gap-3">
-              <button onclick="switchPage('kasir')" class="bg-white text-indigo-700 hover:bg-slate-100 font-bold px-5 py-2.5 rounded-xl text-sm shadow transition flex items-center gap-2 az-card">
-                <i class="fa-solid fa-plus-circle"></i> Buat Transaksi
+            <div class="pt-3 flex flex-wrap gap-3">
+              <button onclick="switchPage('kasir')" class="bg-sky-500 hover:bg-sky-400 text-slate-950 font-bold px-5 py-3 rounded-2xl text-xs transition flex items-center gap-2 transform active:scale-95">
+                <i class="fa-solid fa-plus-circle text-sm"></i> Buat Transaksi
               </button>
-              <button onclick="switchPage('layanan')" class="bg-indigo-800/60 hover:bg-indigo-800 text-white font-semibold px-5 py-2.5 rounded-xl text-sm border border-indigo-400/40 transition flex items-center gap-2">
-                <i class="fa-solid fa-tags"></i> Lihat Daftar Harga
+              <button onclick="switchPage('promosi')" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-5 py-3 rounded-2xl text-xs transition flex items-center gap-2 transform active:scale-95">
+                <i class="fa-solid fa-bullhorn text-sm"></i> Kelola Promosi
               </button>
             </div>
           </div>
-          <i class="fa-solid fa-soap absolute -right-10 -bottom-10 text-[240px] text-white/5 pointer-events-none"></i>
+          <i class="fa-solid fa-soap absolute -right-8 -bottom-8 text-[220px] text-white/[0.03] pointer-events-none"></i>
         </div>
-
-        <!-- RINGKASAN CHART DASHBOARD -->
-        <div class="space-y-4 pt-2">
-          <div class="flex flex-col sm:flex-row justify-between sm:items-end gap-2">
-            <div>
-              <h3 class="text-2xl font-extrabold text-slate-800">Ringkasan Bisnis</h3>
-              <p class="text-xs text-slate-500 mt-1">Pantau pendapatan, pengeluaran, dan transaksi secara visual.</p>
+        <!-- STATISTIK & STATUS PENGERJAAN -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div class="az-glass p-6 lg:col-span-2 space-y-4">
+            <div class="flex justify-between items-center">
+              <div>
+                <h3 class="font-bold text-sm">Statistik Transaksi Bulanan </h3>
+                <p class="text-[11px] text-slate-400">Ringkasan pergerakan volume layanan laundry.</p>
+              </div>
+              <div class="flex items-center gap-2 text-xs bg-slate-900/60 px-3.5 py-2 rounded-xl border border-slate-800">
+                <span>Agustus 2026</span>
+                <i class="fa-solid fa-chevron-down text-[10px] text-slate-400"></i>
+              </div>
             </div>
-            <button onclick="switchPage('analytics')"
-              class="w-fit bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-4 py-2 rounded-xl text-xs shadow transition flex items-center gap-2">
-              <i class="fa-solid fa-chart-line"></i> Buka Business Analytics
-            </button>
-          </div>
-          <div class="bg-white p-5 rounded-2xl border border-slate-200 az-card shadow-sm">
             <div class="relative h-64 w-full">
               <canvas id="dashboardMiniChart"></canvas>
             </div>
           </div>
-        </div>
-
-        <!-- VISI, MISI, & TUJUAN SECTION -->
-        <div class="space-y-4">
-          <div class="text-center max-w-xl mx-auto">
-            <h3 class="text-2xl font-extrabold text-slate-800">Komitmen & Profil Kami</h3>
-            <p class="text-xs text-slate-500 mt-1">Landasan utama Armuzna Laundry dalam memberikan pelayanan terbaik kepada seluruh pelanggan.</p>
-          </div>
-
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <!-- Card Visi -->
-            <div class="bg-white p-6 rounded-2xl shadow-md border border-slate-200 space-y-3 relative overflow-hidden az-card">
-              <div class="w-12 h-12 bg-indigo-100 text-indigo-600 rounded-xl flex items-center justify-center text-xl font-bold mb-2">
-                <i class="fa-solid fa-eye"></i>
+          <div class="az-glass p-6 space-y-4">
+            <h3 class="font-bold text-sm">Status Pengerjaan</h3>
+            <p class="text-[11px] text-slate-400">Distribusi status cucian pelanggan saat ini.</p>
+            <div class="space-y-3 pt-1">
+              <div class="flex items-center justify-between p-3.5 rounded-2xl bg-slate-900/40 border border-slate-800/80">
+                <div class="text-xs">
+                  <p class="font-semibold">Cuci Kiloan</p>
+                  <p class="text-[10px] text-slate-400">78 Terdaftar</p>
+                </div>
+                <div class="w-10 h-10 rounded-2xl bg-sky-500/10 border border-sky-400/30 flex items-center justify-center text-xs font-extrabold text-sky-400">32%</div>
               </div>
-              <h3 class="text-lg font-bold text-slate-800">Visi Kami</h3>
-              <p class="text-xs text-slate-600 leading-relaxed">
-                Menjadi penyedia jasa laundry terdepan, terpercaya, dan ramah lingkungan yang mengutamakan kualitas, kecepatan, serta kepuasan pelanggan secara konsisten.
-              </p>
-            </div>
-
-            <!-- Card Misi -->
-            <div class="bg-white p-6 rounded-2xl shadow-md border border-slate-200 space-y-3 relative overflow-hidden az-card">
-              <div class="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-xl flex items-center justify-center text-xl font-bold mb-2">
-                <i class="fa-solid fa-bullseye"></i>
+              <div class="flex items-center justify-between p-3.5 rounded-2xl bg-slate-900/40 border border-slate-800/80">
+                <div class="text-xs">
+                  <p class="font-semibold">Cuci Setrika</p>
+                  <p class="text-[10px] text-slate-400">60 Terdaftar</p>
+                </div>
+                <div class="w-10 h-10 rounded-2xl bg-emerald-500/10 border border-emerald-400/30 flex items-center justify-center text-xs font-extrabold text-emerald-400">43%</div>
               </div>
-              <h3 class="text-lg font-bold text-slate-800">Misi Kami</h3>
-              <ul class="text-xs text-slate-600 space-y-2 list-disc list-inside leading-relaxed">
-                <li>Memberikan pelayanan pencucian higienis dengan bahan berkualitas.</li>
-                <li>Memanfaatkan teknologi sistem manajemen modern berbasis digital.</li>
-                <li>Memberikan ketepatan waktu dalam setiap pengerjaan cucian.</li>
-              </ul>
-            </div>
-
-            <!-- Card Tujuan -->
-            <div class="bg-white p-6 rounded-2xl shadow-md border border-slate-200 space-y-3 relative overflow-hidden az-card">
-              <div class="w-12 h-12 bg-sky-100 text-sky-600 rounded-xl flex items-center justify-center text-xl font-bold mb-2">
-                <i class="fa-solid fa-trophy"></i>
+              <div class="flex items-center justify-between p-3.5 rounded-2xl bg-slate-900/40 border border-slate-800/80">
+                <div class="text-xs">
+                  <p class="font-semibold">Express 1 Hari</p>
+                  <p class="text-[10px] text-slate-400">80 Terdaftar</p>
+                </div>
+                <div class="w-10 h-10 rounded-2xl bg-amber-500/10 border border-amber-400/30 flex items-center justify-center text-xs font-extrabold text-amber-400">67%</div>
               </div>
-              <h3 class="text-lg font-bold text-slate-800">Tujuan Utama</h3>
-              <p class="text-xs text-slate-600 leading-relaxed">
-                Memudahkan kebutuhan harian masyarakat dalam perawatan pakaian, menjaga higienitas keluarga, serta membangun operasional bisnis laundry yang efisien dan berkelanjutan.
-              </p>
             </div>
           </div>
         </div>
+        <!-- TREN ARUS KAS & AKTIVITAS TIM -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div class="az-glass p-6 lg:col-span-2 space-y-4">
+            <div class="flex justify-between items-center">
+              <h3 class="font-bold text-sm">Tren Arus Kas Mingguan</h3>
+              <span class="text-xs text-sky-400 font-semibold cursor-pointer hover:underline" onclick="switchPage('analytics')">Lihat Detail</span>
+            </div>
+            <div class="relative h-52 w-full">
+              <canvas id="dashboardAreaChart"></canvas>
+            </div>
+          </div>
+          <div class="az-glass p-6 space-y-4">
+            <div class="flex justify-between items-center">
+              <h3 class="font-bold text-sm">Aktivitas Tim</h3>
+              <span class="text-xs text-sky-400 font-semibold cursor-pointer hover:underline">Lihat Semua</span>
+            </div>
+            <div class="space-y-3">
+              <div class="flex items-center justify-between p-3.5 rounded-2xl bg-slate-900/40 border border-slate-800/80">
+                <div class="flex items-center gap-3">
+                  <div class="w-9 h-9 rounded-xl bg-blue-500/10 text-blue-400 border border-blue-500/20 flex items-center justify-center text-xs font-bold">AE</div>
+                  <div class="text-xs">
+                    <p class="font-semibold">Armuzna</p>
+                    <p class="text-[10px] text-slate-400">Creator/Developemnt/AnalystSystems</p>
+                  </div>
+                </div>
+                <span class="text-[10px] font-medium text-slate-400">10:00</span>
+              </div>
+              <div class="flex items-center justify-between p-3.5 rounded-2xl bg-slate-900/40 border border-slate-800/80">
+                <div class="flex items-center gap-3">
+                  <div class="w-9 h-9 rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 flex items-center justify-center text-xs font-bold">HN</div>
+                  <div class="text-xs">
+                    <p class="font-semibold">HANA</p>
+                    <p class="text-[10px] text-slate-400">Menambahkan pengeluaran baru</p>
+                  </div>
+                </div>
+                <span class="text-[10px] font-medium text-slate-400">10:30</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-        <!-- ARTIKEL & TIPS SEPUTAR LAUNDRY -->
-        <div class="space-y-4 pt-4 border-t border-slate-200">
-          <div class="flex justify-between items-end">
+      <!-- HALAMAN AGEN AI -->
+      <div id="page-agen" class="hidden space-y-6">
+        <!-- Banner Modul AI -->
+        <div class="bg-gradient-to-r from-slate-950 via-cyan-950 to-slate-900 text-white p-6 rounded-3xl border border-cyan-500/20 flex items-center justify-between">
+          <div class="space-y-2 max-w-xl">
+            <span class="bg-cyan-500/10 text-cyan-300 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider inline-flex items-center gap-1.5 border border-cyan-400/20">
+              <i class="fa-solid fa-sparkles text-cyan-400"></i> AI Virtual Assistant & Automation
+            </span>
+            <h2 class="text-2xl font-extrabold tracking-tight">Armuzna AI Assistant</h2>
+            <p class="text-slate-300 text-xs leading-relaxed">
+              Asisten kecerdasan buatan terintegrasi untuk otomatisasi balasan pelanggan WhatsApp, analisis prediktif transaksi, dan rekomendasi strategi bisnis laundry.
+            </p>
+          </div>
+          <div class="hidden sm:flex w-16 h-16 rounded-2xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 items-center justify-center text-3xl shrink-0">
+            <i class="fa-solid fa-robot animate-bounce"></i>
+          </div>
+        </div>
+        <!-- Metric KPI AI -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-5">
+          <div class="az-glass p-5 flex items-center justify-between">
             <div>
-              <h3 class="text-2xl font-extrabold text-slate-800">Artikel & Tips Laundry</h3>
-              <p class="text-xs text-slate-500 mt-1">Panduan merawat pakaian agar tetap awet, bersih, dan wangi tahan lama.</p>
+              <p class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Respons Otomatis WA</p>
+              <h3 class="text-2xl font-extrabold text-cyan-400 mt-1">142 Pesan</h3>
+            </div>
+            <div class="w-12 h-12 bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 rounded-2xl flex items-center justify-center text-lg">
+              <i class="fa-solid fa-comments"></i>
             </div>
           </div>
-
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <!-- Artikel 1 -->
-            <article class="bg-white rounded-2xl shadow-md border border-slate-200 overflow-hidden flex flex-col justify-between az-card">
-              <div class="p-6 space-y-3">
-                <span class="bg-indigo-50 text-indigo-600 text-[10px] font-bold px-2.5 py-1 rounded-md uppercase">Tips Perawatan</span>
-                <h4 class="font-bold text-slate-800 text-base leading-snug">Cara Merawat Baju Bahan Satin & Sutra Agar Tidak Rusak</h4>
-                <p class="text-xs text-slate-500 line-clamp-3">Pakaian berbahan halus memerlukan penanganan khusus saat dicuci agar serat kain tidak rapuh dan tetap berkilau memikat...</p>
+          <div class="az-glass p-5 flex items-center justify-between">
+            <div>
+              <p class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Akurasi Prediksi CRM</p>
+              <h3 class="text-2xl font-extrabold text-emerald-400 mt-1">98.4%</h3>
+            </div>
+            <div class="w-12 h-12 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 rounded-2xl flex items-center justify-center text-lg">
+              <i class="fa-solid fa-bullseye"></i>
+            </div>
+          </div>
+          <div class="az-glass p-5 flex items-center justify-between">
+            <div>
+              <p class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Status Agen AI</p>
+              <h3 class="text-2xl font-extrabold text-amber-400 mt-1">Aktif & Siap</h3>
+            </div>
+            <div class="w-12 h-12 bg-amber-500/10 border border-amber-500/20 text-amber-400 rounded-2xl flex items-center justify-center text-lg">
+              <i class="fa-solid fa-shield-halved"></i>
+            </div>
+          </div>
+        </div>
+        <!-- Chat Workspace & Panel AI -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div class="az-glass p-6 lg:col-span-2 flex flex-col justify-between h-[500px]">
+            <div class="flex items-center justify-between border-b border-slate-800/80 pb-4">
+              <div class="flex items-center gap-3">
+                <div class="w-3 h-3 rounded-full bg-emerald-400 animate-ping"></div>
+                <div>
+                  <h3 class="font-bold text-sm">Konsultasi Agen AI Armuzna</h3>
+                  <p class="text-[10px] text-slate-400">Model: Armuzna-LLM v2.5 (Online)</p>
+                </div>
               </div>
-              <div class="px-6 pb-6 pt-0">
-                <button onclick="showArticleModal('Satin')" class="text-xs font-bold text-indigo-600 hover:text-indigo-800 flex items-center gap-1">
-                  Baca Selengkapnya <i class="fa-solid fa-arrow-right text-[10px]"></i>
+              <button onclick="document.getElementById('chatContainer').innerHTML=''" class="text-xs text-slate-400 hover:text-rose-400 transition">
+                <i class="fa-solid fa-rotate-right mr-1"></i> Reset
+              </button>
+            </div>
+            <!-- Chat Container -->
+            <div id="chatContainer" class="flex-grow overflow-y-auto my-4 space-y-3 pr-2 text-xs">
+              <div class="flex items-start gap-2.5">
+                <div class="w-7 h-7 rounded-xl bg-cyan-500/20 border border-cyan-400/30 text-cyan-400 flex items-center justify-center shrink-0 text-xs">
+                  <i class="fa-solid fa-robot"></i>
+                </div>
+                <div class="bg-slate-900/80 border border-slate-800 p-3 rounded-2xl max-w-md text-slate-300">
+                  Halo! Saya Agen AI Armuzna. Saya siap membantu menganalisis laporan, menyusun promo otomatis, atau membalas pesan pelanggan. Apa yang ingin Anda lakukan hari ini?
+                </div>
+              </div>
+            </div>
+            <!-- Chat Input -->
+            <form onsubmit="sendAiMessage(event)" class="flex gap-2 pt-2 border-t border-slate-800/80">
+              <input type="text" id="aiInput" placeholder="Tanyakan saran promo, analisa transaksi, atau instruksi AI..." class="w-full px-4 py-3 rounded-xl text-xs">
+              <button type="submit" class="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-slate-950 font-bold px-5 py-3 rounded-xl text-xs transition flex items-center gap-2">
+                <i class="fa-solid fa-paper-plane"></i>
+              </button>
+            </form>
+          </div>
+          <!-- Setting & Quick Prompt Panel -->
+          <div class="space-y-6">
+            <div class="az-glass p-6 space-y-4">
+              <h3 class="font-bold text-sm flex items-center gap-2 text-cyan-400">
+                <i class="fa-solid fa-bolt"></i> Instruksi Cepat (Quick Prompt)
+              </h3>
+              <div class="space-y-2 text-xs">
+                <button onclick="triggerQuickPrompt('Buatkan draft promosi WhatsApp untuk pelanggan VIP')" class="w-full p-3 rounded-xl bg-slate-900/50 border border-slate-800/80 hover:border-cyan-500/50 text-left transition flex justify-between items-center group">
+                  <span>Draft WA Promo VIP</span>
+                  <i class="fa-solid fa-chevron-right text-[10px] text-slate-500 group-hover:text-cyan-400"></i>
+                </button>
+                <button onclick="triggerQuickPrompt('Analisis jam tersibuk dan berikan saran penambahan staf')" class="w-full p-3 rounded-xl bg-slate-900/50 border border-slate-800/80 hover:border-cyan-500/50 text-left transition flex justify-between items-center group">
+                  <span>Analisis Beban Kerja Staff</span>
+                  <i class="fa-solid fa-chevron-right text-[10px] text-slate-500 group-hover:text-cyan-400"></i>
+                </button>
+                <button onclick="triggerQuickPrompt('Hitung estimasi penghematan pengeluaran bahan cuci')" class="w-full p-3 rounded-xl bg-slate-900/50 border border-slate-800/80 hover:border-cyan-500/50 text-left transition flex justify-between items-center group">
+                  <span>Estimasi Penghematan Bahan</span>
+                  <i class="fa-solid fa-chevron-right text-[10px] text-slate-500 group-hover:text-cyan-400"></i>
                 </button>
               </div>
-            </article>
-
-            <!-- Artikel 2 -->
-            <article class="bg-white rounded-2xl shadow-md border border-slate-200 overflow-hidden flex flex-col justify-between az-card">
-              <div class="p-6 space-y-3">
-                <span class="bg-emerald-50 text-emerald-600 text-[10px] font-bold px-2.5 py-1 rounded-md uppercase">Edukasi Higienis</span>
-                <h4 class="font-bold text-slate-800 text-base leading-snug">Rahasia Menghilangkan Bau Apek Pada Pakaian Musim Hujan</h4>
-                <p class="text-xs text-slate-500 line-clamp-3">Sinar matahari yang minim sering menyebabkan baju berbau tak sedap. Ketahui teknik pembilasan dan pengeringan tepat dari ahlinya...</p>
+            </div>
+            <div class="az-glass p-6 space-y-4">
+              <h3 class="font-bold text-sm flex items-center gap-2">
+                <i class="fa-solid fa-sliders text-amber-400"></i> Konfigurasi Otomatisasi
+              </h3>
+              <div class="space-y-3 text-xs">
+                <div class="flex items-center justify-between p-2.5 rounded-xl bg-slate-900/40 border border-slate-800">
+                  <span>Auto-reply WhatsApp</span>
+                  <input type="checkbox" checked class="w-4 h-4 rounded accent-sky-500">
+                </div>
+                <div class="flex items-center justify-between p-2.5 rounded-xl bg-slate-900/40 border border-slate-800">
+                  <span>Notifikasi Pelanggan Otomatis</span>
+                  <input type="checkbox" checked class="w-4 h-4 rounded accent-sky-500">
+                </div>
+                <div class="flex items-center justify-between p-2.5 rounded-xl bg-slate-900/40 border border-slate-800">
+                  <span>Peringatan Stok Deterjen</span>
+                  <input type="checkbox" checked class="w-4 h-4 rounded accent-sky-500">
+                </div>
               </div>
-              <div class="px-6 pb-6 pt-0">
-                <button onclick="showArticleModal('Apek')" class="text-xs font-bold text-indigo-600 hover:text-indigo-800 flex items-center gap-1">
-                  Baca Selengkapnya <i class="fa-solid fa-arrow-right text-[10px]"></i>
-                </button>
-              </div>
-            </article>
-
-            <!-- Artikel 3 -->
-            <article class="bg-white rounded-2xl shadow-md border border-slate-200 overflow-hidden flex flex-col justify-between az-card">
-              <div class="p-6 space-y-3">
-                <span class="bg-amber-50 text-amber-600 text-[10px] font-bold px-2.5 py-1 rounded-md uppercase">Panduan Laundry</span>
-                <h4 class="font-bold text-slate-800 text-base leading-snug">Mengapa Memisahkan Pakaian Putih dan Berwarna Sangat Penting?</h4>
-                <p class="text-xs text-slate-500 line-clamp-3">Luntur pakaian dapat merusak seluruh cucian Anda. Pelajari cara mengelompokkan jenis kain berdasarkan warna dan bahan secara cermat...</p>
-              </div>
-              <div class="px-6 pb-6 pt-0">
-                <button onclick="showArticleModal('Luntur')" class="text-xs font-bold text-indigo-600 hover:text-indigo-800 flex items-center gap-1">
-                  Baca Selengkapnya <i class="fa-solid fa-arrow-right text-[10px]"></i>
-                </button>
-              </div>
-            </article>
+            </div>
           </div>
         </div>
       </div>
 
       <!-- 2. HALAMAN DAFTAR HARGA -->
       <div id="page-layanan" class="hidden space-y-6">
-        
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          <div class="bg-white p-5 rounded-xl border shadow-sm text-center space-y-3 az-card">
-            <div class="w-16 h-16 bg-sky-100 text-sky-600 rounded-full flex items-center justify-center mx-auto text-2xl shadow-inner mb-3">
-              <i class="fa-solid fa-jug-detergent"></i>
+        <div>
+          <h2 class="text-xl font-bold">Daftar Harga Layanan</h2>
+          <p class="text-xs text-slate-400 mt-1">Pilihan paket perawatan pakaian berkualitas untuk pelanggan Anda.</p>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div class="az-glass p-6 text-center space-y-4">
+            <div class="w-16 h-16 bg-sky-500/10 text-sky-400 border border-sky-500/20 rounded-2xl flex items-center justify-center mx-auto text-2xl">
+              <i class="fa-solid fa-weight-scale"></i>
             </div>
-            <h3 class="font-bold text-slate-800">Cuci Kiloan</h3>
-            <p class="text-indigo-600 font-bold text-xl mt-2">Rp 7.000 <span class="text-xs text-slate-400">/ kg</span></p>
-            <button onclick="selectServiceFromPrice('7000','Cuci Kiloan')" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 rounded-lg text-xs transition">
-              <i class="fa-solid fa-cart-plus mr-1"></i> Pilih untuk Transaksi
+            <h3 class="font-bold text-sm">Cuci Kiloan</h3>
+            <p class="text-sky-400 font-extrabold text-2xl">Rp 7.000 <span class="text-[10px] font-normal text-slate-400">/ kg</span></p>
+            <button onclick="selectServiceFromPrice('7000','Cuci Kiloan')" class="w-full bg-sky-500 hover:bg-sky-400 text-slate-950 font-bold py-3 rounded-xl text-xs transition flex items-center justify-center gap-2">
+              <i class="fa-solid fa-weight-scale text-sm"></i> Pilih Transaksi
             </button>
           </div>
-
-          <div class="bg-white p-5 rounded-xl border shadow-sm text-center space-y-3 az-card">
-            <div class="w-16 h-16 bg-amber-100 text-amber-600 rounded-full flex items-center justify-center mx-auto text-2xl shadow-inner mb-3">
-              <i class="fa-solid fa-temperature-high"></i>
-            </div>
-            <h3 class="font-bold text-slate-800">Cuci Setrika</h3>
-            <p class="text-indigo-600 font-bold text-xl mt-2">Rp 10.000 <span class="text-xs text-slate-400">/ kg</span></p>
-            <button onclick="selectServiceFromPrice('10000','Cuci Setrika')" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 rounded-lg text-xs transition">
-              <i class="fa-solid fa-cart-plus mr-1"></i> Pilih untuk Transaksi
-            </button>
-          </div>
-
-          <div class="bg-white p-5 rounded-xl border shadow-sm text-center space-y-3 az-card">
-            <div class="w-16 h-16 bg-rose-100 text-rose-600 rounded-full flex items-center justify-center mx-auto text-2xl shadow-inner mb-3">
-              <i class="fa-solid fa-bolt-lightning"></i>
-            </div>
-            <h3 class="font-bold text-slate-800">Express 1 Hari</h3>
-            <p class="text-indigo-600 font-bold text-xl mt-2">Rp 15.000 <span class="text-xs text-slate-400">/ kg</span></p>
-            <button onclick="selectServiceFromPrice('15000','Express 1 Hari')" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 rounded-lg text-xs transition">
-              <i class="fa-solid fa-cart-plus mr-1"></i> Pilih untuk Transaksi
-            </button>
-          </div>
-
-          <div class="bg-white p-5 rounded-xl border shadow-sm text-center space-y-3 az-card">
-            <div class="w-16 h-16 bg-cyan-100 text-cyan-600 rounded-full flex items-center justify-center mx-auto text-2xl shadow-inner mb-3">
+          <div class="az-glass p-6 text-center space-y-4">
+            <div class="w-16 h-16 bg-amber-500/10 text-amber-400 border border-amber-500/20 rounded-2xl flex items-center justify-center mx-auto text-2xl">
               <i class="fa-solid fa-shirt"></i>
             </div>
-            <h3 class="font-bold text-slate-800">Dry Clean</h3>
-            <p class="text-indigo-600 font-bold text-xl mt-2">Rp 30.000 <span class="text-xs text-slate-400">/ pcs</span></p>
-            <button onclick="selectServiceFromPrice('30000','Dry Clean')" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 rounded-lg text-xs transition">
-              <i class="fa-solid fa-cart-plus mr-1"></i> Pilih untuk Transaksi
+            <h3 class="font-bold text-sm">Cuci Setrika</h3>
+            <p class="text-sky-400 font-extrabold text-2xl">Rp 10.000 <span class="text-[10px] font-normal text-slate-400">/ kg</span></p>
+            <button onclick="selectServiceFromPrice('10000','Cuci Setrika')" class="w-full bg-sky-500 hover:bg-sky-400 text-slate-950 font-bold py-3 rounded-xl text-xs transition flex items-center justify-center gap-2">
+              <i class="fa-solid fa-shirt text-sm"></i> Pilih Transaksi
             </button>
           </div>
-
-          <div class="bg-white p-5 rounded-xl border shadow-sm text-center space-y-3 az-card">
-            <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto text-2xl shadow-inner mb-3">
+          <div class="az-glass p-6 text-center space-y-4">
+            <div class="w-16 h-16 bg-rose-500/10 text-rose-400 border border-rose-500/20 rounded-2xl flex items-center justify-center mx-auto text-2xl">
+              <i class="fa-solid fa-bolt"></i>
+            </div>
+            <h3 class="font-bold text-sm">Express 1 Hari</h3>
+            <p class="text-sky-400 font-extrabold text-2xl">Rp 15.000 <span class="text-[10px] font-normal text-slate-400">/ kg</span></p>
+            <button onclick="selectServiceFromPrice('15000','Express 1 Hari')" class="w-full bg-sky-500 hover:bg-sky-400 text-slate-950 font-bold py-3 rounded-xl text-xs transition flex items-center justify-center gap-2">
+              <i class="fa-solid fa-bolt text-sm"></i> Pilih Transaksi
+            </button>
+          </div>
+          <div class="az-glass p-6 text-center space-y-4">
+            <div class="w-16 h-16 bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 rounded-2xl flex items-center justify-center mx-auto text-2xl">
+              <i class="fa-solid fa-wand-magic-sparkles"></i>
+            </div>
+            <h3 class="font-bold text-sm">Dry Clean</h3>
+            <p class="text-sky-400 font-extrabold text-2xl">Rp 30.000 <span class="text-[10px] font-normal text-slate-400">/ pcs</span></p>
+            <button onclick="selectServiceFromPrice('30000','Dry Clean')" class="w-full bg-sky-500 hover:bg-sky-400 text-slate-950 font-bold py-3 rounded-xl text-xs transition flex items-center justify-center gap-2">
+              <i class="fa-solid fa-wand-magic-sparkles text-sm"></i> Pilih Transaksi
+            </button>
+          </div>
+          <div class="az-glass p-6 text-center space-y-4">
+            <div class="w-16 h-16 bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 rounded-2xl flex items-center justify-center mx-auto text-2xl">
+              <i class="fa-solid fa-shoe-prints"></i>
+            </div>
+            <h3 class="font-bold text-sm">Cuci Sepatu</h3>
+            <p class="text-sky-400 font-extrabold text-2xl">Rp 25.000 <span class="text-[10px] font-normal text-slate-400">/ pasang</span></p>
+            <button onclick="selectServiceFromPrice('25000','Cuci Sepatu')" class="w-full bg-sky-500 hover:bg-sky-400 text-slate-950 font-bold py-3 rounded-xl text-xs transition flex items-center justify-center gap-2">
+              <i class="fa-solid fa-shoe-prints text-sm"></i> Pilih Transaksi
+            </button>
+          </div>
+          <div class="az-glass p-6 text-center space-y-4">
+            <div class="w-16 h-16 bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 rounded-2xl flex items-center justify-center mx-auto text-2xl">
               <i class="fa-solid fa-rug"></i>
             </div>
-            <h3 class="font-bold text-slate-800">Cuci Karpet</h3>
-            <p class="text-indigo-600 font-bold text-xl mt-2">Rp 25.000 <span class="text-xs text-slate-400">/ pcs</span></p>
-            <button onclick="selectServiceFromPrice('25000','Cuci Karpet')" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 rounded-lg text-xs transition">
-              <i class="fa-solid fa-cart-plus mr-1"></i> Pilih untuk Transaksi
+            <h3 class="font-bold text-sm">Cuci Karpet</h3>
+            <p class="text-sky-400 font-extrabold text-2xl">Rp 20.000 <span class="text-[10px] font-normal text-slate-400">/ m²</span></p>
+            <button onclick="selectServiceFromPrice('20000','Cuci Karpet')" class="w-full bg-sky-500 hover:bg-sky-400 text-slate-950 font-bold py-3 rounded-xl text-xs transition flex items-center justify-center gap-2">
+              <i class="fa-solid fa-rug text-sm"></i> Pilih Transaksi
             </button>
           </div>
-
-          <div class="bg-white p-5 rounded-xl border shadow-sm text-center space-y-3 az-card">
-            <div class="w-16 h-16 bg-violet-100 text-violet-600 rounded-full flex items-center justify-center mx-auto text-2xl shadow-inner mb-3">
-              <i class="fa-solid fa-bag-shopping"></i>
-            </div>
-            <h3 class="font-bold text-slate-800">Cuci Tas</h3>
-            <p class="text-indigo-600 font-bold text-xl mt-2">Rp 35.000 <span class="text-xs text-slate-400">/ pcs</span></p>
-            <button onclick="selectServiceFromPrice('35000','Cuci Tas')" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 rounded-lg text-xs transition">
-              <i class="fa-solid fa-cart-plus mr-1"></i> Pilih untuk Transaksi
-            </button>
-          </div>
-
-          <div class="bg-white p-5 rounded-xl border shadow-sm text-center space-y-3 az-card">
-            <div class="w-16 h-16 bg-orange-100 text-orange-600 rounded-full flex items-center justify-center mx-auto text-2xl shadow-inner mb-3">
-              <i class="fa-solid fa-couch"></i>
-            </div>
-            <h3 class="font-bold text-slate-800">Cuci Sofa</h3>
-            <p class="text-indigo-600 font-bold text-xl mt-2">Rp 50.000 <span class="text-xs text-slate-400">/ unit</span></p>
-            <button onclick="selectServiceFromPrice('50000','Cuci Sofa')" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 rounded-lg text-xs transition">
-              <i class="fa-solid fa-cart-plus mr-1"></i> Pilih untuk Transaksi
-            </button>
-          </div>
-
-          <div class="bg-white p-5 rounded-xl border shadow-sm text-center space-y-3 az-card">
-            <div class="w-16 h-16 bg-pink-100 text-pink-600 rounded-full flex items-center justify-center mx-auto text-2xl shadow-inner mb-3">
+          <div class="az-glass p-6 text-center space-y-4">
+            <div class="w-16 h-16 bg-purple-500/10 text-purple-400 border border-purple-500/20 rounded-2xl flex items-center justify-center mx-auto text-2xl">
               <i class="fa-solid fa-bed"></i>
             </div>
-            <h3 class="font-bold text-slate-800">Bad Cover Besar</h3>
-            <p class="text-indigo-600 font-bold text-xl mt-2">Rp 40.000 <span class="text-xs text-slate-400">/ pcs</span></p>
-            <button onclick="selectServiceFromPrice('40000','Bad Cover Besar')" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 rounded-lg text-xs transition">
-              <i class="fa-solid fa-cart-plus mr-1"></i> Pilih untuk Transaksi
+            <h3 class="font-bold text-sm">Bed Cover</h3>
+            <p class="text-sky-400 font-extrabold text-2xl">Rp 35.000 <span class="text-[10px] font-normal text-slate-400">/ pcs</span></p>
+            <button onclick="selectServiceFromPrice('35000','Bed Cover')" class="w-full bg-sky-500 hover:bg-sky-400 text-slate-950 font-bold py-3 rounded-xl text-xs transition flex items-center justify-center gap-2">
+              <i class="fa-solid fa-bed text-sm"></i> Pilih Transaksi
+            </button>
+          </div>
+          <div class="az-glass p-6 text-center space-y-4">
+            <div class="w-16 h-16 bg-teal-500/10 text-teal-400 border border-teal-500/20 rounded-2xl flex items-center justify-center mx-auto text-2xl">
+              <i class="fa-solid fa-scroll"></i>
+            </div>
+            <h3 class="font-bold text-sm">Cuci Sprei</h3>
+            <p class="text-sky-400 font-extrabold text-2xl">Rp 15.000 <span class="text-[10px] font-normal text-slate-400">/ pcs</span></p>
+            <button onclick="selectServiceFromPrice('15000','Cuci Sprei')" class="w-full bg-sky-500 hover:bg-sky-400 text-slate-950 font-bold py-3 rounded-xl text-xs transition flex items-center justify-center gap-2">
+              <i class="fa-solid fa-scroll text-sm"></i> Pilih Transaksi
             </button>
           </div>
         </div>
       </div>
 
-      <!-- 3. HALAMAN TRANSAKSI (KASIR LENGKAP) -->
-      <div id="page-kasir" class="hidden space-y-6">
-        
-        <!-- Summary Cards untuk Kasir -->
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-          <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex items-center justify-between az-card">
+      <!-- 3. HALAMAN PROMOSI & DISKON -->
+      <div id="page-promosi" class="hidden space-y-6">
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-5">
+          <div class="az-glass p-5 flex items-center justify-between">
             <div>
-              <p class="text-xs text-slate-400 font-bold uppercase">Total Transaksi</p>
-              <h3 id="statTotalOrders" class="text-xl font-bold text-slate-800 mt-1">0 Nota</h3>
+              <p class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Total Promo Active</p>
+              <h3 id="statTotalPromos" class="text-2xl font-extrabold text-amber-400 mt-1">0 Promo</h3>
             </div>
-            <div class="w-10 h-10 bg-indigo-50 text-indigo-600 rounded-lg flex items-center justify-center text-lg">
+            <div class="w-12 h-12 bg-amber-500/10 border border-amber-500/20 text-amber-400 rounded-2xl flex items-center justify-center text-lg">
+              <i class="fa-solid fa-bullhorn"></i>
+            </div>
+          </div>
+          <div class="az-glass p-5 flex items-center justify-between">
+            <div>
+              <p class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Voucher Digunakan</p>
+              <h3 id="statPromoUsed" class="text-2xl font-extrabold text-sky-400 mt-1">42 Kali</h3>
+            </div>
+            <div class="w-12 h-12 bg-sky-500/10 border border-sky-500/20 text-sky-400 rounded-2xl flex items-center justify-center text-lg">
+              <i class="fa-solid fa-ticket"></i>
+            </div>
+          </div>
+          <div class="az-glass p-5 flex items-center justify-between">
+            <div>
+              <p class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Klaim Promo Bulan Ini</p>
+              <h3 id="statPromoValue" class="text-2xl font-extrabold text-emerald-400 mt-1">Rp 210.000</h3>
+            </div>
+            <div class="w-12 h-12 bg-emerald-500/10 border border-emerald-400/20 text-emerald-400 rounded-2xl flex items-center justify-center text-lg">
+              <i class="fa-solid fa-tags"></i>
+            </div>
+          </div>
+        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <section class="az-glass p-6 lg:col-span-1 space-y-4">
+            <h2 id="promoFormTitle" class="text-base font-bold flex items-center gap-2 text-amber-400">
+              <i class="fa-solid fa-circle-plus"></i> Buat Promosi Baru
+            </h2>
+            <form id="promoForm" onsubmit="savePromo(event)" class="space-y-4">
+              <input type="hidden" id="promoEditId" value="">
+              <div>
+                <label class="block text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-1.5">Kode Voucher Promo</label>
+                <input type="text" id="promoCode" required placeholder="Code Promo" class="w-full px-4 py-2.5 rounded-xl text-xs uppercase tracking-wider font-bold">
+              </div>
+              <div>
+                <label class="block text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-1.5">Nama Program Promosi</label>
+                <input type="text" id="promoName" required placeholder="Diskon Kemerdekaan 5rb" class="w-full px-4 py-2.5 rounded-xl text-xs">
+              </div>
+              <div class="grid grid-cols-2 gap-3">
+                <div>
+                  <label class="block text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-1.5">Potongan (Rp)</label>
+                  <input type="number" id="promoDiscount" required min="1000" step="500" placeholder="5000" class="w-full px-4 py-2.5 rounded-xl text-xs">
+                </div>
+                <div>
+                  <label class="block text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-1.5">Min. Order (Rp)</label>
+                  <input type="number" id="promoMinOrder" min="0" placeholder="20000" class="w-full px-4 py-2.5 rounded-xl text-xs">
+                </div>
+              </div>
+              <div>
+                <label class="block text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-1.5">Tanggal Berakhir</label>
+                <input type="date" id="promoExpiry" required class="w-full px-4 py-2.5 rounded-xl text-xs">
+              </div>
+              <div class="flex gap-2">
+                <button type="submit" class="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold py-3.5 rounded-2xl text-xs transition flex justify-center items-center gap-2">
+                  <i class="fa-solid fa-floppy-disk"></i> Simpan Promosi
+                </button>
+                <button type="button" id="btnCancelPromo" onclick="resetPromoForm()" class="hidden bg-slate-800 hover:bg-slate-700 text-white px-4 py-3.5 rounded-2xl text-xs font-semibold">
+                  Batal
+                </button>
+              </div>
+            </form>
+          </section>
+          <section class="az-glass p-6 lg:col-span-2 space-y-4">
+            <h2 class="text-base font-bold flex items-center gap-2">
+              <i class="fa-solid fa-rectangle-ad text-amber-400"></i> Promosi dam Discount 
+            </h2>
+            <div class="overflow-x-auto rounded-2xl border border-slate-800/80">
+              <table class="w-full text-left text-xs">
+                <thead class="bg-slate-900/80 text-slate-400 uppercase text-[10px] tracking-wider">
+                  <tr>
+                    <th class="p-3.5">Kode & Nama Promo</th>
+                    <th class="p-3.5">Diskon</th>
+                    <th class="p-3.5">Min. Belanja</th>
+                    <th class="p-3.5">Berlaku s/d</th>
+                    <th class="p-3.5">Status</th>
+                    <th class="p-3.5 text-center">Aksi</th>
+                  </tr>
+                </thead>
+                <tbody id="promoTableBody" class="divide-y divide-slate-800/60"></tbody>
+              </table>
+            </div>
+          </section>
+        </div>
+      </div>
+
+      <!-- 4. HALAMAN TRANSAKSI -->
+      <div id="page-kasir" class="hidden space-y-6">
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-5">
+          <div class="az-glass p-5 flex items-center justify-between">
+            <div>
+              <p class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Total Transaksi</p>
+              <h3 id="statTotalOrders" class="text-2xl font-extrabold mt-1">0 Nota</h3>
+            </div>
+            <div class="w-12 h-12 bg-sky-500/10 border border-sky-500/20 text-sky-400 rounded-2xl flex items-center justify-center text-lg">
               <i class="fa-solid fa-receipt"></i>
             </div>
           </div>
-          <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex items-center justify-between az-card">
+          <div class="az-glass p-5 flex items-center justify-between">
             <div>
-              <p class="text-xs text-slate-400 font-bold uppercase">Omset Kasir</p>
-              <h3 id="statTotalIncome" class="text-xl font-bold text-emerald-600 mt-1">Rp 0</h3>
+              <p class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Omset Kasir</p>
+              <h3 id="statTotalIncome" class="text-2xl font-extrabold text-emerald-400 mt-1">Rp 0</h3>
             </div>
-            <div class="w-10 h-10 bg-emerald-50 text-emerald-600 rounded-lg flex items-center justify-center text-lg">
-              <i class="fa-solid fa-money-bill-wave"></i>
+            <div class="w-12 h-12 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 rounded-2xl flex items-center justify-center text-lg">
+              <i class="fa-solid fa-arrow-trend-up"></i>
             </div>
           </div>
-          <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex items-center justify-between az-card">
+          <div class="az-glass p-5 flex items-center justify-between">
             <div>
-              <p class="text-xs text-slate-400 font-bold uppercase">Belum Lunas</p>
-              <h3 id="statUnpaidOrders" class="text-xl font-bold text-amber-600 mt-1">0 Nota</h3>
+              <p class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Belum Lunas</p>
+              <h3 id="statUnpaidOrders" class="text-2xl font-extrabold text-amber-400 mt-1">0 Nota</h3>
             </div>
-            <div class="w-10 h-10 bg-amber-50 text-amber-600 rounded-lg flex items-center justify-center text-lg">
+            <div class="w-12 h-12 bg-amber-500/10 border border-amber-500/20 text-amber-400 rounded-2xl flex items-center justify-center text-lg">
               <i class="fa-solid fa-clock"></i>
             </div>
           </div>
         </div>
-
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          <!-- Form Tambah Transaksi -->
-          <section class="bg-white p-5 rounded-xl shadow-md border border-slate-200 lg:col-span-1 space-y-4 az-card">
-            <h2 class="text-lg font-bold flex items-center gap-2 text-indigo-700">
-              <i class="fa-solid fa-cart-plus"></i> Buat Transaksi Baru
+          <section class="az-glass p-6 lg:col-span-1 space-y-4">
+            <h2 class="text-base font-bold flex items-center gap-2 text-sky-400">
+              <i class="fa-solid fa-cart-plus"></i> Transaksi Baru
             </h2>
-
-            <form id="laundryForm" onsubmit="addOrder(event)" class="space-y-3">
+            <form id="laundryForm" onsubmit="addOrder(event)" class="space-y-4">
               <div>
-                <label class="block text-xs font-semibold uppercase text-slate-500 mb-1">Nama Pelanggan</label>
-                <input type="text" id="custName" required placeholder="Armuzna Laundry"
-                  class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm">
+                <label class="block text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-1.5">Nama Pelanggan</label>
+                <input type="text" id="custName" required placeholder="Armuzna Laundry" class="w-full px-4 py-2.5 rounded-xl text-xs">
               </div>
-
               <div>
-                <label class="block text-xs font-semibold uppercase text-slate-500 mb-1">No. WhatsApp / HP</label>
-                <input type="tel" id="custPhone" placeholder="08889009698" required
-                  class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm">
+                <label class="block text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-1.5">No. WhatsApp</label>
+                <input type="tel" id="custPhone" placeholder="08889009698" required class="w-full px-4 py-2.5 rounded-xl text-xs">
               </div>
-
               <div>
-                <label class="block text-xs font-semibold uppercase text-slate-500 mb-2">Jenis Layanan</label>
+                <label class="block text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-1.5">Pilih Layanan</label>
                 <input type="hidden" id="serviceType" value="7000">
                 <input type="hidden" id="serviceName" value="Cuci Kiloan">
-                <div id="servicePicker" class="grid grid-cols-2 md:grid-cols-4 gap-2">
-                  <button type="button" onclick="selectTransactionService('7000','Cuci Kiloan','fa-jug-detergent','kg')" class="service-choice active flex flex-col items-center justify-center gap-1 p-3 rounded-xl border-2 border-indigo-600 bg-indigo-50 text-indigo-700 transition" data-service="7000">
-                    <i class="fa-solid fa-jug-detergent text-xl"></i><span class="text-xs font-bold">Cuci Kiloan</span><span class="text-[10px]">Rp 7.000/kg</span>
+                
+                <div id="servicePicker" class="grid grid-cols-2 gap-2">
+                  <button type="button" onclick="selectTransactionService('7000','Cuci Kiloan')" class="service-choice active p-3 rounded-xl text-left text-xs font-semibold flex items-center gap-2.5" data-service="7000">
+                    <i class="fa-solid fa-weight-scale text-sky-400 text-sm"></i>
+                    <div class="truncate">
+                      <p class="leading-tight">Cuci Kiloan</p>
+                      <p class="text-[10px] font-normal opacity-70">Rp 7.000/kg</p>
+                    </div>
                   </button>
-                  <button type="button" onclick="selectTransactionService('10000','Cuci Setrika','fa-temperature-high','kg')" class="service-choice flex flex-col items-center justify-center gap-1 p-3 rounded-xl border-2 border-slate-200 bg-white text-slate-600 hover:border-indigo-300 hover:bg-indigo-50 transition az-card" data-service="10000">
-                    <i class="fa-solid fa-temperature-high text-xl"></i><span class="text-xs font-bold">Cuci Setrika</span><span class="text-[10px]">Rp 10.000/kg</span>
+                  <button type="button" onclick="selectTransactionService('10000','Cuci Setrika')" class="service-choice p-3 rounded-xl text-left text-xs font-semibold flex items-center gap-2.5" data-service="10000">
+                    <i class="fa-solid fa-shirt text-amber-400 text-sm"></i>
+                    <div class="truncate">
+                      <p class="leading-tight">Cuci Setrika</p>
+                      <p class="text-[10px] font-normal opacity-70">Rp 10.000/kg</p>
+                    </div>
                   </button>
-                  <button type="button" onclick="selectTransactionService('15000','Express 1 Hari','fa-bolt','kg')" class="service-choice flex flex-col items-center justify-center gap-1 p-3 rounded-xl border-2 border-slate-200 bg-white text-slate-600 hover:border-indigo-300 hover:bg-indigo-50 transition az-card" data-service="15000">
-                    <i class="fa-solid fa-bolt text-xl"></i><span class="text-xs font-bold">Express 1 Hari</span><span class="text-[10px]">Rp 15.000/kg</span>
+                  <button type="button" onclick="selectTransactionService('15000','Express 1 Hari')" class="service-choice p-3 rounded-xl text-left text-xs font-semibold flex items-center gap-2.5" data-service="15000">
+                    <i class="fa-solid fa-bolt text-rose-400 text-sm"></i>
+                    <div class="truncate">
+                      <p class="leading-tight">Express 1 Hari</p>
+                      <p class="text-[10px] font-normal opacity-70">Rp 15.000/kg</p>
+                    </div>
                   </button>
-                  <button type="button" onclick="selectTransactionService('30000','Dry Clean','fa-shirt','pcs')" class="service-choice flex flex-col items-center justify-center gap-1 p-3 rounded-xl border-2 border-slate-200 bg-white text-slate-600 hover:border-indigo-300 hover:bg-indigo-50 transition az-card" data-service="30000">
-                    <i class="fa-solid fa-shirt text-xl"></i><span class="text-xs font-bold">Dry Clean</span><span class="text-[10px]">Rp 30.000/pcs</span>
+                  <button type="button" onclick="selectTransactionService('30000','Dry Clean')" class="service-choice p-3 rounded-xl text-left text-xs font-semibold flex items-center gap-2.5" data-service="30000">
+                    <i class="fa-solid fa-wand-magic-sparkles text-cyan-400 text-sm"></i>
+                    <div class="truncate">
+                      <p class="leading-tight">Dry Clean</p>
+                      <p class="text-[10px] font-normal opacity-70">Rp 30.000/pcs</p>
+                    </div>
                   </button>
-                  <button type="button" onclick="selectTransactionService('25000','Cuci Karpet','fa-rug','pcs')" class="service-choice flex flex-col items-center justify-center gap-1 p-3 rounded-xl border-2 border-slate-200 bg-white text-slate-600 hover:border-indigo-300 hover:bg-indigo-50 transition az-card" data-service="25000">
-                    <i class="fa-solid fa-rug text-xl"></i><span class="text-xs font-bold">Cuci Karpet</span><span class="text-[10px]">Rp 25.000/pcs</span>
+                  <button type="button" onclick="selectTransactionService('25000','Cuci Sepatu')" class="service-choice p-3 rounded-xl text-left text-xs font-semibold flex items-center gap-2.5" data-service="25000">
+                    <i class="fa-solid fa-shoe-prints text-emerald-400 text-sm"></i>
+                    <div class="truncate">
+                      <p class="leading-tight">Cuci Sepatu</p>
+                      <p class="text-[10px] font-normal opacity-70">Rp 25.000/psg</p>
+                    </div>
                   </button>
-                  <button type="button" onclick="selectTransactionService('35000','Cuci Tas','fa-bag-shopping','pcs')" class="service-choice flex flex-col items-center justify-center gap-1 p-3 rounded-xl border-2 border-slate-200 bg-white text-slate-600 hover:border-indigo-300 hover:bg-indigo-50 transition az-card" data-service="35000">
-                    <i class="fa-solid fa-bag-shopping text-xl"></i><span class="text-xs font-bold">Cuci Tas</span><span class="text-[10px]">Rp 35.000/pcs</span>
+                  <button type="button" onclick="selectTransactionService('20000','Cuci Karpet')" class="service-choice p-3 rounded-xl text-left text-xs font-semibold flex items-center gap-2.5" data-service="20000">
+                    <i class="fa-solid fa-rug text-indigo-400 text-sm"></i>
+                    <div class="truncate">
+                      <p class="leading-tight">Cuci Karpet</p>
+                      <p class="text-[10px] font-normal opacity-70">Rp 20.000/m²</p>
+                    </div>
                   </button>
-                  <button type="button" onclick="selectTransactionService('50000','Cuci Sofa','fa-couch','unit')" class="service-choice flex flex-col items-center justify-center gap-1 p-3 rounded-xl border-2 border-slate-200 bg-white text-slate-600 hover:border-indigo-300 hover:bg-indigo-50 transition az-card" data-service="50000">
-                    <i class="fa-solid fa-couch text-xl"></i><span class="text-xs font-bold">Cuci Sofa</span><span class="text-[10px]">Rp 50.000/unit</span>
+                  <button type="button" onclick="selectTransactionService('35000','Bed Cover')" class="service-choice p-3 rounded-xl text-left text-xs font-semibold flex items-center gap-2.5" data-service="35000">
+                    <i class="fa-solid fa-bed text-purple-400 text-sm"></i>
+                    <div class="truncate">
+                      <p class="leading-tight">Bed Cover</p>
+                      <p class="text-[10px] font-normal opacity-70">Rp 35.000/pcs</p>
+                    </div>
                   </button>
-                  <button type="button" onclick="selectTransactionService('40000','Bad Cover Besar','fa-bed','pcs')" class="service-choice flex flex-col items-center justify-center gap-1 p-3 rounded-xl border-2 border-slate-200 bg-white text-slate-600 hover:border-indigo-300 hover:bg-indigo-50 transition az-card" data-service="40000">
-                    <i class="fa-solid fa-bed text-xl"></i><span class="text-xs font-bold">Bad Cover Besar</span><span class="text-[10px]">Rp 40.000/pcs</span>
+                  <button type="button" onclick="selectTransactionService('15000','Cuci Sprei')" class="service-choice p-3 rounded-xl text-left text-xs font-semibold flex items-center gap-2.5" data-service="15000">
+                    <i class="fa-solid fa-scroll text-teal-400 text-sm"></i>
+                    <div class="truncate">
+                      <p class="leading-tight">Cuci Sprei</p>
+                      <p class="text-[10px] font-normal opacity-70">Rp 15.000/pcs</p>
+                    </div>
                   </button>
                 </div>
-                <p id="selectedServiceLabel" class="mt-2 text-[11px] text-indigo-600 font-semibold">Layanan dipilih: Cuci Kiloan</p>
               </div>
-
               <div class="grid grid-cols-2 gap-3">
                 <div>
-                  <label class="block text-xs font-semibold uppercase text-slate-500 mb-1">Jumlah / Berat</label>
-                  <input type="number" id="weight" value="1" min="0.5" step="0.5" oninput="calculateTotal()" required
-                    class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm">
+                  <label class="block text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-1.5">Jumlah/Berat</label>
+                  <input type="number" id="weight" value="1" min="0.5" step="0.5" oninput="calculateTotal()" required class="w-full px-4 py-2.5 rounded-xl text-xs">
                 </div>
                 <div>
-                  <label class="block text-xs font-semibold uppercase text-slate-500 mb-1">Diskon (Rp)</label>
-                  <input type="number" id="discount" value="0" min="0" oninput="calculateTotal()"
-                    class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm" placeholder="0">
+                  <label class="block text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-1.5">Pilih Promo / Diskon</label>
+                  <select id="appliedPromo" onchange="applyPromoToOrder()" class="w-full px-4 py-2.5 rounded-xl text-xs">
+                    <option value="0">Tanpa Promo</option>
+                  </select>
                 </div>
               </div>
-
               <div class="grid grid-cols-2 gap-3">
                 <div>
-                  <label class="block text-xs font-semibold uppercase text-slate-500 mb-1">Metode Bayar</label>
-                  <select id="payMethod" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm bg-white az-card">
-                    <option value="Tunai"> Tunai</option>
-                    <option value="QRIS"> QRIS / E-Wallet</option>
-                    <option value="Transfer"> Transfer Bank</option>
-                  </select>
+                  <label class="block text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-1.5">Diskon Tambahan (Rp)</label>
+                  <input type="number" id="discount" value="0" min="0" oninput="calculateTotal()" class="w-full px-4 py-2.5 rounded-xl text-xs">
                 </div>
                 <div>
-                  <label class="block text-xs font-semibold uppercase text-slate-500 mb-1">Status Bayar</label>
-                  <select id="payStatus" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm bg-white az-card">
-                    <option value="Lunas">Lunas</option>
-                    <option value="Belum Lunas">Belum Lunas</option>
+                  <label class="block text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-1.5">Metode Bayar</label>
+                  <select id="payMethod" class="w-full px-4 py-2.5 rounded-xl text-xs">
+                    <option value="Tunai">Tunai</option>
+                    <option value="QRIS">QRIS / E-Wallet</option>
+                    <option value="Transfer">Transfer Bank</option>
                   </select>
                 </div>
               </div>
-
               <div>
-                <label class="block text-xs font-semibold uppercase text-slate-500 mb-1">Catatan Khusus (Opsional)</label>
-                <input type="text" id="orderNote" placeholder="Khusus Pioritas"
-                  class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm">
+                <label class="block text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-1.5">Status Bayar</label>
+                <select id="payStatus" class="w-full px-4 py-2.5 rounded-xl text-xs">
+                  <option value="Lunas">Lunas</option>
+                  <option value="Belum Lunas">Belum Lunas</option>
+                </select>
               </div>
-
+              <div>
+                <label class="block text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-1.5">Catatan</label>
+                <input type="text" id="orderNote" placeholder="Catatan khusus..." class="w-full px-4 py-2.5 rounded-xl text-xs">
+              </div>
               <div class="pt-2">
-                <label class="block text-xs font-semibold uppercase text-slate-500 mb-1">Total Biaya Akhir</label>
-                <div id="totalPreview" class="px-3 py-2.5 bg-indigo-50 border border-indigo-200 rounded-lg font-extrabold text-indigo-700 text-lg">
+                <label class="block text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-1.5">Total Akhir</label>
+                <div id="totalPreview" class="px-4 py-3 bg-slate-900/80 border border-slate-800 rounded-2xl font-extrabold text-sky-400 text-xl">
                   Rp 7.000
                 </div>
               </div>
-
-              <button type="submit" 
-                class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2.5 px-4 rounded-lg shadow transition duration-200 text-sm flex justify-center items-center gap-2">
+              <button type="submit" class="w-full bg-sky-500 hover:bg-sky-400 text-slate-950 font-bold py-3.5 rounded-2xl text-xs transition flex justify-center items-center gap-2">
                 <i class="fa-solid fa-floppy-disk"></i> Simpan Transaksi
               </button>
             </form>
           </section>
-
-          <!-- Tabel & Filter Transaksi -->
-          <section class="lg:col-span-2 space-y-4">
-            <div class="bg-white p-5 rounded-xl shadow-md border border-slate-200 space-y-4 az-card">
-              
-              <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 border-b pb-3">
-                <h2 class="text-lg font-bold text-slate-800 flex items-center gap-2">
-                  <i class="fa-solid fa-list-check text-indigo-600"></i> Kelola Transaksi
-                </h2>
-                <span class="text-xs text-slate-400">Menampilkan data realtime</span>
-              </div>
-
-              <!-- Toolbar Fitur Filter & Pencarian -->
-              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-                <div>
-                  <input type="text" id="filterSearch" onkeyup="renderOrders()" placeholder="Cari Nota / Nama..." 
-                    class="w-full px-3 py-1.5 border rounded-lg text-xs focus:ring-2 focus:ring-indigo-500 focus:outline-none">
-                </div>
-                <div>
-                  <select id="filterStatus" onchange="renderOrders()" class="w-full px-3 py-1.5 border rounded-lg text-xs bg-white focus:ring-2 focus:ring-indigo-500 focus:outline-none az-card">
-                    <option value="Semua">Semua Status Cucian</option>
-                    <option value="Proses">Proses</option>
-                    <option value="Selesai">Selesai</option>
-                    <option value="Sudah Diambil">Sudah Diambil</option>
-                  </select>
-                </div>
-                <div>
-                  <select id="filterPayment" onchange="renderOrders()" class="w-full px-3 py-1.5 border rounded-lg text-xs bg-white focus:ring-2 focus:ring-indigo-500 focus:outline-none az-card">
-                    <option value="Semua">Semua Pembayaran</option>
-                    <option value="Lunas">Lunas</option>
-                    <option value="Belum Lunas">Belum Lunas</option>
-                  </select>
-                </div>
-                <div>
-                  <input type="date" id="filterDate" onchange="renderOrders()" class="w-full px-3 py-1.5 border rounded-lg text-xs focus:ring-2 focus:ring-indigo-500 focus:outline-none">
-                </div>
-              </div>
-
-              <!-- Tabel Data -->
-              <div class="overflow-x-auto">
-                <table class="w-full text-left text-sm">
-                  <thead class="bg-slate-50 border-b text-slate-500 uppercase text-xs">
-                    <tr>
-                      <th class="p-3">Nota & Tanggal</th>
-                      <th class="p-3">Pelanggan</th>
-                      <th class="p-3">Layanan</th>
-                      <th class="p-3">Total</th>
-                      <th class="p-3">Status</th>
-                      <th class="p-3 text-center">Aksi</th>
-                    </tr>
-                  </thead>
-                  <tbody id="orderTableBody" class="divide-y divide-slate-100"></tbody>
-                </table>
-              </div>
-
+          <section class="az-glass p-6 lg:col-span-2 space-y-4">
+            <h2 class="text-base font-bold flex items-center gap-2">
+              <i class="fa-solid fa-list-check text-sky-400"></i> Kelola Transaksi
+            </h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <input type="text" id="filterSearch" onkeyup="renderOrders()" placeholder="Cari Nota / Nama..." class="px-4 py-2.5 rounded-xl text-xs">
+              <select id="filterStatus" onchange="renderOrders()" class="px-4 py-2.5 rounded-xl text-xs">
+                <option value="Semua">Semua Status</option>
+                <option value="Proses">Proses</option>
+                <option value="Selesai">Selesai</option>
+                <option value="Sudah Diambil">Sudah Diambil</option>
+              </select>
+            </div>
+            <div class="overflow-x-auto rounded-2xl border border-slate-800/80">
+              <table class="w-full text-left text-xs">
+                <thead class="bg-slate-900/80 text-slate-400 uppercase text-[10px] tracking-wider">
+                  <tr>
+                    <th class="p-3.5">Nota & Tanggal</th>
+                    <th class="p-3.5">Pelanggan</th>
+                    <th class="p-3.5">Layanan</th>
+                    <th class="p-3.5">Total</th>
+                    <th class="p-3.5">Status</th>
+                    <th class="p-3.5 text-center">Aksi</th>
+                  </tr>
+                </thead>
+                <tbody id="orderTableBody" class="divide-y divide-slate-800/60"></tbody>
+              </table>
             </div>
           </section>
         </div>
       </div>
 
-      <!-- 4. HALAMAN MANAJEMEN PENGELUARAN -->
+      <!-- 5. HALAMAN DATA PELANGGAN -->
+      <div id="page-pelanggan" class="hidden space-y-6">
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-5">
+          <div class="az-glass p-5 flex items-center justify-between">
+            <div>
+              <p class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Total Pelanggan</p>
+              <h3 id="statTotalCustomers" class="text-2xl font-extrabold mt-1">0 Orang</h3>
+            </div>
+            <div class="w-12 h-12 bg-sky-500/10 border border-sky-500/20 text-sky-400 rounded-2xl flex items-center justify-center text-lg">
+              <i class="fa-solid fa-users"></i>
+            </div>
+          </div>
+          <div class="az-glass p-5 flex items-center justify-between">
+            <div>
+              <p class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Pelanggan VIP</p>
+              <h3 id="statVipCustomers" class="text-2xl font-extrabold text-amber-400 mt-1">0 Orang</h3>
+            </div>
+            <div class="w-12 h-12 bg-amber-500/10 border border-amber-500/20 text-amber-400 rounded-2xl flex items-center justify-center text-lg">
+              <i class="fa-solid fa-crown"></i>
+            </div>
+          </div>
+          <div class="az-glass p-5 flex items-center justify-between">
+            <div>
+              <p class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Pelanggan Reguler</p>
+              <h3 id="statRegularCustomers" class="text-2xl font-extrabold text-indigo-400 mt-1">0 Orang</h3>
+            </div>
+            <div class="w-12 h-12 bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 rounded-2xl flex items-center justify-center text-lg">
+              <i class="fa-solid fa-user-check"></i>
+            </div>
+          </div>
+        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <section class="az-glass p-6 lg:col-span-1 space-y-4">
+            <h2 id="custFormTitle" class="text-base font-bold flex items-center gap-2 text-sky-400">
+              <i class="fa-solid fa-user-plus"></i> Tambah Pelanggan Baru
+            </h2>
+            <form id="customerForm" onsubmit="saveCustomer(event)" class="space-y-4">
+              <input type="hidden" id="custEditId" value="">
+              <div>
+                <label class="block text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-1.5">Nama Lengkap</label>
+                <input type="text" id="custFormName" required placeholder="Armuzna Laundry" class="w-full px-4 py-2.5 rounded-xl text-xs">
+              </div>
+              <div>
+                <label class="block text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-1.5">No. WhatsApp</label>
+                <input type="tel" id="custFormPhone" required placeholder="08123456789" class="w-full px-4 py-2.5 rounded-xl text-xs">
+              </div>
+              <div>
+                <label class="block text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-1.5">Tipe Pelanggan</label>
+                <select id="custFormType" class="w-full px-4 py-2.5 rounded-xl text-xs">
+                  <option value="Reguler">Reguler</option>
+                  <option value="VIP">VIP</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-1.5">Alamat</label>
+                <textarea id="custFormAddress" rows="3" placeholder="Alamat rumah / domisili..." class="w-full px-4 py-2.5 rounded-xl text-xs"></textarea>
+              </div>
+              <div class="flex gap-2">
+                <button type="submit" class="w-full bg-sky-500 hover:bg-sky-400 text-slate-950 font-bold py-3.5 rounded-2xl text-xs transition flex justify-center items-center gap-2">
+                  <i class="fa-solid fa-floppy-disk"></i> Simpan Pelanggan
+                </button>
+                <button type="button" id="btnCancelCustomer" onclick="resetCustomerForm()" class="hidden bg-slate-800 hover:bg-slate-700 text-white px-4 py-3.5 rounded-2xl text-xs font-semibold">
+                  Batal
+                </button>
+              </div>
+            </form>
+          </section>
+          <section class="az-glass p-6 lg:col-span-2 space-y-4">
+            <h2 class="text-base font-bold flex items-center gap-2">
+              <i class="fa-solid fa-address-book text-sky-400"></i> Membership Armuzna Laundry
+            </h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <input type="text" id="custSearch" onkeyup="renderCustomers()" placeholder="Cari Nama / WhatsApp / Alamat..." class="px-4 py-2.5 rounded-xl text-xs">
+              <select id="custFilterType" onchange="renderCustomers()" class="px-4 py-2.5 rounded-xl text-xs">
+                <option value="Semua">Semua Tipe</option>
+                <option value="Reguler">Reguler</option>
+                <option value="VIP">VIP</option>
+              </select>
+            </div>
+            <div class="overflow-x-auto rounded-2xl border border-slate-800/80">
+              <table class="w-full text-left text-xs">
+                <thead class="bg-slate-900/80 text-slate-400 uppercase text-[10px] tracking-wider">
+                  <tr>
+                    <th class="p-3.5">Pelanggan</th>
+                    <th class="p-3.5">WhatsApp</th>
+                    <th class="p-3.5">Alamat</th>
+                    <th class="p-3.5">Tipe</th>
+                    <th class="p-3.5 text-center">Total Nota</th>
+                    <th class="p-3.5 text-center">Aksi</th>
+                  </tr>
+                </thead>
+                <tbody id="customerTableBody" class="divide-y divide-slate-800/60"></tbody>
+              </table>
+            </div>
+          </section>
+        </div>
+      </div>
+
+      <!-- 6. HALAMAN PENGELUARAN -->
       <div id="page-pengeluaran" class="hidden grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <section class="bg-white p-5 rounded-xl shadow-md border border-slate-200 lg:col-span-1 az-card">
-          <h2 class="text-lg font-bold mb-4 flex items-center gap-2 text-rose-600">
-            <i class="fa-solid fa-file-invoice-dollar"></i> Catat Pengeluaran
-          </h2>
-          <form id="expenseForm" onsubmit="addExpense(event)" class="space-y-4">
-            <div>
-              <label class="block text-xs font-semibold uppercase text-slate-500 mb-1">Deskripsi</label>
-              <input type="text" id="expenseName" required placeholder="Shopping Day"
-                class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-500 text-sm">
+        <section class="az-glass-expense p-6 lg:col-span-1 space-y-4">
+          <div class="flex items-center gap-3.5">
+            <div class="w-11 h-11 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 flex items-center justify-center">
+              <i class="fa-solid fa-file-invoice-dollar text-xl"></i>
             </div>
             <div>
-              <label class="block text-xs font-semibold uppercase text-slate-500 mb-1">Nominal (Rp)</label>
-              <input type="number" id="expenseAmount" required placeholder="50000"
-                class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-500 text-sm">
+              <h2 class="text-base font-bold expense-title">Catat Pengeluaran</h2>
+              <p class="text-[11px] expense-sub">Input operasional bisnis laundry</p>
+            </div>
+          </div>
+          
+          <form id="expenseForm" onsubmit="addExpense(event)" class="space-y-4 pt-2">
+            <div>
+              <label class="block text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-1.5">Deskripsi</label>
+              <input type="text" id="expenseName" required placeholder="Beli Deterjen / Listrik" class="w-full px-4 py-2.5 rounded-xl text-xs focus:border-indigo-400">
             </div>
             <div>
-              <label class="block text-xs font-semibold uppercase text-slate-500 mb-1">Tanggal</label>
-              <input type="date" id="expenseDate" required
-                class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-500 text-sm">
+              <label class="block text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-1.5">Nominal (Rp)</label>
+              <input type="number" id="expenseAmount" required placeholder="50000" class="w-full px-4 py-2.5 rounded-xl text-xs focus:border-indigo-400">
             </div>
-            <button type="submit" class="w-full bg-rose-600 text-white font-semibold py-2 rounded-lg hover:bg-rose-700 transition text-sm">
+            <div>
+              <label class="block text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-1.5">Tanggal</label>
+              <input type="date" id="expenseDate" required class="w-full px-4 py-2.5 rounded-xl text-xs focus:border-indigo-400">
+            </div>
+            <button type="submit" class="w-full bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-500 hover:to-blue-500 text-white font-bold py-3.5 rounded-2xl text-xs transition">
               Tambah Pengeluaran
             </button>
           </form>
         </section>
-
         <section class="lg:col-span-2 space-y-4">
-          <div class="bg-gradient-to-r from-rose-500 to-red-600 text-white p-5 rounded-xl shadow-md flex justify-between items-center">
+          <div class="az-glass-expense p-6 flex justify-between items-center">
             <div>
-              <p class="text-xs uppercase font-medium text-rose-100">Total Pengeluaran</p>
-              <h3 id="totalExpenseDisplay" class="text-2xl font-extrabold mt-1">Rp 0</h3>
+              <p class="text-[10px] uppercase font-bold expense-sub tracking-wider">Total Pengeluaran Bulan Ini</p>
+              <h3 id="totalExpenseDisplay" class="text-3xl font-extrabold mt-1 text-sky-500">Rp 0</h3>
             </div>
-            <i class="fa-solid fa-wallet text-3xl opacity-80"></i>
+            <div class="w-14 h-14 bg-indigo-500/10 border border-indigo-400/20 rounded-2xl flex items-center justify-center text-sky-400">
+              <i class="fa-solid fa-arrow-trend-down text-2xl"></i>
+            </div>
           </div>
-          <div class="bg-white p-5 rounded-xl shadow-md border border-slate-200 az-card">
-            <table class="w-full text-left text-sm">
-              <thead class="bg-slate-50 border-b text-slate-500 uppercase text-xs">
+          <div class="az-glass p-6 overflow-x-auto">
+            <table class="w-full text-left text-xs">
+              <thead class="bg-slate-900/50 text-slate-400 uppercase text-[10px] tracking-wider">
                 <tr>
-                  <th class="p-3">Tanggal</th>
-                  <th class="p-3">Deskripsi</th>
-                  <th class="p-3">Nominal</th>
-                  <th class="p-3 text-center">Aksi</th>
+                  <th class="p-3.5">Tanggal</th>
+                  <th class="p-3.5">Deskripsi</th>
+                  <th class="p-3.5">Nominal</th>
+                  <th class="p-3.5 text-center">Aksi</th>
                 </tr>
               </thead>
-              <tbody id="expenseTableBody" class="divide-y divide-slate-100"></tbody>
+              <tbody id="expenseTableBody" class="divide-y divide-slate-800/60"></tbody>
             </table>
           </div>
         </section>
       </div>
 
-      <!-- 5. HALAMAN CEK STATUS -->
+      <!-- 7. HALAMAN CEK STATUS -->
       <div id="page-lacak" class="hidden space-y-6">
-        <div class="bg-white p-6 md:p-8 rounded-2xl shadow-md border border-slate-200 max-w-2xl mx-auto text-center space-y-4 az-card">
-          <div class="w-12 h-12 bg-indigo-100 text-indigo-600 rounded-xl flex items-center justify-center mx-auto text-xl">
+        <div class="az-glass p-8 max-w-xl mx-auto text-center space-y-4">
+          <div class="w-16 h-16 bg-sky-500/10 border border-sky-500/20 text-sky-400 rounded-2xl flex items-center justify-center mx-auto text-2xl">
             <i class="fa-solid fa-magnifying-glass"></i>
           </div>
           <div>
-            <h2 class="text-xl font-bold text-slate-800">Cek Status Cucian Anda</h2>
-            <p class="text-xs text-slate-500 mt-1">Sign Number Memo / Nota atau Nomor WhatsApp yang terdaftar.</p>
+            <h2 class="text-xl font-bold">Cek Status Cucian Anda</h2>
+            <p class="text-xs text-slate-400 mt-1">Masukkan Nomor Nota atau No. WhatsApp terdaftar.</p>
           </div>
-
-          <form onsubmit="searchInvoice(event)" class="flex flex-col sm:flex-row gap-3 pt-2">
-            <div class="relative w-full">
-              <i class="fa-solid fa-receipt absolute left-3 top-3 text-slate-400 text-sm"></i>
-              <input type="text" id="searchKeyword" required placeholder="Ketik No. Nota / No. HP..."
-                class="w-full pl-9 pr-3 py-2.5 border rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm">
-            </div>
-            <button type="submit" 
-              class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-6 py-2.5 rounded-xl shadow transition text-sm flex items-center justify-center gap-2 whitespace-nowrap">
-              <i class="fa-solid fa-search"></i> Cari Nota
+          <form onsubmit="searchInvoice(event)" class="flex gap-2.5 pt-2">
+            <input type="text" id="searchKeyword" required placeholder="Ketik No. Nota / No. HP..." class="w-full px-4 py-3 rounded-2xl text-xs">
+            <button type="submit" class="bg-sky-500 hover:bg-sky-400 text-slate-950 font-bold px-6 py-3 rounded-2xl text-xs transition whitespace-nowrap">
+              Cari
             </button>
           </form>
         </div>
-
-        <div id="searchResultArea" class="max-w-3xl mx-auto hidden space-y-4"></div>
+        <div id="searchResultArea" class="max-w-xl mx-auto hidden space-y-4"></div>
       </div>
 
-      <!-- 6. HALAMAN BUSINESS ANALYTICS -->
+      <!-- 8. HALAMAN BUSINESS ANALYTICS -->
       <div id="page-analytics" class="hidden space-y-6">
-        
-        <!-- NAVIGASI CEPAT ANALYTICS -->
-        <div class="flex flex-wrap gap-2">
-          <button onclick="switchPage('beranda')" class="px-3 py-2 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold transition">
-            <i class="fa-solid fa-house mr-1"></i> Beranda
-          </button>
-          <button onclick="switchPage('layanan')" class="px-3 py-2 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold transition">
-            <i class="fa-solid fa-tags mr-1"></i> Daftar Harga
-          </button>
-          <button onclick="switchPage('kasir')" class="px-3 py-2 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold transition">
-            <i class="fa-solid fa-cash-register mr-1"></i> Transaksi
-          </button>
-          <button onclick="switchPage('pengeluaran')" class="px-3 py-2 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold transition">
-            <i class="fa-solid fa-wallet mr-1"></i> Pengeluaran
-          </button>
-          <button onclick="switchPage('lacak')" class="px-3 py-2 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold transition">
-            <i class="fa-solid fa-magnifying-glass mr-1"></i> Cek Status
-          </button>
-        </div>
-
-        <!-- Ringkasan KPIs -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between az-card">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div class="az-glass p-5 flex items-center justify-between">
             <div>
-              <p class="text-xs text-slate-400 uppercase font-bold">Pendapatan Bulan Ini</p>
-              <h3 class="text-xl font-extrabold text-indigo-600 mt-1">Rp 12.450.000</h3>
-              <span class="text-[11px] text-emerald-600 font-semibold"><i class="fa-solid fa-arrow-up"></i> +12.5% vs bln lalu</span>
+              <p class="text-[10px] text-slate-400 uppercase font-bold tracking-wider">Pendapatan</p>
+              <h3 class="text-xl font-extrabold text-sky-400 mt-1">Rp 18.000.000</h3>
             </div>
-            <div class="w-12 h-12 bg-indigo-50 text-indigo-600 rounded-xl flex items-center justify-center text-xl">
-              <i class="fa-solid fa-sack-dollar"></i>
+            <div class="w-11 h-11 bg-sky-500/10 border border-sky-500/20 text-sky-400 rounded-2xl flex items-center justify-center text-lg">
+              <i class="fa-solid fa-arrow-trend-up"></i>
             </div>
           </div>
-
-          <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between az-card">
+          <div class="az-glass p-5 flex items-center justify-between">
             <div>
-              <p class="text-xs text-slate-400 uppercase font-bold">Total Transaksi</p>
-              <h3 class="text-xl font-extrabold text-slate-800 mt-1">184 Nota</h3>
-              <span class="text-[11px] text-emerald-600 font-semibold"><i class="fa-solid fa-arrow-up"></i> +8% minggu ini</span>
+              <p class="text-[10px] text-slate-400 uppercase font-bold tracking-wider">Total Transaksi</p>
+              <h3 class="text-xl font-extrabold mt-1">184 Nota</h3>
             </div>
-            <div class="w-12 h-12 bg-sky-50 text-sky-600 rounded-xl flex items-center justify-center text-xl">
+            <div class="w-11 h-11 bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 rounded-2xl flex items-center justify-center text-lg">
               <i class="fa-solid fa-receipt"></i>
             </div>
           </div>
-
-          <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between az-card">
+          <div class="az-glass p-5 flex items-center justify-between">
             <div>
-              <p class="text-xs text-slate-400 uppercase font-bold">Pengeluaran Operasional</p>
-              <h3 class="text-xl font-extrabold text-rose-600 mt-1">Rp 3.820.000</h3>
-              <span class="text-[11px] text-slate-400 font-medium">Bahan & Listrik</span>
+              <p class="text-[10px] text-slate-400 uppercase font-bold tracking-wider">Pengeluaran</p>
+              <h3 class="text-xl font-extrabold text-rose-400 mt-1">Rp 3.820.000</h3>
             </div>
-            <div class="w-12 h-12 bg-rose-50 text-rose-600 rounded-xl flex items-center justify-center text-xl">
-              <i class="fa-solid fa-hand-holding-dollar"></i>
+            <div class="w-11 h-11 bg-rose-500/10 border border-rose-500/20 text-rose-400 rounded-2xl flex items-center justify-center text-lg">
+              <i class="fa-solid fa-arrow-trend-down"></i>
             </div>
           </div>
-
-          <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between az-card">
+          <div class="az-glass p-5 flex items-center justify-between">
             <div>
-              <p class="text-xs text-slate-400 uppercase font-bold">Profit Bersih (Estimasi)</p>
-              <h3 class="text-xl font-extrabold text-emerald-600 mt-1">Rp 8.630.000</h3>
-              <span class="text-[11px] text-emerald-600 font-semibold">Margin ~69%</span>
+              <p class="text-[10px] text-slate-400 uppercase font-bold tracking-wider">Profit Bersih</p>
+              <h3 class="text-xl font-extrabold text-emerald-400 mt-1">Rp 8.630.000</h3>
             </div>
-            <div class="w-12 h-12 bg-emerald-50 text-emerald-600 rounded-xl flex items-center justify-center text-xl">
+            <div class="w-11 h-11 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 rounded-2xl flex items-center justify-center text-lg">
               <i class="fa-solid fa-chart-line"></i>
             </div>
           </div>
         </div>
 
-        <!-- Grid Grafik Performa -->
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm lg:col-span-2 space-y-3 az-card">
-            <div class="flex justify-between items-center">
-              <h3 class="font-bold text-slate-800 text-sm flex items-center gap-2">
-                <i class="fa-solid fa-chart-area text-indigo-600"></i> Arus Kas & Tren Finansial (6 Bulan)
-              </h3>
-              <span class="text-xs text-slate-400">Update Otomatis</span>
+          <div class="az-glass p-6 lg:col-span-2 space-y-3 flex flex-col justify-between">
+            <div>
+              <h3 class="font-bold text-sm">Arus Kas & Tren Finansial</h3>
+              <p class="text-[11px] text-slate-400">Statistik mingguan perputaran keuangan.</p>
             </div>
-            <div class="relative h-64 w-full">
+            <div class="relative h-72 w-full mt-2">
               <canvas id="financialTrendChart"></canvas>
             </div>
           </div>
-
-          <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-3 az-card">
-            <h3 class="font-bold text-slate-800 text-sm flex items-center gap-2">
-              <i class="fa-solid fa-chart-pie text-indigo-600"></i> Distribusi Layanan
-            </h3>
-            <p class="text-[10px] text-slate-400">Mengikuti seluruh layanan pada Daftar Harga & Transaksi</p>
-            <div class="relative h-64 w-full flex items-center justify-center">
+          <div class="az-glass p-6 space-y-4 flex flex-col justify-between">
+            <div>
+              <h3 class="font-bold text-sm">Distribusi Layanan</h3>
+              <p class="text-[11px] text-slate-400">Popularitas jenis layanan laundry.</p>
+            </div>
+            
+            <div class="relative w-full h-56 flex items-center justify-center my-auto">
               <canvas id="serviceDistributionChart"></canvas>
             </div>
-          </div>
-        </div>
-
-        <!-- Grid Grafik Sekunder -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-3 az-card">
-            <h3 class="font-bold text-slate-800 text-sm flex items-center gap-2">
-              <i class="fa-solid fa-chart-column text-indigo-600"></i> Volume Transaksi Mingguan (Hari)
-            </h3>
-            <div class="relative h-56 w-full">
-              <canvas id="weeklyOrdersChart"></canvas>
-            </div>
-          </div>
-
-          <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-3 az-card">
-            <h3 class="font-bold text-slate-800 text-sm flex items-center gap-2">
-              <i class="fa-solid fa-wallet text-indigo-600"></i> Metode Pembayaran Digunakan
-            </h3>
-            <div class="relative h-56 w-full flex items-center justify-center">
-              <canvas id="paymentMethodChart"></canvas>
+            <div class="grid grid-cols-2 gap-2 text-[10px] pt-3 border-t border-slate-800/80">
+              <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-pink-500"></span><span class="text-slate-300">Kiloan (30%)</span></div>
+              <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-sky-400"></span><span class="text-slate-300">Setrika (20%)</span></div>
+              <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span><span class="text-slate-300">Express (15%)</span></div>
+              <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span><span class="text-slate-300">Sepatu (10%)</span></div>
+              <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-purple-500"></span><span class="text-slate-300">Karpet (10%)</span></div>
+              <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-rose-400"></span><span class="text-slate-300">Bed Cover (10%)</span></div>
+              <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-teal-400"></span><span class="text-slate-300">Sprei (5%)</span></div>
             </div>
           </div>
         </div>
 
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div class="az-glass p-6 space-y-3 flex flex-col justify-between">
+            <div>
+              <div class="flex justify-between items-center">
+                <h3 class="font-bold text-sm flex items-center gap-2 text-sky-400">
+                  <i class="fa-solid fa-clock flex-shrink-0"></i> Analisis Jam Sibuk Transaksi (Peak Hours)
+                </h3>
+                <span class="text-[10px] bg-sky-500/10 text-sky-400 px-2.5 py-1 rounded-full border border-sky-400/20 font-semibold">Real-time Traffic</span>
+              </div>
+              <p class="text-[11px] text-slate-400 mt-1">Distribusi jumlah transaksi laundry berdasarkan jam operasional harian.</p>
+            </div>
+            <div class="relative h-64 w-full mt-2">
+              <canvas id="peakHoursChart"></canvas>
+            </div>
+          </div>
+
+          <div class="az-glass p-6 space-y-3 flex flex-col justify-between">
+            <div>
+              <div class="flex justify-between items-center">
+                <h3 class="font-bold text-sm flex items-center gap-2 text-amber-400">
+                  <i class="fa-solid fa-award flex-shrink-0"></i> Radar Performa & Kepuasan
+                </h3>
+                <span class="text-[10px] bg-amber-500/10 text-amber-400 px-2.5 py-1 rounded-full border border-amber-400/20 font-semibold">KPI Score</span>
+              </div>
+              <p class="text-[11px] text-slate-400 mt-1">Evaluasi pencapaian target kualitas & kepuasan pelanggan (Skala 0-100%).</p>
+            </div>
+            <div class="relative h-64 w-full mt-2 flex items-center justify-center">
+              <canvas id="performanceRadarChart"></canvas>
+            </div>
+          </div>
+        </div>
       </div>
-
     </main>
+    
+    <!-- Footer -->
+    <footer class="border-t border-slate-800/80 bg-slate-950/40 backdrop-blur-md text-center py-5 text-xs text-slate-500 transition-colors">
+      &copy; 2026 Armuzna Laundry Management System. All rights reserved.
+    </footer>
   </div>
-
-  <!-- MODAL CETAK STRUK -->
-  <div id="receiptModal" class="fixed inset-0 bg-black/75 backdrop-blur-sm hidden items-center justify-center z-50 p-4">
-    <div class="bg-white rounded-2xl max-w-sm w-full p-6 space-y-4 shadow-2xl relative az-card">
-      <button onclick="closeReceiptModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600">
-        <i class="fa-solid fa-xmark text-lg"></i>
-      </button>
-
-      <div class="text-center border-b border-dashed pb-3">
-        <i class="fa-solid fa-soap text-indigo-600 text-3xl mb-1"></i>
-        <h3 class="font-bold text-slate-800 text-lg">Armuzna Laundry</h3>
-        <p class="text-[11px] text-slate-500">Jl. Raya Utama No. 45 • WA: 08123456789</p>
-      </div>
-
-      <div id="receiptContent" class="text-xs space-y-2"></div>
-
-      <div class="pt-3 border-t border-dashed flex gap-2">
-        <button onclick="window.print()" class="w-full bg-indigo-600 text-white font-semibold py-2 rounded-xl text-xs hover:bg-indigo-700 transition flex items-center justify-center gap-2">
-          <i class="fa-solid fa-print"></i> Cetak Struk
-        </button>
-        <button onclick="closeReceiptModal()" class="w-full bg-slate-100 text-slate-700 font-semibold py-2 rounded-xl text-xs hover:bg-slate-200 transition">
-          Tutup
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <!-- MODAL ARTIKEL -->
-  <div id="articleModal" class="fixed inset-0 bg-black/75 backdrop-blur-sm hidden items-center justify-center z-50 p-4">
-    <div class="bg-white rounded-2xl max-w-lg w-full p-6 space-y-4 shadow-2xl relative az-card">
-      <button onclick="closeArticleModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600">
-        <i class="fa-solid fa-xmark text-lg"></i>
-      </button>
-      <div id="articleModalContent" class="space-y-3"></div>
-      <div class="pt-2 flex justify-end">
-        <button onclick="closeArticleModal()" class="bg-slate-100 text-slate-700 font-semibold px-4 py-2 rounded-xl text-xs hover:bg-slate-200 transition">
-          Tutup Artikel
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <!-- FOOTER -->
-  <footer class="bg-slate-900 text-slate-400 text-sm border-t border-slate-800 w-full z-10">
-    <div class="max-w-7xl mx-auto px-4 py-6 text-center text-xs text-slate-500">
-      &copy; 2026 Armuzna Laundry Management System.
-    </div>
-  </footer>
 
   <!-- JAVASCRIPT SYSTEM -->
   <script>
+    // Pemetaan Icon Berdasarkan Nama Layanan
+    const serviceIconMap = {
+      'Cuci Kiloan': 'fa-weight-scale text-sky-400',
+      'Cuci Setrika': 'fa-shirt text-amber-400',
+      'Express 1 Hari': 'fa-bolt text-rose-400',
+      'Dry Clean': 'fa-wand-magic-sparkles text-cyan-400',
+      'Cuci Sepatu': 'fa-shoe-prints text-emerald-400',
+      'Cuci Karpet': 'fa-rug text-indigo-400',
+      'Bed Cover': 'fa-bed text-purple-400',
+      'Cuci Sprei': 'fa-scroll text-teal-400'
+    };
     let orders = [
       { id: 'NOTA-101', name: 'Armuzna Laundry', phone: '085927262579', service: 'Cuci Setrika', amount: 30000, discount: 0, payMethod: 'Tunai', status: 'Proses', payStatus: 'Lunas', date: '2026-08-08', note: 'Baju putih dipisah' },
-      { id: 'NOTA-102', name: 'Achmad Efendi, SE,MM ', phone: '0889009698', service: 'Express (1 Hari)', amount: 45000, discount: 5000, payMethod: 'QRIS', status: 'Selesai', payStatus: 'Lunas', date: '2026-10-09', note: '-' }
+      { id: 'NOTA-102', name: 'Achmad Efendi', phone: '0889009698', service: 'Express 1 Hari', amount: 45000, discount: 5000, payMethod: 'QRIS', status: 'Selesai', payStatus: 'Lunas', date: '2026-08-09', note: '-' }
+    ];
+    let customers = [
+      { id: 1, name: 'Armuzna Laundry', phone: '085927262579', address: 'Jl. Utama No. 12, Jakarta', type: 'VIP' },
+      { id: 2, name: 'Achmad Efendi', phone: '0889009698', address: 'Jl. Pemuda No. 45, Surabaya', type: 'Reguler' }
+    ];
+    let promos = [
+      { id: 101, code: 'BERSIH5K', name: 'Promo Hemat Rp 5.000', discount: 5000, minOrder: 20000, expiry: '2026-12-31', status: 'Aktif' },
+      { id: 102, code: 'MEMBERVIP', name: 'Diskon Spesial VIP', discount: 10000, minOrder: 35000, expiry: '2026-12-31', status: 'Aktif' }
     ];
     let expenses = [];
-    let chartsInitialized = false;
+    let charts = {};
 
     document.addEventListener("DOMContentLoaded", () => {
       const today = new Date().toISOString().split('T')[0];
-      const dateInput = document.getElementById('expenseDate');
-      if (dateInput) dateInput.value = today;
-      
+      if(document.getElementById('expenseDate')) document.getElementById('expenseDate').value = today;
+      if(document.getElementById('promoExpiry')) document.getElementById('promoExpiry').value = today;
       renderOrders();
+      renderCustomers();
       renderExpenses();
-
-      const hashPage = location.hash.replace('#', '');
-      const validPages = ['beranda', 'layanan', 'kasir', 'pengeluaran', 'lacak', 'analytics'];
-      switchPage(validPages.includes(hashPage) ? hashPage : 'beranda', false);
+      renderPromos();
+      
+      const currentHash = window.location.hash.replace('#', '');
+      if (currentHash) {
+        switchPage(currentHash, false);
+      } else {
+        switchPage('beranda', false);
+      }
+      if (localStorage.getItem('theme') === 'light') {
+        applyTheme(true);
+      } else {
+        applyTheme(false);
+      }
+      if ("Notification" in window && Notification.permission === "granted") {
+        document.getElementById('notifDot')?.classList.remove('hidden');
+      }
     });
 
+    /* =========================================================
+       FUNGSI MANAJEMEN AUTHENTICATION MODAL (BARU)
+       ========================================================= */
+    function openAuthModal(mode = 'login') {
+      document.getElementById('authModal').classList.remove('hidden');
+      switchAuthTab(mode);
+    }
+
+    function closeAuthModal() {
+      document.getElementById('authModal').classList.add('hidden');
+    }
+
+    function switchAuthTab(type) {
+      const loginForm = document.getElementById('loginForm');
+      const registerForm = document.getElementById('registerForm');
+      const tabLoginBtn = document.getElementById('tabLoginBtn');
+      const tabRegisterBtn = document.getElementById('tabRegisterBtn');
+      const authTitle = document.getElementById('authTitle');
+      const authSubtitle = document.getElementById('authSubtitle');
+
+      if (type === 'login') {
+        loginForm.classList.remove('hidden');
+        registerForm.classList.add('hidden');
+        tabLoginBtn.className = "flex-1 py-2 rounded-lg text-xs font-bold transition bg-sky-500 text-slate-950";
+        tabRegisterBtn.className = "flex-1 py-2 rounded-lg text-xs font-bold transition text-slate-400 hover:text-white";
+        authTitle.innerText = "Masuk ke Akun";
+        authSubtitle.innerText = "Silakan masukkan akun Armuzna Laundry Anda";
+      } else {
+        loginForm.classList.add('hidden');
+        registerForm.classList.remove('hidden');
+        tabRegisterBtn.className = "flex-1 py-2 rounded-lg text-xs font-bold transition bg-emerald-500 text-slate-950";
+        tabLoginBtn.className = "flex-1 py-2 rounded-lg text-xs font-bold transition text-slate-400 hover:text-white";
+        authTitle.innerText = "Daftar Akun Baru";
+        authSubtitle.innerText = "Buat akun untuk mengakses penuh sistem Armuzna";
+      }
+    }
+
+    function handleAuthSubmit(event, type) {
+      event.preventDefault();
+      closeAuthModal();
+      if(type === 'login') {
+        sendNotification("Berhasil Masuk!", "Selamat datang kembali di Armuzna Laundry System.");
+        alert('Login berhasil! Selamat datang kembali.');
+      } else {
+        sendNotification("Pendaftaran Berhasil!", "Akun baru Anda telah berhasil dibuat.");
+        alert('Pendaftaran berhasil! Silakan masuk dengan akun baru Anda.');
+      }
+    }
+
+    function requestNotificationPermission() {
+      if ("Notification" in window) {
+        Notification.requestPermission().then((permission) => {
+          if (permission === "granted") {
+            document.getElementById('notifDot')?.classList.remove('hidden');
+            sendNotification("Notifikasi Berhasil Diaktifkan!", "Anda akan menerima pemberitahuan setiap ada aktivitas baru.");
+          } else if (permission === "denied") {
+            alert("Izin notifikasi ditolak. Anda dapat mengaktifkannya secara manual melalui pengaturan browser.");
+          }
+        });
+      } else {
+        alert("Browser Anda tidak mendukung Notifikasi Web.");
+      }
+    }
+
+    function sendNotification(title, body) {
+      if ("Notification" in window && Notification.permission === "granted") {
+        new Notification(title, {
+          body: body,
+          icon: "https://cdn-icons-png.flaticon.com/512/3003/3003248.png"
+        });
+      }
+    }
+
+    function toggleTheme() {
+      const isLight = !document.body.classList.contains('light-mode');
+      applyTheme(isLight);
+      localStorage.setItem('theme', isLight ? 'light' : 'dark');
+    }
+
+    function applyTheme(isLight) {
+      const dot = document.getElementById('themeDot');
+      const slider = document.getElementById('themeSlider');
+      
+      if (isLight) {
+        document.body.classList.add('light-mode');
+        if (dot) {
+          dot.style.right = 'auto';
+          dot.style.left = '0';
+        }
+        if (slider) slider.classList.replace('bg-sky-500', 'bg-amber-400');
+      } else {
+        document.body.classList.remove('light-mode');
+        if (dot) {
+          dot.style.left = 'auto';
+          dot.style.right = '0';
+        }
+        if (slider) slider.classList.replace('bg-amber-400', 'bg-sky-500');
+      }
+      Object.keys(charts).forEach(id => {
+        if(charts[id]) {
+          charts[id].destroy();
+          delete charts[id];
+        }
+      });
+      initCharts();
+    }
+
     function switchPage(pageId, updateHash = true) {
-      const pages = ['beranda', 'layanan', 'kasir', 'pengeluaran', 'lacak', 'analytics'];
+      const pages = ['beranda', 'agen', 'layanan', 'promosi', 'kasir', 'pelanggan', 'pengeluaran', 'lacak', 'analytics'];
       pages.forEach(p => {
         const el = document.getElementById(`page-${p}`);
         const nav = document.getElementById(`nav-${p}`);
         if (el) el.classList.add('hidden');
-        if (nav) nav.className = "px-4 py-3 rounded-xl transition flex items-center gap-3 text-slate-300";
+        if (nav) nav.classList.remove('az-active');
       });
-
       const activeEl = document.getElementById(`page-${pageId}`);
-      const activeNav = document.getElementById(`nav-${pageId}`);
+      const activeNavBtn = document.getElementById(`nav-${pageId}`);
       if (activeEl) activeEl.classList.remove('hidden');
-      if (activeNav) { activeNav.className = "px-4 py-3 rounded-xl transition flex items-center gap-3 text-white az-active"; }
-
-      if (pageId === 'analytics') {
+      if (activeNavBtn) activeNavBtn.classList.add('az-active');
+      if (pageId === 'beranda' || pageId === 'analytics') {
         initCharts();
-        chartsInitialized = true;
       }
-
       if (updateHash) {
         history.replaceState(null, '', '#' + pageId);
       }
     }
 
-    window.addEventListener('hashchange', () => {
-      const pageId = location.hash.replace('#', '');
-      const validPages = ['beranda', 'layanan', 'kasir', 'pengeluaran', 'lacak', 'analytics'];
-      switchPage(validPages.includes(pageId) ? pageId : 'beranda', false);
-    });
+    function sendAiMessage(e) {
+      e.preventDefault();
+      const input = document.getElementById('aiInput');
+      const val = input.value.trim();
+      if(!val) return;
+      appendChatMessage('user', val);
+      input.value = '';
+      setTimeout(() => {
+        let reply = "Terima Kasih Atas Kunjungan Di Website App Armuzna Laundry";
+        if(val.toLowerCase().includes('promo')) {
+          reply = "Rekomendasi Promo WA VIP:\n'Halo Kak! Nikmati Diskon Spesial VIP 15% khusus layanan Express 1 Hari minggu ini di Armuzna Laundry. Gunakan kode: VIPEXPRESS'";
+        }
+        appendChatMessage('agent', reply);
+      }, 700);
+    }
 
-    // Modal Artikel
-    function showArticleModal(type) {
-      const modal = document.getElementById('articleModal');
-      const content = document.getElementById('articleModalContent');
+    function triggerQuickPrompt(text) {
+      document.getElementById('aiInput').value = text;
+      sendAiMessage(new Event('submit'));
+    }
 
-      if (type === 'Satin') {
-        content.innerHTML = `
-          <span class="bg-indigo-50 text-indigo-600 text-[10px] font-bold px-2.5 py-1 rounded-md uppercase">Tips Perawatan</span>
-          <h3 class="text-lg font-bold text-slate-800">Cara Merawat Baju Bahan Satin & Sutra Agar Tidak Rusak</h3>
-          <p class="text-xs text-slate-600 leading-relaxed">Pakaian berkarakter serat sutra dan satin sangat sensitif terhadap gesekan tinggi dan suhu panas berlebih. Gunakan deterjen cair khusus dan atur mesin cuci pada mode <em>Delicate</em>. Hindari mengeringkan baju di bawah paparan sinar matahari langsung untuk menjaga serat kain tetap berkilau memikat.</p>
+    function appendChatMessage(sender, text) {
+      const chatContainer = document.getElementById('chatContainer');
+      const div = document.createElement('div');
+      div.className = "flex items-start gap-2.5";
+      if(sender === 'user') {
+        div.innerHTML = `
+          <div class="ml-auto flex items-start gap-2.5 justify-end w-full">
+            <div class="bg-sky-600 border border-sky-500 text-white p-3 rounded-2xl max-w-md text-xs">
+              ${text}
+            </div>
+            <div class="w-7 h-7 rounded-xl bg-slate-800 text-slate-300 flex items-center justify-center shrink-0 text-xs">
+              <i class="fa-solid fa-user"></i>
+            </div>
+          </div>
         `;
-      } else if (type === 'Apek') {
-        content.innerHTML = `
-          <span class="bg-emerald-50 text-emerald-600 text-[10px] font-bold px-2.5 py-1 rounded-md uppercase">Edukasi Higienis</span>
-          <h3 class="text-lg font-bold text-slate-800">Rahasia Menghilangkan Bau Apek Pada Pakaian Musim Hujan</h3>
-          <p class="text-xs text-slate-600 leading-relaxed">Bau apek muncul akibat kelembapan berlebih yang memicu munculnya bakteri. Solusinya, gunakan pelembut pakaian antibakteri saat pembilasan terakhir dan pastikan sirkulasi udara optimal saat proses pengeringan dalam ruangan.</p>
-        `;
-      } else if (type === 'Luntur') {
-        content.innerHTML = `
-          <span class="bg-amber-50 text-amber-600 text-[10px] font-bold px-2.5 py-1 rounded-md uppercase">Panduan Laundry</span>
-          <h3 class="text-lg font-bold text-slate-800">Mengapa Memisahkan Pakaian Putih dan Berwarna Sangat Penting?</h3>
-          <p class="text-xs text-slate-600 leading-relaxed">Luntur warna adalah salah satu penyebab utama kerusakan pakaian. Pisahkan pakaian putih, berwarna terang, dan berpigmen gelap sebelum dicuci untuk menjaga warna asli pakaian tetap cerah dan tahan lama.</p>
+      } else {
+        div.innerHTML = `
+          <div class="w-7 h-7 rounded-xl bg-cyan-500/20 border border-cyan-400/30 text-cyan-400 flex items-center justify-center shrink-0 text-xs">
+            <i class="fa-solid fa-robot"></i>
+          </div>
+          <div class="bg-slate-900/80 border border-slate-800 p-3 rounded-2xl max-w-md text-slate-300 whitespace-pre-line">
+            ${text}
+          </div>
         `;
       }
-
-      modal.classList.remove('hidden');
-      modal.classList.add('flex');
+      chatContainer.appendChild(div);
+      chatContainer.scrollTop = chatContainer.scrollHeight;
     }
 
-    function closeArticleModal() {
-      const modal = document.getElementById('articleModal');
-      modal.classList.add('hidden');
-      modal.classList.remove('flex');
+    /* =========================================================
+       INISIALISASI & KONFIGURASI CHART.JS
+       ========================================================= */
+    function initCharts() {
+      const isLight = document.body.classList.contains('light-mode');
+      const textColor = isLight ? '#475569' : '#9ca3af';
+      const gridColor = isLight ? 'rgba(226, 232, 240, 0.8)' : 'rgba(255, 255, 255, 0.08)';
+      
+      const miniEl = document.getElementById('dashboardMiniChart');
+      if (miniEl && !charts['dashboardMiniChart']) {
+        charts['dashboardMiniChart'] = new Chart(miniEl, {
+          type: 'line',
+          data: {
+            labels: ['Minggu 1', 'Minggu 2', 'Minggu 3', 'Minggu 4'],
+            datasets: [{
+              label: 'Jumlah Order',
+              data: [42, 58, 65, 80],
+              borderColor: '#38bdf8',
+              backgroundColor: 'rgba(56, 189, 248, 0.15)',
+              fill: true,
+              tension: 0.4
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: { legend: { display: false } },
+            scales: {
+              x: { ticks: { color: textColor }, grid: { color: gridColor } },
+              y: { ticks: { color: textColor }, grid: { color: gridColor } }
+            }
+          }
+        });
+      }
+
+      const areaEl = document.getElementById('dashboardAreaChart');
+      if (areaEl && !charts['dashboardAreaChart']) {
+        charts['dashboardAreaChart'] = new Chart(areaEl, {
+          type: 'bar',
+          data: {
+            labels: ['Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab', 'Min'],
+            datasets: [{
+              label: 'Pemasukan (Rp)',
+              data: [450000, 620000, 580000, 710000, 950000, 1200000, 1100000],
+              backgroundColor: '#0ea5e9',
+              borderRadius: 8
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: { legend: { display: false } },
+            scales: {
+              x: { ticks: { color: textColor }, grid: { display: false } },
+              y: { ticks: { color: textColor }, grid: { color: gridColor } }
+            }
+          }
+        });
+      }
+
+      const finEl = document.getElementById('financialTrendChart');
+      if (finEl && !charts['financialTrendChart']) {
+        charts['financialTrendChart'] = new Chart(finEl, {
+          type: 'line',
+          data: {
+            labels: ['Minggu 1', 'Minggu 2', 'Minggu 3', 'Minggu 4'],
+            datasets: [
+              { label: 'Pendapatan', data: [2800000, 3200000, 2900000, 3550000], borderColor: '#10b981', tension: 0.3 },
+              { label: 'Pengeluaran', data: [900000, 1100000, 850000, 970000], borderColor: '#f43f5e', tension: 0.3 }
+            ]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: { legend: { labels: { color: textColor } } },
+            scales: {
+              x: { ticks: { color: textColor }, grid: { color: gridColor } },
+              y: { ticks: { color: textColor }, grid: { color: gridColor } }
+            }
+          }
+        });
+      }
+
+      const distEl = document.getElementById('serviceDistributionChart');
+      if (distEl && !charts['serviceDistributionChart']) {
+        charts['serviceDistributionChart'] = new Chart(distEl, {
+          type: 'doughnut',
+          data: {
+            labels: ['Kiloan', 'Setrika', 'Express', 'Sepatu', 'Karpet', 'Bed Cover', 'Sprei'],
+            datasets: [{
+              data: [30, 20, 15, 10, 10, 10, 5],
+              backgroundColor: ['#ec4899', '#38bdf8', '#fbbf24', '#34d399', '#a855f7', '#fb7185', '#2dd4bf'],
+              borderWidth: 0
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: { legend: { display: false } }
+          }
+        });
+      }
+
+      const peakEl = document.getElementById('peakHoursChart');
+      if (peakEl && !charts['peakHoursChart']) {
+        charts['peakHoursChart'] = new Chart(peakEl, {
+          type: 'bar',
+          data: {
+            labels: ['07:00-09:00', '09:00-11:00', '11:00-13:00', '13:00-15:00', '15:00-17:00', '17:00-19:00', '19:00-21:00'],
+            datasets: [{
+              label: 'Jumlah Transaksi',
+              data: [18, 35, 22, 28, 56, 48, 20],
+              backgroundColor: function(context) {
+                const chart = context.chart;
+                const {ctx, chartArea} = chart;
+                if (!chartArea) return '#38bdf8';
+                const gradient = ctx.createLinearGradient(0, chartArea.bottom, 0, chartArea.top);
+                gradient.addColorStop(0, '#0284c7');
+                gradient.addColorStop(1, '#38bdf8');
+                return gradient;
+              },
+              borderRadius: 10,
+              hoverBackgroundColor: '#818cf8'
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: { display: false },
+              tooltip: {
+                callbacks: {
+                  label: function(context) {
+                    return ` ${context.parsed.y} Transaksi Masuk`;
+                  }
+                }
+              }
+            },
+            scales: {
+              x: { ticks: { color: textColor, font: { size: 10 } }, grid: { display: false } },
+              y: { ticks: { color: textColor, font: { size: 10 } }, grid: { color: gridColor }, beginAtZero: true }
+            }
+          }
+        });
+      }
+
+      const radarEl = document.getElementById('performanceRadarChart');
+      if (radarEl && !charts['performanceRadarChart']) {
+        charts['performanceRadarChart'] = new Chart(radarEl, {
+          type: 'bar',
+          data: {
+            labels: ['Kecepatan', 'Kebersihan', 'Kerapihan', 'Ketepatan Waktu', 'Pelayanan', 'Akurasi Promo'],
+            datasets: [
+              {
+                label: 'Target Skenario',
+                data: [90, 95, 90, 95, 90, 85],
+                backgroundColor: 'rgba(99, 102, 241, 0.4)',
+                borderColor: '#6366f1',
+                borderWidth: 1,
+                borderRadius: 6
+              },
+              {
+                label: 'Realisasi Rating',
+                data: [92, 98, 94, 91, 96, 90],
+                backgroundColor: 'rgba(245, 158, 11, 0.85)',
+                borderColor: '#f59e0b',
+                borderWidth: 1,
+                borderRadius: 6
+              }
+            ]
+          },
+          options: {
+            indexAxis: 'y',
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: {
+                position: 'top',
+                labels: { color: textColor, font: { size: 10, weight: 'bold' } }
+              },
+              tooltip: {
+                callbacks: {
+                  label: function(context) {
+                    return ` ${context.dataset.label}: ${context.parsed.x}%`;
+                  }
+                }
+              }
+            },
+            scales: {
+              x: {
+                min: 50,
+                max: 100,
+                ticks: { color: textColor, font: { size: 10 } },
+                grid: { color: gridColor }
+              },
+              y: {
+                ticks: { color: textColor, font: { size: 10, weight: 'bold' } },
+                grid: { display: false }
+              }
+            }
+          }
+        });
+      }
     }
 
-    // Pilih layanan dari Daftar Harga lalu buka halaman Transaksi
-    function selectServiceFromPrice(price, serviceName) {
-      switchPage('kasir');
-      const serviceSelect = document.getElementById('serviceType');
-      if (!serviceSelect) return;
-
-      serviceSelect.value = String(price);
-      const iconMap = {
-        'Cuci Kiloan': ['fa-jug-detergent','kg'],
-        'Cuci Setrika': ['fa-temperature-high','kg'],
-        'Express 1 Hari': ['fa-bolt','kg'],
-        'Dry Clean': ['fa-shirt','pcs'],
-        'Cuci Karpet': ['fa-rug','pcs'],
-        'Cuci Tas': ['fa-bag-shopping','pcs'],
-        'Cuci Sofa': ['fa-couch','unit'],
-        'Bad Cover Besar': ['fa-bed','pcs']
-      };
-      const info = iconMap[serviceName] || ['fa-shirt','pcs'];
-      selectTransactionService(price, serviceName, info[0], info[1]);
-
-      const weightInput = document.getElementById('weight');
-      if (weightInput) weightInput.focus();
+    function savePromo(e) {
+      e.preventDefault();
+      const editId = document.getElementById('promoEditId').value;
+      const code = document.getElementById('promoCode').value.trim().toUpperCase();
+      const name = document.getElementById('promoName').value.trim();
+      const discount = parseFloat(document.getElementById('promoDiscount').value) || 0;
+      const minOrder = parseFloat(document.getElementById('promoMinOrder').value) || 0;
+      const expiry = document.getElementById('promoExpiry').value;
+      if (editId) {
+        const idx = promos.findIndex(p => p.id == editId);
+        if (idx !== -1) {
+          promos[idx] = { ...promos[idx], code, name, discount, minOrder, expiry };
+          sendNotification("Promosi Diperbarui!", `Promo ${code} berhasil diperbarui.`);
+        }
+      } else {
+        const newPromo = { id: Date.now(), code, name, discount, minOrder, expiry, status: 'Aktif' };
+        promos.unshift(newPromo);
+        sendNotification("Promosi Baru Ditambahkan!", `Promo ${code} (${name}) aktif.`);
+      }
+      resetPromoForm();
+      renderPromos();
     }
 
-    // Pilihan layanan berbasis ikon pada halaman Transaksi
-    function selectTransactionService(price, serviceName, icon, unit) {
-      const serviceType = document.getElementById('serviceType');
-      if (!serviceType) return;
-
-      serviceType.value = String(price);
-      const serviceNameInput = document.getElementById('serviceName');
-      if (serviceNameInput) serviceNameInput.value = serviceName;
-
-      document.querySelectorAll('.service-choice').forEach(btn => {
-        const active = btn.dataset.service === String(price);
-        btn.classList.toggle('active', active);
-        btn.classList.toggle('border-indigo-600', active);
-        btn.classList.toggle('bg-indigo-50', active);
-        btn.classList.toggle('text-indigo-700', active);
-        btn.classList.toggle('border-slate-200', !active);
-        btn.classList.toggle('bg-white', !active);
-        btn.classList.toggle('text-slate-600', !active);
+    function renderPromos() {
+      const tbody = document.getElementById('promoTableBody');
+      const promoSelect = document.getElementById('appliedPromo');
+      if (!tbody) return;
+      tbody.innerHTML = '';
+      let activeCount = 0;
+      if (promoSelect) {
+        promoSelect.innerHTML = '<option value="0">Tanpa Promo</option>';
+      }
+      promos.forEach(p => {
+        if (p.status === 'Aktif') activeCount++;
+        const tr = document.createElement('tr');
+        tr.className = "hover:bg-slate-800/30 transition";
+        tr.innerHTML = `
+          <td class="p-3.5"><span class="font-bold text-amber-400 uppercase">${p.code}</span><br><span class="text-[10px] text-slate-400">${p.name}</span></td>
+          <td class="p-3.5 font-bold text-emerald-400">Rp ${p.discount.toLocaleString('id-ID')}</td>
+          <td class="p-3.5 text-slate-300">Rp ${p.minOrder.toLocaleString('id-ID')}</td>
+          <td class="p-3.5 text-slate-400">${p.expiry}</td>
+          <td class="p-3.5"><span class="bg-amber-500/10 border border-amber-400/20 text-amber-400 px-2.5 py-0.5 rounded-full text-[10px] font-semibold">${p.status}</span></td>
+          <td class="p-3.5 text-center space-x-1">
+            <button onclick="editPromo(${p.id})" class="text-sky-400 hover:text-sky-300 p-1.5 transition"><i class="fa-solid fa-pen-to-square"></i></button>
+            <button onclick="deletePromo(${p.id})" class="text-rose-400 hover:text-rose-300 p-1.5 transition"><i class="fa-solid fa-trash"></i></button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+        if (promoSelect && p.status === 'Aktif') {
+          const opt = document.createElement('option');
+          opt.value = p.discount;
+          opt.innerText = `${p.code} - Potongan Rp ${p.discount.toLocaleString('id-ID')}`;
+          promoSelect.appendChild(opt);
+        }
       });
+      document.getElementById('statTotalPromos').innerText = `${activeCount} Promo`;
+    }
 
-      const label = document.getElementById('selectedServiceLabel');
-      if (label) label.textContent = `Layanan dipilih: ${serviceName} • Rp ${Number(price).toLocaleString('id-ID')} / ${unit}`;
+    function applyPromoToOrder() {
+      const promoValue = parseFloat(document.getElementById('appliedPromo').value) || 0;
+      document.getElementById('discount').value = promoValue;
       calculateTotal();
     }
 
-    // Kalkulasi Total Biaya & Diskon
+    function editPromo(id) {
+      const p = promos.find(item => item.id == id);
+      if (!p) return;
+      document.getElementById('promoEditId').value = p.id;
+      document.getElementById('promoCode').value = p.code;
+      document.getElementById('promoName').value = p.name;
+      document.getElementById('promoDiscount').value = p.discount;
+      document.getElementById('promoMinOrder').value = p.minOrder;
+      document.getElementById('promoExpiry').value = p.expiry;
+      document.getElementById('promoFormTitle').innerHTML = `<i class="fa-solid fa-pen-to-square"></i> Edit Promosi`;
+      document.getElementById('btnCancelPromo').classList.remove('hidden');
+    }
+
+    function resetPromoForm() {
+      document.getElementById('promoEditId').value = '';
+      document.getElementById('promoForm').reset();
+      document.getElementById('promoFormTitle').innerHTML = `<i class="fa-solid fa-circle-plus"></i> Buat Promosi Baru`;
+      document.getElementById('btnCancelPromo').classList.add('hidden');
+    }
+
+    function deletePromo(id) {
+      if (confirm('Hapus program promosi ini?')) {
+        promos = promos.filter(p => p.id != id);
+        renderPromos();
+      }
+    }
+
+    function selectServiceFromPrice(price, serviceName) {
+      switchPage('kasir');
+      selectTransactionService(price, serviceName);
+    }
+
+    function selectTransactionService(price, serviceName) {
+      document.getElementById('serviceType').value = price;
+      document.getElementById('serviceName').value = serviceName;
+      document.querySelectorAll('.service-choice').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.service === String(price) && btn.innerText.includes(serviceName));
+      });
+      calculateTotal();
+    }
+
     function calculateTotal() {
       const price = parseFloat(document.getElementById('serviceType').value) || 0;
       const weight = parseFloat(document.getElementById('weight').value) || 0;
       const discount = parseFloat(document.getElementById('discount').value) || 0;
-      
-      let subtotal = price * weight;
-      let total = Math.max(0, subtotal - discount);
-
+      let total = Math.max(0, (price * weight) - discount);
       document.getElementById('totalPreview').innerText = 'Rp ' + Math.round(total).toLocaleString('id-ID');
       return total;
     }
 
-    // Tambah Transaksi Kasir
     function addOrder(event) {
       event.preventDefault();
-      const name = document.getElementById('custName').value;
-      const phone = document.getElementById('custPhone').value;
-      const serviceSelect = document.getElementById('serviceType');
-      const serviceName = document.getElementById('serviceName')?.value || 'Cuci Kiloan';
-      const amount = calculateTotal();
-      const discount = parseFloat(document.getElementById('discount').value) || 0;
-      const payMethod = document.getElementById('payMethod').value;
-      const payStatus = document.getElementById('payStatus').value;
-      const note = document.getElementById('orderNote').value || '-';
-
+      const custName = document.getElementById('custName').value.trim();
+      const custPhone = document.getElementById('custPhone').value.trim();
       const newOrder = {
         id: 'NOTA-' + (100 + orders.length + 1),
-        name: name,
-        phone: phone,
-        service: serviceName,
-        amount: amount,
-        discount: discount,
-        payMethod: payMethod,
-        status: 'Proses Cuci',
-        payStatus: payStatus,
+        name: custName,
+        phone: custPhone,
+        service: document.getElementById('serviceName').value,
+        amount: calculateTotal(),
+        discount: parseFloat(document.getElementById('discount').value) || 0,
+        payMethod: document.getElementById('payMethod').value,
+        status: 'Proses',
+        payStatus: document.getElementById('payStatus').value,
         date: new Date().toISOString().split('T')[0],
-        note: note
+        note: document.getElementById('orderNote').value || '-'
       };
-
       orders.unshift(newOrder);
+      const existingCust = customers.find(c => c.phone === custPhone || c.name.toLowerCase() === custName.toLowerCase());
+      if (!existingCust) {
+        customers.push({
+          id: Date.now(),
+          name: custName,
+          phone: custPhone,
+          address: '-',
+          type: 'Reguler'
+        });
+        renderCustomers();
+      }
       renderOrders();
-      refreshAnalyticsCharts();
       document.getElementById('laundryForm').reset();
-      calculateTotal();
-      alert(`Transaksi berhasil disimpan dengan Kode Nota: ${newOrder.id}`);
+      selectTransactionService('7000', 'Cuci Kiloan');
+      sendNotification("Transaksi Baru Disimpan!", `Nota ${newOrder.id} a.n ${newOrder.name} (${newOrder.service}) berhasil dibuat.`);
+      alert(`Transaksi tersimpan dengan Kode: ${newOrder.id}`);
     }
 
-    // Render Tabel Antrean & Filter Transaksi
     function renderOrders() {
       const tbody = document.getElementById('orderTableBody');
       if (!tbody) return;
-
-      const searchKey = (document.getElementById('filterSearch')?.value || '').toLowerCase();
-      const statusKey = document.getElementById('filterStatus')?.value || 'Semua';
-      const paymentKey = document.getElementById('filterPayment')?.value || 'Semua';
-      const dateKey = document.getElementById('filterDate')?.value || '';
-
       tbody.innerHTML = '';
-      let totalIncome = 0;
-      let unpaidCount = 0;
-
-      const filteredOrders = orders.filter(item => {
-        const matchSearch = item.id.toLowerCase().includes(searchKey) || item.name.toLowerCase().includes(searchKey);
-        const matchStatus = statusKey === 'Semua' || item.status === statusKey;
-        const matchPayment = paymentKey === 'Semua' || item.payStatus === paymentKey;
-        const matchDate = !dateKey || item.date === dateKey;
-
-        return matchSearch && matchStatus && matchPayment && matchDate;
-      });
-
-      // Update Summary Stat Kasir
+      let totalIncome = 0, unpaidCount = 0;
       orders.forEach(o => {
         totalIncome += o.amount;
-        if (o.payStatus === 'Belum Lunas') unpaidCount++;
-      });
-      document.getElementById('statTotalOrders').innerText = `${orders.length} Nota`;
-      document.getElementById('statTotalIncome').innerText = `Rp ${totalIncome.toLocaleString('id-ID')}`;
-      document.getElementById('statUnpaidOrders').innerText = `${unpaidCount} Nota`;
-
-      if (filteredOrders.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="6" class="p-4 text-center text-xs text-slate-400">Tidak ada transaksi yang cocok.</td></tr>`;
-        return;
-      }
-
-      filteredOrders.forEach((item) => {
+        if(o.payStatus === 'Belum Lunas') unpaidCount++;
+        
+        const iconClass = serviceIconMap[o.service] || 'fa-basket-shopping text-sky-400';
         const tr = document.createElement('tr');
-        tr.className = "hover:bg-slate-50";
-
-        const payBadge = item.payStatus === 'Lunas' ? 'bg-emerald-100 text-emerald-700' : 'bg-amber-100 text-amber-700';
-
+        tr.className = "hover:bg-slate-800/30 transition";
         tr.innerHTML = `
-          <td class="p-3 text-xs">
-            <p class="font-bold text-indigo-600">${item.id}</p>
-            <p class="text-slate-400 text-[11px]">${item.date}</p>
-          </td>
-          <td class="p-3 text-xs">
-            <p class="font-semibold text-slate-800">${item.name}</p>
-            <p class="text-slate-400 text-[11px]">${item.phone}</p>
-          </td>
-          <td class="p-3 text-xs">
-            <p class="font-medium text-slate-700">${item.service}</p>
-            <p class="text-slate-400 text-[10px]">Ket: ${item.note}</p>
-          </td>
-          <td class="p-3 text-xs">
-            <p class="font-bold text-slate-800">Rp ${item.amount.toLocaleString('id-ID')}</p>
-            <span class="text-[10px] text-slate-400">${item.payMethod}</span>
-          </td>
-          <td class="p-3 text-xs space-y-1">
-            <div><span class="bg-indigo-50 text-indigo-600 px-2 py-0.5 rounded font-semibold text-[10px]">${item.status}</span></div>
-            <div><span class="${payBadge} px-2 py-0.5 rounded-full font-semibold text-[10px]">${item.payStatus}</span></div>
-          </td>
-          <td class="p-3 text-center text-xs">
-            <div class="flex items-center justify-center gap-2">
-              <button onclick="toggleOrderStatus('${item.id}')" title="Ubah Status Laundry" class="text-indigo-600 hover:text-indigo-800"><i class="fa-solid fa-rotate"></i></button>
-              <button onclick="togglePayStatus('${item.id}')" title="Ubah Status Bayar" class="text-emerald-600 hover:text-emerald-800"><i class="fa-solid fa-money-check-dollar"></i></button>
-              <button onclick="printReceipt('${item.id}')" title="Cetak Nota/Struk" class="text-sky-600 hover:text-sky-800"><i class="fa-solid fa-print"></i></button>
-              <button onclick="deleteOrder('${item.id}')" title="Hapus Transaksi" class="text-rose-500 hover:text-rose-700"><i class="fa-solid fa-trash"></i></button>
-            </div>
+          <td class="p-3.5"><span class="font-bold text-sky-400">${o.id}</span><br><span class="text-[10px] text-slate-400">${o.date}</span></td>
+          <td class="p-3.5"><span class="font-semibold">${o.name}</span><br><span class="text-[10px] text-slate-400">${o.phone}</span></td>
+          <td class="p-3.5"><div class="flex items-center gap-1.5"><i class="fa-solid ${iconClass} text-xs"></i><span>${o.service}</span></div></td>
+          <td class="p-3.5 font-bold text-emerald-400">Rp ${o.amount.toLocaleString('id-ID')}</td>
+          <td class="p-3.5"><span class="bg-sky-500/10 border border-sky-400/20 text-sky-400 px-2.5 py-0.5 rounded-full text-[10px] font-semibold">${o.status}</span></td>
+          <td class="p-3.5 text-center">
+            <button onclick="alert('Cetak Nota ${o.id}')" class="text-slate-400 hover:text-white p-1.5 transition"><i class="fa-solid fa-print"></i></button>
           </td>
         `;
         tbody.appendChild(tr);
       });
+      document.getElementById('statTotalOrders').innerText = `${orders.length} Nota`;
+      document.getElementById('statTotalIncome').innerText = `Rp ${totalIncome.toLocaleString('id-ID')}`;
+      document.getElementById('statUnpaidOrders').innerText = `${unpaidCount} Nota`;
     }
 
-    // Toggle Status Cucian
-    function toggleOrderStatus(id) {
-      const order = orders.find(o => o.id === id);
-      if (order) {
-        if (order.status === 'Proses Cuci') order.status = 'Selesai';
-        else if (order.status === 'Selesai') order.status = 'Sudah Diambil';
-        else order.status = 'Proses Cuci';
-        renderOrders();
-        refreshAnalyticsCharts();
+    function saveCustomer(e) {
+      e.preventDefault();
+      const editId = document.getElementById('custEditId').value;
+      const name = document.getElementById('custFormName').value.trim();
+      const phone = document.getElementById('custFormPhone').value.trim();
+      const type = document.getElementById('custFormType').value;
+      const address = document.getElementById('custFormAddress').value.trim() || '-';
+      if (editId) {
+        const idx = customers.findIndex(c => c.id == editId);
+        if (idx !== -1) {
+          customers[idx] = { ...customers[idx], name, phone, type, address };
+          sendNotification("Data Pelanggan Perbarui!", `Data ${name} berhasil disimpan.`);
+        }
+      } else {
+        const newCust = { id: Date.now(), name, phone, type, address };
+        customers.unshift(newCust);
+        sendNotification("Pelanggan Baru!", `${name} telah didaftarkan.`);
+      }
+      resetCustomerForm();
+      renderCustomers();
+    }
+
+    function renderCustomers() {
+      const tbody = document.getElementById('customerTableBody');
+      if (!tbody) return;
+      tbody.innerHTML = '';
+      let vipCount = 0, regCount = 0;
+      
+      const search = (document.getElementById('custSearch')?.value || '').toLowerCase();
+      const filterType = document.getElementById('custFilterType')?.value || 'Semua';
+
+      customers.forEach(c => {
+        if (c.type === 'VIP') vipCount++;
+        else regCount++;
+
+        const matchesSearch = c.name.toLowerCase().includes(search) || c.phone.includes(search) || c.address.toLowerCase().includes(search);
+        const matchesType = filterType === 'Semua' || c.type === filterType;
+
+        if (matchesSearch && matchesType) {
+          const custOrders = orders.filter(o => o.phone === c.phone || o.name.toLowerCase() === c.name.toLowerCase()).length;
+          const tr = document.createElement('tr');
+          tr.className = "hover:bg-slate-800/30 transition";
+          tr.innerHTML = `
+            <td class="p-3.5 font-bold">${c.name}</td>
+            <td class="p-3.5 text-slate-400">${c.phone}</td>
+            <td class="p-3.5 text-slate-400 max-w-xs truncate">${c.address}</td>
+            <td class="p-3.5">
+              <span class="${c.type === 'VIP' ? 'bg-amber-500/10 border-amber-500/20 text-amber-400' : 'bg-indigo-500/10 border-indigo-500/20 text-indigo-400'} border px-2.5 py-0.5 rounded-full text-[10px] font-semibold">
+                ${c.type}
+              </span>
+            </td>
+            <td class="p-3.5 text-center font-bold text-sky-400">${custOrders} Nota</td>
+            <td class="p-3.5 text-center space-x-1">
+              <button onclick="editCustomer(${c.id})" class="text-sky-400 hover:text-sky-300 p-1.5 transition"><i class="fa-solid fa-pen-to-square"></i></button>
+              <button onclick="deleteCustomer(${c.id})" class="text-rose-400 hover:text-rose-300 p-1.5 transition"><i class="fa-solid fa-trash"></i></button>
+            </td>
+          `;
+          tbody.appendChild(tr);
+        }
+      });
+
+      if(document.getElementById('statTotalCustomers')) document.getElementById('statTotalCustomers').innerText = `${customers.length} Orang`;
+      if(document.getElementById('statVipCustomers')) document.getElementById('statVipCustomers').innerText = `${vipCount} Orang`;
+      if(document.getElementById('statRegularCustomers')) document.getElementById('statRegularCustomers').innerText = `${regCount} Orang`;
+    }
+
+    function editCustomer(id) {
+      const c = customers.find(item => item.id == id);
+      if (!c) return;
+      document.getElementById('custEditId').value = c.id;
+      document.getElementById('custFormName').value = c.name;
+      document.getElementById('custFormPhone').value = c.phone;
+      document.getElementById('custFormType').value = c.type;
+      document.getElementById('custFormAddress').value = c.address;
+      document.getElementById('custFormTitle').innerHTML = `<i class="fa-solid fa-pen-to-square"></i> Edit Data Pelanggan`;
+      document.getElementById('btnCancelCustomer').classList.remove('hidden');
+    }
+
+    function resetCustomerForm() {
+      document.getElementById('custEditId').value = '';
+      document.getElementById('customerForm').reset();
+      document.getElementById('custFormTitle').innerHTML = `<i class="fa-solid fa-user-plus"></i> Tambah Pelanggan Baru`;
+      document.getElementById('btnCancelCustomer').classList.add('hidden');
+    }
+
+    function deleteCustomer(id) {
+      if (confirm('Hapus data pelanggan ini?')) {
+        customers = customers.filter(c => c.id != id);
+        renderCustomers();
       }
     }
 
-    // Toggle Status Bayar
-    function togglePayStatus(id) {
-      const order = orders.find(o => o.id === id);
-      if (order) {
-        order.payStatus = order.payStatus === 'Lunas' ? 'Belum Lunas' : 'Lunas';
-        renderOrders();
-        refreshAnalyticsCharts();
-      }
-    }
-
-    // Hapus Transaksi
-    function deleteOrder(id) {
-      if (confirm(`Apakah Anda yakin ingin menghapus transaksi ${id}?`)) {
-        orders = orders.filter(o => o.id !== id);
-        renderOrders();
-        refreshAnalyticsCharts();
-      }
-    }
-
-    // Cetak Struk Modal
-    function printReceipt(id) {
-      const item = orders.find(o => o.id === id);
-      if (!item) return;
-
-      const modal = document.getElementById('receiptModal');
-      const content = document.getElementById('receiptContent');
-
-      content.innerHTML = `
-        <div class="flex justify-between font-semibold">
-          <span>No Nota: ${item.id}</span>
-          <span>${item.date}</span>
-        </div>
-        <div class="border-b pb-2">
-          <p><strong>Pelanggan:</strong> ${item.name} (${item.phone})</p>
-        </div>
-        <div class="space-y-1 border-b pb-2">
-          <div class="flex justify-between">
-            <span>${item.service}</span>
-            <span>Rp ${item.amount.toLocaleString('id-ID')}</span>
-          </div>
-          ${item.discount > 0 ? `<div class="flex justify-between text-rose-500"><span>Diskon:</span><span>-Rp ${item.discount.toLocaleString('id-ID')}</span></div>` : ''}
-        </div>
-        <div class="flex justify-between font-bold text-sm pt-1">
-          <span>TOTAL:</span>
-          <span class="text-indigo-600">Rp ${item.amount.toLocaleString('id-ID')}</span>
-        </div>
-        <div class="text-[10px] text-slate-500 space-y-0.5 pt-2">
-          <p>Metode Bayar: ${item.payMethod} (${item.payStatus})</p>
-          <p>Catatan: ${item.note}</p>
-        </div>
-      `;
-
-      modal.classList.remove('hidden');
-      modal.classList.add('flex');
-    }
-
-    function closeReceiptModal() {
-      const modal = document.getElementById('receiptModal');
-      modal.classList.add('hidden');
-      modal.classList.remove('flex');
-    }
-
-    // Menambah Pengeluaran
-    function addExpense(event) {
-      event.preventDefault();
-      const name = document.getElementById('expenseName').value;
+    function addExpense(e) {
+      e.preventDefault();
+      const name = document.getElementById('expenseName').value.trim();
       const amount = parseFloat(document.getElementById('expenseAmount').value) || 0;
       const date = document.getElementById('expenseDate').value;
-
-      expenses.push({ id: Date.now(), name: name, amount: amount, date: date });
-      renderExpenses();
-      refreshAnalyticsCharts();
+      
+      expenses.unshift({ id: Date.now(), name, amount, date });
       document.getElementById('expenseForm').reset();
+      document.getElementById('expenseDate').value = new Date().toISOString().split('T')[0];
+      renderExpenses();
+      sendNotification("Pengeluaran Dicatat!", `${name} sebesar Rp ${amount.toLocaleString('id-ID')} ditambahkan.`);
     }
 
     function renderExpenses() {
@@ -1276,280 +2055,62 @@ button.bg-white:hover{background:#11416c!important}
       tbody.innerHTML = '';
       let total = 0;
 
-      expenses.forEach((item) => {
-        total += item.amount;
+      expenses.forEach(ex => {
+        total += ex.amount;
         const tr = document.createElement('tr');
+        tr.className = "hover:bg-slate-800/30 transition";
         tr.innerHTML = `
-          <td class="p-3 text-xs">${item.date}</td>
-          <td class="p-3 text-xs font-semibold">${item.name}</td>
-          <td class="p-3 text-xs font-bold text-rose-600">Rp ${item.amount.toLocaleString('id-ID')}</td>
-          <td class="p-3 text-center"><button onclick="deleteExpense(${item.id})" class="text-rose-500 text-xs"><i class="fa-solid fa-trash"></i></button></td>
+          <td class="p-3.5 text-slate-400">${ex.date}</td>
+          <td class="p-3.5 font-semibold">${ex.name}</td>
+          <td class="p-3.5 font-bold text-rose-400">Rp ${ex.amount.toLocaleString('id-ID')}</td>
+          <td class="p-3.5 text-center">
+            <button onclick="deleteExpense(${ex.id})" class="text-rose-400 hover:text-rose-300 p-1.5 transition"><i class="fa-solid fa-trash"></i></button>
+          </td>
         `;
         tbody.appendChild(tr);
       });
 
-      document.getElementById('totalExpenseDisplay').innerText = 'Rp ' + total.toLocaleString('id-ID');
+      if(document.getElementById('totalExpenseDisplay')) {
+        document.getElementById('totalExpenseDisplay').innerText = `Rp ${total.toLocaleString('id-ID')}`;
+      }
     }
 
     function deleteExpense(id) {
-      expenses = expenses.filter(i => i.id !== id);
-      renderExpenses();
-      refreshAnalyticsCharts();
+      if(confirm('Hapus catatan pengeluaran ini?')) {
+        expenses = expenses.filter(e => e.id != id);
+        renderExpenses();
+      }
     }
 
-    // Pencarian Status Nota (Pelanggan)
-    function searchInvoice(event) {
-      event.preventDefault();
-      const keyword = document.getElementById('searchKeyword').value.trim().toLowerCase();
-      const resultArea = document.getElementById('searchResultArea');
+    function searchInvoice(e) {
+      e.preventDefault();
+      const kw = document.getElementById('searchKeyword').value.trim().toLowerCase();
+      const resArea = document.getElementById('searchResultArea');
+      resArea.classList.remove('hidden');
 
-      resultArea.classList.remove('hidden');
-
-      const matchedOrders = orders.filter(o => 
-        o.id.toLowerCase().includes(keyword) || o.phone.includes(keyword)
-      );
-
-      if (matchedOrders.length === 0) {
-        resultArea.innerHTML = `
-          <div class="bg-white p-6 rounded-2xl shadow-md border border-slate-200 text-center space-y-2 az-card">
-            <i class="fa-solid fa-circle-exclamation text-3xl text-rose-500"></i>
-            <h3 class="font-bold text-slate-800">Nota Tidak Ditemukan</h3>
-            <p class="text-xs text-slate-500">Pastikan Kode Nota atau Nomor WhatsApp yang Anda masukkan sudah benar.</p>
-          </div>
-        `;
+      const found = orders.filter(o => o.id.toLowerCase().includes(kw) || o.phone.includes(kw));
+      if (found.length === 0) {
+        resArea.innerHTML = `<div class="az-glass p-6 text-center text-slate-400 text-xs">Data transaksi tidak ditemukan.</div>`;
         return;
       }
 
-      let htmlContent = '';
-      matchedOrders.forEach(item => {
-        const isFinished = item.status === 'Selesai' || item.status === 'Sudah Diambil';
-        const statusBadgeClass = isFinished ? 'bg-emerald-100 text-emerald-700' : 'bg-amber-100 text-amber-700';
-
-        htmlContent += `
-          <div class="bg-white p-6 rounded-2xl shadow-md border border-slate-200 space-y-4 az-card">
-            <div class="flex justify-between items-start border-b border-slate-100 pb-3">
-              <div>
-                <span class="text-xs font-bold text-indigo-600 bg-indigo-50 px-2 py-1 rounded-md">${item.id}</span>
-                <h3 class="font-bold text-slate-800 text-base mt-1">${item.name}</h3>
-                <p class="text-xs text-slate-400">${item.phone} • Tanggal Masuk: ${item.date}</p>
-              </div>
-              <span class="${statusBadgeClass} text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1">
-                <i class="fa-solid ${isFinished ? 'fa-check-circle' : 'fa-clock'}"></i> ${item.status}
-              </span>
+      resArea.innerHTML = found.map(o => `
+        <div class="az-glass p-6 space-y-3">
+          <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+            <div>
+              <span class="font-extrabold text-sky-400 text-sm">${o.id}</span>
+              <p class="text-[10px] text-slate-400">${o.date}</p>
             </div>
-
-            <div class="grid grid-cols-2 gap-4 text-xs">
-              <div>
-                <p class="text-slate-400">Layanan</p>
-                <p class="font-semibold text-slate-700">${item.service}</p>
-              </div>
-              <div>
-                <p class="text-slate-400">Status Pembayaran</p>
-                <p class="font-bold ${item.payStatus === 'Lunas' ? 'text-emerald-600' : 'text-amber-600'}">${item.payStatus}</p>
-              </div>
-            </div>
-
-            <div class="bg-slate-50 p-3 rounded-xl flex justify-between items-center text-xs">
-              <span class="font-medium text-slate-600">Total Biaya:</span>
-              <span class="font-extrabold text-indigo-600 text-base">Rp ${item.amount.toLocaleString('id-ID')}</span>
-            </div>
+            <span class="bg-sky-500/10 border border-sky-400/20 text-sky-400 px-3 py-1 rounded-full text-xs font-semibold">${o.status}</span>
           </div>
-        `;
-      });
-
-      resultArea.innerHTML = htmlContent;
-    }
-
-    // Inisialisasi Grafik Analytics
-    let chartInstances = {};
-
-    function destroyChart(id) {
-      if (chartInstances[id]) {
-        chartInstances[id].destroy();
-        delete chartInstances[id];
-      }
-    }
-
-    const SERVICE_CATALOG = [
-      { name: 'Cuci Kiloan', price: 7000, unit: 'kg', icon: 'fa-jug-detergent' },
-      { name: 'Cuci Setrika', price: 10000, unit: 'kg', icon: 'fa-temperature-high' },
-      { name: 'Express 1 Hari', price: 15000, unit: 'kg', icon: 'fa-bolt' },
-      { name: 'Dry Clean', price: 30000, unit: 'pcs', icon: 'fa-shirt' },
-      { name: 'Cuci Karpet', price: 25000, unit: 'pcs', icon: 'fa-rug' },
-      { name: 'Cuci Tas', price: 35000, unit: 'pcs', icon: 'fa-bag-shopping' },
-      { name: 'Cuci Sofa', price: 50000, unit: 'unit', icon: 'fa-couch' },
-      { name: 'Bad Cover Besar', price: 40000, unit: 'pcs', icon: 'fa-bed' }
-    ];
-
-    function getServiceStats() {
-      const stats = Object.fromEntries(SERVICE_CATALOG.map(service => [service.name, 0]));
-      orders.forEach(o => {
-        const serviceName = String(o.service || '').trim();
-        const matched = SERVICE_CATALOG.find(service =>
-          serviceName === service.name || serviceName.includes(service.name)
-        );
-        if (matched) stats[matched.name]++;
-      });
-      return stats;
-    }
-
-    function getPaymentStats() {
-      const stats = { 'QRIS / E-Wallet': 0, 'Tunai': 0, 'Transfer Bank': 0 };
-      orders.forEach(o => {
-        if (o.payMethod === 'QRIS') stats['QRIS / E-Wallet']++;
-        else if (o.payMethod === 'Tunai') stats['Tunai']++;
-        else if (o.payMethod === 'Transfer') stats['Transfer Bank']++;
-      });
-      return stats;
-    }
-
-    function initCharts() {
-      const serviceStats = getServiceStats();
-      const paymentStats = getPaymentStats();
-
-      destroyChart('financialTrendChart');
-      const ctxFinancial = document.getElementById('financialTrendChart')?.getContext('2d');
-      if (ctxFinancial) {
-        chartInstances.financialTrendChart = new Chart(ctxFinancial, {
-          type: 'line',
-          data: {
-            labels: ['Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus'],
-            datasets: [
-              {
-                label: 'Pendapatan (Rp)',
-                data: [8500000, 9200000, 10500000, 11000000, 11800000, orders.reduce((s, o) => s + o.amount, 0)],
-                borderColor: '#4f46e5',
-                backgroundColor: 'rgba(79, 70, 229, 0.1)',
-                fill: true,
-                tension: 0.3
-              },
-              {
-                label: 'Pengeluaran (Rp)',
-                data: [3100000, 3400000, 3200000, 3900000, 3600000, expenses.reduce((s, e) => s + e.amount, 0)],
-                borderColor: '#f43f5e',
-                backgroundColor: 'rgba(244, 63, 94, 0.05)',
-                fill: true,
-                tension: 0.3
-              }
-            ]
-          },
-          options: { responsive: true, maintainAspectRatio: false }
-        });
-      }
-
-      destroyChart('serviceDistributionChart');
-      const ctxService = document.getElementById('serviceDistributionChart')?.getContext('2d');
-      if (ctxService) {
-        const serviceLabels = SERVICE_CATALOG.map(service => service.name);
-        const serviceValues = SERVICE_CATALOG.map(service => serviceStats[service.name] || 0);
-        const totalServices = serviceValues.reduce((sum, value) => sum + value, 0);
-
-        chartInstances.serviceDistributionChart = new Chart(ctxService, {
-          type: 'doughnut',
-          data: {
-            labels: serviceLabels,
-            datasets: [{
-              label: 'Jumlah Transaksi',
-              data: serviceValues,
-              backgroundColor: [
-                '#2563eb', '#06b6d4', '#8b5cf6', '#f59e0b',
-                '#10b981', '#ec4899', '#6366f1', '#14b8a6'
-              ],
-              hoverBackgroundColor: [
-                '#1d4ed8', '#0891b2', '#7c3aed', '#d97706',
-                '#059669', '#db2777', '#4f46e5', '#0f766e'
-              ],
-              borderWidth: 3,
-              borderColor: '#0f172a',
-              hoverOffset: 8
-            }]
-          },
-          options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            cutout: '58%',
-            plugins: {
-              legend: {
-                position: 'bottom',
-                labels: { boxWidth: 12, padding: 10, font: { size: 10 } }
-              },
-              tooltip: {
-                callbacks: {
-                  label: function(context) {
-                    const value = context.parsed || 0;
-                    const percent = totalServices ? ((value / totalServices) * 100).toFixed(1) : '0.0';
-                    return ` ${context.label}: ${value} transaksi (${percent}%)`;
-                  }
-                }
-              }
-            }
-          }
-        });
-      }
-
-      destroyChart('weeklyOrdersChart');
-      const ctxWeekly = document.getElementById('weeklyOrdersChart')?.getContext('2d');
-      if (ctxWeekly) {
-        const labels = ['Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab', 'Min'];
-        const counts = labels.map((_, day) => {
-          return orders.filter(o => {
-            const d = new Date(o.date + 'T00:00:00').getDay();
-            const mondayBased = (d + 6) % 7;
-            return mondayBased === day;
-          }).length;
-        });
-        chartInstances.weeklyOrdersChart = new Chart(ctxWeekly, {
-          type: 'bar',
-          data: {
-            labels,
-            datasets: [{ label: 'Jumlah Nota', data: counts, backgroundColor: '#6366f1', borderRadius: 6 }]
-          },
-          options: { responsive: true, maintainAspectRatio: false }
-        });
-      }
-
-      destroyChart('paymentMethodChart');
-      const ctxPayment = document.getElementById('paymentMethodChart')?.getContext('2d');
-      if (ctxPayment) {
-        chartInstances.paymentMethodChart = new Chart(ctxPayment, {
-          type: 'pie',
-          data: {
-            labels: Object.keys(paymentStats),
-            datasets: [{ data: Object.values(paymentStats) }]
-          },
-          options: { responsive: true, maintainAspectRatio: false }
-        });
-      }
-
-      destroyChart('dashboardMiniChart');
-      const ctxMini = document.getElementById('dashboardMiniChart')?.getContext('2d');
-      if (ctxMini) {
-        chartInstances.dashboardMiniChart = new Chart(ctxMini, {
-          type: 'bar',
-          data: {
-            labels: ['Transaksi', 'Pendapatan', 'Pengeluaran'],
-            datasets: [{
-              label: 'Ringkasan',
-              data: [
-                orders.length,
-                orders.reduce((s, o) => s + o.amount, 0),
-                expenses.reduce((s, e) => s + e.amount, 0)
-              ],
-              backgroundColor: ['#6366f1', '#10b981', '#f43f5e'],
-              borderRadius: 8
-            }]
-          },
-          options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            scales: { y: { beginAtZero: true } }
-          }
-        });
-      }
-    }
-
-    function refreshAnalyticsCharts() {
-      if (chartsInitialized) initCharts();
+          <div class="grid grid-cols-2 gap-2 text-xs">
+            <div><p class="text-slate-400 text-[10px]">Pelanggan</p><p class="font-semibold">${o.name}</p></div>
+            <div><p class="text-slate-400 text-[10px]">Layanan</p><p class="font-semibold">${o.service}</p></div>
+            <div><p class="text-slate-400 text-[10px]">Total Bayar</p><p class="font-bold text-emerald-400">Rp ${o.amount.toLocaleString('id-ID')}</p></div>
+            <div><p class="text-slate-400 text-[10px]">Status Bayar</p><p class="font-semibold">${o.payStatus}</p></div>
+          </div>
+        </div>
+      `).join('');
     }
   </script>
 </body>
