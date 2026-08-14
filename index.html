@@ -108,12 +108,35 @@ tr:hover {
 ::-webkit-scrollbar-track { background: #070b12; }
 ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 4px; }
 ::-webkit-scrollbar-thumb:hover { background: #38bdf8; }
+/* Notification Dropdown Styling */
+.notif-dropdown {
+  background: rgba(11, 15, 25, 0.95) !important;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(56, 189, 248, 0.25) !important;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6), 0 0 20px rgba(56, 189, 248, 0.15);
+  border-radius: 16px !important;
+}
+.notif-item {
+  transition: background 0.2s ease;
+}
+.notif-item:hover {
+  background: rgba(56, 189, 248, 0.1) !important;
+}
+/* Modal Futuristic Styling */
+.modal-content {
+  background: rgba(11, 15, 25, 0.95) !important;
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(56, 189, 248, 0.3) !important;
+  color: #fff !important;
+  border-radius: 20px !important;
+}
 </style>
 </head>
 <body class="min-h-screen flex flex-col justify-between">
   <!-- NAVBAR ATAS -->
   <nav class="navbar az-navbar navbar-dark fixed-top px-3 shadow-sm z-50">
-    <div class="container-fluid">
+    <div class="container-fluid flex items-center justify-between">
       <div class="d-flex align-items-center">
         <!-- Tombol Hamburger Mobile -->
         <button class="navbar-toggler d-lg-none me-2 border-0 text-white" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarMobile">
@@ -130,8 +153,44 @@ tr:hover {
           <span class="navbar-brand mb-0 h1 font-bold tracking-wide bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-sky-200 to-purple-400">Armuzna Laundry</span>
         </div>
       </div>
+      
+      <div class="flex items-center gap-2">
+        <!-- Tombol Notifikasi Modern -->
+        <div class="dropdown me-1">
+          <button class="btn border-0 relative p-2 text-slate-300 hover:text-white transition rounded-xl bg-slate-800/50 hover:bg-slate-800 focus:outline-none" type="button" id="dropdownNotif" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fa-solid fa-bell text-lg text-cyan-400"></i>
+            <!-- Badge Jumlah Notifikasi -->
+            <span id="notifBadge" class="absolute -top-1 -right-1 bg-gradient-to-r from-pink-500 to-rose-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full border-2 border-slate-900 animate-pulse">
+              2
+            </span>
+          </button>
+          <!-- Dropdown Menu Notifikasi -->
+          <ul class="dropdown-menu dropdown-menu-end notif-dropdown p-3 w-80 sm:w-96 mt-2 shadow-2xl" aria-labelledby="dropdownNotif">
+            <li class="flex items-center justify-between pb-2 border-b border-slate-800 mb-2">
+              <span class="font-bold text-sm text-white flex items-center gap-2">
+                <i class="fa-solid fa-bell text-cyan-400"></i> Notifikasi
+              </span>
+              <span id="notifCountText" class="text-[10px] bg-cyan-500/20 text-cyan-300 px-2 py-0.5 rounded-full border border-cyan-500/30">2 Belum Dibaca</span>
+            </li>
+            <div id="notifList" class="max-h-72 overflow-y-auto space-y-2 pr-1">
+              <!-- Item Notifikasi Dynamic via JS -->
+            </div>
+            <li class="pt-2 border-t border-slate-800 mt-2 text-center">
+              <button onclick="markAllNotifAsRead()" class="text-[11px] text-cyan-400 hover:text-cyan-300 font-semibold transition bg-transparent border-0">
+                Tandai Semua Sudah Dibaca
+              </button>
+            </li>
+          </ul>
+        </div>
+
+        <!-- AUTH CONTROL: Tombol Login / Log Out -->
+        <div id="authContainer">
+          <!-- Dinamis via JS -->
+        </div>
+      </div>
     </div>
   </nav>
+
   <!-- WRAPPER UTAMA -->
   <div class="container-fluid w-full flex-grow px-0" style="margin-top: 56px;">
     <div class="row g-0">
@@ -150,18 +209,11 @@ tr:hover {
               <i class="fa-solid fa-tags text-cyan-400"></i> Daftar Harga
             </a>
           </li>
-          <!-- NAVIGASI PROMO & DISCOUNT DESKTOP -->
-          <li class="nav-item">
-            <a class="nav-link text-slate-300 menu-btn py-2.5 px-3 flex items-center gap-3" href="#" data-page="promo">
-              <i class="fa-solid fa-percent text-cyan-400"></i> Promo & Diskon
-            </a>
-          </li>
           <li class="nav-item">
             <a class="nav-link text-slate-300 menu-btn py-2.5 px-3 flex items-center gap-3" href="#" data-page="kasir">
               <i class="fa-solid fa-cash-register text-cyan-400"></i> Transaksi
             </a>
           </li>
-          <!-- NAVIGASI DATA PELANGGAN DESKTOP -->
           <li class="nav-item">
             <a class="nav-link text-slate-300 menu-btn py-2.5 px-3 flex items-center gap-3" href="#" data-page="pelanggan">
               <i class="fa-solid fa-users text-cyan-400"></i> Data Pelanggan
@@ -182,8 +234,15 @@ tr:hover {
               <i class="fa-solid fa-chart-pie text-cyan-400"></i> Business Analytics
             </a>
           </li>
+          <!-- TOMBOL LOGOUT SIDEBAR DESKTOP -->
+          <li class="nav-item mt-4 pt-3 border-t border-slate-800" id="sidebarLogoutItem">
+            <button onclick="handleLogout()" class="w-full text-rose-400 hover:text-rose-300 hover:bg-rose-500/10 py-2.5 px-3 rounded-xl flex items-center gap-3 text-sm font-semibold transition border border-rose-500/20">
+              <i class="fa-solid fa-right-from-bracket text-rose-400"></i> Log Out
+            </button>
+          </li>
         </ul>
       </nav>
+
       <!-- KONTEN UTAMA -->
       <main id="mainContent" class="col-12 col-lg-9 col-xl-10 ms-sm-auto px-4 py-6">
         
@@ -195,7 +254,7 @@ tr:hover {
                 Selamat Datang di Armuzna Laundry
               </span>
               <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight leading-tight text-white">
-                Solusi Laundry <span class="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400">Modern & 3D Analytics</span>
+                Solusi Laundry <span class="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400">Modern & Systems Analytics </span>
               </h2>
               <p class="text-slate-300 text-sm md:text-base leading-relaxed">
                 Sistem pengelolaan laundry berbasis digital dengan visualisasi analytics modern 3D secara real-time.
@@ -203,9 +262,6 @@ tr:hover {
               <div class="pt-2 flex flex-wrap gap-3">
                 <button onclick="switchPage('kasir')" class="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold px-6 py-2.5 rounded-xl text-sm shadow-lg shadow-cyan-500/25 transition flex items-center gap-2">
                   <i class="fa-solid fa-plus-circle"></i> Buat Transaksi
-                </button>
-                <button onclick="switchPage('promo')" class="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-400 hover:to-purple-500 text-white font-bold px-6 py-2.5 rounded-xl text-sm shadow-lg shadow-pink-500/25 transition flex items-center gap-2">
-                  <i class="fa-solid fa-percent"></i> Cek Promo & Diskon
                 </button>
                 <button onclick="switchPage('layanan')" class="bg-slate-800/80 hover:bg-slate-700 text-white font-semibold px-5 py-2.5 rounded-xl text-sm border border-slate-600 transition flex items-center gap-2">
                   <i class="fa-solid fa-tags"></i> Lihat Daftar Harga
@@ -233,6 +289,7 @@ tr:hover {
             </div>
           </div>
         </div>
+
         <!-- 2. HALAMAN DAFTAR HARGA -->
         <div id="page-layanan" class="hidden space-y-6">
           <h2 class="text-2xl font-bold text-white flex items-center gap-2">
@@ -319,98 +376,6 @@ tr:hover {
                 Pilih Layanan
               </button>
             </div>
-          </div>
-        </div>
-
-        <!-- HALAMAN PROMO DAN DISCOUNT (BARU) -->
-        <div id="page-promo" class="hidden space-y-6">
-          <div class="flex flex-col sm:flex-row justify-between sm:items-center gap-3">
-            <div>
-              <h2 class="text-2xl font-bold text-white flex items-center gap-2">
-                <i class="fa-solid fa-percent text-pink-400"></i> Promo & Diskon Spesial
-              </h2>
-              <p class="text-xs text-slate-400">Gunakan kode voucher saat bertransaksi untuk mendapatkan potongan harga.</p>
-            </div>
-          </div>
-
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <!-- Promo Item 1 -->
-            <div class="az-card p-6 flex flex-col justify-between space-y-4 border-l-4 border-l-pink-500 relative overflow-hidden">
-              <div class="space-y-2">
-                <div class="flex justify-between items-start">
-                  <span class="bg-pink-500/20 text-pink-300 text-[10px] font-bold px-2.5 py-1 rounded-full border border-pink-500/30 uppercase">Diskon 20%</span>
-                  <span class="text-xs text-slate-400"><i class="fa-regular fa-clock me-1"></i>S.d 31 Aug</span>
-                </div>
-                <h3 class="text-lg font-bold text-white">Pelanggan Baru</h3>
-                <p class="text-xs text-slate-300">Dapatkan diskon 20% untuk transaksi pertama semua jenis layanan laundry.</p>
-              </div>
-              <div class="pt-3 border-t border-slate-700/50 flex justify-between items-center">
-                <div>
-                  <span class="text-[10px] text-slate-400 block uppercase">Kode Promo</span>
-                  <span class="font-mono font-bold text-pink-400 text-sm tracking-wider">BARU20</span>
-                </div>
-                <button onclick="applyPromoCode('BARU20', 20)" class="bg-pink-600 hover:bg-pink-500 text-white text-xs px-3 py-1.5 rounded-lg font-semibold transition flex items-center gap-1">
-                  <i class="fa-solid fa-copy"></i> Gunakan
-                </button>
-              </div>
-            </div>
-
-            <!-- Promo Item 2 -->
-            <div class="az-card p-6 flex flex-col justify-between space-y-4 border-l-4 border-l-purple-500 relative overflow-hidden">
-              <div class="space-y-2">
-                <div class="flex justify-between items-start">
-                  <span class="bg-purple-500/20 text-purple-300 text-[10px] font-bold px-2.5 py-1 rounded-full border border-purple-500/30 uppercase">Potongan Rp 10.000</span>
-                  <span class="text-xs text-slate-400"><i class="fa-regular fa-clock me-1"></i>Member VIP</span>
-                </div>
-                <h3 class="text-lg font-bold text-white">VIP Member Super</h3>
-                <p class="text-xs text-slate-300">Khusus untuk pelanggan terdaftar VIP Member dengan minimal transaksi Rp 50.000.</p>
-              </div>
-              <div class="pt-3 border-t border-slate-700/50 flex justify-between items-center">
-                <div>
-                  <span class="text-[10px] text-slate-400 block uppercase">Kode Promo</span>
-                  <span class="font-mono font-bold text-purple-400 text-sm tracking-wider">VIP10K</span>
-                </div>
-                <button onclick="applyPromoCode('VIP10K', 10000)" class="bg-purple-600 hover:bg-purple-500 text-white text-xs px-3 py-1.5 rounded-lg font-semibold transition flex items-center gap-1">
-                  <i class="fa-solid fa-copy"></i> Gunakan
-                </button>
-              </div>
-            </div>
-
-            <!-- Promo Item 3 -->
-            <div class="az-card p-6 flex flex-col justify-between space-y-4 border-l-4 border-l-cyan-500 relative overflow-hidden">
-              <div class="space-y-2">
-                <div class="flex justify-between items-start">
-                  <span class="bg-cyan-500/20 text-cyan-300 text-[10px] font-bold px-2.5 py-1 rounded-full border border-cyan-500/30 uppercase">Hemat 15%</span>
-                  <span class="text-xs text-slate-400"><i class="fa-regular fa-clock me-1"></i>Cuci Sepatu</span>
-                </div>
-                <h3 class="text-lg font-bold text-white">Bersih Sepatu Promo</h3>
-                <p class="text-xs text-slate-300">Diskon khusus untuk pembersihan sepatu dan karpet minimal 2 pasang/m².</p>
-              </div>
-              <div class="pt-3 border-t border-slate-700/50 flex justify-between items-center">
-                <div>
-                  <span class="text-[10px] text-slate-400 block uppercase">Kode Promo</span>
-                  <span class="font-mono font-bold text-cyan-400 text-sm tracking-wider">SEPATU15</span>
-                </div>
-                <button onclick="applyPromoCode('SEPATU15', 5000)" class="bg-cyan-600 hover:bg-cyan-500 text-white text-xs px-3 py-1.5 rounded-lg font-semibold transition flex items-center gap-1">
-                  <i class="fa-solid fa-copy"></i> Gunakan
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Form Tambah Promo Baru -->
-          <div class="az-card p-5 mt-6">
-            <h3 class="text-lg font-bold text-white mb-3 flex items-center gap-2">
-              <i class="fa-solid fa-plus-circle text-pink-400"></i> Buat Promo Baru
-            </h3>
-            <form id="promoForm" onsubmit="addNewPromo(event)" class="grid grid-cols-1 md:grid-cols-4 gap-3">
-              <input type="text" id="promoTitle" placeholder="Judul Promo" required class="px-3 py-2 text-sm">
-              <input type="text" id="promoCode" placeholder="Kode Promo (e.g. HEMAT5K)" required class="px-3 py-2 text-sm uppercase">
-              <input type="number" id="promoValue" placeholder="Nilai Diskon (Rp)" required class="px-3 py-2 text-sm">
-              <button type="submit" class="bg-pink-600 hover:bg-pink-500 text-white font-semibold py-2 rounded-xl transition text-sm flex items-center justify-center gap-2">
-                <i class="fa-solid fa-save"></i> Simpan Promo
-              </button>
-            </form>
           </div>
         </div>
 
@@ -535,6 +500,7 @@ tr:hover {
             </section>
           </div>
         </div>
+
         <!-- 4. HALAMAN DATA PELANGGAN -->
         <div id="page-pelanggan" class="hidden space-y-6">
           <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
@@ -549,7 +515,7 @@ tr:hover {
             </div>
             <div class="az-card p-4 flex items-center justify-between">
               <div>
-                <p class="text-xs text-slate-400 font-bold uppercase">Member Member/VIP</p>
+                <p class="text-xs text-slate-400 font-bold uppercase">Member VIP</p>
                 <h3 id="statMemberCustomers" class="text-xl font-bold text-purple-400 mt-1">0 Orang</h3>
               </div>
               <div class="w-10 h-10 bg-purple-500/20 text-purple-400 rounded-xl flex items-center justify-center text-lg">
@@ -575,7 +541,7 @@ tr:hover {
               <form id="customerForm" onsubmit="addCustomer(event)" class="space-y-3">
                 <div>
                   <label class="block text-xs font-semibold uppercase text-slate-400 mb-1">Nama Lengkap</label>
-                  <input type="text" id="custFormName" required placeholder="Armuzna Laundry" class="w-full px-3 py-2 text-sm">
+                  <input type="text" id="custFormName" required placeholder="Contoh: Ani Wijaya" class="w-full px-3 py-2 text-sm">
                 </div>
                 <div>
                   <label class="block text-xs font-semibold uppercase text-slate-400 mb-1">No. WhatsApp</label>
@@ -632,6 +598,7 @@ tr:hover {
             </section>
           </div>
         </div>
+
         <!-- 5. HALAMAN PENGELUARAN -->
         <div id="page-pengeluaran" class="hidden space-y-6">
           <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -674,6 +641,7 @@ tr:hover {
             </div>
           </div>
         </div>
+
         <!-- 6. HALAMAN CEK STATUS (LACAK) -->
         <div id="page-lacak" class="hidden space-y-6">
           <div class="az-card p-6 max-w-xl mx-auto space-y-4 text-center">
@@ -692,6 +660,7 @@ tr:hover {
             <!-- Hasil Lacak JS -->
           </div>
         </div>
+
         <!-- 7. HALAMAN BUSINESS ANALYTICS -->
         <div id="page-analytics" class="hidden space-y-6">
           <div class="az-card p-5 space-y-3">
@@ -724,6 +693,7 @@ tr:hover {
       </main>
     </div>
   </div>
+
   <!-- SIDEBAR HANDPHONE (Offcanvas Mobile) -->
   <div class="offcanvas offcanvas-start text-white d-lg-none" tabindex="-1" id="sidebarMobile" style="background-color: rgba(11, 15, 25, 0.95) !important; backdrop-filter: blur(16px);">
     <div class="offcanvas-header border-bottom border-secondary">
@@ -735,7 +705,7 @@ tr:hover {
       </h5>
       <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
-    <div class="offcanvas-body">
+    <div class="offcanvas-body flex flex-col justify-between">
       <ul class="nav flex-column gap-1" id="mobileMenu">
         <li class="nav-item">
           <a class="nav-link text-slate-300 menu-btn active py-2.5 px-3 flex items-center gap-3" href="#" data-page="beranda">
@@ -747,18 +717,11 @@ tr:hover {
             <i class="fa-solid fa-tags text-cyan-400"></i> Daftar Harga
           </a>
         </li>
-        <!-- NAVIGASI PROMO & DISCOUNT MOBILE -->
-        <li class="nav-item">
-          <a class="nav-link text-slate-300 menu-btn py-2.5 px-3 flex items-center gap-3" href="#" data-page="promo">
-            <i class="fa-solid fa-percent text-cyan-400"></i> Promo & Diskon
-          </a>
-        </li>
         <li class="nav-item">
           <a class="nav-link text-slate-300 menu-btn py-2.5 px-3 flex items-center gap-3" href="#" data-page="kasir">
             <i class="fa-solid fa-cash-register text-cyan-400"></i> Transaksi
           </a>
         </li>
-        <!-- NAVIGASI DATA PELANGGAN MOBILE -->
         <li class="nav-item">
           <a class="nav-link text-slate-300 menu-btn py-2.5 px-3 flex items-center gap-3" href="#" data-page="pelanggan">
             <i class="fa-solid fa-users text-cyan-400"></i> Data Pelanggan
@@ -780,8 +743,48 @@ tr:hover {
           </a>
         </li>
       </ul>
+      <div class="pt-4 border-t border-slate-800" id="mobileLogoutItem">
+        <button onclick="handleLogout()" class="w-full text-rose-400 hover:text-rose-300 hover:bg-rose-500/10 py-2.5 px-3 rounded-xl flex items-center justify-center gap-3 text-sm font-semibold transition border border-rose-500/20">
+          <i class="fa-solid fa-right-from-bracket text-rose-400"></i> Log Out
+        </button>
+      </div>
     </div>
   </div>
+
+  <!-- MODAL SIGN IN / LOGIN SYSTEM -->
+  <div class="modal fade" id="authModal" tabindex="-1" aria-labelledby="authModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content p-2">
+        <div class="modal-header border-b border-slate-800">
+          <h5 class="modal-title font-bold text-lg flex items-center gap-2 text-cyan-400" id="authModalTitle">
+            <i class="fa-solid fa-right-to-bracket"></i> Sign In Kasir / Admin
+          </h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body space-y-4">
+          <form id="authForm" onsubmit="handleAuthSubmit(event)" class="space-y-3">
+            <div>
+              <label class="block text-xs font-semibold uppercase text-slate-400 mb-1">Username / Email</label>
+              <input type="text" id="authUsername" required placeholder="admin" class="w-full px-3 py-2 text-sm">
+            </div>
+            <div>
+              <label class="block text-xs font-semibold uppercase text-slate-400 mb-1">Password</label>
+              <input type="password" id="authPassword" required placeholder="••••••••" class="w-full px-3 py-2 text-sm">
+            </div>
+            <button type="submit" id="btnSubmitAuth" class="w-full bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold py-2.5 rounded-xl shadow-lg transition text-sm mt-2 flex items-center justify-center gap-2">
+              <i class="fa-solid fa-sign-in-alt"></i> Masuk Akun
+            </button>
+          </form>
+          <div class="text-center pt-2 border-t border-slate-800/80">
+            <p id="toggleAuthText" class="text-xs text-slate-400">
+              Belum punya akun? <a href="#" onclick="toggleAuthMode(event)" class="text-cyan-400 hover:underline font-semibold">Daftar Akun Baru</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- FOOTER MODERN -->
   <footer class="bg-slate-950/80 border-t border-slate-800/80 text-slate-400 py-6 px-4 mt-auto">
     <div class="container-fluid max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-xs">
@@ -794,7 +797,6 @@ tr:hover {
       <div class="flex gap-6 text-slate-400">
         <a href="#" onclick="switchPage('beranda')" class="hover:text-cyan-400 transition">Beranda</a>
         <a href="#" onclick="switchPage('layanan')" class="hover:text-cyan-400 transition">Harga</a>
-        <a href="#" onclick="switchPage('promo')" class="hover:text-cyan-400 transition">Promo</a>
         <a href="#" onclick="switchPage('kasir')" class="hover:text-cyan-400 transition">Transaksi</a>
         <a href="#" onclick="switchPage('pelanggan')" class="hover:text-cyan-400 transition">Pelanggan</a>
         <a href="#" onclick="switchPage('analytics')" class="hover:text-cyan-400 transition">Analytics</a>
@@ -804,10 +806,21 @@ tr:hover {
       </div>
     </div>
   </footer>
+
   <!-- Bootstrap 5 JS Bundle -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
   <!-- JAVASCRIPT SYSTEM -->
   <script>
+    // System User Session
+    let currentUser = JSON.parse(localStorage.getItem('armuzna_user')) || {
+      isLoggedIn: true,
+      username: 'Admin Armuzna',
+      role: 'Kasir Utama'
+    };
+
+    let isRegisterMode = false;
+
     // Database Simulasi Real-time
     let orders = [
       { id: 'NOTA-101', name: 'Armuzna Laundry', phone: '08889009698', service: 'Cuci Kiloan', amount: 21000, paymentMethod: 'Tunai', status: 'Lunas', progress: 'Selesai', date: '2026-08-14' },
@@ -820,6 +833,7 @@ tr:hover {
     let expenses = [
       { date: '2026-08-14', desc: 'Deterjen & Softener 5kg', amount: 75000 }
     ];
+
     // Toggle Desktop Sidebar
     const toggleBtn = document.getElementById('toggleDesktopSidebar');
     const sidebarDesktop = document.getElementById('sidebarDesktop');
@@ -836,19 +850,119 @@ tr:hover {
         }
       });
     }
+
     // Inisialisasi awal
     document.addEventListener("DOMContentLoaded", () => {
+      renderAuthUI();
       const hashPage = location.hash.replace('#', '');
-      const validPages = ['beranda', 'layanan', 'promo', 'kasir', 'pelanggan', 'pengeluaran', 'lacak', 'analytics'];
+      const validPages = ['beranda', 'layanan', 'kasir', 'pelanggan', 'pengeluaran', 'lacak', 'analytics'];
       switchPage(validPages.includes(hashPage) ? hashPage : 'beranda', false);
       renderOrders();
       renderCustomers();
       renderExpenses();
       calculateTotal();
     });
+
+    // RENDER AUTHENTICATION STATE
+    function renderAuthUI() {
+      const authContainer = document.getElementById('authContainer');
+      const sidebarLogoutItem = document.getElementById('sidebarLogoutItem');
+      const mobileLogoutItem = document.getElementById('mobileLogoutItem');
+
+      if (currentUser && currentUser.isLoggedIn) {
+        authContainer.innerHTML = `
+          <div class="dropdown">
+            <button class="btn border-0 bg-slate-800/80 hover:bg-slate-800 text-white flex items-center gap-2 rounded-xl py-1.5 px-3 text-xs" type="button" id="userMenu" data-bs-toggle="dropdown" aria-expanded="false">
+              <div class="w-6 h-6 rounded-full bg-cyan-500/20 text-cyan-400 flex items-center justify-center font-bold text-[10px] border border-cyan-500/30">
+                <i class="fa-solid fa-user"></i>
+              </div>
+              <span class="font-semibold hidden sm:inline">${currentUser.username}</span>
+              <i class="fa-solid fa-chevron-down text-[10px] text-slate-400"></i>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end notif-dropdown p-2 mt-2 text-xs shadow-2xl" aria-labelledby="userMenu">
+              <li class="px-3 py-2 border-b border-slate-800">
+                <p class="font-bold text-white m-0">${currentUser.username}</p>
+                <p class="text-[10px] text-slate-400 m-0">${currentUser.role || 'Kasir'}</p>
+              </li>
+              <li>
+                <button onclick="handleLogout()" class="w-full text-left px-3 py-2 text-rose-400 hover:bg-rose-500/10 rounded-lg flex items-center gap-2 transition mt-1">
+                  <i class="fa-solid fa-right-from-bracket"></i> Log Out
+                </button>
+              </li>
+            </ul>
+          </div>
+        `;
+        if (sidebarLogoutItem) sidebarLogoutItem.style.display = 'block';
+        if (mobileLogoutItem) mobileLogoutItem.style.display = 'block';
+      } else {
+        authContainer.innerHTML = `
+          <button onclick="openAuthModal()" class="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold px-4 py-2 rounded-xl text-xs transition flex items-center gap-2 shadow-lg shadow-cyan-500/20">
+            <i class="fa-solid fa-right-to-bracket"></i> Sign In
+          </button>
+        `;
+        if (sidebarLogoutItem) sidebarLogoutItem.style.display = 'none';
+        if (mobileLogoutItem) mobileLogoutItem.style.display = 'none';
+      }
+    }
+
+    // AUTH ACTIONS (LOGIN / REGISTER / LOGOUT)
+    function openAuthModal() {
+      const modalEl = document.getElementById('authModal');
+      const bsModal = new bootstrap.Modal(modalEl);
+      bsModal.show();
+    }
+
+    function toggleAuthMode(e) {
+      e.preventDefault();
+      isRegisterMode = !isRegisterMode;
+      const title = document.getElementById('authModalTitle');
+      const btnSubmit = document.getElementById('btnSubmitAuth');
+      const toggleText = document.getElementById('toggleAuthText');
+
+      if (isRegisterMode) {
+        title.innerHTML = `<i class="fa-solid fa-user-plus"></i> Registrasi Kasir Baru`;
+        btnSubmit.innerHTML = `<i class="fa-solid fa-user-plus"></i> Daftar Akun`;
+        toggleText.innerHTML = `Sudah punya akun? <a href="#" onclick="toggleAuthMode(event)" class="text-cyan-400 hover:underline font-semibold">Sign In Sekarang</a>`;
+      } else {
+        title.innerHTML = `<i class="fa-solid fa-right-to-bracket"></i> Sign In Kasir / Admin`;
+        btnSubmit.innerHTML = `<i class="fa-solid fa-sign-in-alt"></i> Masuk Akun`;
+        toggleText.innerHTML = `Belum punya akun? <a href="#" onclick="toggleAuthMode(event)" class="text-cyan-400 hover:underline font-semibold">Daftar Akun Baru</a>`;
+      }
+    }
+
+    function handleAuthSubmit(e) {
+      e.preventDefault();
+      const username = document.getElementById('authUsername').value.trim();
+
+      currentUser = {
+        isLoggedIn: true,
+        username: username || 'Pengguna Laundry',
+        role: 'Kasir Active'
+      };
+
+      localStorage.setItem('armuzna_user', JSON.stringify(currentUser));
+      renderAuthUI();
+
+      const modalEl = document.getElementById('authModal');
+      const bsModal = bootstrap.Modal.getInstance(modalEl);
+      if (bsModal) bsModal.hide();
+
+      alert(isRegisterMode ? 'Pendaftaran berhasil! Anda telah otomatis masuk.' : 'Sign In berhasil! Selamat datang kembali.');
+    }
+
+    function handleLogout() {
+      if (confirm('Apakah Anda yakin ingin keluar / Log Out dari sistem?')) {
+        currentUser = { isLoggedIn: false, username: '', role: '' };
+        localStorage.removeItem('armuzna_user');
+        renderAuthUI();
+        alert('Anda telah berhasil Log Out.');
+        openAuthModal();
+      }
+    }
+
     // Pindah Halaman
     function switchPage(pageId, updateHash = true) {
-      const pages = ['beranda', 'layanan', 'promo', 'kasir', 'pelanggan', 'pengeluaran', 'lacak', 'analytics'];
+      const pages = ['beranda', 'layanan', 'kasir', 'pelanggan', 'pengeluaran', 'lacak', 'analytics'];
       pages.forEach(p => {
         const el = document.getElementById(`page-${p}`);
         if (el) el.classList.add('hidden');
@@ -881,27 +995,6 @@ tr:hover {
       });
     });
 
-    // Fitur Promo & Diskon
-    function applyPromoCode(code, value) {
-      switchPage('kasir');
-      const discountInput = document.getElementById('discount');
-      if (discountInput) {
-        discountInput.value = value;
-        calculateTotal();
-        alert(`Kode Promo "${code}" berhasil digunakan! Nilai diskon: Rp ${value.toLocaleString('id-ID')}`);
-      }
-    }
-
-    function addNewPromo(e) {
-      e.preventDefault();
-      const title = document.getElementById('promoTitle').value;
-      const code = document.getElementById('promoCode').value.toUpperCase();
-      const value = parseFloat(document.getElementById('promoValue').value) || 0;
-      
-      alert(`Promo "${title}" (${code}) berhasil didaftarkan!`);
-      document.getElementById('promoForm').reset();
-    }
-
     // Perhitungan Kasir Otomatis
     function calculateTotal() {
       const servicePrice = parseFloat(document.getElementById('serviceSelect').value) || 0;
@@ -926,7 +1019,8 @@ tr:hover {
     function selectTransactionService() {
       calculateTotal();
     }
-    // Tambah Transaksi Kasir (Otomatis Sync ke Data Pelanggan)
+
+    // Tambah Transaksi Kasir
     function addOrder(e) {
       e.preventDefault();
       const name = document.getElementById('custName').value.trim();
@@ -949,7 +1043,7 @@ tr:hover {
         progress: 'Proses',
         date: new Date().toISOString().split('T')[0]
       });
-      // Cek apakah pelanggan sudah ada, jika belum otomatis simpan
+      // Cek apakah pelanggan sudah ada
       let existingCust = customers.find(c => c.phone === phone);
       if (!existingCust) {
         customers.push({
@@ -965,7 +1059,8 @@ tr:hover {
       renderCustomers();
       alert(`Transaksi ${newId} Berhasil Disimpan!`);
     }
-    // Render Tabel Transaksi Kasir
+
+    // Render Tabel Transaksi Kasir & Update Notifikasi
     function renderOrders() {
       const tbody = document.getElementById('ordersTableBody');
       if (!tbody) return;
@@ -1010,7 +1105,68 @@ tr:hover {
       document.getElementById('statTotalOrders').innerText = `${orders.length} Nota`;
       document.getElementById('statTotalIncome').innerText = `Rp ${totalIncome.toLocaleString('id-ID')}`;
       document.getElementById('statUnpaidOrders').innerText = `${unpaidCount} Nota`;
+      
+      updateNotifications();
     }
+
+    // Fungsi Update Notifikasi Otomatis
+    function updateNotifications() {
+      const notifList = document.getElementById('notifList');
+      const notifBadge = document.getElementById('notifBadge');
+      const notifCountText = document.getElementById('notifCountText');
+      if (!notifList) return;
+      let notifItems = [];
+      orders.forEach(o => {
+        if (o.status === 'Belum Lunas') {
+          notifItems.push({
+            type: 'warning',
+            title: 'Pembayaran Belum Lunas',
+            desc: `Nota ${o.id} (${o.name}) belum melunasi tagihan Rp ${o.amount.toLocaleString('id-ID')}.`,
+            icon: 'fa-clock text-amber-400 bg-amber-500/20 border-amber-500/30',
+            time: 'Baru saja'
+          });
+        }
+        if (o.progress === 'Selesai') {
+          notifItems.push({
+            type: 'info',
+            title: 'Cucian Selesai',
+            desc: `Nota ${o.id} (${o.name}) telah selesai diproses.`,
+            icon: 'fa-check text-emerald-400 bg-emerald-500/20 border-emerald-500/30',
+            time: 'Siap diambil'
+          });
+        }
+      });
+      if (notifItems.length === 0) {
+        notifList.innerHTML = `<li class="text-center text-xs text-slate-500 py-4">Tidak ada notifikasi baru</li>`;
+        notifBadge.style.display = 'none';
+        notifCountText.innerText = '0 Belum Dibaca';
+      } else {
+        notifBadge.style.display = 'inline-block';
+        notifBadge.innerText = notifItems.length;
+        notifCountText.innerText = `${notifItems.length} Notifikasi`;
+        
+        notifList.innerHTML = notifItems.map(n => `
+          <li class="notif-item p-2.5 rounded-xl bg-slate-900/60 border border-slate-800 flex gap-3 items-start cursor-pointer" onclick="switchPage('kasir')">
+            <div class="w-8 h-8 rounded-lg flex items-center justify-center shrink-0 border mt-0.5 ${n.icon}">
+              <i class="fa-solid ${n.icon.split(' ')[0]} text-xs"></i>
+            </div>
+            <div class="flex-1">
+              <p class="text-xs text-white font-medium m-0">${n.title}</p>
+              <p class="text-[11px] text-slate-400 m-0">${n.desc}</p>
+              <span class="text-[9px] text-slate-500">${n.time}</span>
+            </div>
+          </li>
+        `).join('');
+      }
+    }
+
+    function markAllNotifAsRead() {
+      const notifBadge = document.getElementById('notifBadge');
+      const notifCountText = document.getElementById('notifCountText');
+      if (notifBadge) notifBadge.style.display = 'none';
+      if (notifCountText) notifCountText.innerText = '0 Belum Dibaca';
+    }
+
     // --- FUNGSI DATA PELANGGAN ---
     function addCustomer(e) {
       e.preventDefault();
@@ -1029,6 +1185,7 @@ tr:hover {
       document.getElementById('customerForm').reset();
       renderCustomers();
     }
+
     function renderCustomers() {
       const tbody = document.getElementById('customersTableBody');
       if (!tbody) return;
@@ -1078,17 +1235,20 @@ tr:hover {
       document.getElementById('statMemberCustomers').innerText = `${vipCount} Orang`;
       document.getElementById('statRegularCustomers').innerText = `${regCount} Orang`;
     }
+
     function quickOrderForCustomer(name, phone) {
       switchPage('kasir');
       document.getElementById('custName').value = name;
       document.getElementById('custPhone').value = phone;
     }
+
     function deleteCustomer(phone) {
       if (confirm('Apakah Anda yakin ingin menghapus pelanggan ini dari database?')) {
         customers = customers.filter(c => c.phone !== phone);
         renderCustomers();
       }
     }
+
     // Print Invoice
     function printInvoice(index) {
       const order = orders[index];
@@ -1148,14 +1308,17 @@ tr:hover {
       printWindow.document.write(invoiceHTML);
       printWindow.document.close();
     }
+
     function togglePayment(index) {
       orders[index].status = orders[index].status === 'Lunas' ? 'Belum Lunas' : 'Lunas';
       renderOrders();
     }
+
     function toggleProgress(index) {
       orders[index].progress = orders[index].progress === 'Proses' ? 'Selesai' : 'Proses';
       renderOrders();
     }
+
     // Fungsi Pengeluaran
     function addExpense(e) {
       e.preventDefault();
@@ -1170,6 +1333,7 @@ tr:hover {
       renderExpenses();
       alert('Pengeluaran berhasil dicatat!');
     }
+
     function renderExpenses() {
       const tbody = document.getElementById('expenseTableBody');
       if (!tbody) return;
@@ -1184,6 +1348,7 @@ tr:hover {
         tbody.appendChild(tr);
       });
     }
+
     // Fungsi Lacak Status Nota
     function searchOrder() {
       const query = document.getElementById('searchInput').value.trim().toUpperCase();
@@ -1208,6 +1373,7 @@ tr:hover {
         resContainer.innerHTML = `<p class="text-amber-400 text-sm">Nota dengan Kode "${query}" Tidak Ditemukan.</p>`;
       }
     }
+
     // Visual Chart Render
     let chartInstances = {};
     function initCharts() {
