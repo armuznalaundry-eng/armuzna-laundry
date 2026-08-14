@@ -116,6 +116,7 @@ tr:hover {
   border: 1px solid rgba(56, 189, 248, 0.25) !important;
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6), 0 0 20px rgba(56, 189, 248, 0.15);
   border-radius: 16px !important;
+  min-width: 300px;
 }
 .notif-item {
   transition: background 0.2s ease;
@@ -147,36 +148,29 @@ tr:hover {
           <i class="fa-solid fa-bars"></i>
         </button>
         <div class="d-flex align-items-center space-x-3 cursor-pointer" onclick="switchPage('beranda')">
-          <!-- Icon sabun di navbar telah dihapus di sini -->
+          <!-- Brand Logo/Name optional -->
         </div>
       </div>
       
-      <div class="flex items-center gap-2">
-        <!-- Tombol Notifikasi Modern -->
-        <div class="dropdown me-1">
-          <button class="btn border-0 relative p-2 text-slate-300 hover:text-white transition rounded-xl bg-slate-800/50 hover:bg-slate-800 focus:outline-none" type="button" id="dropdownNotif" data-bs-toggle="dropdown" aria-expanded="false">
-            <i class="fa-solid fa-bell text-lg text-cyan-400"></i>
-            <!-- Badge Jumlah Notifikasi -->
-            <span id="notifBadge" class="absolute -top-1 -right-1 bg-gradient-to-r from-pink-500 to-rose-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full border-2 border-slate-900 animate-pulse">
-              2
+      <div class="flex items-center gap-3">
+        <!-- FITUR NOTIFIKASI DI NAVIGASI -->
+        <div class="dropdown" id="notificationContainer">
+          <button class="btn btn-dark position-relative border-secondary rounded-xl px-3 py-2 text-slate-300 hover:text-cyan-400" type="button" id="notifDropdownMenu" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fa-solid fa-bell text-lg"></i>
+            <span id="notifBadgeCount" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-pink-500 text-white text-[10px] border border-slate-900">
+              0
             </span>
           </button>
-          <!-- Dropdown Menu Notifikasi -->
-          <ul class="dropdown-menu dropdown-menu-end notif-dropdown p-3 w-80 sm:w-96 mt-2 shadow-2xl" aria-labelledby="dropdownNotif">
-            <li class="flex items-center justify-between pb-2 border-b border-slate-800 mb-2">
-              <span class="font-bold text-sm text-white flex items-center gap-2">
-                <i class="fa-solid fa-bell text-cyan-400"></i> Notifikasi
+          <ul class="dropdown-menu dropdown-menu-end notif-dropdown p-2 mt-2 shadow-2xl" aria-labelledby="notifDropdownMenu" style="width: 320px; max-height: 400px; overflow-y: auto;">
+            <li class="px-3 py-2 border-b border-slate-800 flex justify-between items-center">
+              <span class="font-bold text-white text-xs uppercase tracking-wider flex items-center gap-2">
+                <i class="fa-solid fa-bell text-cyan-400"></i> Notifikasi Sistem
               </span>
-              <span id="notifCountText" class="text-[10px] bg-cyan-500/20 text-cyan-300 px-2 py-0.5 rounded-full border border-cyan-500/30">2 Belum Dibaca</span>
+              <button onclick="markAllNotificationsRead()" class="text-[10px] text-cyan-400 hover:underline bg-transparent border-0 p-0">Tandai Dibaca</button>
             </li>
-            <div id="notifList" class="max-h-72 overflow-y-auto space-y-2 pr-1">
-              <!-- Item Notifikasi Dynamic via JS -->
+            <div id="notifListContainer" class="py-1">
+              <!-- Item notifikasi dinamis via JS -->
             </div>
-            <li class="pt-2 border-t border-slate-800 mt-2 text-center">
-              <button onclick="markAllNotifAsRead()" class="text-[11px] text-cyan-400 hover:text-cyan-300 font-semibold transition bg-transparent border-0">
-                Tandai Semua Sudah Dibaca
-              </button>
-            </li>
           </ul>
         </div>
 
@@ -187,7 +181,6 @@ tr:hover {
       </div>
     </div>
   </nav>
-
   <!-- WRAPPER UTAMA -->
   <div class="container-fluid w-full flex-grow px-0" style="margin-top: 56px;">
     <div class="row g-0">
@@ -239,7 +232,6 @@ tr:hover {
           </li>
         </ul>
       </nav>
-
       <!-- KONTEN UTAMA -->
       <main id="mainContent" class="col-12 col-lg-9 col-xl-10 ms-sm-auto px-4 py-6">
         
@@ -286,7 +278,6 @@ tr:hover {
             </div>
           </div>
         </div>
-
         <!-- 2. HALAMAN DAFTAR HARGA -->
         <div id="page-layanan" class="hidden space-y-6">
           <h2 class="text-2xl font-bold text-white flex items-center gap-2">
@@ -375,7 +366,6 @@ tr:hover {
             </div>
           </div>
         </div>
-
         <!-- 3. HALAMAN TRANSAKSI (KASIR) -->
         <div id="page-kasir" class="hidden space-y-6">
           <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
@@ -497,7 +487,6 @@ tr:hover {
             </section>
           </div>
         </div>
-
         <!-- 4. HALAMAN DATA PELANGGAN -->
         <div id="page-pelanggan" class="hidden space-y-6">
           <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
@@ -595,7 +584,6 @@ tr:hover {
             </section>
           </div>
         </div>
-
         <!-- 5. HALAMAN PENGELUARAN -->
         <div id="page-pengeluaran" class="hidden space-y-6">
           <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -638,7 +626,6 @@ tr:hover {
             </div>
           </div>
         </div>
-
         <!-- 6. HALAMAN CEK STATUS (LACAK) -->
         <div id="page-lacak" class="hidden space-y-6">
           <div class="az-card p-6 max-w-xl mx-auto space-y-4 text-center">
@@ -657,7 +644,6 @@ tr:hover {
             <!-- Hasil Lacak JS -->
           </div>
         </div>
-
         <!-- 7. HALAMAN BUSINESS ANALYTICS -->
         <div id="page-analytics" class="hidden space-y-6">
           <div class="az-card p-5 space-y-3">
@@ -690,7 +676,6 @@ tr:hover {
       </main>
     </div>
   </div>
-
   <!-- SIDEBAR HANDPHONE (Offcanvas Mobile) -->
   <div class="offcanvas offcanvas-start text-white d-lg-none" tabindex="-1" id="sidebarMobile" style="background-color: rgba(11, 15, 25, 0.95) !important; backdrop-filter: blur(16px);">
     <div class="offcanvas-header border-bottom border-secondary">
@@ -747,7 +732,6 @@ tr:hover {
       </div>
     </div>
   </div>
-
   <!-- MODAL SIGN IN / LOGIN SYSTEM -->
   <div class="modal fade" id="authModal" tabindex="-1" aria-labelledby="authModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
@@ -781,7 +765,6 @@ tr:hover {
       </div>
     </div>
   </div>
-
   <!-- FOOTER MODERN -->
   <footer class="bg-slate-950/80 border-t border-slate-800/80 text-slate-400 py-6 px-4 mt-auto">
     <div class="container-fluid max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-xs">
@@ -803,10 +786,8 @@ tr:hover {
       </div>
     </div>
   </footer>
-
   <!-- Bootstrap 5 JS Bundle -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
   <!-- JAVASCRIPT SYSTEM -->
   <script>
     // System User Session
@@ -815,8 +796,13 @@ tr:hover {
       username: 'Admin Armuzna',
       role: 'Kasir Utama'
     };
-
     let isRegisterMode = false;
+    
+    // Sistem Notifikasi (Dynamic Notifications)
+    let notifications = [
+      { id: 1, title: 'Transaksi Baru', message: 'Nota-101 berhasil ditambahkan.', time: 'Baru saja', read: false, type: 'order' },
+      { id: 2, title: 'Pengingat Sistem', message: 'Cek stok deterjen operasional hari ini.', time: '1 jam lalu', read: false, type: 'system' }
+    ];
 
     // Database Simulasi Real-time
     let orders = [
@@ -830,7 +816,6 @@ tr:hover {
     let expenses = [
       { date: '2026-08-14', desc: 'Deterjen & Softener 5kg', amount: 75000 }
     ];
-
     // Toggle Desktop Sidebar
     const toggleBtn = document.getElementById('toggleDesktopSidebar');
     const sidebarDesktop = document.getElementById('sidebarDesktop');
@@ -847,10 +832,10 @@ tr:hover {
         }
       });
     }
-
     // Inisialisasi awal
     document.addEventListener("DOMContentLoaded", () => {
       renderAuthUI();
+      renderNotifications();
       const hashPage = location.hash.replace('#', '');
       const validPages = ['beranda', 'layanan', 'kasir', 'pelanggan', 'pengeluaran', 'lacak', 'analytics'];
       switchPage(validPages.includes(hashPage) ? hashPage : 'beranda', false);
@@ -860,12 +845,69 @@ tr:hover {
       calculateTotal();
     });
 
+    // FUNGSI RENDER NOTIFIKASI
+    function renderNotifications() {
+      const container = document.getElementById('notifListContainer');
+      const badge = document.getElementById('notifBadgeCount');
+      if (!container || !badge) return;
+
+      const unreadCount = notifications.filter(n => !n.read).length;
+      badge.innerText = unreadCount;
+      badge.style.display = unreadCount > 0 ? 'inline-block' : 'none';
+
+      if (notifications.length === 0) {
+        container.innerHTML = `<div class="text-center py-3 text-slate-400 text-xs">Tidak ada notifikasi</div>`;
+        return;
+      }
+
+      container.innerHTML = '';
+      notifications.forEach(n => {
+        const item = document.createElement('div');
+        item.className = `p-2.5 rounded-xl notif-item cursor-pointer mb-1 border-b border-slate-800/50 ${n.read ? 'opacity-60' : 'bg-cyan-500/5'}`;
+        item.onclick = () => markNotificationRead(n.id);
+        item.innerHTML = `
+          <div class="flex justify-between items-start">
+            <span class="font-bold text-white text-xs flex items-center gap-1.5">
+              <i class="fa-solid ${n.type === 'order' ? 'fa-receipt text-cyan-400' : 'fa-circle-info text-purple-400'}"></i> ${n.title}
+            </span>
+            <span class="text-[9px] text-slate-400">${n.time}</span>
+          </div>
+          <p class="text-[11px] text-slate-300 m-0 mt-1">${n.message}</p>
+        `;
+        container.appendChild(item);
+      });
+    }
+
+    function addNotification(title, message, type = 'system') {
+      notifications.unshift({
+        id: Date.now(),
+        title: title,
+        message: message,
+        time: 'Baru saja',
+        read: false,
+        type: type
+      });
+      renderNotifications();
+    }
+
+    function markNotificationRead(id) {
+      const notif = notifications.find(n => n.id === id);
+      if (notif) {
+        notif.read = true;
+        renderNotifications();
+      }
+    }
+
+    function markAllNotificationsRead() {
+      notifications.forEach(n => n.read = true);
+      renderNotifications();
+    }
+
     // RENDER AUTHENTICATION STATE
     function renderAuthUI() {
       const authContainer = document.getElementById('authContainer');
       const sidebarLogoutItem = document.getElementById('sidebarLogoutItem');
       const mobileLogoutItem = document.getElementById('mobileLogoutItem');
-
       if (currentUser && currentUser.isLoggedIn) {
         authContainer.innerHTML = `
           <div class="dropdown">
@@ -901,21 +943,18 @@ tr:hover {
         if (mobileLogoutItem) mobileLogoutItem.style.display = 'none';
       }
     }
-
     // AUTH ACTIONS (LOGIN / REGISTER / LOGOUT)
     function openAuthModal() {
       const modalEl = document.getElementById('authModal');
       const bsModal = new bootstrap.Modal(modalEl);
       bsModal.show();
     }
-
     function toggleAuthMode(e) {
       e.preventDefault();
       isRegisterMode = !isRegisterMode;
       const title = document.getElementById('authModalTitle');
       const btnSubmit = document.getElementById('btnSubmitAuth');
       const toggleText = document.getElementById('toggleAuthText');
-
       if (isRegisterMode) {
         title.innerHTML = `<i class="fa-solid fa-user-plus"></i> Registrasi Kasir Baru`;
         btnSubmit.innerHTML = `<i class="fa-solid fa-user-plus"></i> Daftar Akun`;
@@ -926,37 +965,32 @@ tr:hover {
         toggleText.innerHTML = `Belum punya akun? <a href="#" onclick="toggleAuthMode(event)" class="text-cyan-400 hover:underline font-semibold">Daftar Akun Baru</a>`;
       }
     }
-
     function handleAuthSubmit(e) {
       e.preventDefault();
       const username = document.getElementById('authUsername').value.trim();
-
       currentUser = {
         isLoggedIn: true,
         username: username || 'Pengguna Laundry',
         role: 'Kasir Active'
       };
-
       localStorage.setItem('armuzna_user', JSON.stringify(currentUser));
       renderAuthUI();
-
+      addNotification('Autentikasi Berhasil', `Pengguna ${currentUser.username} masuk ke sistem.`, 'system');
       const modalEl = document.getElementById('authModal');
       const bsModal = bootstrap.Modal.getInstance(modalEl);
       if (bsModal) bsModal.hide();
-
       alert(isRegisterMode ? 'Pendaftaran berhasil! Anda telah otomatis masuk.' : 'Sign In berhasil! Selamat datang kembali.');
     }
-
     function handleLogout() {
       if (confirm('Apakah Anda yakin ingin keluar / Log Out dari sistem?')) {
         currentUser = { isLoggedIn: false, username: '', role: '' };
         localStorage.removeItem('armuzna_user');
         renderAuthUI();
+        addNotification('Sistem Log Out', 'Sesi pengguna telah diakhiri.', 'system');
         alert('Anda telah berhasil Log Out.');
         openAuthModal();
       }
     }
-
     // Pindah Halaman
     function switchPage(pageId, updateHash = true) {
       const pages = ['beranda', 'layanan', 'kasir', 'pelanggan', 'pengeluaran', 'lacak', 'analytics'];
@@ -991,7 +1025,6 @@ tr:hover {
         switchPage(page);
       });
     });
-
     // Perhitungan Kasir Otomatis
     function calculateTotal() {
       const servicePrice = parseFloat(document.getElementById('serviceSelect').value) || 0;
@@ -1016,7 +1049,6 @@ tr:hover {
     function selectTransactionService() {
       calculateTotal();
     }
-
     // Tambah Transaksi Kasir
     function addOrder(e) {
       e.preventDefault();
@@ -1040,7 +1072,6 @@ tr:hover {
         progress: 'Proses',
         date: new Date().toISOString().split('T')[0]
       });
-      // Cek apakah pelanggan sudah ada
       let existingCust = customers.find(c => c.phone === phone);
       if (!existingCust) {
         customers.push({
@@ -1054,10 +1085,10 @@ tr:hover {
       calculateTotal();
       renderOrders();
       renderCustomers();
+      addNotification('Transaksi Baru', `Nota ${newId} (${name}) senilai Rp ${totalAmount.toLocaleString('id-ID')} berhasil dibuat.`, 'order');
       alert(`Transaksi ${newId} Berhasil Disimpan!`);
     }
-
-    // Render Tabel Transaksi Kasir & Update Notifikasi
+    // Render Tabel Transaksi Kasir
     function renderOrders() {
       const tbody = document.getElementById('ordersTableBody');
       if (!tbody) return;
@@ -1102,68 +1133,7 @@ tr:hover {
       document.getElementById('statTotalOrders').innerText = `${orders.length} Nota`;
       document.getElementById('statTotalIncome').innerText = `Rp ${totalIncome.toLocaleString('id-ID')}`;
       document.getElementById('statUnpaidOrders').innerText = `${unpaidCount} Nota`;
-      
-      updateNotifications();
     }
-
-    // Fungsi Update Notifikasi Otomatis
-    function updateNotifications() {
-      const notifList = document.getElementById('notifList');
-      const notifBadge = document.getElementById('notifBadge');
-      const notifCountText = document.getElementById('notifCountText');
-      if (!notifList) return;
-      let notifItems = [];
-      orders.forEach(o => {
-        if (o.status === 'Belum Lunas') {
-          notifItems.push({
-            type: 'warning',
-            title: 'Pembayaran Belum Lunas',
-            desc: `Nota ${o.id} (${o.name}) belum melunasi tagihan Rp ${o.amount.toLocaleString('id-ID')}.`,
-            icon: 'fa-clock text-amber-400 bg-amber-500/20 border-amber-500/30',
-            time: 'Baru saja'
-          });
-        }
-        if (o.progress === 'Selesai') {
-          notifItems.push({
-            type: 'info',
-            title: 'Cucian Selesai',
-            desc: `Nota ${o.id} (${o.name}) telah selesai diproses.`,
-            icon: 'fa-check text-emerald-400 bg-emerald-500/20 border-emerald-500/30',
-            time: 'Siap diambil'
-          });
-        }
-      });
-      if (notifItems.length === 0) {
-        notifList.innerHTML = `<li class="text-center text-xs text-slate-500 py-4">Tidak ada notifikasi baru</li>`;
-        notifBadge.style.display = 'none';
-        notifCountText.innerText = '0 Belum Dibaca';
-      } else {
-        notifBadge.style.display = 'inline-block';
-        notifBadge.innerText = notifItems.length;
-        notifCountText.innerText = `${notifItems.length} Notifikasi`;
-        
-        notifList.innerHTML = notifItems.map(n => `
-          <li class="notif-item p-2.5 rounded-xl bg-slate-900/60 border border-slate-800 flex gap-3 items-start cursor-pointer" onclick="switchPage('kasir')">
-            <div class="w-8 h-8 rounded-lg flex items-center justify-center shrink-0 border mt-0.5 ${n.icon}">
-              <i class="fa-solid ${n.icon.split(' ')[0]} text-xs"></i>
-            </div>
-            <div class="flex-1">
-              <p class="text-xs text-white font-medium m-0">${n.title}</p>
-              <p class="text-[11px] text-slate-400 m-0">${n.desc}</p>
-              <span class="text-[9px] text-slate-500">${n.time}</span>
-            </div>
-          </li>
-        `).join('');
-      }
-    }
-
-    function markAllNotifAsRead() {
-      const notifBadge = document.getElementById('notifBadge');
-      const notifCountText = document.getElementById('notifCountText');
-      if (notifBadge) notifBadge.style.display = 'none';
-      if (notifCountText) notifCountText.innerText = '0 Belum Dibaca';
-    }
-
     // --- FUNGSI DATA PELANGGAN ---
     function addCustomer(e) {
       e.preventDefault();
@@ -1174,15 +1144,16 @@ tr:hover {
       const existingIndex = customers.findIndex(c => c.phone === phone);
       if (existingIndex !== -1) {
         customers[existingIndex] = { name, phone, type, address };
+        addNotification('Update Pelanggan', `Data pelanggan ${name} diperbarui.`, 'system');
         alert('Data Pelanggan Berhasil Diperbarui!');
       } else {
         customers.unshift({ name, phone, type, address });
+        addNotification('Pelanggan Baru', `Pelanggan ${name} ditambahkan ke database.`, 'system');
         alert('Pelanggan Baru Berhasil Ditambahkan!');
       }
       document.getElementById('customerForm').reset();
       renderCustomers();
     }
-
     function renderCustomers() {
       const tbody = document.getElementById('customersTableBody');
       if (!tbody) return;
@@ -1232,20 +1203,17 @@ tr:hover {
       document.getElementById('statMemberCustomers').innerText = `${vipCount} Orang`;
       document.getElementById('statRegularCustomers').innerText = `${regCount} Orang`;
     }
-
     function quickOrderForCustomer(name, phone) {
       switchPage('kasir');
       document.getElementById('custName').value = name;
       document.getElementById('custPhone').value = phone;
     }
-
     function deleteCustomer(phone) {
       if (confirm('Apakah Anda yakin ingin menghapus pelanggan ini dari database?')) {
         customers = customers.filter(c => c.phone !== phone);
         renderCustomers();
       }
     }
-
     // Print Invoice
     function printInvoice(index) {
       const order = orders[index];
@@ -1305,17 +1273,16 @@ tr:hover {
       printWindow.document.write(invoiceHTML);
       printWindow.document.close();
     }
-
     function togglePayment(index) {
       orders[index].status = orders[index].status === 'Lunas' ? 'Belum Lunas' : 'Lunas';
       renderOrders();
+      addNotification('Status Pembayaran', `Nota ${orders[index].id} diubah menjadi ${orders[index].status}.`, 'order');
     }
-
     function toggleProgress(index) {
       orders[index].progress = orders[index].progress === 'Proses' ? 'Selesai' : 'Proses';
       renderOrders();
+      addNotification('Proses Laundry', `Nota ${orders[index].id} status cucian: ${orders[index].progress}.`, 'order');
     }
-
     // Fungsi Pengeluaran
     function addExpense(e) {
       e.preventDefault();
@@ -1328,9 +1295,9 @@ tr:hover {
       });
       document.getElementById('expForm').reset();
       renderExpenses();
+      addNotification('Pengeluaran', `Dicatat pengeluaran untuk ${desc} senilai Rp ${amount.toLocaleString('id-ID')}.`, 'system');
       alert('Pengeluaran berhasil dicatat!');
     }
-
     function renderExpenses() {
       const tbody = document.getElementById('expenseTableBody');
       if (!tbody) return;
@@ -1345,7 +1312,6 @@ tr:hover {
         tbody.appendChild(tr);
       });
     }
-
     // Fungsi Lacak Status Nota
     function searchOrder() {
       const query = document.getElementById('searchInput').value.trim().toUpperCase();
@@ -1370,7 +1336,6 @@ tr:hover {
         resContainer.innerHTML = `<p class="text-amber-400 text-sm">Nota dengan Kode "${query}" Tidak Ditemukan.</p>`;
       }
     }
-
     // Visual Chart Render
     let chartInstances = {};
     function initCharts() {
