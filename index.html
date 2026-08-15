@@ -462,6 +462,40 @@ canvas{
 .az-sign-status{text-align:center;font-size:11px;margin-top:10px;color:#7ee0ff;min-height:15px}
 </style>
 
+
+<style>
+  /* Modern chart interface */
+  .az-card:has(canvas) {
+    border: 1px solid rgba(226,232,240,.85);
+    box-shadow: 0 12px 30px rgba(15,23,42,.06);
+    transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+  }
+  .az-card:has(canvas):hover {
+    transform: translateY(-2px);
+    box-shadow: 0 18px 40px rgba(15,23,42,.09);
+    border-color: rgba(99,102,241,.22);
+  }
+  .chart-modern-header {
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    margin-bottom:10px;
+  }
+  .chart-modern-title {
+    font-size:13px;
+    font-weight:800;
+    letter-spacing:-.01em;
+    color:#0f172a;
+  }
+  .chart-modern-subtitle {
+    font-size:10px;
+    color:#94a3b8;
+    margin-top:2px;
+  }
+  canvas { filter: saturate(.98); }
+</style>
+
 </head>
 <body class="bg-slate-100 text-slate-800 font-sans min-h-screen flex flex-col justify-between">
   <!-- NAVBAR ATAS -->
@@ -1086,7 +1120,7 @@ canvas{
             </div>
             <div class="bg-white p-5 rounded-2xl border border-slate-200 az-card shadow-sm space-y-3">
               <h3 class="font-bold text-slate-800 text-sm flex items-center gap-2">
-                <i class="fa-solid fa-chart-pie text-indigo-600"></i> Distribusi Layanan
+                <i class="fa-solid fa-chart-bar text-red-600"></i> Distribusi Layanan
               </h3>
               <p class="text-[10px] text-slate-400">Mengikuti seluruh layanan pada Daftar Harga & Transaksi</p>
               <div class="relative h-64 w-full flex items-center justify-center">
@@ -1667,119 +1701,271 @@ canvas{
     function initCharts() {
       const serviceStats = getServiceStats();
       const paymentStats = getPaymentStats();
+
+      const modernPalette = {
+        indigo: '#6366f1',
+        violet: '#8b5cf6',
+        cyan: '#06b6d4',
+        emerald: '#10b981',
+        rose: '#f43f5e',
+        amber: '#f59e0b',
+        slate: '#64748b',
+        grid: 'rgba(148,163,184,.12)'
+      };
+
+      const money = value => {
+        const n = Number(value || 0);
+        if (Math.abs(n) >= 1000000) return 'Rp ' + (n / 1000000).toFixed(1) + ' jt';
+        if (Math.abs(n) >= 1000) return 'Rp ' + Math.round(n / 1000) + ' rb';
+        return 'Rp ' + n.toLocaleString('id-ID');
+      };
+
+      const modernTooltip = {
+        backgroundColor: 'rgba(15,23,42,.96)',
+        titleColor: '#fff',
+        bodyColor: '#e2e8f0',
+        borderColor: 'rgba(255,255,255,.08)',
+        borderWidth: 1,
+        padding: 12,
+        cornerRadius: 12,
+        displayColors: true,
+        titleFont: { size: 11, weight: '700' },
+        bodyFont: { size: 11, weight: '500' },
+        boxPadding: 5
+      };
+
+      const modernLegend = {
+        position: 'bottom',
+        labels: {
+          usePointStyle: true,
+          pointStyle: 'circle',
+          boxWidth: 8,
+          padding: 18,
+          color: '#475569',
+          font: { size: 10, weight: '600' }
+        }
+      };
+
+      const modernScales = {
+        x: {
+          border: { display: false },
+          grid: { display: false },
+          ticks: { color: '#64748b', font: { size: 10, weight: '600' }, padding: 6 }
+        },
+        y: {
+          beginAtZero: true,
+          border: { display: false },
+          grid: { color: modernPalette.grid, drawTicks: false },
+          ticks: { color: '#64748b', font: { size: 10 }, padding: 8 }
+        }
+      };
+
+      // 1. Modern Financial Combo
       destroyChart('financialTrendChart');
-      const ctxFinancial = document.getElementById('financialTrendChart')?.getContext('2d');
-      if (ctxFinancial) {
-        chartInstances.financialTrendChart = new Chart(ctxFinancial, {
-          type: 'line',
+      const financialCanvas = document.getElementById('financialTrendChart');
+      if (financialCanvas) {
+        const incomeData = [8500000, 9200000, 10500000, 11000000, 11800000,
+          orders.reduce((s, o) => s + o.amount, 0)];
+        const expenseData = [3100000, 3400000, 3200000, 3900000, 3600000,
+          expenses.reduce((s, e) => s + e.amount, 0)];
+        const netCashData = incomeData.map((v, i) => v - expenseData[i]);
+
+        chartInstances.financialTrendChart = new Chart(financialCanvas.getContext('2d'), {
+          type: 'bar',
           data: {
             labels: ['Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus'],
             datasets: [
               {
-                label: 'Pendapatan (Rp)',
-                data: [8500000, 9200000, 10500000, 11000000, 11800000, orders.reduce((s, o) => s + o.amount, 0)],
-                borderColor: '#4f46e5',
-                backgroundColor: 'rgba(79, 70, 229, 0.1)',
-                fill: true,
-                tension: 0.3
+                type: 'bar', label: 'Pendapatan', data: incomeData,
+                backgroundColor: 'rgba(99,102,241,.82)',
+                borderColor: modernPalette.indigo, borderWidth: 0,
+                borderRadius: 10, borderSkipped: false,
+                barPercentage: .58, categoryPercentage: .72
               },
               {
-                label: 'Pengeluaran (Rp)',
-                data: [3100000, 3400000, 3200000, 3900000, 3600000, expenses.reduce((s, e) => s + e.amount, 0)],
-                borderColor: '#f43f5e',
-                backgroundColor: 'rgba(244, 63, 94, 0.05)',
-                fill: true,
-                tension: 0.3
+                type: 'bar', label: 'Pengeluaran', data: expenseData,
+                backgroundColor: 'rgba(244,63,94,.72)',
+                borderColor: modernPalette.rose, borderWidth: 0,
+                borderRadius: 10, borderSkipped: false,
+                barPercentage: .58, categoryPercentage: .72
+              },
+              {
+                type: 'line', label: 'Arus Kas Bersih', data: netCashData,
+                borderColor: modernPalette.emerald, backgroundColor: 'rgba(16,185,129,.10)',
+                borderWidth: 3, pointRadius: 4, pointHoverRadius: 7,
+                pointBackgroundColor: '#fff', pointBorderColor: modernPalette.emerald,
+                pointBorderWidth: 2, tension: .42, fill: true
               }
             ]
           },
-          options: { responsive: true, maintainAspectRatio: false }
-        });
-      }
-      destroyChart('serviceDistributionChart');
-      const ctxService = document.getElementById('serviceDistributionChart')?.getContext('2d');
-      if (ctxService) {
-        const serviceLabels = SERVICE_CATALOG.map(service => service.name);
-        const serviceValues = SERVICE_CATALOG.map(service => serviceStats[service.name] || 0);
-        const totalServices = serviceValues.reduce((sum, value) => sum + value, 0);
-        chartInstances.serviceDistributionChart = new Chart(ctxService, {
-          type: 'doughnut',
-          data: {
-            labels: serviceLabels,
-            datasets: [{
-              label: 'Jumlah Transaksi',
-              data: serviceValues,
-              backgroundColor: [
-                '#2563eb', '#06b6d4', '#8b5cf6', '#f59e0b',
-                '#10b981', '#ec4899', '#6366f1', '#14b8a6'
-              ],
-              borderWidth: 3,
-              borderColor: '#0f172a',
-              hoverOffset: 8
-            }]
-          },
           options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            cutout: '58%',
+            responsive: true, maintainAspectRatio: false,
+            interaction: { mode: 'index', intersect: false },
             plugins: {
-              legend: {
-                position: 'bottom',
-                labels: {
-                  boxWidth: 12,
-                  padding: 10,
-                  font: { size: 10 }
-                }
-              },
+              legend: modernLegend,
               tooltip: {
-                callbacks: {
-                  label: function(context) {
-                    const value = context.parsed || 0;
-                    const percent = totalServices ? ((value / totalServices) * 100).toFixed(1) : '0.0';
-                    return ` ${context.label}: ${value} transaksi (${percent}%)`;
-                  }
-                }
+                ...modernTooltip,
+                callbacks: { label: c => ` ${c.dataset.label}: ${money(c.parsed.y)}` }
+              }
+            },
+            scales: {
+              ...modernScales,
+              y: {
+                ...modernScales.y,
+                ticks: { ...modernScales.y.ticks, callback: value => money(value) }
               }
             }
           }
         });
       }
-      destroyChart('weeklyOrdersChart');
-      const ctxWeekly = document.getElementById('weeklyOrdersChart')?.getContext('2d');
-      if (ctxWeekly) {
-        const labels = ['Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab', 'Min'];
-        const counts = labels.map((_, day) => {
-          return orders.filter(o => {
-            const d = new Date(o.date + 'T00:00:00').getDay();
-            const mondayBased = (d + 6) % 7;
-            return mondayBased === day;
-          }).length;
-        });
-        chartInstances.weeklyOrdersChart = new Chart(ctxWeekly, {
+
+      // 2. Modern horizontal service ranking
+      destroyChart('serviceDistributionChart');
+      const serviceCanvas = document.getElementById('serviceDistributionChart');
+      if (serviceCanvas) {
+        const labels = SERVICE_CATALOG.map(s => s.name);
+        const values = SERVICE_CATALOG.map(s => serviceStats[s.name] || 0);
+        const total = values.reduce((a, b) => a + b, 0);
+
+        chartInstances.serviceDistributionChart = new Chart(serviceCanvas.getContext('2d'), {
           type: 'bar',
           data: {
             labels,
-            datasets: [{ label: 'Jumlah Nota', data: counts, backgroundColor: '#6366f1', borderRadius: 6 }]
+            datasets: [{
+              label: 'Transaksi',
+              data: values,
+              backgroundColor: 'rgba(99,102,241,.78)',
+              borderRadius: 9,
+              borderSkipped: false,
+              barThickness: 16,
+              hoverBackgroundColor: modernPalette.violet
+            }]
           },
-          options: { responsive: true, maintainAspectRatio: false }
+          options: {
+            indexAxis: 'y',
+            responsive: true, maintainAspectRatio: false,
+            interaction: { mode: 'nearest', intersect: true },
+            plugins: {
+              legend: { display: false },
+              tooltip: {
+                ...modernTooltip,
+                callbacks: {
+                  label: c => {
+                    const v = c.parsed.x || 0;
+                    return ` ${v} transaksi • ${total ? ((v / total) * 100).toFixed(1) : '0.0'}%`;
+                  }
+                }
+              }
+            },
+            scales: {
+              x: {
+                beginAtZero: true, border: { display: false },
+                grid: { color: modernPalette.grid, drawTicks: false },
+                ticks: { color: '#64748b', precision: 0, font: { size: 10 } }
+              },
+              y: {
+                border: { display: false }, grid: { display: false },
+                ticks: { color: '#334155', font: { size: 10, weight: '700' } }
+              }
+            }
+          }
         });
       }
+
+      // 3. Modern doughnut service mix
+      destroyChart('serviceDoughnutChart');
+      const doughnutCanvas = document.getElementById('serviceDoughnutChart');
+      if (doughnutCanvas) {
+        const labels = SERVICE_CATALOG.map(s => s.name);
+        const values = SERVICE_CATALOG.map(s => serviceStats[s.name] || 0);
+
+        chartInstances.serviceDoughnutChart = new Chart(doughnutCanvas.getContext('2d'), {
+          type: 'doughnut',
+          data: {
+            labels,
+            datasets: [{
+              data: values,
+              backgroundColor: [
+                modernPalette.indigo, modernPalette.cyan, modernPalette.violet,
+                modernPalette.amber, modernPalette.emerald, modernPalette.rose,
+                '#14b8a6', '#818cf8'
+              ],
+              borderColor: '#fff',
+              borderWidth: 3,
+              hoverOffset: 9
+            }]
+          },
+          options: {
+            responsive: true, maintainAspectRatio: false,
+            cutout: '70%',
+            plugins: {
+              legend: modernLegend,
+              tooltip: modernTooltip
+            }
+          }
+        });
+      }
+
+      // 4. Modern weekly activity
+      destroyChart('weeklyOrdersChart');
+      const weeklyCanvas = document.getElementById('weeklyOrdersChart');
+      if (weeklyCanvas) {
+        const labels = ['Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab', 'Min'];
+        const counts = labels.map((_, day) => orders.filter(o => {
+          const d = new Date(o.date + 'T00:00:00').getDay();
+          return ((d + 6) % 7) === day;
+        }).length);
+
+        chartInstances.weeklyOrdersChart = new Chart(weeklyCanvas.getContext('2d'), {
+          type: 'bar',
+          data: {
+            labels,
+            datasets: [{
+              label: 'Nota',
+              data: counts,
+              backgroundColor: 'rgba(6,182,212,.78)',
+              borderRadius: 10,
+              borderSkipped: false,
+              barPercentage: .52,
+              categoryPercentage: .72
+            }]
+          },
+          options: {
+            responsive: true, maintainAspectRatio: false,
+            plugins: { legend: { display: false }, tooltip: modernTooltip },
+            scales: modernScales
+          }
+        });
+      }
+
+      // 5. Modern payment distribution
       destroyChart('paymentMethodChart');
-      const ctxPayment = document.getElementById('paymentMethodChart')?.getContext('2d');
-      if (ctxPayment) {
-        chartInstances.paymentMethodChart = new Chart(ctxPayment, {
-          type: 'pie',
+      const paymentCanvas = document.getElementById('paymentMethodChart');
+      if (paymentCanvas) {
+        chartInstances.paymentMethodChart = new Chart(paymentCanvas.getContext('2d'), {
+          type: 'doughnut',
           data: {
             labels: Object.keys(paymentStats),
-            datasets: [{ data: Object.values(paymentStats) }]
+            datasets: [{
+              data: Object.values(paymentStats),
+              backgroundColor: [modernPalette.indigo, modernPalette.emerald, modernPalette.amber],
+              borderColor: '#fff',
+              borderWidth: 3,
+              hoverOffset: 9
+            }]
           },
-          options: { responsive: true, maintainAspectRatio: false }
+          options: {
+            responsive: true, maintainAspectRatio: false, cutout: '66%',
+            plugins: { legend: modernLegend, tooltip: modernTooltip }
+          }
         });
       }
+
+      // 6. Modern dashboard summary
       destroyChart('dashboardMiniChart');
-      const ctxMini = document.getElementById('dashboardMiniChart')?.getContext('2d');
-      if (ctxMini) {
-        chartInstances.dashboardMiniChart = new Chart(ctxMini, {
+      const miniCanvas = document.getElementById('dashboardMiniChart');
+      if (miniCanvas) {
+        chartInstances.dashboardMiniChart = new Chart(miniCanvas.getContext('2d'), {
           type: 'bar',
           data: {
             labels: ['Transaksi', 'Pendapatan', 'Pengeluaran'],
@@ -1790,20 +1976,28 @@ canvas{
                 orders.reduce((s, o) => s + o.amount, 0),
                 expenses.reduce((s, e) => s + e.amount, 0)
               ],
-              backgroundColor: ['#6366f1', '#10b981', '#f43f5e'],
-              borderRadius: 8
+              backgroundColor: [
+                'rgba(99,102,241,.82)',
+                'rgba(16,185,129,.82)',
+                'rgba(244,63,94,.76)'
+              ],
+              borderRadius: 10,
+              borderSkipped: false,
+              barPercentage: .5
             }]
           },
           options: {
-            responsive: true,
-            maintainAspectRatio: false,
+            responsive: true, maintainAspectRatio: false,
+            plugins: { legend: { display: false }, tooltip: modernTooltip },
             scales: {
-              y: { beginAtZero: true }
+              ...modernScales,
+              y: { ...modernScales.y, ticks: { ...modernScales.y.ticks, callback: v => v >= 1000 ? money(v) : v } }
             }
           }
         });
       }
     }
+
     function refreshAnalyticsCharts() {
       if (chartsInitialized) initCharts();
     }
