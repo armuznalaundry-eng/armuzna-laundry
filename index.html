@@ -463,37 +463,20 @@ canvas{
 </style>
 
 
-<style>
-  /* Modern chart interface */
-  .az-card:has(canvas) {
-    border: 1px solid rgba(226,232,240,.85);
-    box-shadow: 0 12px 30px rgba(15,23,42,.06);
-    transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+<style id="dropdown-layanan-darkblue">
+  #servicePicker {
+    background-color: #1e293b !important;
+    color: #f8fafc !important;
+    border-color: #334155 !important;
   }
-  .az-card:has(canvas):hover {
-    transform: translateY(-2px);
-    box-shadow: 0 18px 40px rgba(15,23,42,.09);
-    border-color: rgba(99,102,241,.22);
+  #servicePicker option {
+    background-color: #0f172a;
+    color: #f8fafc;
   }
-  .chart-modern-header {
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:12px;
-    margin-bottom:10px;
+  #servicePicker:focus {
+    border-color: #4f46e5 !important;
+    box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.25);
   }
-  .chart-modern-title {
-    font-size:13px;
-    font-weight:800;
-    letter-spacing:-.01em;
-    color:#0f172a;
-  }
-  .chart-modern-subtitle {
-    font-size:10px;
-    color:#94a3b8;
-    margin-top:2px;
-  }
-  canvas { filter: saturate(.98); }
 </style>
 
 </head>
@@ -856,35 +839,24 @@ canvas{
                 </div>
                 <div>
                   <label class="block text-xs font-semibold uppercase text-slate-500 mb-2">Jenis Layanan</label>
-                  <input type="hidden" id="serviceType" value="7000">
-                  <input type="hidden" id="serviceName" value="Cuci Kiloan">
-                  <div id="servicePicker" class="grid grid-cols-2 md:grid-cols-4 gap-2">
-                    <button type="button" onclick="selectTransactionService('7000','Cuci Kiloan','fa-jug-detergent','kg')" class="service-choice active flex flex-col items-center justify-center gap-1 p-3 rounded-xl border-2 border-indigo-600 bg-indigo-50 text-indigo-700 transition" data-service="7000">
-                      <i class="fa-solid fa-jug-detergent text-xl"></i><span class="text-xs font-bold">Cuci Kiloan</span><span class="text-[10px]">Rp 7.000/kg</span>
-                    </button>
-                    <button type="button" onclick="selectTransactionService('10000','Cuci Setrika','fa-temperature-high','kg')" class="service-choice flex flex-col items-center justify-center gap-1 p-3 rounded-xl border-2 border-slate-200 bg-white text-slate-600 hover:border-indigo-300 hover:bg-indigo-50 transition az-card" data-service="10000">
-                      <i class="fa-solid fa-temperature-high text-xl"></i><span class="text-xs font-bold">Cuci Setrika</span><span class="text-[10px]">Rp 10.000/kg</span>
-                    </button>
-                    <button type="button" onclick="selectTransactionService('15000','Express 1 Hari','fa-bolt','kg')" class="service-choice flex flex-col items-center justify-center gap-1 p-3 rounded-xl border-2 border-slate-200 bg-white text-slate-600 hover:border-indigo-300 hover:bg-indigo-50 transition az-card" data-service="15000">
-                      <i class="fa-solid fa-bolt text-xl"></i><span class="text-xs font-bold">Express 1 Hari</span><span class="text-[10px]">Rp 15.000/kg</span>
-                    </button>
-                    <button type="button" onclick="selectTransactionService('30000','Dry Clean','fa-shirt','pcs')" class="service-choice flex flex-col items-center justify-center gap-1 p-3 rounded-xl border-2 border-slate-200 bg-white text-slate-600 hover:border-indigo-300 hover:bg-indigo-50 transition az-card" data-service="30000">
-                      <i class="fa-solid fa-shirt text-xl"></i><span class="text-xs font-bold">Dry Clean</span><span class="text-[10px]">Rp 30.000/pcs</span>
-                    </button>
-                    <button type="button" onclick="selectTransactionService('25000','Cuci Karpet','fa-rug','pcs')" class="service-choice flex flex-col items-center justify-center gap-1 p-3 rounded-xl border-2 border-slate-200 bg-white text-slate-600 hover:border-indigo-300 hover:bg-indigo-50 transition az-card" data-service="25000">
-                      <i class="fa-solid fa-rug text-xl"></i><span class="text-xs font-bold">Cuci Karpet</span><span class="text-[10px]">Rp 25.000/pcs</span>
-                    </button>
-                    <button type="button" onclick="selectTransactionService('35000','Cuci Tas','fa-bag-shopping','pcs')" class="service-choice flex flex-col items-center justify-center gap-1 p-3 rounded-xl border-2 border-slate-200 bg-white text-slate-600 hover:border-indigo-300 hover:bg-indigo-50 transition az-card" data-service="35000">
-                      <i class="fa-solid fa-bag-shopping text-xl"></i><span class="text-xs font-bold">Cuci Tas</span><span class="text-[10px]">Rp 35.000/pcs</span>
-                    </button>
-                    <button type="button" onclick="selectTransactionService('50000','Cuci Sofa','fa-couch','unit')" class="service-choice flex flex-col items-center justify-center gap-1 p-3 rounded-xl border-2 border-slate-200 bg-white text-slate-600 hover:border-indigo-300 hover:bg-indigo-50 transition az-card" data-service="50000">
-                      <i class="fa-solid fa-couch text-xl"></i><span class="text-xs font-bold">Cuci Sofa</span><span class="text-[10px]">Rp 50.000/unit</span>
-                    </button>
-                    <button type="button" onclick="selectTransactionService('40000','Bad Cover Besar','fa-bed','pcs')" class="service-choice flex flex-col items-center justify-center gap-1 p-3 rounded-xl border-2 border-slate-200 bg-white text-slate-600 hover:border-indigo-300 hover:bg-indigo-50 transition az-card" data-service="40000">
-                      <i class="fa-solid fa-bed text-xl"></i><span class="text-xs font-bold">Bad Cover Besar</span><span class="text-[10px]">Rp 40.000/pcs</span>
-                    </button>
-                  </div>
-                  <p id="selectedServiceLabel" class="mt-2 text-[11px] text-indigo-600 font-semibold">Layanan dipilih: Cuci Kiloan</p>
+                  
+<input type="hidden" id="serviceType" value="7000">
+<input type="hidden" id="serviceName" value="Cuci Kiloan">
+
+<select id="servicePicker"
+  onchange="selectTransactionServiceFromDropdown(this)"
+  class="w-full px-3 py-3 border border-slate-700 rounded-xl text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-slate-800 text-white az-card">
+  <option value="7000" data-name="Cuci Kiloan" data-unit="kg">Cuci Kiloan — Rp 7.000/kg</option>
+  <option value="10000" data-name="Cuci Setrika" data-unit="kg">Cuci Setrika — Rp 10.000/kg</option>
+  <option value="15000" data-name="Express 1 Hari" data-unit="kg">Express 1 Hari — Rp 15.000/kg</option>
+  <option value="30000" data-name="Dry Clean" data-unit="pcs">Dry Clean — Rp 30.000/pcs</option>
+  <option value="25000" data-name="Cuci Karpet" data-unit="pcs">Cuci Karpet — Rp 25.000/pcs</option>
+  <option value="35000" data-name="Cuci Tas" data-unit="pcs">Cuci Tas — Rp 35.000/pcs</option>
+  <option value="50000" data-name="Cuci Sofa" data-unit="unit">Cuci Sofa — Rp 50.000/unit</option>
+  <option value="40000" data-name="Bad Cover Besar" data-unit="pcs">Bad Cover Besar — Rp 40.000/pcs</option>
+</select>
+
+<p id="selectedServiceLabel" class="mt-2 text-[11px] text-indigo-600 font-semibold">Layanan dipilih: Cuci Kiloan</p>
                 </div>
                 <div class="grid grid-cols-2 gap-3">
                   <div>
@@ -1120,7 +1092,7 @@ canvas{
             </div>
             <div class="bg-white p-5 rounded-2xl border border-slate-200 az-card shadow-sm space-y-3">
               <h3 class="font-bold text-slate-800 text-sm flex items-center gap-2">
-                <i class="fa-solid fa-chart-bar text-red-600"></i> Distribusi Layanan
+                <i class="fa-solid fa-chart-pie text-indigo-600"></i> Distribusi Layanan
               </h3>
               <p class="text-[10px] text-slate-400">Mengikuti seluruh layanan pada Daftar Harga & Transaksi</p>
               <div class="relative h-64 w-full flex items-center justify-center">
@@ -1385,12 +1357,25 @@ canvas{
       if (weightInput) weightInput.focus();
     }
     // Pilihan layanan berbasis ikon pada halaman Transaksi
+    function selectTransactionServiceFromDropdown(select) {
+      const option = select.options[select.selectedIndex];
+      if (!option) return;
+      selectTransactionService(
+        option.value,
+        option.dataset.name,
+        "",
+        option.dataset.unit || "pcs"
+      );
+    }
+
     function selectTransactionService(price, serviceName, icon, unit) {
       const serviceType = document.getElementById('serviceType');
       if (!serviceType) return;
       serviceType.value = String(price);
       const serviceNameInput = document.getElementById('serviceName');
       if (serviceNameInput) serviceNameInput.value = serviceName;
+      const servicePicker = document.getElementById('servicePicker');
+      if (servicePicker) servicePicker.value = String(price);
       document.querySelectorAll('.service-choice').forEach(btn => {
         const active = btn.dataset.service === String(price);
         btn.classList.toggle('active', active);
@@ -1701,271 +1686,193 @@ canvas{
     function initCharts() {
       const serviceStats = getServiceStats();
       const paymentStats = getPaymentStats();
-
-      const modernPalette = {
-        indigo: '#6366f1',
-        violet: '#8b5cf6',
-        cyan: '#06b6d4',
-        emerald: '#10b981',
-        rose: '#f43f5e',
-        amber: '#f59e0b',
-        slate: '#64748b',
-        grid: 'rgba(148,163,184,.12)'
-      };
-
-      const money = value => {
-        const n = Number(value || 0);
-        if (Math.abs(n) >= 1000000) return 'Rp ' + (n / 1000000).toFixed(1) + ' jt';
-        if (Math.abs(n) >= 1000) return 'Rp ' + Math.round(n / 1000) + ' rb';
-        return 'Rp ' + n.toLocaleString('id-ID');
-      };
-
-      const modernTooltip = {
-        backgroundColor: 'rgba(15,23,42,.96)',
-        titleColor: '#fff',
-        bodyColor: '#e2e8f0',
-        borderColor: 'rgba(255,255,255,.08)',
-        borderWidth: 1,
-        padding: 12,
-        cornerRadius: 12,
-        displayColors: true,
-        titleFont: { size: 11, weight: '700' },
-        bodyFont: { size: 11, weight: '500' },
-        boxPadding: 5
-      };
-
-      const modernLegend = {
-        position: 'bottom',
-        labels: {
-          usePointStyle: true,
-          pointStyle: 'circle',
-          boxWidth: 8,
-          padding: 18,
-          color: '#475569',
-          font: { size: 10, weight: '600' }
-        }
-      };
-
-      const modernScales = {
-        x: {
-          border: { display: false },
-          grid: { display: false },
-          ticks: { color: '#64748b', font: { size: 10, weight: '600' }, padding: 6 }
-        },
-        y: {
-          beginAtZero: true,
-          border: { display: false },
-          grid: { color: modernPalette.grid, drawTicks: false },
-          ticks: { color: '#64748b', font: { size: 10 }, padding: 8 }
-        }
-      };
-
-      // 1. Modern Financial Combo
       destroyChart('financialTrendChart');
-      const financialCanvas = document.getElementById('financialTrendChart');
-      if (financialCanvas) {
-        const incomeData = [8500000, 9200000, 10500000, 11000000, 11800000,
-          orders.reduce((s, o) => s + o.amount, 0)];
-        const expenseData = [3100000, 3400000, 3200000, 3900000, 3600000,
-          expenses.reduce((s, e) => s + e.amount, 0)];
-        const netCashData = incomeData.map((v, i) => v - expenseData[i]);
+      const ctxFinancial = document.getElementById('financialTrendChart')?.getContext('2d');
+      if (ctxFinancial) {
+        const revenue = [8500000, 9200000, 10500000, 11000000, 11800000, orders.reduce((s, o) => s + o.amount, 0)];
+        const expense = [3100000, 3400000, 3200000, 3900000, 3600000, expenses.reduce((s, e) => s + e.amount, 0)];
+        const netCash = revenue.map((v, i) => v - expense[i]);
 
-        chartInstances.financialTrendChart = new Chart(financialCanvas.getContext('2d'), {
+        chartInstances.financialTrendChart = new Chart(ctxFinancial, {
           type: 'bar',
           data: {
             labels: ['Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus'],
             datasets: [
               {
-                type: 'bar', label: 'Pendapatan', data: incomeData,
-                backgroundColor: 'rgba(99,102,241,.82)',
-                borderColor: modernPalette.indigo, borderWidth: 0,
-                borderRadius: 10, borderSkipped: false,
-                barPercentage: .58, categoryPercentage: .72
+                label: 'Pendapatan',
+                data: revenue,
+                backgroundColor: '#2563eb',
+                borderRadius: 8,
+                borderSkipped: false,
+                barPercentage: 0.72,
+                categoryPercentage: 0.72
               },
               {
-                type: 'bar', label: 'Pengeluaran', data: expenseData,
-                backgroundColor: 'rgba(244,63,94,.72)',
-                borderColor: modernPalette.rose, borderWidth: 0,
-                borderRadius: 10, borderSkipped: false,
-                barPercentage: .58, categoryPercentage: .72
+                label: 'Pengeluaran',
+                data: expense,
+                backgroundColor: '#f43f5e',
+                borderRadius: 8,
+                borderSkipped: false,
+                barPercentage: 0.72,
+                categoryPercentage: 0.72
               },
               {
-                type: 'line', label: 'Arus Kas Bersih', data: netCashData,
-                borderColor: modernPalette.emerald, backgroundColor: 'rgba(16,185,129,.10)',
-                borderWidth: 3, pointRadius: 4, pointHoverRadius: 7,
-                pointBackgroundColor: '#fff', pointBorderColor: modernPalette.emerald,
-                pointBorderWidth: 2, tension: .42, fill: true
+                type: 'line',
+                label: 'Arus Kas Bersih',
+                data: netCash,
+                borderColor: '#10b981',
+                backgroundColor: '#10b981',
+                borderWidth: 3,
+                tension: 0.35,
+                pointRadius: 5,
+                pointHoverRadius: 7,
+                pointBorderWidth: 2,
+                pointBorderColor: '#ffffff'
               }
             ]
           },
           options: {
-            responsive: true, maintainAspectRatio: false,
+            responsive: true,
+            maintainAspectRatio: false,
             interaction: { mode: 'index', intersect: false },
             plugins: {
-              legend: modernLegend,
+              legend: {
+                position: 'top',
+                align: 'end',
+                labels: {
+                  usePointStyle: true,
+                  pointStyle: 'circle',
+                  padding: 14,
+                  font: { size: 11, weight: '600' }
+                }
+              },
               tooltip: {
-                ...modernTooltip,
-                callbacks: { label: c => ` ${c.dataset.label}: ${money(c.parsed.y)}` }
-              }
-            },
-            scales: {
-              ...modernScales,
-              y: {
-                ...modernScales.y,
-                ticks: { ...modernScales.y.ticks, callback: value => money(value) }
-              }
-            }
-          }
-        });
-      }
-
-      // 2. Modern horizontal service ranking
-      destroyChart('serviceDistributionChart');
-      const serviceCanvas = document.getElementById('serviceDistributionChart');
-      if (serviceCanvas) {
-        const labels = SERVICE_CATALOG.map(s => s.name);
-        const values = SERVICE_CATALOG.map(s => serviceStats[s.name] || 0);
-        const total = values.reduce((a, b) => a + b, 0);
-
-        chartInstances.serviceDistributionChart = new Chart(serviceCanvas.getContext('2d'), {
-          type: 'bar',
-          data: {
-            labels,
-            datasets: [{
-              label: 'Transaksi',
-              data: values,
-              backgroundColor: 'rgba(99,102,241,.78)',
-              borderRadius: 9,
-              borderSkipped: false,
-              barThickness: 16,
-              hoverBackgroundColor: modernPalette.violet
-            }]
-          },
-          options: {
-            indexAxis: 'y',
-            responsive: true, maintainAspectRatio: false,
-            interaction: { mode: 'nearest', intersect: true },
-            plugins: {
-              legend: { display: false },
-              tooltip: {
-                ...modernTooltip,
+                backgroundColor: '#0f172a',
+                titleColor: '#ffffff',
+                bodyColor: '#e2e8f0',
+                padding: 12,
+                cornerRadius: 10,
                 callbacks: {
-                  label: c => {
-                    const v = c.parsed.x || 0;
-                    return ` ${v} transaksi • ${total ? ((v / total) * 100).toFixed(1) : '0.0'}%`;
+                  label: function(context) {
+                    return ' ' + context.dataset.label + ': Rp ' +
+                      Number(context.parsed.y || 0).toLocaleString('id-ID');
                   }
                 }
               }
             },
             scales: {
               x: {
-                beginAtZero: true, border: { display: false },
-                grid: { color: modernPalette.grid, drawTicks: false },
-                ticks: { color: '#64748b', precision: 0, font: { size: 10 } }
+                stacked: false,
+                grid: { display: false },
+                border: { display: false },
+                ticks: {
+                  color: '#64748b',
+                  font: { size: 10, weight: '600' }
+                }
               },
               y: {
-                border: { display: false }, grid: { display: false },
-                ticks: { color: '#334155', font: { size: 10, weight: '700' } }
+                beginAtZero: true,
+                border: { display: false },
+                grid: { color: 'rgba(148, 163, 184, 0.14)' },
+                ticks: {
+                  color: '#64748b',
+                  padding: 8,
+                  font: { size: 10 },
+                  callback: function(value) {
+                    if (value >= 1000000) return 'Rp ' + (value / 1000000).toFixed(0) + ' jt';
+                    if (value >= 1000) return 'Rp ' + (value / 1000).toFixed(0) + ' rb';
+                    return 'Rp ' + value;
+                  }
+                }
               }
             }
           }
         });
       }
-
-      // 3. Modern doughnut service mix
-      destroyChart('serviceDoughnutChart');
-      const doughnutCanvas = document.getElementById('serviceDoughnutChart');
-      if (doughnutCanvas) {
-        const labels = SERVICE_CATALOG.map(s => s.name);
-        const values = SERVICE_CATALOG.map(s => serviceStats[s.name] || 0);
-
-        chartInstances.serviceDoughnutChart = new Chart(doughnutCanvas.getContext('2d'), {
+      destroyChart('serviceDistributionChart');
+      const ctxService = document.getElementById('serviceDistributionChart')?.getContext('2d');
+      if (ctxService) {
+        const serviceLabels = SERVICE_CATALOG.map(service => service.name);
+        const serviceValues = SERVICE_CATALOG.map(service => serviceStats[service.name] || 0);
+        const totalServices = serviceValues.reduce((sum, value) => sum + value, 0);
+        chartInstances.serviceDistributionChart = new Chart(ctxService, {
           type: 'doughnut',
           data: {
-            labels,
+            labels: serviceLabels,
             datasets: [{
-              data: values,
+              label: 'Jumlah Transaksi',
+              data: serviceValues,
               backgroundColor: [
-                modernPalette.indigo, modernPalette.cyan, modernPalette.violet,
-                modernPalette.amber, modernPalette.emerald, modernPalette.rose,
-                '#14b8a6', '#818cf8'
+                '#2563eb', '#06b6d4', '#8b5cf6', '#f59e0b',
+                '#10b981', '#ec4899', '#6366f1', '#14b8a6'
               ],
-              borderColor: '#fff',
               borderWidth: 3,
-              hoverOffset: 9
+              borderColor: '#0f172a',
+              hoverOffset: 8
             }]
           },
           options: {
-            responsive: true, maintainAspectRatio: false,
-            cutout: '70%',
+            responsive: true,
+            maintainAspectRatio: false,
+            cutout: '58%',
             plugins: {
-              legend: modernLegend,
-              tooltip: modernTooltip
+              legend: {
+                position: 'bottom',
+                labels: {
+                  boxWidth: 12,
+                  padding: 10,
+                  font: { size: 10 }
+                }
+              },
+              tooltip: {
+                callbacks: {
+                  label: function(context) {
+                    const value = context.parsed || 0;
+                    const percent = totalServices ? ((value / totalServices) * 100).toFixed(1) : '0.0';
+                    return ` ${context.label}: ${value} transaksi (${percent}%)`;
+                  }
+                }
+              }
             }
           }
         });
       }
-
-      // 4. Modern weekly activity
       destroyChart('weeklyOrdersChart');
-      const weeklyCanvas = document.getElementById('weeklyOrdersChart');
-      if (weeklyCanvas) {
+      const ctxWeekly = document.getElementById('weeklyOrdersChart')?.getContext('2d');
+      if (ctxWeekly) {
         const labels = ['Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab', 'Min'];
-        const counts = labels.map((_, day) => orders.filter(o => {
-          const d = new Date(o.date + 'T00:00:00').getDay();
-          return ((d + 6) % 7) === day;
-        }).length);
-
-        chartInstances.weeklyOrdersChart = new Chart(weeklyCanvas.getContext('2d'), {
+        const counts = labels.map((_, day) => {
+          return orders.filter(o => {
+            const d = new Date(o.date + 'T00:00:00').getDay();
+            const mondayBased = (d + 6) % 7;
+            return mondayBased === day;
+          }).length;
+        });
+        chartInstances.weeklyOrdersChart = new Chart(ctxWeekly, {
           type: 'bar',
           data: {
             labels,
-            datasets: [{
-              label: 'Nota',
-              data: counts,
-              backgroundColor: 'rgba(6,182,212,.78)',
-              borderRadius: 10,
-              borderSkipped: false,
-              barPercentage: .52,
-              categoryPercentage: .72
-            }]
+            datasets: [{ label: 'Jumlah Nota', data: counts, backgroundColor: '#6366f1', borderRadius: 6 }]
           },
-          options: {
-            responsive: true, maintainAspectRatio: false,
-            plugins: { legend: { display: false }, tooltip: modernTooltip },
-            scales: modernScales
-          }
+          options: { responsive: true, maintainAspectRatio: false }
         });
       }
-
-      // 5. Modern payment distribution
       destroyChart('paymentMethodChart');
-      const paymentCanvas = document.getElementById('paymentMethodChart');
-      if (paymentCanvas) {
-        chartInstances.paymentMethodChart = new Chart(paymentCanvas.getContext('2d'), {
-          type: 'doughnut',
+      const ctxPayment = document.getElementById('paymentMethodChart')?.getContext('2d');
+      if (ctxPayment) {
+        chartInstances.paymentMethodChart = new Chart(ctxPayment, {
+          type: 'pie',
           data: {
             labels: Object.keys(paymentStats),
-            datasets: [{
-              data: Object.values(paymentStats),
-              backgroundColor: [modernPalette.indigo, modernPalette.emerald, modernPalette.amber],
-              borderColor: '#fff',
-              borderWidth: 3,
-              hoverOffset: 9
-            }]
+            datasets: [{ data: Object.values(paymentStats) }]
           },
-          options: {
-            responsive: true, maintainAspectRatio: false, cutout: '66%',
-            plugins: { legend: modernLegend, tooltip: modernTooltip }
-          }
+          options: { responsive: true, maintainAspectRatio: false }
         });
       }
-
-      // 6. Modern dashboard summary
       destroyChart('dashboardMiniChart');
-      const miniCanvas = document.getElementById('dashboardMiniChart');
-      if (miniCanvas) {
-        chartInstances.dashboardMiniChart = new Chart(miniCanvas.getContext('2d'), {
+      const ctxMini = document.getElementById('dashboardMiniChart')?.getContext('2d');
+      if (ctxMini) {
+        chartInstances.dashboardMiniChart = new Chart(ctxMini, {
           type: 'bar',
           data: {
             labels: ['Transaksi', 'Pendapatan', 'Pengeluaran'],
@@ -1976,28 +1883,20 @@ canvas{
                 orders.reduce((s, o) => s + o.amount, 0),
                 expenses.reduce((s, e) => s + e.amount, 0)
               ],
-              backgroundColor: [
-                'rgba(99,102,241,.82)',
-                'rgba(16,185,129,.82)',
-                'rgba(244,63,94,.76)'
-              ],
-              borderRadius: 10,
-              borderSkipped: false,
-              barPercentage: .5
+              backgroundColor: ['#6366f1', '#10b981', '#f43f5e'],
+              borderRadius: 8
             }]
           },
           options: {
-            responsive: true, maintainAspectRatio: false,
-            plugins: { legend: { display: false }, tooltip: modernTooltip },
+            responsive: true,
+            maintainAspectRatio: false,
             scales: {
-              ...modernScales,
-              y: { ...modernScales.y, ticks: { ...modernScales.y.ticks, callback: v => v >= 1000 ? money(v) : v } }
+              y: { beginAtZero: true }
             }
           }
         });
       }
     }
-
     function refreshAnalyticsCharts() {
       if (chartsInitialized) initCharts();
     }
