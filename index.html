@@ -464,16 +464,16 @@ canvas{
 
 
 <style id="dropdown-layanan-darkblue">
-  #servicePicker, #payMethod, #payStatus {
+  #servicePicker {
     background-color: #1e293b !important;
     color: #f8fafc !important;
     border-color: #334155 !important;
   }
-  #servicePicker option, #payMethod option, #payStatus option {
+  #servicePicker option {
     background-color: #0f172a;
     color: #f8fafc;
   }
-  #servicePicker:focus, #payMethod:focus, #payStatus:focus {
+  #servicePicker:focus {
     border-color: #4f46e5 !important;
     box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.25);
   }
@@ -812,7 +812,7 @@ canvas{
             </div>
             <div class="bg-white p-4 rounded-xl border border-slate-200 az-card shadow-sm flex items-center justify-between">
               <div>
-                <p class="text-xs text-slate-400 font-bold uppercase">A/R</p>
+                <p class="text-xs text-slate-400 font-bold uppercase">Belum Lunas</p>
                 <h3 id="statUnpaidOrders" class="text-xl font-bold text-amber-600 mt-1">0 Nota</h3>
               </div>
               <div class="w-10 h-10 bg-amber-50 text-amber-600 rounded-lg flex items-center justify-center text-lg">
@@ -873,7 +873,7 @@ canvas{
                 <div class="grid grid-cols-2 gap-3">
                   <div>
                     <label class="block text-xs font-semibold uppercase text-slate-500 mb-1">Metode Bayar</label>
-                    <select id="payMethod" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm az-card">
+                    <select id="payMethod" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm bg-white az-card">
                       <option value="Tunai">Tunai</option>
                       <option value="QRIS">QRIS / E-Wallet</option>
                       <option value="Transfer">Transfer Bank</option>
@@ -881,9 +881,9 @@ canvas{
                   </div>
                   <div>
                     <label class="block text-xs font-semibold uppercase text-slate-500 mb-1">Status Bayar</label>
-                    <select id="payStatus" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm az-card">
+                    <select id="payStatus" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm bg-white az-card">
                       <option value="Lunas">Lunas</option>
-                      <option value="A/R">A/R</option>
+                      <option value="Belum Lunas">Belum Lunas</option>
                     </select>
                   </div>
                 </div>
@@ -922,9 +922,9 @@ canvas{
                   <div>
                     <select id="filterStatus" onchange="renderOrders()" class="w-full px-3 py-1.5 border rounded-lg text-xs bg-white focus:ring-2 focus:ring-indigo-500 focus:outline-none az-card">
                       <option value="Semua">Semua Status Cucian</option>
-                      <option value="process">process</option>
-                      <option value="Done">Done</option>
-                      <option value="Clear">Clear</option>
+                      <option value="Proses">Proses</option>
+                      <option value="Selesai">Selesai</option>
+                      <option value="Sudah Diambil">Sudah Diambil</option>
                     </select>
                   </div>
                   <div>
@@ -986,7 +986,7 @@ canvas{
             </form>
           </section>
           <section class="lg:col-span-2 space-y-4">
-            <div class="bg-gradient-to-r from-rose-500 to-red-600 text-white p-5 rounded-xl shadow-md flex justify-between items-center">
+            <div class="bg-gradient-to-r from-slate-800 to-blue-900 text-white p-5 rounded-xl shadow-md flex justify-between items-center">
               <div>
                 <p class="text-xs uppercase font-medium text-rose-100">Total Pengeluaran</p>
                 <h3 id="totalExpenseDisplay" class="text-2xl font-extrabold mt-1">Rp 0</h3>
@@ -1226,7 +1226,7 @@ canvas{
   <!-- JAVASCRIPT SYSTEM -->
   <script>
     let orders = [
-      { id: 'NOTA-101', name: 'Armuzna Laundry', phone: '085927262579', service: 'Cuci Setrika', amount: 30000, discount: 0, payMethod: 'Tunai', status: 'Proses', payStatus: 'Lunas', date: '2026-08-08', note: 'Baju putih dipisah' },
+      { id: 'NOTA-101', name: 'Armuzna Laundry', phone: '085927262579', service: 'Cuci Setrika', amount: 30000, discount: 0, payMethod: 'Tunai', status: 'Proses Cuci', payStatus: 'Lunas', date: '2026-08-08', note: 'Baju putih dipisah' },
       { id: 'NOTA-102', name: 'Achmad Efendi, SE,MM ', phone: '0889009698', service: 'Express (1 Hari)', amount: 45000, discount: 5000, payMethod: 'QRIS', status: 'Selesai', payStatus: 'Lunas', date: '2026-10-09', note: '-' }
     ];
     let expenses = [];
@@ -1419,7 +1419,7 @@ canvas{
         amount: amount,
         discount: discount,
         payMethod: payMethod,
-        status: 'process',
+        status: 'Proses Cuci',
         payStatus: payStatus,
         date: new Date().toISOString().split('T')[0],
         note: note
@@ -1501,9 +1501,9 @@ canvas{
     function toggleOrderStatus(id) {
       const order = orders.find(o => o.id === id);
       if (order) {
-        if (order.status === 'Proses') order.status = 'Selesai';
-        else if (order.status === 'Selesai') order.status = 'Clear';
-        else order.status = 'process';
+        if (order.status === 'Proses Cuci') order.status = 'Selesai';
+        else if (order.status === 'Selesai') order.status = 'Sudah Diambil';
+        else order.status = 'Proses Cuci';
         renderOrders();
         refreshAnalyticsCharts();
       }
@@ -1613,7 +1613,7 @@ canvas{
       }
       let htmlContent = '';
       matchedOrders.forEach(item => {
-        const isFinished = item.status === 'Selesai' || item.status === 'Clear';
+        const isFinished = item.status === 'Selesai' || item.status === 'Sudah Diambil';
         const statusBadgeClass = isFinished ? 'bg-emerald-100 text-emerald-700' : 'bg-amber-100 text-amber-700';
         htmlContent += `
           <div class="bg-white p-6 rounded-2xl shadow-md border border-slate-200 space-y-4 az-card">
