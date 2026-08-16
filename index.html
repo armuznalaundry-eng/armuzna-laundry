@@ -479,7 +479,7 @@ canvas{
   }
 </style>
 
-</head>
+<style id="dropdown-metode-bayar-darkblue">#payMethod{background:#071b30 !important;color:#f8fafc !important;border-color:#1a466d !important;}#payMethod option{background:#0f2742 !important;color:#f8fafc !important;}#payMethod:focus{border-color:#38bdf8 !important;box-shadow:0 0 0 3px rgba(56,189,248,.12) !important;}</style></head>
 <body class="bg-slate-100 text-slate-800 font-sans min-h-screen flex flex-col justify-between">
   <!-- NAVBAR ATAS -->
   <nav class="navbar az-navbar navbar-dark fixed-top px-3 shadow-sm z-50">
@@ -924,7 +924,7 @@ canvas{
                       <option value="Semua">Semua Status Cucian</option>
                       <option value="Proses">Proses</option>
                       <option value="Selesai">Selesai</option>
-                      <option value="Sudah Diambil">Sudah Diambil</option>
+                      <option value="Clear">Clear</option>
                     </select>
                   </div>
                   <div>
@@ -1226,7 +1226,7 @@ canvas{
   <!-- JAVASCRIPT SYSTEM -->
   <script>
     let orders = [
-      { id: 'NOTA-101', name: 'Armuzna Laundry', phone: '085927262579', service: 'Cuci Setrika', amount: 30000, discount: 0, payMethod: 'Tunai', status: 'Proses Cuci', payStatus: 'Lunas', date: '2026-08-08', note: 'Baju putih dipisah' },
+      { id: 'NOTA-101', name: 'Armuzna Laundry', phone: '085927262579', service: 'Cuci Setrika', amount: 30000, discount: 0, payMethod: 'Tunai', status: 'Proses', payStatus: 'Lunas', date: '2026-08-08', note: 'Baju putih dipisah' },
       { id: 'NOTA-102', name: 'Achmad Efendi, SE,MM ', phone: '0889009698', service: 'Express (1 Hari)', amount: 45000, discount: 5000, payMethod: 'QRIS', status: 'Selesai', payStatus: 'Lunas', date: '2026-10-09', note: '-' }
     ];
     let expenses = [];
@@ -1419,7 +1419,7 @@ canvas{
         amount: amount,
         discount: discount,
         payMethod: payMethod,
-        status: 'Proses Cuci',
+        status: 'Proses',
         payStatus: payStatus,
         date: new Date().toISOString().split('T')[0],
         note: note
@@ -1501,9 +1501,9 @@ canvas{
     function toggleOrderStatus(id) {
       const order = orders.find(o => o.id === id);
       if (order) {
-        if (order.status === 'Proses Cuci') order.status = 'Selesai';
-        else if (order.status === 'Selesai') order.status = 'Sudah Diambil';
-        else order.status = 'Proses Cuci';
+        if (order.status === 'Proses') order.status = 'Selesai';
+        else if (order.status === 'Selesai') order.status = 'Clear';
+        else order.status = 'Proses';
         renderOrders();
         refreshAnalyticsCharts();
       }
@@ -1613,7 +1613,7 @@ canvas{
       }
       let htmlContent = '';
       matchedOrders.forEach(item => {
-        const isFinished = item.status === 'Selesai' || item.status === 'Sudah Diambil';
+        const isFinished = item.status === 'Selesai' || item.status === 'Clear';
         const statusBadgeClass = isFinished ? 'bg-emerald-100 text-emerald-700' : 'bg-amber-100 text-amber-700';
         htmlContent += `
           <div class="bg-white p-6 rounded-2xl shadow-md border border-slate-200 space-y-4 az-card">
@@ -2137,3 +2137,27 @@ document.addEventListener('click',e=>{
 
 </body>
 </html>
+
+<style id="kelola-transaksi-droplist-darkblue">
+/* Dark blue dropdowns pada Kelola Transaksi */
+#servicePicker,
+#payMethod,
+#payStatus {
+  background: linear-gradient(145deg, #0a2948, #06182d) !important;
+  color: #f4f9ff !important;
+  border: 1px solid #1b5b8a !important;
+}
+#servicePicker option,
+#payMethod option,
+#payStatus option {
+  background-color: #071d35 !important;
+  color: #f4f9ff !important;
+}
+#servicePicker:focus,
+#payMethod:focus,
+#payStatus:focus {
+  border-color: #38bdf8 !important;
+  box-shadow: 0 0 0 3px rgba(56,189,248,.15) !important;
+}
+</style>
+
