@@ -464,16 +464,16 @@ canvas{
 
 
 <style id="dropdown-layanan-darkblue">
-  #servicePicker {
+  #servicePicker, #payMethod, #payStatus {
     background-color: #1e293b !important;
     color: #f8fafc !important;
     border-color: #334155 !important;
   }
-  #servicePicker option {
+  #servicePicker option, #payMethod option, #payStatus option {
     background-color: #0f172a;
     color: #f8fafc;
   }
-  #servicePicker:focus {
+  #servicePicker:focus, #payMethod:focus, #payStatus:focus {
     border-color: #4f46e5 !important;
     box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.25);
   }
@@ -812,7 +812,7 @@ canvas{
             </div>
             <div class="bg-white p-4 rounded-xl border border-slate-200 az-card shadow-sm flex items-center justify-between">
               <div>
-                <p class="text-xs text-slate-400 font-bold uppercase">Belum Lunas</p>
+                <p class="text-xs text-slate-400 font-bold uppercase">A/R</p>
                 <h3 id="statUnpaidOrders" class="text-xl font-bold text-amber-600 mt-1">0 Nota</h3>
               </div>
               <div class="w-10 h-10 bg-amber-50 text-amber-600 rounded-lg flex items-center justify-center text-lg">
@@ -846,14 +846,14 @@ canvas{
 <select id="servicePicker"
   onchange="selectTransactionServiceFromDropdown(this)"
   class="w-full px-3 py-3 border border-slate-700 rounded-xl text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-slate-800 text-white az-card">
-  <option value="7000" data-name="Cuci Kiloan" data-unit="kg">Cuci Kiloan — Rp 7.000/kg</option>
-  <option value="10000" data-name="Cuci Setrika" data-unit="kg">Cuci Setrika — Rp 10.000/kg</option>
-  <option value="15000" data-name="Express 1 Hari" data-unit="kg">Express 1 Hari — Rp 15.000/kg</option>
-  <option value="30000" data-name="Dry Clean" data-unit="pcs">Dry Clean — Rp 30.000/pcs</option>
-  <option value="25000" data-name="Cuci Karpet" data-unit="pcs">Cuci Karpet — Rp 25.000/pcs</option>
-  <option value="35000" data-name="Cuci Tas" data-unit="pcs">Cuci Tas — Rp 35.000/pcs</option>
-  <option value="50000" data-name="Cuci Sofa" data-unit="unit">Cuci Sofa — Rp 50.000/unit</option>
-  <option value="40000" data-name="Bad Cover Besar" data-unit="pcs">Bad Cover Besar — Rp 40.000/pcs</option>
+  <option value="7000" data-name="Cuci Kiloan" data-unit="kg">Cuci Kiloan —>Rp 7.000/kg</option>
+  <option value="10000" data-name="Cuci Setrika" data-unit="kg">Cuci Setrika —>Rp 10.000/kg</option>
+  <option value="15000" data-name="Express 1 Hari" data-unit="kg">Express 1 Hari —>Rp 15.000/kg</option>
+  <option value="30000" data-name="Dry Clean" data-unit="pcs">Dry Clean —>Rp 30.000/pcs</option>
+  <option value="25000" data-name="Cuci Karpet" data-unit="pcs">Cuci Karpet —>Rp 25.000/pcs</option>
+  <option value="35000" data-name="Cuci Tas" data-unit="pcs">Cuci Tas —>Rp 35.000/pcs</option>
+  <option value="50000" data-name="Cuci Sofa" data-unit="unit">Cuci Sofa —>Rp 50.000/unit</option>
+  <option value="40000" data-name="Bad Cover Besar" data-unit="pcs">Bad Cover Besar —>Rp 40.000/pcs</option>
 </select>
 
 <p id="selectedServiceLabel" class="mt-2 text-[11px] text-indigo-600 font-semibold">Layanan dipilih: Cuci Kiloan</p>
@@ -873,7 +873,7 @@ canvas{
                 <div class="grid grid-cols-2 gap-3">
                   <div>
                     <label class="block text-xs font-semibold uppercase text-slate-500 mb-1">Metode Bayar</label>
-                    <select id="payMethod" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm bg-white az-card">
+                    <select id="payMethod" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm az-card">
                       <option value="Tunai">Tunai</option>
                       <option value="QRIS">QRIS / E-Wallet</option>
                       <option value="Transfer">Transfer Bank</option>
@@ -881,9 +881,9 @@ canvas{
                   </div>
                   <div>
                     <label class="block text-xs font-semibold uppercase text-slate-500 mb-1">Status Bayar</label>
-                    <select id="payStatus" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm bg-white az-card">
+                    <select id="payStatus" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm az-card">
                       <option value="Lunas">Lunas</option>
-                      <option value="Belum Lunas">Belum Lunas</option>
+                      <option value="A/R">A/R</option>
                     </select>
                   </div>
                 </div>
@@ -922,9 +922,9 @@ canvas{
                   <div>
                     <select id="filterStatus" onchange="renderOrders()" class="w-full px-3 py-1.5 border rounded-lg text-xs bg-white focus:ring-2 focus:ring-indigo-500 focus:outline-none az-card">
                       <option value="Semua">Semua Status Cucian</option>
-                      <option value="Proses">Proses</option>
-                      <option value="Selesai">Selesai</option>
-                      <option value="Sudah Diambil">Sudah Diambil</option>
+                      <option value="process">process</option>
+                      <option value="Done">Done</option>
+                      <option value="Clear">Clear</option>
                     </select>
                   </div>
                   <div>
@@ -1226,7 +1226,7 @@ canvas{
   <!-- JAVASCRIPT SYSTEM -->
   <script>
     let orders = [
-      { id: 'NOTA-101', name: 'Armuzna Laundry', phone: '085927262579', service: 'Cuci Setrika', amount: 30000, discount: 0, payMethod: 'Tunai', status: 'Proses Cuci', payStatus: 'Lunas', date: '2026-08-08', note: 'Baju putih dipisah' },
+      { id: 'NOTA-101', name: 'Armuzna Laundry', phone: '085927262579', service: 'Cuci Setrika', amount: 30000, discount: 0, payMethod: 'Tunai', status: 'Proses', payStatus: 'Lunas', date: '2026-08-08', note: 'Baju putih dipisah' },
       { id: 'NOTA-102', name: 'Achmad Efendi, SE,MM ', phone: '0889009698', service: 'Express (1 Hari)', amount: 45000, discount: 5000, payMethod: 'QRIS', status: 'Selesai', payStatus: 'Lunas', date: '2026-10-09', note: '-' }
     ];
     let expenses = [];
@@ -1419,7 +1419,7 @@ canvas{
         amount: amount,
         discount: discount,
         payMethod: payMethod,
-        status: 'Proses Cuci',
+        status: 'process',
         payStatus: payStatus,
         date: new Date().toISOString().split('T')[0],
         note: note
@@ -1501,9 +1501,9 @@ canvas{
     function toggleOrderStatus(id) {
       const order = orders.find(o => o.id === id);
       if (order) {
-        if (order.status === 'Proses Cuci') order.status = 'Selesai';
-        else if (order.status === 'Selesai') order.status = 'Sudah Diambil';
-        else order.status = 'Proses Cuci';
+        if (order.status === 'Proses') order.status = 'Selesai';
+        else if (order.status === 'Selesai') order.status = 'Clear';
+        else order.status = 'process';
         renderOrders();
         refreshAnalyticsCharts();
       }
@@ -1613,7 +1613,7 @@ canvas{
       }
       let htmlContent = '';
       matchedOrders.forEach(item => {
-        const isFinished = item.status === 'Selesai' || item.status === 'Sudah Diambil';
+        const isFinished = item.status === 'Selesai' || item.status === 'Clear';
         const statusBadgeClass = isFinished ? 'bg-emerald-100 text-emerald-700' : 'bg-amber-100 text-amber-700';
         htmlContent += `
           <div class="bg-white p-6 rounded-2xl shadow-md border border-slate-200 space-y-4 az-card">
