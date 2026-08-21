@@ -23,7 +23,7 @@
         <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
             <div class="flex items-center space-x-3">
                 <!-- Ikon dari Gambar yang Anda Berikan -->
-                <img src="1.png" alt="Maskot Armuzna Laundry" class="w-11 h-11 rounded-full object-cover border-2 border-blue-600 shadow-sm">
+                <img src="11.png" alt="Maskot Armuzna Laundry" class="w-11 h-11 rounded-full object-cover border-2 border-blue-600 shadow-sm">
                 <div>
                     <span class="text-lg font-bold text-blue-700 block leading-tight">Armuzna Laundry</span>
                     <span class="text-xs text-slate-500">Bersih Total, Hasil Maksimal</span>
@@ -89,7 +89,7 @@
                 </div>
                 <h3 class="font-bold text-lg mb-1">Cuci Kiloan Kilat</h3>
                 <p class="text-xs text-slate-500 mb-4">Estimasi selesai 1 hari</p>
-                <div class="text-xl font-extrabold text-blue-700 mb-4">Rp 11.000 <span class="text-xs text-slate-500 font-normal">/ kg</span></div>
+                <div class="text-xl font-extrabold text-blue-700 mb-4">Rp 20.000 <span class="text-xs text-slate-500 font-normal">/ kg</span></div>
                 <p class="text-slate-600 text-sm">Prioritas pengerjaan cepat untuk pakaian yang mendadak harus dipakai.</p>
             </div>
             <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition">
@@ -98,7 +98,7 @@
                 </div>
                 <h3 class="font-bold text-lg mb-1">Cuci Satuan / Premium</h3>
                 <p class="text-xs text-slate-500 mb-4">Jas, Selimut, Bed Cover</p>
-                <div class="text-xl font-extrabold text-blue-700 mb-4">Mulai Rp 20.000 <span class="text-xs text-slate-500 font-normal">/ pcs</span></div>
+                <div class="text-xl font-extrabold text-blue-700 mb-4">Mulai Rp 35.000 <span class="text-xs text-slate-500 font-normal">/ pcs</span></div>
                 <p class="text-slate-600 text-sm">Perawatan khusus bahan sensitif agar serat kain tetap awet dan tidak rusak.</p>
             </div>
         </div>
@@ -109,26 +109,35 @@
         <div class="max-w-4xl mx-auto px-4">
             <div class="text-center mb-10">
                 <h2 class="text-3xl font-bold text-slate-900 mb-2">Hitung Estimasi Biaya Laundry</h2>
-                <p class="text-slate-600 text-sm">Pilih layanan dan masukkan berat perkiraan pakaian Anda.</p>
+                <p class="text-slate-600 text-sm">Pilih layanan dan masukkan berat atau jumlah barang Anda.</p>
             </div>
             <div class="bg-slate-50 p-6 md:p-8 rounded-2xl border border-slate-200 grid md:grid-cols-2 gap-6">
                 <div class="space-y-4">
                     <div>
                         <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Pilih Layanan</label>
                         <select id="pilihanLayanan" class="w-full bg-white border border-slate-300 rounded-xl p-3 text-sm focus:outline-blue-600">
-                            <option value="7000">Cuci Kiloan Reguler (Rp 7.000/kg)</option>
-                            <option value="11000">Cuci Kiloan Kilat (Rp 11.000/kg)</option>
+                            <option value="7000" data-type="kilo">Cuci Kiloan Reguler (Rp 7.000/kg)</option>
+                            <option value="20000" data-type="kilo">Cuci Kiloan Kilat (Rp 20.000/kg)</option>
+                             <option value="25000" data-type="unit">Cuci Karpet Besar (Rp 25.000/Meter)</option>
+                            <option value="10000" data-type="unit">Cuci Karpet Kecil (Rp 10.000/Meter)</option>
+                            <option value="10000" data-type="unit">Cuci Selimut kecil (Rp 10.000/Meter)</option>
+                             <option value="20000" data-type="unit">Cuci Selimut Besar (Rp 20.000/Satuan)</option>
+                            <option value="35000" data-type="unit">Cuci Tas (Rp 35.000/Satuan)</option>
+                            <option value="30000" data-type="unit">Cuci Sepatu (Rp 30.000 /Set)</option>
+                            <option value="25000" data-type="unit">Cuci Badcover Kecil (Rp 25.000 /Satuan)</option>
+                            <option value="40000" data-type="unit">Cuci Badcover Besar (Rp 40.000 /Satuan)</option>
+                            <option value="25000" data-type="unit">Cuci Sprei 1 Set (Rp 25.000/set)</option>
                         </select>
                     </div>
                     <div>
-                        <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Perkiraan Berat (kg)</label>
-                        <input type="number" id="inputBerat" value="3" min="1" class="w-full bg-white border border-slate-300 rounded-xl p-3 text-sm focus:outline-blue-600">
+                        <label id="labelInput" class="block text-xs font-bold text-slate-500 uppercase mb-1">Perkiraan Berat (kg)</label>
+                        <input type="number" id="inputBerat" value="1" min="1" class="w-full bg-white border border-slate-300 rounded-xl p-3 text-sm focus:outline-blue-600">
                     </div>
                 </div>
                 <div class="bg-blue-50 border border-blue-100 rounded-xl p-6 flex flex-col justify-between">
                     <div>
                         <span class="text-xs uppercase font-bold text-blue-600 tracking-wider">Total Estimasi Biaya</span>
-                        <h3 id="hasilHitung" class="text-3xl font-extrabold text-blue-900 mt-2">Rp 21.000</h3>
+                        <h3 id="hasilHitung" class="text-3xl font-extrabold text-blue-900 mt-2">Rp 7.000</h3>
                     </div>
                     <a href="https://wa.me/6285927262579?text=Halo%20Armuzna%20Laundry,%20saya%20mau%20antar%20laundry%20dengan%20estimasi%20biaya%20di%20website." target="_blank" class="mt-4 block text-center bg-blue-600 text-white font-bold py-3 rounded-xl hover:bg-blue-700 transition shadow text-sm">
                         Pesan via WhatsApp Sekarang
@@ -170,32 +179,69 @@
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- Footer (Tetap Sesuai Asli / Gambar Kedua) -->
     <footer class="bg-slate-900 text-slate-400 py-10 text-sm">
         <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4">
             <div class="flex items-center space-x-3">
-                <img src="1.png" alt="Armuzna Logo" class="w-8 h-8 rounded-full object-cover border border-slate-700">
+                <img src="11.png" alt="Armuzna Logo" class="w-8 h-8 rounded-full object-cover border border-slate-700">
                 <span class="text-white font-bold">Armuzna Laundry Balikpapan</span>
             </div>
             <p>&copy; 2026 Armuzna Laundry. All rights reserved.</p>
         </div>
     </footer>
 
-    <!-- Script Kalkulator Sederhana -->
-    <script>
-        const pilihanLayanan = document.getElementById('pilihanLayanan');
-        const inputBerat = document.getElementById('inputBerat');
-        const hasilHitung = document.getElementById('hasilHitung');
+<script>
+(function () {
+    function initLaundryCalculator() {
+        const layanan = document.getElementById('pilihanLayanan');
+        const jumlah = document.getElementById('inputBerat');
+        const label = document.getElementById('labelInput');
+        const hasil = document.getElementById('hasilHitung');
 
-        function kalkulasi() {
-            const harga = parseInt(pilihanLayanan.value);
-            const berat = parseInt(inputBerat.value) || 0;
-            const total = harga * berat;
-            hasilHitung.innerText = 'Rp ' + total.toLocaleString('id-ID');
+        if (!layanan || !jumlah || !label || !hasil) {
+            console.error('Kalkulator laundry: elemen tidak lengkap.');
+            return;
         }
 
-        pilihanLayanan.addEventListener('change', kalkulasi);
-        inputBerat.addEventListener('input', kalkulasi);
-    </script>
+        function rupiah(nilai) {
+            return 'Rp ' + Math.round(nilai).toLocaleString('id-ID');
+        }
+
+        function hitung() {
+            const option = layanan.options[layanan.selectedIndex];
+            const harga = parseFloat(option.value) || 0;
+            const tipe = option.getAttribute('data-type') || 'unit';
+            let nilai = parseFloat(jumlah.value);
+
+            if (!Number.isFinite(nilai) || nilai < 0) nilai = 0;
+
+            if (tipe === 'kilo') {
+                label.textContent = 'Perkiraan Berat (kg)';
+                jumlah.step = '0.1';
+                jumlah.min = '0.1';
+            } else {
+                label.textContent = 'Jumlah Barang (pcs/set)';
+                jumlah.step = '1';
+                jumlah.min = '1';
+                if (nilai > 0) nilai = Math.floor(nilai);
+            }
+
+            hasil.textContent = rupiah(harga * nilai);
+        }
+
+        layanan.addEventListener('change', hitung);
+        jumlah.addEventListener('input', hitung);
+        jumlah.addEventListener('change', hitung);
+        hitung();
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initLaundryCalculator);
+    } else {
+        initLaundryCalculator();
+    }
+})();
+</script>
+
 </body>
 </html>
