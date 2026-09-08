@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body class="bg-slate-50 text-slate-800 font-sans">
-
     <!-- Top Bar Kontak Cepat -->
     <div class="bg-blue-800 text-white text-xs py-2 px-4">
         <div class="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
@@ -17,7 +16,6 @@
             <span><i class="fa-solid fa-phone mr-1"></i> 0859-2726-2579</span>
         </div>
     </div>
-
     <!-- Header & Navigasi -->
     <header class="bg-white shadow-sm sticky top-0 z-50">
         <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
@@ -42,7 +40,6 @@
             </div>
         </div>
     </header>
-
     <!-- Hero Section -->
     <section id="beranda" class="py-16 md:py-24 bg-gradient-to-r from-blue-700 to-indigo-800 text-white">
         <div class="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-10 items-center">
@@ -66,7 +63,6 @@
             </div>
         </div>
     </section>
-
     <!-- Daftar Harga & Layanan -->
     <section id="layanan" class="py-16 max-w-6xl mx-auto px-4">
         <div class="text-center max-w-xl mx-auto mb-12">
@@ -103,7 +99,6 @@
             </div>
         </div>
     </section>
-
     <!-- Kalkulator Estimasi & Pemesanan -->
     <section id="kalkulator" class="py-16 bg-white border-y border-slate-200">
         <div class="max-w-4xl mx-auto px-4">
@@ -146,7 +141,6 @@
             </div>
         </div>
     </section>
-
     <!-- Informasi Lokasi & Jam Operasional -->
     <section id="lokasi" class="py-16 max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-8 items-center">
         <div class="space-y-6">
@@ -178,8 +172,25 @@
             </ul>
         </div>
     </section>
+    
+    <!-- Widget WhatsApp Mengambang (Floating WhatsApp Widget) -->
+    <div class="fixed bottom-6 right-6 z-50 flex items-center gap-3 group">
+        <!-- Balon Pesan (Tooltip) -->
+        <div class="hidden sm:block bg-white text-slate-700 text-xs font-medium px-4 py-2 rounded-2xl shadow-lg border border-slate-100 opacity-90 group-hover:opacity-100 transition">
+            Halo! Ada yang bisa kami bantu? 👋
+        </div>
+        <!-- Tombol Ikon WhatsApp -->
+        <a href="https://wa.me/6285927262579?text=Halo%20Armuzna%20Laundry,%20saya%20ingin%20bertanya%20tentang%20layanan%20laundry." 
+           target="_blank" 
+           aria-label="Chat WhatsApp"
+           class="relative bg-green-500 hover:bg-green-600 text-white w-14 h-14 rounded-full flex items-center justify-center text-2xl shadow-2xl transition transform hover:scale-110">
+            <!-- Efek Animasi Berdenyut -->
+            <span class="absolute w-full h-full rounded-full bg-green-400 opacity-75 animate-ping -z-10"></span>
+            <i class="fa-brands fa-whatsapp"></i>
+        </a>
+    </div>
 
-    <!-- Footer (Tetap Sesuai Asli / Gambar Kedua) -->
+    <!-- Footer -->
     <footer class="bg-slate-900 text-slate-400 py-10 text-sm">
         <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4">
             <div class="flex items-center space-x-3">
@@ -189,7 +200,6 @@
             <p>&copy; 2026 Armuzna Laundry. All rights reserved.</p>
         </div>
     </footer>
-
 <script>
 (function () {
     function initLaundryCalculator() {
@@ -197,24 +207,19 @@
         const jumlah = document.getElementById('inputBerat');
         const label = document.getElementById('labelInput');
         const hasil = document.getElementById('hasilHitung');
-
         if (!layanan || !jumlah || !label || !hasil) {
             console.error('Kalkulator laundry: elemen tidak lengkap.');
             return;
         }
-
         function rupiah(nilai) {
             return 'Rp ' + Math.round(nilai).toLocaleString('id-ID');
         }
-
         function hitung() {
             const option = layanan.options[layanan.selectedIndex];
             const harga = parseFloat(option.value) || 0;
             const tipe = option.getAttribute('data-type') || 'unit';
             let nilai = parseFloat(jumlah.value);
-
             if (!Number.isFinite(nilai) || nilai < 0) nilai = 0;
-
             if (tipe === 'kilo') {
                 label.textContent = 'Perkiraan Berat (kg)';
                 jumlah.step = '0.1';
@@ -225,16 +230,13 @@
                 jumlah.min = '1';
                 if (nilai > 0) nilai = Math.floor(nilai);
             }
-
             hasil.textContent = rupiah(harga * nilai);
         }
-
         layanan.addEventListener('change', hitung);
         jumlah.addEventListener('input', hitung);
         jumlah.addEventListener('change', hitung);
         hitung();
     }
-
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', initLaundryCalculator);
     } else {
@@ -242,6 +244,5 @@
     }
 })();
 </script>
-
 </body>
 </html>
