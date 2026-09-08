@@ -7,33 +7,42 @@
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class'
+        }
+    </script>
 </head>
-<body class="bg-slate-50 text-slate-800 font-sans">
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 font-sans transition-colors duration-300">
     <!-- Top Bar Kontak Cepat -->
-    <div class="bg-blue-800 text-white text-xs py-2 px-4">
+    <div class="bg-blue-800 dark:bg-slate-900 text-white text-xs py-2 px-4 border-b border-slate-700/20">
         <div class="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
             <span><i class="fa-solid fa-location-dot mr-1"></i> Jl. Soekarno Hatta Km 4, No 1, Balikpapan, Kaltim</span>
             <span><i class="fa-solid fa-phone mr-1"></i> 0859-2726-2579</span>
         </div>
     </div>
     <!-- Header & Navigasi -->
-    <header class="bg-white shadow-sm sticky top-0 z-50">
+    <header class="bg-white dark:bg-slate-900 shadow-sm sticky top-0 z-50 transition-colors duration-300">
         <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
             <div class="flex items-center space-x-3">
                 <!-- Ikon dari Gambar yang Anda Berikan -->
                 <img src="11.png" alt="Maskot Armuzna Laundry" class="w-11 h-11 rounded-full object-cover border-2 border-blue-600 shadow-sm">
                 <div>
-                    <span class="text-lg font-bold text-blue-700 block leading-tight">Armuzna Laundry</span>
-                    <span class="text-xs text-slate-500">Bersih Total, Hasil Maksimal</span>
+                    <span class="text-lg font-bold text-blue-700 dark:text-blue-400 block leading-tight">Armuzna Laundry</span>
+                    <span class="text-xs text-slate-500 dark:text-slate-400">Bersih Total, Hasil Maksimal</span>
                 </div>
             </div>
-            <nav class="hidden md:flex space-x-6 text-sm font-medium text-slate-600">
-                <a href="#beranda" class="hover:text-blue-600 transition">Beranda</a>
-                <a href="#layanan" class="hover:text-blue-600 transition">Daftar Harga</a>
-                <a href="#kalkulator" class="hover:text-blue-600 transition">Kalkulator Estimasi</a>
-                <a href="#lokasi" class="hover:text-blue-600 transition">Lokasi & Kontak</a>
+            <nav class="hidden md:flex space-x-6 text-sm font-medium text-slate-600 dark:text-slate-300 items-center">
+                <a href="#beranda" class="hover:text-blue-600 dark:hover:text-blue-400 transition">Beranda</a>
+                <a href="#layanan" class="hover:text-blue-600 dark:hover:text-blue-400 transition">Daftar Harga</a>
+                <a href="#kalkulator" class="hover:text-blue-600 dark:hover:text-blue-400 transition">Kalkulator Estimasi</a>
+                <a href="#lokasi" class="hover:text-blue-600 dark:hover:text-blue-400 transition">Lokasi & Kontak</a>
             </nav>
-            <div>
+            <div class="flex items-center space-x-3">
+                <!-- Tombol Toggle Tema (Light / Dark) -->
+                <button id="themeToggle" aria-label="Toggle Tema" class="w-10 h-10 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-yellow-400 flex items-center justify-center hover:bg-slate-200 dark:hover:bg-slate-700 transition shadow-sm">
+                    <i id="themeIcon" class="fa-solid fa-moon text-sm"></i>
+                </button>
                 <a href="https://wa.me/6285927262579?text=Halo%20Armuzna%20Laundry,%20saya%20mau%20pesan%20layanan%20laundry." target="_blank" class="bg-green-600 text-white px-4 py-2 rounded-xl text-sm font-bold hover:bg-green-700 transition shadow-sm">
                     <i class="fa-brands fa-whatsapp mr-1"></i> WhatsApp
                 </a>
@@ -41,10 +50,10 @@
         </div>
     </header>
     <!-- Hero Section -->
-    <section id="beranda" class="py-16 md:py-24 bg-gradient-to-r from-blue-700 to-indigo-800 text-white">
+    <section id="beranda" class="py-16 md:py-24 bg-gradient-to-r from-blue-700 to-indigo-800 dark:from-slate-900 dark:to-blue-950 text-white">
         <div class="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-10 items-center">
             <div class="space-y-6">
-                <span class="bg-blue-600 text-blue-100 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">Terpercaya di Balikpapan</span>
+                <span class="bg-blue-600 dark:bg-blue-800 text-blue-100 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">Terpercaya di Balikpapan</span>
                 <h1 class="text-4xl md:text-5xl font-extrabold leading-tight">Solusi Terbaik Pakaian Bersih, Wangi & Rapi</h1>
                 <p class="text-blue-100 text-base md:text-lg">Nikmati kemudahan mencuci di Armuzna Laundry. Hasil cucian bersih higienis, setrika licin rapi, dengan pilihan aroma parfum eksklusif.</p>
                 <div class="flex flex-wrap gap-4">
@@ -52,8 +61,8 @@
                     <a href="https://wa.me/6285927262579" target="_blank" class="border border-white/40 text-white px-6 py-3 rounded-xl font-bold hover:bg-white/10 transition">Hubungi Kami</a>
                 </div>
             </div>
-            <div class="bg-white/10 p-6 rounded-2xl backdrop-blur-md border border-white/20 text-white space-y-4 shadow-xl">
-                <h3 class="text-xl font-bold border-b border-white/20 pb-3"><i class="fa-solid fa-star text-yellow-300 mr-2"></i> Keunggulan Armuzna Laundry</h3>
+            <div class="bg-white/10 dark:bg-slate-900/50 p-6 rounded-2xl backdrop-blur-md border border-white/20 dark:border-slate-800 text-white space-y-4 shadow-xl">
+                <h3 class="text-xl font-bold border-b border-white/20 dark:border-slate-800 pb-3"><i class="fa-solid fa-star text-yellow-300 mr-2"></i> Keunggulan Armuzna Laundry</h3>
                 <ul class="space-y-3 text-sm text-blue-100">
                     <li class="flex items-center"><i class="fa-solid fa-check text-green-400 mr-3 text-base"></i> Bersih higienis & dipilah sesuai warna</li>
                     <li class="flex items-center"><i class="fa-solid fa-check text-green-400 mr-3 text-base"></i> Pilihan parfum tahan lama (Snappy, Sakura, Downy)</li>
@@ -66,51 +75,51 @@
     <!-- Daftar Harga & Layanan -->
     <section id="layanan" class="py-16 max-w-6xl mx-auto px-4">
         <div class="text-center max-w-xl mx-auto mb-12">
-            <h2 class="text-3xl font-bold text-slate-900 mb-2">Daftar Tarif Layanan</h2>
-            <p class="text-slate-600 text-sm">Transparan dan terjangkau untuk kebutuhan harian maupun pakaian khusus Anda.</p>
+            <h2 class="text-3xl font-bold text-slate-900 dark:text-slate-100 mb-2">Daftar Tarif Layanan</h2>
+            <p class="text-slate-600 dark:text-slate-400 text-sm">Transparan dan terjangkau untuk kebutuhan harian maupun pakaian khusus Anda.</p>
         </div>
         <div class="grid md:grid-cols-3 gap-6">
-            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition">
-                <div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center text-xl mb-4 font-bold">
+            <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 hover:shadow-md transition">
+                <div class="w-12 h-12 bg-blue-50 dark:bg-slate-800 text-blue-600 dark:text-blue-400 rounded-xl flex items-center justify-center text-xl mb-4 font-bold">
                     <i class="fa-solid fa-scale-balanced"></i>
                 </div>
-                <h3 class="font-bold text-lg mb-1">Cuci Kiloan Reguler</h3>
-                <p class="text-xs text-slate-500 mb-4">Estimasi selesai 2-3 hari</p>
-                <div class="text-xl font-extrabold text-blue-700 mb-4">Rp 7.000 <span class="text-xs text-slate-500 font-normal">/ kg</span></div>
-                <p class="text-slate-600 text-sm">Cuci bersih, kering, disetrika rapi, dan dipacking plastik satuan.</p>
+                <h3 class="font-bold text-lg mb-1 text-slate-900 dark:text-slate-100">Cuci Kiloan Reguler</h3>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">Estimasi selesai 2-3 hari</p>
+                <div class="text-xl font-extrabold text-blue-700 dark:text-blue-400 mb-4">Rp 7.000 <span class="text-xs text-slate-500 dark:text-slate-400 font-normal">/ kg</span></div>
+                <p class="text-slate-600 dark:text-slate-300 text-sm">Cuci bersih, kering, disetrika rapi, dan dipacking plastik satuan.</p>
             </div>
-            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition">
-                <div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center text-xl mb-4 font-bold">
+            <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 hover:shadow-md transition">
+                <div class="w-12 h-12 bg-blue-50 dark:bg-slate-800 text-blue-600 dark:text-blue-400 rounded-xl flex items-center justify-center text-xl mb-4 font-bold">
                     <i class="fa-solid fa-bolt"></i>
                 </div>
-                <h3 class="font-bold text-lg mb-1">Cuci Kiloan Kilat</h3>
-                <p class="text-xs text-slate-500 mb-4">Estimasi selesai 1 hari</p>
-                <div class="text-xl font-extrabold text-blue-700 mb-4">Rp 20.000 <span class="text-xs text-slate-500 font-normal">/ kg</span></div>
-                <p class="text-slate-600 text-sm">Prioritas pengerjaan cepat untuk pakaian yang mendadak harus dipakai.</p>
+                <h3 class="font-bold text-lg mb-1 text-slate-900 dark:text-slate-100">Cuci Kiloan Kilat</h3>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">Estimasi selesai 1 hari</p>
+                <div class="text-xl font-extrabold text-blue-700 dark:text-blue-400 mb-4">Rp 20.000 <span class="text-xs text-slate-500 dark:text-slate-400 font-normal">/ kg</span></div>
+                <p class="text-slate-600 dark:text-slate-300 text-sm">Prioritas pengerjaan cepat untuk pakaian yang mendadak harus dipakai.</p>
             </div>
-            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition">
-                <div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center text-xl mb-4 font-bold">
+            <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 hover:shadow-md transition">
+                <div class="w-12 h-12 bg-blue-50 dark:bg-slate-800 text-blue-600 dark:text-blue-400 rounded-xl flex items-center justify-center text-xl mb-4 font-bold">
                     <i class="fa-solid fa-shirt"></i>
                 </div>
-                <h3 class="font-bold text-lg mb-1">Cuci Satuan / Premium</h3>
-                <p class="text-xs text-slate-500 mb-4">Jas, Selimut, Bed Cover</p>
-                <div class="text-xl font-extrabold text-blue-700 mb-4">Mulai Rp 35.000 <span class="text-xs text-slate-500 font-normal">/ pcs</span></div>
-                <p class="text-slate-600 text-sm">Perawatan khusus bahan sensitif agar serat kain tetap awet dan tidak rusak.</p>
+                <h3 class="font-bold text-lg mb-1 text-slate-900 dark:text-slate-100">Cuci Satuan / Premium</h3>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">Jas, Selimut, Bed Cover</p>
+                <div class="text-xl font-extrabold text-blue-700 dark:text-blue-400 mb-4">Mulai Rp 35.000 <span class="text-xs text-slate-500 dark:text-slate-400 font-normal">/ pcs</span></div>
+                <p class="text-slate-600 dark:text-slate-300 text-sm">Perawatan khusus bahan sensitif agar serat kain tetap awet dan tidak rusak.</p>
             </div>
         </div>
     </section>
     <!-- Kalkulator Estimasi & Pemesanan -->
-    <section id="kalkulator" class="py-16 bg-white border-y border-slate-200">
+    <section id="kalkulator" class="py-16 bg-white dark:bg-slate-900 border-y border-slate-200 dark:border-slate-800 transition-colors duration-300">
         <div class="max-w-4xl mx-auto px-4">
             <div class="text-center mb-10">
-                <h2 class="text-3xl font-bold text-slate-900 mb-2">Hitung Estimasi Biaya Laundry</h2>
-                <p class="text-slate-600 text-sm">Pilih layanan dan masukkan berat atau jumlah barang Anda.</p>
+                <h2 class="text-3xl font-bold text-slate-900 dark:text-slate-100 mb-2">Hitung Estimasi Biaya Laundry</h2>
+                <p class="text-slate-600 dark:text-slate-400 text-sm">Pilih layanan dan masukkan berat atau jumlah barang Anda.</p>
             </div>
-            <div class="bg-slate-50 p-6 md:p-8 rounded-2xl border border-slate-200 grid md:grid-cols-2 gap-6">
+            <div class="bg-slate-50 dark:bg-slate-950 p-6 md:p-8 rounded-2xl border border-slate-200 dark:border-slate-800 grid md:grid-cols-2 gap-6">
                 <div class="space-y-4">
                     <div>
-                        <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Pilih Layanan</label>
-                        <select id="pilihanLayanan" class="w-full bg-white border border-slate-300 rounded-xl p-3 text-sm focus:outline-blue-600">
+                        <label class="block text-xs font-bold text-slate-500 dark:text-slate-400 uppercase mb-1">Pilih Layanan</label>
+                        <select id="pilihanLayanan" class="w-full bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-200 border border-slate-300 dark:border-slate-700 rounded-xl p-3 text-sm focus:outline-blue-600">
                             <option value="7000" data-type="kilo">Cuci Kiloan Reguler (Rp 7.000/kg)</option>
                             <option value="20000" data-type="kilo">Cuci Kiloan Kilat (Rp 20.000/kg)</option>
                             <option value="25000" data-type="unit">Cuci Karpet Besar (Rp 25.000/Meter)</option>
@@ -125,14 +134,14 @@
                         </select>
                     </div>
                     <div>
-                        <label id="labelInput" class="block text-xs font-bold text-slate-500 uppercase mb-1">Perkiraan Berat (kg)</label>
-                        <input type="number" id="inputBerat" value="1" min="1" class="w-full bg-white border border-slate-300 rounded-xl p-3 text-sm focus:outline-blue-600">
+                        <label id="labelInput" class="block text-xs font-bold text-slate-500 dark:text-slate-400 uppercase mb-1">Perkiraan Berat (kg)</label>
+                        <input type="number" id="inputBerat" value="1" min="1" class="w-full bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-200 border border-slate-300 dark:border-slate-700 rounded-xl p-3 text-sm focus:outline-blue-600">
                     </div>
                 </div>
-                <div class="bg-blue-50 border border-blue-100 rounded-xl p-6 flex flex-col justify-between">
+                <div class="bg-blue-50 dark:bg-slate-900 border border-blue-100 dark:border-slate-800 rounded-xl p-6 flex flex-col justify-between">
                     <div>
-                        <span class="text-xs uppercase font-bold text-blue-600 tracking-wider">Total Estimasi Biaya</span>
-                        <h3 id="hasilHitung" class="text-3xl font-extrabold text-blue-900 mt-2">Rp 7.000</h3>
+                        <span class="text-xs uppercase font-bold text-blue-600 dark:text-blue-400 tracking-wider">Total Estimasi Biaya</span>
+                        <h3 id="hasilHitung" class="text-3xl font-extrabold text-blue-900 dark:text-blue-200 mt-2">Rp 7.000</h3>
                     </div>
                     <!-- Tombol WhatsApp dengan ID btnPesanWa -->
                     <a id="btnPesanWa" href="https://wa.me/6285927262579?text=Halo%20Armuzna%20Laundry,%20saya%20mau%20antar%20laundry%20dengan%20estimasi%20biaya%20di%20website." target="_blank" class="mt-4 block text-center bg-blue-600 text-white font-bold py-3 rounded-xl hover:bg-blue-700 transition shadow text-sm">
@@ -145,31 +154,31 @@
     <!-- Informasi Lokasi & Jam Operasional -->
     <section id="lokasi" class="py-16 max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-8 items-center">
         <div class="space-y-6">
-            <h2 class="text-3xl font-bold text-slate-900">Kunjungi Outlet Kami di Balikpapan</h2>
-            <p class="text-slate-600 text-sm leading-relaxed">Anda dapat mengantar langsung pakaian bersih Anda ke outlet kami atau menghubungi nomor kontak di bawah untuk informasi lebih lanjut.</p>
+            <h2 class="text-3xl font-bold text-slate-900 dark:text-slate-100">Kunjungi Outlet Kami di Balikpapan</h2>
+            <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">Anda dapat mengantar langsung pakaian bersih Anda ke outlet kami atau menghubungi nomor kontak di bawah untuk informasi lebih lanjut.</p>
             <div class="space-y-4">
                 <div class="flex items-start space-x-3">
-                    <div class="w-10 h-10 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center shrink-0 font-bold"><i class="fa-solid fa-location-dot"></i></div>
+                    <div class="w-10 h-10 bg-blue-100 dark:bg-slate-800 text-blue-600 dark:text-blue-400 rounded-xl flex items-center justify-center shrink-0 font-bold"><i class="fa-solid fa-location-dot"></i></div>
                     <div>
-                        <h4 class="font-bold text-slate-800">Alamat Lengkap</h4>
-                        <p class="text-slate-600 text-sm">Jl. Soekarno Hatta Km 4, No 1, Balikpapan, Kalimantan Timur</p>
+                        <h4 class="font-bold text-slate-800 dark:text-slate-200">Alamat Lengkap</h4>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm">Jl. Soekarno Hatta Km 4, No 1, Balikpapan, Kalimantan Timur</p>
                     </div>
                 </div>
                 <div class="flex items-start space-x-3">
-                    <div class="w-10 h-10 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center shrink-0 font-bold"><i class="fa-solid fa-phone"></i></div>
+                    <div class="w-10 h-10 bg-blue-100 dark:bg-slate-800 text-blue-600 dark:text-blue-400 rounded-xl flex items-center justify-center shrink-0 font-bold"><i class="fa-solid fa-phone"></i></div>
                     <div>
-                        <h4 class="font-bold text-slate-800">Telepon / WhatsApp</h4>
-                        <p class="text-slate-600 text-sm">0859-2726-2579</p>
+                        <h4 class="font-bold text-slate-800 dark:text-slate-200">Telepon / WhatsApp</h4>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm">0859-2726-2579</p>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
-            <h3 class="font-bold text-lg mb-4 text-slate-800"><i class="fa-solid fa-clock text-blue-600 mr-2"></i> Jam Operasional Toko</h3>
-            <ul class="space-y-3 text-sm text-slate-600 divide-y divide-slate-100">
-                <li class="flex justify-between pt-2"><span>Senin - Kamis</span> <span class="font-semibold text-slate-800">07.00 - 21.00 WITA</span></li>
-                <li class="flex justify-between pt-2"><span>Jumat</span> <span class="font-semibold text-slate-800">07.30 - 21.00 WITA</span></li>
-                <li class="flex justify-between pt-2"><span>Sabtu - Minggu</span> <span class="font-semibold text-slate-800">07.00 - 21.00 WITA</span></li>
+        <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800">
+            <h3 class="font-bold text-lg mb-4 text-slate-800 dark:text-slate-100"><i class="fa-solid fa-clock text-blue-600 dark:text-blue-400 mr-2"></i> Jam Operasional Toko</h3>
+            <ul class="space-y-3 text-sm text-slate-600 dark:text-slate-300 divide-y divide-slate-100 dark:divide-slate-800">
+                <li class="flex justify-between pt-2"><span>Senin - Kamis</span> <span class="font-semibold text-slate-800 dark:text-slate-200">07.00 - 21.00 WITA</span></li>
+                <li class="flex justify-between pt-2"><span>Jumat</span> <span class="font-semibold text-slate-800 dark:text-slate-200">07.30 - 21.00 WITA</span></li>
+                <li class="flex justify-between pt-2"><span>Sabtu - Minggu</span> <span class="font-semibold text-slate-800 dark:text-slate-200">07.00 - 21.00 WITA</span></li>
             </ul>
         </div>
     </section>
@@ -177,7 +186,7 @@
     <!-- Widget WhatsApp Interaktif (Langsung Chat Pop-up) -->
     <div class="fixed bottom-6 right-6 z-50">
         <!-- Kotak Chat Pop-up -->
-        <div id="waChatBox" class="hidden absolute bottom-20 right-0 w-80 bg-white rounded-2xl shadow-2xl border border-slate-200 overflow-hidden transition-all duration-300 transform scale-95 opacity-0 origin-bottom-right">
+        <div id="waChatBox" class="hidden absolute bottom-20 right-0 w-80 bg-white dark:bg-slate-900 rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-800 overflow-hidden transition-all duration-300 transform scale-95 opacity-0 origin-bottom-right">
             <!-- Header Chat -->
             <div class="bg-green-600 text-white p-4 flex justify-between items-center">
                 <div class="flex items-center space-x-3">
@@ -195,14 +204,14 @@
                 </button>
             </div>
             <!-- Body Chat (Simulasi Percakapan) -->
-            <div class="p-4 bg-slate-50 h-48 overflow-y-auto text-xs space-y-3 flex flex-col">
-                <div class="bg-white p-3 rounded-xl shadow-sm border border-slate-100 max-w-[85%] self-start text-slate-700">
+            <div class="p-4 bg-slate-50 dark:bg-slate-950 h-48 overflow-y-auto text-xs space-y-3 flex flex-col">
+                <div class="bg-white dark:bg-slate-800 p-3 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700 max-w-[85%] self-start text-slate-700 dark:text-slate-200">
                     Halo! 👋 Ada yang bisa kami bantu seputar layanan cuci kiloan atau satuan di Armuzna Laundry Balikpapan?
                 </div>
             </div>
             <!-- Footer / Input Chat -->
-            <div class="p-3 bg-white border-t border-slate-100 flex items-center gap-2">
-                <input type="text" id="waMessageInput" placeholder="Ketik pesan Anda..." class="flex-1 bg-slate-100 border border-slate-200 rounded-xl px-3 py-2 text-xs focus:outline-none focus:border-green-600">
+            <div class="p-3 bg-white dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800 flex items-center gap-2">
+                <input type="text" id="waMessageInput" placeholder="Ketik pesan Anda..." class="flex-1 bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-700 rounded-xl px-3 py-2 text-xs focus:outline-none focus:border-green-600">
                 <button onclick="sendToWhatsApp()" class="bg-green-600 hover:bg-green-700 text-white w-9 h-9 rounded-xl flex items-center justify-center transition shrink-0">
                     <i class="fa-solid fa-paper-plane text-xs"></i>
                 </button>
@@ -211,7 +220,7 @@
         <!-- Tombol Ikon WhatsApp Mengambang -->
         <div class="flex items-center gap-3 group">
             <!-- Balon Pesan (Tooltip) -->
-            <div class="hidden sm:block bg-white text-slate-700 text-xs font-medium px-4 py-2 rounded-2xl shadow-lg border border-slate-100 opacity-90 group-hover:opacity-100 transition cursor-pointer" onclick="toggleWaChat()">
+            <div class="hidden sm:block bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-200 text-xs font-medium px-4 py-2 rounded-2xl shadow-lg border border-slate-100 dark:border-slate-800 opacity-90 group-hover:opacity-100 transition cursor-pointer" onclick="toggleWaChat()">
                 Halo! Ada yang bisa kami bantu? 👋
             </div>
             <!-- Tombol Utama -->
@@ -225,7 +234,7 @@
         </div>
     </div>
     <!-- Footer -->
-    <footer class="bg-slate-900 text-slate-400 py-10 text-sm">
+    <footer class="bg-slate-900 dark:bg-slate-950 text-slate-400 py-10 text-sm border-t border-slate-800">
         <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4">
             <div class="flex items-center space-x-3">
                 <img src="11.png" alt="Armuzna Logo" class="w-8 h-8 rounded-full object-cover border border-slate-700">
@@ -236,31 +245,52 @@
     </footer>
 <script>
 (function () {
+    // Fungsi Toggle Tema (Light / Dark)
+    const themeToggleBtn = document.getElementById('themeToggle');
+    const themeIcon = document.getElementById('themeIcon');
+    const htmlElement = document.documentElement;
+
+    // Cek preferensi tema sebelumnya di localStorage
+    if (localStorage.getItem('theme') === 'dark') {
+        htmlElement.classList.add('dark');
+        themeIcon.classList.remove('fa-moon');
+        themeIcon.classList.add('fa-sun');
+    }
+
+    themeToggleBtn.addEventListener('click', () => {
+        if (htmlElement.classList.contains('dark')) {
+            htmlElement.classList.remove('dark');
+            localStorage.setItem('theme', 'light');
+            themeIcon.classList.remove('fa-sun');
+            themeIcon.classList.add('fa-moon');
+        } else {
+            htmlElement.classList.add('dark');
+            localStorage.setItem('theme', 'dark');
+            themeIcon.classList.remove('fa-moon');
+            themeIcon.classList.add('fa-sun');
+        }
+    });
+
     function initLaundryCalculator() {
         const layanan = document.getElementById('pilihanLayanan');
         const jumlah = document.getElementById('inputBerat');
         const label = document.getElementById('labelInput');
         const hasil = document.getElementById('hasilHitung');
         const btnPesanWa = document.getElementById('btnPesanWa');
-
         if (!layanan || !jumlah || !label || !hasil || !btnPesanWa) {
             console.error('Kalkulator laundry: elemen tidak lengkap.');
             return;
         }
-
         function rupiah(nilai) {
             return 'Rp ' + Math.round(nilai).toLocaleString('id-ID');
         }
-
         function hitung() {
             const option = layanan.options[layanan.selectedIndex];
             const namaLayanan = option.text;
             const harga = parseFloat(option.value) || 0;
             const tipe = option.getAttribute('data-type') || 'unit';
             let nilai = parseFloat(jumlah.value);
-
             if (!Number.isFinite(nilai) || nilai < 0) nilai = 0;
-
             if (tipe === 'kilo') {
                 label.textContent = 'Perkiraan Berat (kg)';
                 jumlah.step = '0.1';
@@ -271,25 +301,21 @@
                 jumlah.min = '1';
                 if (nilai > 0) nilai = Math.floor(nilai);
             }
-
             const totalBiaya = harga * nilai;
             hasil.textContent = rupiah(totalBiaya);
-
-            // Membuat format list pesanan untuk WhatsApp
+            
+            // Format list pesan WhatsApp
             const satuanUnit = tipe === 'kilo' ? 'kg' : 'pcs/set';
             const teksPesan = `Halo Armuzna Laundry, saya ingin memesan layanan berikut:\n\n- *Layanan:* ${namaLayanan}\n- *Jumlah:* ${nilai} ${satuanUnit}\n- *Total Estimasi Biaya:* ${rupiah(totalBiaya)}\n\nMohon informasi selanjutnya. Terima kasih!`;
             
-            // Memperbarui atribut href tombol WhatsApp secara otomatis
             const encodedMessage = encodeURIComponent(teksPesan);
             btnPesanWa.href = `https://wa.me/6285927262579?text=${encodedMessage}`;
         }
-
         layanan.addEventListener('change', hitung);
         jumlah.addEventListener('input', hitung);
         jumlah.addEventListener('change', hitung);
         hitung();
     }
-
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', initLaundryCalculator);
     } else {
