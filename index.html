@@ -113,10 +113,10 @@
                         <select id="pilihanLayanan" class="w-full bg-white border border-slate-300 rounded-xl p-3 text-sm focus:outline-blue-600">
                             <option value="7000" data-type="kilo">Cuci Kiloan Reguler (Rp 7.000/kg)</option>
                             <option value="20000" data-type="kilo">Cuci Kiloan Kilat (Rp 20.000/kg)</option>
-                             <option value="25000" data-type="unit">Cuci Karpet Besar (Rp 25.000/Meter)</option>
+                            <option value="25000" data-type="unit">Cuci Karpet Besar (Rp 25.000/Meter)</option>
                             <option value="10000" data-type="unit">Cuci Karpet Kecil (Rp 10.000/Meter)</option>
                             <option value="10000" data-type="unit">Cuci Selimut kecil (Rp 10.000/Meter)</option>
-                             <option value="20000" data-type="unit">Cuci Selimut Besar (Rp 20.000/Satuan)</option>
+                            <option value="20000" data-type="unit">Cuci Selimut Besar (Rp 20.000/Satuan)</option>
                             <option value="35000" data-type="unit">Cuci Tas (Rp 35.000/Satuan)</option>
                             <option value="30000" data-type="unit">Cuci Sepatu (Rp 30.000 /Set)</option>
                             <option value="25000" data-type="unit">Cuci Badcover Kecil (Rp 25.000 /Satuan)</option>
@@ -173,23 +173,57 @@
         </div>
     </section>
     
-    <!-- Widget WhatsApp Mengambang (Floating WhatsApp Widget) -->
-    <div class="fixed bottom-6 right-6 z-50 flex items-center gap-3 group">
-        <!-- Balon Pesan (Tooltip) -->
-        <div class="hidden sm:block bg-white text-slate-700 text-xs font-medium px-4 py-2 rounded-2xl shadow-lg border border-slate-100 opacity-90 group-hover:opacity-100 transition">
-            Halo! Ada yang bisa kami bantu? 👋
+    <!-- Widget WhatsApp Interaktif (Langsung Chat Pop-up) -->
+    <div class="fixed bottom-6 right-6 z-50">
+        <!-- Kotak Chat Pop-up -->
+        <div id="waChatBox" class="hidden absolute bottom-20 right-0 w-80 bg-white rounded-2xl shadow-2xl border border-slate-200 overflow-hidden transition-all duration-300 transform scale-95 opacity-0 origin-bottom-right">
+            <!-- Header Chat -->
+            <div class="bg-green-600 text-white p-4 flex justify-between items-center">
+                <div class="flex items-center space-x-3">
+                    <div class="relative">
+                        <img src="11.png" alt="Admin Armuzna" class="w-10 h-10 rounded-full object-cover border-2 border-white">
+                        <span class="absolute bottom-0 right-0 w-3 h-3 bg-green-400 border-2 border-white rounded-full"></span>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-sm leading-tight">Armuzna Laundry</h4>
+                        <span class="text-xs text-green-100">Biasanya membalas cepat</span>
+                    </div>
+                </div>
+                <button onclick="toggleWaChat()" class="text-white hover:text-slate-200 focus:outline-none">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+            <!-- Body Chat (Simulasi Percakapan) -->
+            <div class="p-4 bg-slate-50 h-48 overflow-y-auto text-xs space-y-3 flex flex-col">
+                <div class="bg-white p-3 rounded-xl shadow-sm border border-slate-100 max-w-[85%] self-start text-slate-700">
+                    Halo! 👋 Ada yang bisa kami bantu seputar layanan cuci kiloan atau satuan di Armuzna Laundry Balikpapan?
+                </div>
+            </div>
+            <!-- Footer / Input Chat -->
+            <div class="p-3 bg-white border-t border-slate-100 flex items-center gap-2">
+                <input type="text" id="waMessageInput" placeholder="Ketik pesan Anda..." class="flex-1 bg-slate-100 border border-slate-200 rounded-xl px-3 py-2 text-xs focus:outline-none focus:border-green-600">
+                <button onclick="sendToWhatsApp()" class="bg-green-600 hover:bg-green-700 text-white w-9 h-9 rounded-xl flex items-center justify-center transition shrink-0">
+                    <i class="fa-solid fa-paper-plane text-xs"></i>
+                </button>
+            </div>
         </div>
-        <!-- Tombol Ikon WhatsApp -->
-        <a href="https://wa.me/6285927262579?text=Halo%20Armuzna%20Laundry,%20saya%20ingin%20bertanya%20tentang%20layanan%20laundry." 
-           target="_blank" 
-           aria-label="Chat WhatsApp"
-           class="relative bg-green-500 hover:bg-green-600 text-white w-14 h-14 rounded-full flex items-center justify-center text-2xl shadow-2xl transition transform hover:scale-110">
-            <!-- Efek Animasi Berdenyut -->
-            <span class="absolute w-full h-full rounded-full bg-green-400 opacity-75 animate-ping -z-10"></span>
-            <i class="fa-brands fa-whatsapp"></i>
-        </a>
-    </div>
 
+        <!-- Tombol Ikon WhatsApp Mengambang -->
+        <div class="flex items-center gap-3 group">
+            <!-- Balon Pesan (Tooltip) -->
+            <div class="hidden sm:block bg-white text-slate-700 text-xs font-medium px-4 py-2 rounded-2xl shadow-lg border border-slate-100 opacity-90 group-hover:opacity-100 transition cursor-pointer" onclick="toggleWaChat()">
+                Halo! Ada yang bisa kami bantu? 👋
+            </div>
+            <!-- Tombol Utama -->
+            <button onclick="toggleWaChat()" 
+               aria-label="Chat WhatsApp"
+               class="relative bg-green-500 hover:bg-green-600 text-white w-14 h-14 rounded-full flex items-center justify-center text-2xl shadow-2xl transition transform hover:scale-110 focus:outline-none">
+                <!-- Efek Animasi Berdenyut -->
+                <span class="absolute w-full h-full rounded-full bg-green-400 opacity-75 animate-ping -z-10"></span>
+                <i class="fa-brands fa-whatsapp"></i>
+            </button>
+        </div>
+    </div>
     <!-- Footer -->
     <footer class="bg-slate-900 text-slate-400 py-10 text-sm">
         <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4">
@@ -243,6 +277,44 @@
         initLaundryCalculator();
     }
 })();
+
+// Fungsi untuk membuka/menutup Pop-up Chat WhatsApp
+function toggleWaChat() {
+    const chatBox = document.getElementById('waChatBox');
+    if (chatBox.classList.contains('hidden')) {
+        chatBox.classList.remove('hidden');
+        setTimeout(() => {
+            chatBox.classList.remove('scale-95', 'opacity-0');
+            chatBox.classList.add('scale-100', 'opacity-100');
+        }, 10);
+    } else {
+        chatBox.classList.remove('scale-100', 'opacity-100');
+        chatBox.classList.add('scale-95', 'opacity-0');
+        setTimeout(() => {
+            chatBox.classList.add('hidden');
+        }, 300);
+    }
+}
+
+// Fungsi untuk mengirim pesan dari input pop-up langsung ke WhatsApp
+function sendToWhatsApp() {
+    const input = document.getElementById('waMessageInput');
+    const message = input.value.trim() || "Halo Armuzna Laundry, saya ingin bertanya tentang layanan laundry.";
+    const phoneNumber = "6285927262579";
+    const encodedMessage = encodeURIComponent(message);
+    window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, '_blank');
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const waInput = document.getElementById('waMessageInput');
+    if (waInput) {
+        waInput.addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                sendToWhatsApp();
+            }
+        });
+    }
+});
 </script>
 </body>
 </html>
