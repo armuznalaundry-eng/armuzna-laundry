@@ -134,7 +134,8 @@
                         <span class="text-xs uppercase font-bold text-blue-600 tracking-wider">Total Estimasi Biaya</span>
                         <h3 id="hasilHitung" class="text-3xl font-extrabold text-blue-900 mt-2">Rp 7.000</h3>
                     </div>
-                    <a href="https://wa.me/6285927262579?text=Halo%20Armuzna%20Laundry,%20saya%20mau%20antar%20laundry%20dengan%20estimasi%20biaya%20di%20website." target="_blank" class="mt-4 block text-center bg-blue-600 text-white font-bold py-3 rounded-xl hover:bg-blue-700 transition shadow text-sm">
+                    <!-- Tombol WhatsApp dengan ID btnPesanWa -->
+                    <a id="btnPesanWa" href="https://wa.me/6285927262579?text=Halo%20Armuzna%20Laundry,%20saya%20mau%20antar%20laundry%20dengan%20estimasi%20biaya%20di%20website." target="_blank" class="mt-4 block text-center bg-blue-600 text-white font-bold py-3 rounded-xl hover:bg-blue-700 transition shadow text-sm">
                         Pesan via WhatsApp Sekarang
                     </a>
                 </div>
@@ -207,7 +208,6 @@
                 </button>
             </div>
         </div>
-
         <!-- Tombol Ikon WhatsApp Mengambang -->
         <div class="flex items-center gap-3 group">
             <!-- Balon Pesan (Tooltip) -->
@@ -241,19 +241,26 @@
         const jumlah = document.getElementById('inputBerat');
         const label = document.getElementById('labelInput');
         const hasil = document.getElementById('hasilHitung');
-        if (!layanan || !jumlah || !label || !hasil) {
+        const btnPesanWa = document.getElementById('btnPesanWa');
+
+        if (!layanan || !jumlah || !label || !hasil || !btnPesanWa) {
             console.error('Kalkulator laundry: elemen tidak lengkap.');
             return;
         }
+
         function rupiah(nilai) {
             return 'Rp ' + Math.round(nilai).toLocaleString('id-ID');
         }
+
         function hitung() {
             const option = layanan.options[layanan.selectedIndex];
+            const namaLayanan = option.text;
             const harga = parseFloat(option.value) || 0;
             const tipe = option.getAttribute('data-type') || 'unit';
             let nilai = parseFloat(jumlah.value);
+
             if (!Number.isFinite(nilai) || nilai < 0) nilai = 0;
+
             if (tipe === 'kilo') {
                 label.textContent = 'Perkiraan Berat (kg)';
                 jumlah.step = '0.1';
@@ -264,13 +271,25 @@
                 jumlah.min = '1';
                 if (nilai > 0) nilai = Math.floor(nilai);
             }
-            hasil.textContent = rupiah(harga * nilai);
+
+            const totalBiaya = harga * nilai;
+            hasil.textContent = rupiah(totalBiaya);
+
+            // Membuat format list pesanan untuk WhatsApp
+            const satuanUnit = tipe === 'kilo' ? 'kg' : 'pcs/set';
+            const teksPesan = `Halo Armuzna Laundry, saya ingin memesan layanan berikut:\n\n- *Layanan:* ${namaLayanan}\n- *Jumlah:* ${nilai} ${satuanUnit}\n- *Total Estimasi Biaya:* ${rupiah(totalBiaya)}\n\nMohon informasi selanjutnya. Terima kasih!`;
+            
+            // Memperbarui atribut href tombol WhatsApp secara otomatis
+            const encodedMessage = encodeURIComponent(teksPesan);
+            btnPesanWa.href = `https://wa.me/6285927262579?text=${encodedMessage}`;
         }
+
         layanan.addEventListener('change', hitung);
         jumlah.addEventListener('input', hitung);
         jumlah.addEventListener('change', hitung);
         hitung();
     }
+
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', initLaundryCalculator);
     } else {
