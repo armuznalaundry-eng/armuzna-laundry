@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Armuzna Laundry Balikpapan - Bersih, Wangi & Rapi</title>
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script>
@@ -14,7 +13,59 @@
     </script>
 </head>
 <body class="bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 font-sans transition-colors duration-300">
-    <!-- Top Bar Kontak Cepat -->
+    
+    <!-- ========================================== -->
+    <!-- SIDEBAR NAVIGATION DRAWER (MOBILE MENU)    -->
+    <!-- ========================================== -->
+    <div id="sidebarOverlay" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden transition-opacity opacity-0 duration-300" onclick="toggleSidebar()"></div>
+
+    <aside id="appSidebar" class="fixed top-0 left-0 w-72 h-full bg-white dark:bg-slate-900 shadow-2xl z-50 transform -translate-x-full transition-transform duration-300 ease-in-out flex flex-col justify-between border-r border-slate-200 dark:border-slate-800">
+        <!-- Header Sidebar -->
+        <div class="p-5 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <img src="11.png" alt="Maskot Armuzna Laundry" class="w-10 h-10 rounded-full object-cover border-2 border-blue-600 shadow-sm">
+                <div>
+                    <span class="text-base font-bold text-blue-700 dark:text-blue-400 block leading-tight">Armuzna Laundry</span>
+                    <span class="text-[10px] text-slate-500 dark:text-slate-400">Balikpapan, Kaltim</span>
+                </div>
+            </div>
+            <button onclick="toggleSidebar()" aria-label="Tutup Menu" class="w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 flex items-center justify-center hover:bg-slate-200 dark:hover:bg-slate-700 transition">
+                <i class="fa-solid fa-xmark text-sm"></i>
+            </button>
+        </div>
+
+        <!-- Menu Links Sidebar -->
+        <div class="p-4 flex-1 overflow-y-auto space-y-2">
+            <button onclick="switchPageAndCloseSidebar('beranda')" class="w-full text-left px-4 py-3 rounded-xl text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-blue-50 dark:hover:bg-slate-800 hover:text-blue-600 dark:hover:text-blue-400 transition flex items-center space-x-3">
+                <i class="fa-solid fa-house w-5 text-center text-blue-600 dark:text-blue-400"></i>
+                <span>Beranda</span>
+            </button>
+            <button onclick="switchPageAndCloseSidebar('layanan')" class="w-full text-left px-4 py-3 rounded-xl text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-blue-50 dark:hover:bg-slate-800 hover:text-blue-600 dark:hover:text-blue-400 transition flex items-center space-x-3">
+                <i class="fa-solid fa-tags w-5 text-center text-blue-600 dark:text-blue-400"></i>
+                <span>Daftar Harga</span>
+            </button>
+            <button onclick="switchPageAndCloseSidebar('kalkulator')" class="w-full text-left px-4 py-3 rounded-xl text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-blue-50 dark:hover:bg-slate-800 hover:text-blue-600 dark:hover:text-blue-400 transition flex items-center space-x-3">
+                <i class="fa-solid fa-calculator w-5 text-center text-blue-600 dark:text-blue-400"></i>
+                <span>Kalkulator Estimasi</span>
+            </button>
+            <button onclick="switchPageAndCloseSidebar('galeri')" class="w-full text-left px-4 py-3 rounded-xl text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-blue-50 dark:hover:bg-slate-800 hover:text-blue-600 dark:hover:text-blue-400 transition flex items-center space-x-3">
+                <i class="fa-solid fa-images w-5 text-center text-blue-600 dark:text-blue-400"></i>
+                <span>Galeri</span>
+            </button>
+            <button onclick="switchPageAndCloseSidebar('lokasi')" class="w-full text-left px-4 py-3 rounded-xl text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-blue-50 dark:hover:bg-slate-800 hover:text-blue-600 dark:hover:text-blue-400 transition flex items-center space-x-3">
+                <i class="fa-solid fa-map-location-dot w-5 text-center text-blue-600 dark:text-blue-400"></i>
+                <span>Lokasi & Kontak</span>
+            </button>
+        </div>
+
+        <!-- Footer Sidebar -->
+        <div class="p-4 border-t border-slate-100 dark:border-slate-800 text-xs text-slate-500 dark:text-slate-400 text-center">
+            <p><i class="fa-solid fa-phone mr-1"></i> 0859-2726-2579</p>
+            <p class="mt-1 text-[10px]">&copy; 2026 Armuzna Laundry</p>
+        </div>
+    </aside>
+
+    <!-- Top Info Bar -->
     <div class="bg-blue-800 dark:bg-slate-900 text-white text-xs py-2 px-4 border-b border-slate-700/20">
         <div class="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
             <span><i class="fa-solid fa-location-dot mr-1"></i> Jl. Soekarno Hatta Km 4, No 1, Balikpapan, Kaltim</span>
@@ -22,17 +73,21 @@
         </div>
     </div>
     
-    <!-- Header & Navigasi -->
+    <!-- Main Header -->
     <header class="bg-white dark:bg-slate-900 shadow-sm sticky top-0 z-40 transition-colors duration-300">
         <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
-            <div class="flex items-center space-x-3 cursor-pointer" onclick="switchPage('beranda')">
-                <img src="11.png" alt="Maskot Armuzna Laundry" class="w-11 h-11 rounded-full object-cover border-2 border-blue-600 shadow-sm">
+            
+            <!-- FOTO PROFIL / LOGO: Sepenuhnya berfungsi sebagai tombol pemicu Sidebar (responsif) -->
+            <div class="flex items-center space-x-3 cursor-pointer group" onclick="toggleSidebar()" title="Ketuk untuk membuka menu navigasi">
+                <div class="relative">
+                    <img src="11.png" alt="Maskot Armuzna Laundry" class="w-11 h-11 rounded-full object-cover border-2 border-blue-600 shadow-sm group-hover:scale-105 transition">
+                </div>
                 <div>
                     <span class="text-lg font-bold text-blue-700 dark:text-blue-400 block leading-tight">Armuzna Laundry</span>
                     <span class="text-xs text-slate-500 dark:text-slate-400">Bersih Total, Hasil Maksimal</span>
                 </div>
             </div>
-
+            
             <!-- Navigasi Desktop -->
             <nav class="hidden md:flex space-x-6 text-sm font-medium text-slate-600 dark:text-slate-300 items-center">
                 <button onclick="switchPage('beranda')" id="nav-beranda" class="nav-link hover:text-blue-600 dark:hover:text-blue-400 transition font-semibold text-blue-600 dark:text-blue-400">Beranda</button>
@@ -42,86 +97,25 @@
                 <button onclick="switchPage('lokasi')" id="nav-lokasi" class="nav-link hover:text-blue-600 dark:hover:text-blue-400 transition">Lokasi & Kontak</button>
             </nav>
 
+            <!-- Tombol Pengubah Tema & Lokasi Info -->
             <div class="flex items-center space-x-3">
                 <span class="text-xs font-semibold text-slate-600 dark:text-slate-300 hidden sm:inline">Balikpapan, Kaltim</span>
-                <!-- Tombol Toggle Tema -->
                 <button id="themeToggle" aria-label="Toggle Tema" class="w-10 h-10 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-yellow-400 flex items-center justify-center hover:bg-slate-200 dark:hover:bg-slate-700 transition shadow-sm">
                     <i id="themeIcon" class="fa-solid fa-moon text-sm"></i>
-                </button>
-                <!-- Tombol Menu Sidebar (Hamburger) -->
-                <button onclick="toggleSidebar()" aria-label="Buka Menu" class="w-10 h-10 rounded-xl bg-blue-50 dark:bg-slate-800 text-blue-600 dark:text-blue-400 flex items-center justify-center hover:bg-blue-100 dark:hover:bg-slate-700 transition shadow-sm">
-                    <i class="fa-solid fa-bars text-base"></i>
                 </button>
             </div>
         </div>
     </header>
 
-    <!-- Sidebar / Drawer Menu Samping -->
-    <div id="sidebarOverlay" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden transition-opacity opacity-0 duration-300" onclick="toggleSidebar()"></div>
-    <aside id="appSidebar" class="fixed top-0 right-0 w-80 h-full bg-white dark:bg-slate-900 shadow-2xl z-50 transform translate-x-full transition-transform duration-300 flex flex-col justify-between border-l border-slate-200 dark:border-slate-800">
-        <div>
-            <!-- Header Sidebar -->
-            <div class="p-5 border-b border-slate-100 dark:border-slate-800 flex justify-between items-center bg-blue-50/50 dark:bg-slate-950/50">
-                <div class="flex items-center space-x-3">
-                    <img src="11.png" alt="Logo" class="w-9 h-9 rounded-full object-cover border border-blue-600">
-                    <div>
-                        <h3 class="font-bold text-sm text-slate-900 dark:text-slate-100">Armuzna Laundry</h3>
-                        <span class="text-[10px] text-blue-600 dark:text-blue-400 font-semibold uppercase tracking-wider">Menu Navigasi</span>
-                    </div>
-                </div>
-                <button onclick="toggleSidebar()" class="w-8 h-8 rounded-lg bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-300 flex items-center justify-center hover:bg-red-500 hover:text-white transition">
-                    <i class="fa-solid fa-xmark"></i>
-                </button>
-            </div>
-            <!-- Daftar Menu Sidebar -->
-            <div class="p-4 space-y-2 text-sm">
-                <button onclick="sidebarNavigate('beranda')" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl hover:bg-blue-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-medium transition">
-                    <i class="fa-solid fa-house text-blue-600 dark:text-blue-400 w-5"></i>
-                    <span>Beranda Utama</span>
-                </button>
-                <button onclick="sidebarNavigate('layanan')" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl hover:bg-blue-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-medium transition">
-                    <i class="fa-solid fa-tags text-blue-600 dark:text-blue-400 w-5"></i>
-                    <span>Daftar Harga & Layanan</span>
-                </button>
-                <button onclick="sidebarNavigate('kalkulator')" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl hover:bg-blue-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-medium transition">
-                    <i class="fa-solid fa-calculator text-blue-600 dark:text-blue-400 w-5"></i>
-                    <span>Kalkulator Estimasi Biaya</span>
-                </button>
-                <button onclick="sidebarNavigate('galeri')" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl hover:bg-blue-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-medium transition">
-                    <i class="fa-solid fa-images text-blue-600 dark:text-blue-400 w-5"></i>
-                    <span>Galeri & Artikel</span>
-                </button>
-                <button onclick="sidebarNavigate('lokasi')" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl hover:bg-blue-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-medium transition">
-                    <i class="fa-solid fa-map-location-dot text-blue-600 dark:text-blue-400 w-5"></i>
-                    <span>Lokasi & Kontak Outlet</span>
-                </button>
-            </div>
-        </div>
-        <!-- Footer Sidebar (Quick Action WhatsApp) -->
-        <div class="p-4 border-t border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-950">
-            <div class="bg-blue-600 text-white p-4 rounded-2xl space-y-2 shadow-sm">
-                <div class="flex items-center space-x-2">
-                    <i class="fa-solid fa-headset text-lg"></i>
-                    <h4 class="font-bold text-xs uppercase tracking-wider">Butuh Bantuan Cepat?</h4>
-                </div>
-                <p class="text-[11px] text-blue-100">Hubungi CS kami untuk antar-jemput cucian di Balikpapan.</p>
-                <a href="https://wa.me/6285927262579?text=Halo%20Armuzna%20Laundry,%20saya%20ingin%20tanya%20layanan%20laundry." target="_blank" class="block text-center bg-white text-blue-700 hover:bg-blue-50 font-bold py-2 rounded-xl text-xs transition shadow-sm">
-                    Chat WhatsApp Sekarang
-                </a>
-            </div>
-        </div>
-    </aside>
-
-    <!-- Konten Halaman (Multi-Page Views) -->
+    <!-- Main Content Area -->
     <main class="min-h-[80vh]">
-        
         <!-- Halaman Beranda -->
         <section id="page-beranda" class="page-content py-16 md:py-24 bg-gradient-to-r from-blue-700 to-indigo-800 dark:from-slate-900 dark:to-blue-950 text-white">
             <div class="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-10 items-center">
                 <div class="space-y-6">
                     <span class="bg-blue-600 dark:bg-blue-800 text-blue-100 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">Terpercaya di Balikpapan</span>
                     <h1 class="text-4xl md:text-5xl font-extrabold leading-tight">Solusi Terbaik Pakaian Bersih, Wangi & Rapi</h1>
-                    <p class="text-blue-100 text-base md:text-lg">Nikmati kemudahan mencuci di Armuzna Laundry. Hasil cucian bersih higienis, setrika licin rapi, dengan pilihan aroma parfum eksklusif.</p>
+                    <p class="text-blue-100 text-base md:text-lg">Nikmati kemudahan mencuci di Armuzna Laundry. Hasil cucian bersih higienis, setrika licin rapi, dengan pilihan parfum eksklusif.</p>
                     <div class="flex flex-wrap gap-4">
                         <button onclick="switchPage('kalkulator')" class="bg-white text-blue-700 px-6 py-3 rounded-xl font-bold shadow hover:bg-slate-100 transition">Cek Tarif & Pesan</button>
                         <a href="https://wa.me/6285927262579" target="_blank" class="border border-white/40 text-white px-6 py-3 rounded-xl font-bold hover:bg-white/10 transition">Hubungi Kami</a>
@@ -139,14 +133,14 @@
             </div>
         </section>
 
-        <!-- Halaman Daftar Harga & Layanan -->
+        <!-- Halaman Daftar Harga / Layanan -->
         <section id="page-layanan" class="page-content hidden py-16 max-w-6xl mx-auto px-4">
             <div class="text-center max-w-xl mx-auto mb-12">
                 <h2 class="text-3xl font-bold text-slate-900 dark:text-slate-100 mb-2">Daftar Tarif Layanan</h2>
                 <p class="text-slate-600 dark:text-slate-400 text-sm">Transparan dan terjangkau untuk kebutuhan cuci harian, karpet, selimut, hingga perlengkapan tidur Anda.</p>
             </div>
             <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
-                <!-- Kiloan Reguler -->
+                <!-- Item Layanan 1 -->
                 <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 hover:shadow-md transition flex flex-col justify-between">
                     <div>
                         <div class="w-12 h-12 bg-blue-50 dark:bg-slate-800 text-blue-600 dark:text-blue-400 rounded-xl flex items-center justify-center text-xl mb-4 font-bold">
@@ -159,7 +153,7 @@
                     </div>
                     <button onclick="selectServiceAndGo('7000')" class="w-full bg-blue-50 hover:bg-blue-600 hover:text-white text-blue-600 dark:bg-slate-800 dark:text-blue-400 dark:hover:bg-blue-600 dark:hover:text-white font-bold py-2.5 rounded-xl text-xs transition">Pilih Layanan Ini</button>
                 </div>
-                <!-- Kiloan Kilat -->
+                <!-- Item Layanan 2 -->
                 <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 hover:shadow-md transition flex flex-col justify-between">
                     <div>
                         <div class="w-12 h-12 bg-blue-50 dark:bg-slate-800 text-blue-600 dark:text-blue-400 rounded-xl flex items-center justify-center text-xl mb-4 font-bold">
@@ -172,7 +166,7 @@
                     </div>
                     <button onclick="selectServiceAndGo('20000')" class="w-full bg-blue-50 hover:bg-blue-600 hover:text-white text-blue-600 dark:bg-slate-800 dark:text-blue-400 dark:hover:bg-blue-600 dark:hover:text-white font-bold py-2.5 rounded-xl text-xs transition">Pilih Layanan Ini</button>
                 </div>
-                <!-- Cuci Satuan Premium -->
+                <!-- Item Layanan 3 -->
                 <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 hover:shadow-md transition flex flex-col justify-between">
                     <div>
                         <div class="w-12 h-12 bg-blue-50 dark:bg-slate-800 text-blue-600 dark:text-blue-400 rounded-xl flex items-center justify-center text-xl mb-4 font-bold">
@@ -181,11 +175,11 @@
                         <h3 class="font-bold text-lg mb-1 text-slate-900 dark:text-slate-100">Cuci Satuan Premium</h3>
                         <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">Perawatan khusus pakaian eksklusif</p>
                         <div class="text-xl font-extrabold text-blue-700 dark:text-blue-400 mb-4">Rp 25.000 <span class="text-xs text-slate-500 dark:text-slate-400 font-normal">/ pcs</span></div>
-                        <p class="text-slate-600 dark:text-slate-300 text-sm mb-6">Pencucian dan perawatan detail untuk kemeja, jas, atau pakaian formal pilihan Anda.</p>
+                        <p class="text-slate-600 dark:text-slate-300 text-sm mb-6">Pencucian dan perawatan detail untuk kemeja, jas, atau pakaian formal.</p>
                     </div>
                     <button onclick="selectServiceAndGo('25000-satuanpremium')" class="w-full bg-blue-50 hover:bg-blue-600 hover:text-white text-blue-600 dark:bg-slate-800 dark:text-blue-400 dark:hover:bg-blue-600 dark:hover:text-white font-bold py-2.5 rounded-xl text-xs transition">Pilih Layanan Ini</button>
                 </div>
-                <!-- Karpet Besar -->
+                <!-- Item Layanan 4 -->
                 <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 hover:shadow-md transition flex flex-col justify-between">
                     <div>
                         <div class="w-12 h-12 bg-blue-50 dark:bg-slate-800 text-blue-600 dark:text-blue-400 rounded-xl flex items-center justify-center text-xl mb-4 font-bold">
@@ -198,7 +192,7 @@
                     </div>
                     <button onclick="selectServiceAndGo('25000-karpetbesar')" class="w-full bg-blue-50 hover:bg-blue-600 hover:text-white text-blue-600 dark:bg-slate-800 dark:text-blue-400 dark:hover:bg-blue-600 dark:hover:text-white font-bold py-2.5 rounded-xl text-xs transition">Pilih Layanan Ini</button>
                 </div>
-                <!-- Karpet Kecil -->
+                <!-- Item Layanan 5 -->
                 <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 hover:shadow-md transition flex flex-col justify-between">
                     <div>
                         <div class="w-12 h-12 bg-blue-50 dark:bg-slate-800 text-blue-600 dark:text-blue-400 rounded-xl flex items-center justify-center text-xl mb-4 font-bold">
@@ -211,7 +205,7 @@
                     </div>
                     <button onclick="selectServiceAndGo('10000-karpetkecil')" class="w-full bg-blue-50 hover:bg-blue-600 hover:text-white text-blue-600 dark:bg-slate-800 dark:text-blue-400 dark:hover:bg-blue-600 dark:hover:text-white font-bold py-2.5 rounded-xl text-xs transition">Pilih Layanan Ini</button>
                 </div>
-                <!-- Selimut Kecil -->
+                <!-- Item Layanan 6 -->
                 <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 hover:shadow-md transition flex flex-col justify-between">
                     <div>
                         <div class="w-12 h-12 bg-blue-50 dark:bg-slate-800 text-blue-600 dark:text-blue-400 rounded-xl flex items-center justify-center text-xl mb-4 font-bold">
@@ -224,88 +218,10 @@
                     </div>
                     <button onclick="selectServiceAndGo('10000-selimutkecil')" class="w-full bg-blue-50 hover:bg-blue-600 hover:text-white text-blue-600 dark:bg-slate-800 dark:text-blue-400 dark:hover:bg-blue-600 dark:hover:text-white font-bold py-2.5 rounded-xl text-xs transition">Pilih Layanan Ini</button>
                 </div>
-                <!-- Selimut Besar -->
-                <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 hover:shadow-md transition flex flex-col justify-between">
-                    <div>
-                        <div class="w-12 h-12 bg-blue-50 dark:bg-slate-800 text-blue-600 dark:text-blue-400 rounded-xl flex items-center justify-center text-xl mb-4 font-bold">
-                            <i class="fa-solid fa-bed"></i>
-                        </div>
-                        <h3 class="font-bold text-lg mb-1 text-slate-900 dark:text-slate-100">Cuci Selimut Besar</h3>
-                        <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">Wangi & higienis</p>
-                        <div class="text-xl font-extrabold text-blue-700 dark:text-blue-400 mb-4">Rp 20.000 <span class="text-xs text-slate-500 dark:text-slate-400 font-normal">/ Satuan</span></div>
-                        <p class="text-slate-600 dark:text-slate-300 text-sm mb-6">Pencucian maksimal untuk selimut ukuran besar.</p>
-                    </div>
-                    <button onclick="selectServiceAndGo('20000-selimutbesar')" class="w-full bg-blue-50 hover:bg-blue-600 hover:text-white text-blue-600 dark:bg-slate-800 dark:text-blue-400 dark:hover:bg-blue-600 dark:hover:text-white font-bold py-2.5 rounded-xl text-xs transition">Pilih Layanan Ini</button>
-                </div>
-                <!-- Cuci Tas -->
-                <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 hover:shadow-md transition flex flex-col justify-between">
-                    <div>
-                        <div class="w-12 h-12 bg-blue-50 dark:bg-slate-800 text-blue-600 dark:text-blue-400 rounded-xl flex items-center justify-center text-xl mb-4 font-bold">
-                            <i class="fa-solid fa-bag-shopping"></i>
-                        </div>
-                        <h3 class="font-bold text-lg mb-1 text-slate-900 dark:text-slate-100">Cuci Tas</h3>
-                        <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">Perawatan bahan khusus</p>
-                        <div class="text-xl font-extrabold text-blue-700 dark:text-blue-400 mb-4">Rp 35.000 <span class="text-xs text-slate-500 dark:text-slate-400 font-normal">/ Satuan</span></div>
-                        <p class="text-slate-600 dark:text-slate-300 text-sm mb-6">Pembersihan mendalam untuk menjaga keawetan bahan tas Anda.</p>
-                    </div>
-                    <button onclick="selectServiceAndGo('35000')" class="w-full bg-blue-50 hover:bg-blue-600 hover:text-white text-blue-600 dark:bg-slate-800 dark:text-blue-400 dark:hover:bg-blue-600 dark:hover:text-white font-bold py-2.5 rounded-xl text-xs transition">Pilih Layanan Ini</button>
-                </div>
-                <!-- Cuci Sepatu -->
-                <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 hover:shadow-md transition flex flex-col justify-between">
-                    <div>
-                        <div class="w-12 h-12 bg-blue-50 dark:bg-slate-800 text-blue-600 dark:text-blue-400 rounded-xl flex items-center justify-center text-xl mb-4 font-bold">
-                            <i class="fa-solid fa-shoe-prints"></i>
-                        </div>
-                        <h3 class="font-bold text-lg mb-1 text-slate-900 dark:text-slate-100">Cuci Sepatu</h3>
-                        <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">Pembersihan sol & upper</p>
-                        <div class="text-xl font-extrabold text-blue-700 dark:text-blue-400 mb-4">Rp 30.000 <span class="text-xs text-slate-500 dark:text-slate-400 font-normal">/ Set</span></div>
-                        <p class="text-slate-600 dark:text-slate-300 text-sm mb-6">Pembersihan detail agar sepatu kembali bersih dan terawat.</p>
-                    </div>
-                    <button onclick="selectServiceAndGo('30000')" class="w-full bg-blue-50 hover:bg-blue-600 hover:text-white text-blue-600 dark:bg-slate-800 dark:text-blue-400 dark:hover:bg-blue-600 dark:hover:text-white font-bold py-2.5 rounded-xl text-xs transition">Pilih Layanan Ini</button>
-                </div>
-                <!-- Bedcover Kecil -->
-                <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 hover:shadow-md transition flex flex-col justify-between">
-                    <div>
-                        <div class="w-12 h-12 bg-blue-50 dark:bg-slate-800 text-blue-600 dark:text-blue-400 rounded-xl flex items-center justify-center text-xl mb-4 font-bold">
-                            <i class="fa-solid fa-layer-group"></i>
-                        </div>
-                        <h3 class="font-bold text-lg mb-1 text-slate-900 dark:text-slate-100">Cuci Bedcover Kecil</h3>
-                        <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">Bersih & higienis</p>
-                        <div class="text-xl font-extrabold text-blue-700 dark:text-blue-400 mb-4">Rp 25.000 <span class="text-xs text-slate-500 dark:text-slate-400 font-normal">/ Satuan</span></div>
-                        <p class="text-slate-600 dark:text-slate-300 text-sm mb-6">Perawatan khusus bedcover ukuran kecil agar wangi tahan lama.</p>
-                    </div>
-                    <button onclick="selectServiceAndGo('25000-bc kecil')" class="w-full bg-blue-50 hover:bg-blue-600 hover:text-white text-blue-600 dark:bg-slate-800 dark:text-blue-400 dark:hover:bg-blue-600 dark:hover:text-white font-bold py-2.5 rounded-xl text-xs transition">Pilih Layanan Ini</button>
-                </div>
-                <!-- Bedcover Besar -->
-                <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 hover:shadow-md transition flex flex-col justify-between">
-                    <div>
-                        <div class="w-12 h-12 bg-blue-50 dark:bg-slate-800 text-blue-600 dark:text-blue-400 rounded-xl flex items-center justify-center text-xl mb-4 font-bold">
-                            <i class="fa-solid fa-cubes"></i>
-                        </div>
-                        <h3 class="font-bold text-lg mb-1 text-slate-900 dark:text-slate-100">Cuci Bedcover Besar</h3>
-                        <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">Bersih & higienis</p>
-                        <div class="text-xl font-extrabold text-blue-700 dark:text-blue-400 mb-4">Rp 40.000 <span class="text-xs text-slate-500 dark:text-slate-400 font-normal">/ Satuan</span></div>
-                        <p class="text-slate-600 dark:text-slate-300 text-sm mb-6">Pencucian maksimal untuk bedcover ukuran besar.</p>
-                    </div>
-                    <button onclick="selectServiceAndGo('40000')" class="w-full bg-blue-50 hover:bg-blue-600 hover:text-white text-blue-600 dark:bg-slate-800 dark:text-blue-400 dark:hover:bg-blue-600 dark:hover:text-white font-bold py-2.5 rounded-xl text-xs transition">Pilih Layanan Ini</button>
-                </div>
-                <!-- Sprei 1 Set -->
-                <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 hover:shadow-md transition flex flex-col justify-between sm:col-span-2 md:col-span-1">
-                    <div>
-                        <div class="w-12 h-12 bg-blue-50 dark:bg-slate-800 text-blue-600 dark:text-blue-400 rounded-xl flex items-center justify-center text-xl mb-4 font-bold">
-                            <i class="fa-solid fa-mattress-pillow"></i>
-                        </div>
-                        <h3 class="font-bold text-lg mb-1 text-slate-900 dark:text-slate-100">Cuci Sprei 1 Set</h3>
-                        <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">Termasuk sarung bantal & guling</p>
-                        <div class="text-xl font-extrabold text-blue-700 dark:text-blue-400 mb-4">Rp 25.000 <span class="text-xs text-slate-500 dark:text-slate-400 font-normal">/ set</span></div>
-                        <p class="text-slate-600 dark:text-slate-300 text-sm mb-6">Pencucian lengkap sprei beserta sarung bantal dan guling agar kembali bersih.</p>
-                    </div>
-                    <button onclick="selectServiceAndGo('25000-sprei')" class="w-full bg-blue-50 hover:bg-blue-600 hover:text-white text-blue-600 dark:bg-slate-800 dark:text-blue-400 dark:hover:bg-blue-600 dark:hover:text-white font-bold py-2.5 rounded-xl text-xs transition">Pilih Layanan Ini</button>
-                </div>
             </div>
         </section>
 
-        <!-- Halaman Kalkulator Estimasi & Pemesanan -->
+        <!-- Halaman Kalkulator Estimasi -->
         <section id="page-kalkulator" class="page-content hidden py-16 max-w-4xl mx-auto px-4">
             <div class="text-center mb-10">
                 <h2 class="text-3xl font-bold text-slate-900 dark:text-slate-100 mb-2">Hitung Estimasi Biaya Laundry</h2>
@@ -347,14 +263,13 @@
             </div>
         </section>
 
-        <!-- Halaman Galeri & Aktivitas Laundry -->
+        <!-- Halaman Galeri -->
         <section id="page-galeri" class="page-content hidden py-16 max-w-6xl mx-auto px-4">
             <div class="text-center max-w-xl mx-auto mb-12">
                 <h2 class="text-3xl font-bold text-slate-900 dark:text-slate-100 mb-2">Galeri & Aktivitas Kami</h2>
-                <p class="text-slate-600 dark:text-slate-400 text-sm">Melihat lebih dekat proses pengerjaan, kebersihan outlet, dan kerapian hasil cucian di Armuzna Laundry. Klik artikel untuk membaca detailnya.</p>
+                <p class="text-slate-600 dark:text-slate-400 text-sm">Melihat lebih dekat proses pengerjaan, kebersihan outlet, dan kerapian hasil cucian di Armuzna Laundry.</p>
             </div>
             <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
-                <!-- Item Galeri 1 -->
                 <div class="bg-white dark:bg-slate-900 rounded-2xl overflow-hidden shadow-sm border border-slate-200 dark:border-slate-800 hover:shadow-md transition flex flex-col justify-between group">
                     <div>
                         <div class="h-48 bg-slate-100 dark:bg-slate-800 overflow-hidden relative">
@@ -369,7 +284,6 @@
                         <button onclick="openArticle('pengeringan-optimal')" class="w-full bg-blue-50 dark:bg-slate-800 text-blue-600 dark:text-blue-400 hover:bg-blue-600 hover:text-white dark:hover:bg-blue-600 dark:hover:text-white font-bold py-2 rounded-xl text-xs transition">Baca Selengkapnya</button>
                     </div>
                 </div>
-                <!-- Item Galeri 2 -->
                 <div class="bg-white dark:bg-slate-900 rounded-2xl overflow-hidden shadow-sm border border-slate-200 dark:border-slate-800 hover:shadow-md transition flex flex-col justify-between group">
                     <div>
                         <div class="h-48 bg-slate-100 dark:bg-slate-800 overflow-hidden relative">
@@ -377,14 +291,13 @@
                         </div>
                         <div class="p-4">
                             <h3 class="font-bold text-slate-900 dark:text-slate-100 text-base mb-1">Karpet & Bed Cover</h3>
-                            <p class="text-xs text-slate-500 dark:text-slate-400">Pencucian item besar secara mendalam hingga bersih dari noda dan debu.</p>
+                            <p class="text-xs text-slate-500 dark:text-slate-400">Pencucian item besar secara mendalam hingga bersih dari noda.</p>
                         </div>
                     </div>
                     <div class="p-4 pt-0">
                         <button onclick="openArticle('karpet-bedcover')" class="w-full bg-blue-50 dark:bg-slate-800 text-blue-600 dark:text-blue-400 hover:bg-blue-600 hover:text-white dark:hover:bg-blue-600 dark:hover:text-white font-bold py-2 rounded-xl text-xs transition">Baca Selengkapnya</button>
                     </div>
                 </div>
-                <!-- Item Galeri 3 -->
                 <div class="bg-white dark:bg-slate-900 rounded-2xl overflow-hidden shadow-sm border border-slate-200 dark:border-slate-800 hover:shadow-md transition flex flex-col justify-between group">
                     <div>
                         <div class="h-48 bg-slate-100 dark:bg-slate-800 overflow-hidden relative">
@@ -402,7 +315,7 @@
             </div>
         </section>
 
-        <!-- Halaman Artikel Detail -->
+        <!-- Halaman Detail Artikel -->
         <section id="page-artikel-detail" class="page-content hidden py-16 max-w-4xl mx-auto px-4">
             <button onclick="switchPage('galeri')" class="inline-flex items-center text-sm font-semibold text-blue-600 dark:text-blue-400 mb-6 hover:underline">
                 <i class="fa-solid fa-arrow-left mr-2"></i> Kembali ke Galeri
@@ -416,9 +329,7 @@
                 <div class="h-64 sm:h-96 rounded-xl overflow-hidden shadow-inner">
                     <img id="articleImage" src="" alt="Gambar Artikel" class="w-full h-full object-cover">
                 </div>
-                <div id="articleBody" class="text-slate-700 dark:text-slate-300 space-y-4 leading-relaxed text-sm md:text-base">
-                    <!-- Konten Artikel Masuk Disini -->
-                </div>
+                <div id="articleBody" class="text-slate-700 dark:text-slate-300 space-y-4 leading-relaxed text-sm md:text-base"></div>
                 <div class="border-t border-slate-200 dark:border-slate-800 pt-6 flex flex-col sm:flex-row justify-between items-center gap-4">
                     <span class="text-xs text-slate-500 dark:text-slate-400">Punya pertanyaan seputar layanan ini? Hubungi kami langsung.</span>
                     <a href="https://wa.me/6285927262579?text=Halo%20Armuzna%20Laundry,%20saya%20ingin%20tanya%20tentang%20layanan%20di%20artikel%20website." target="_blank" class="bg-green-600 hover:bg-green-700 text-white font-bold px-6 py-2.5 rounded-xl text-xs transition shadow flex items-center gap-2">
@@ -428,7 +339,7 @@
             </div>
         </section>
 
-        <!-- Halaman Informasi Lokasi & Jam Operasional -->
+        <!-- Halaman Lokasi & Kontak -->
         <section id="page-lokasi" class="page-content hidden py-16 max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-8 items-center">
             <div class="space-y-6">
                 <h2 class="text-3xl font-bold text-slate-900 dark:text-slate-100">Kunjungi Outlet Kami di Balikpapan</h2>
@@ -461,7 +372,7 @@
         </section>
     </main>
     
-    <!-- Widget WhatsApp Interaktif (Langsung Chat Pop-up) -->
+    <!-- Floating WhatsApp Chat Widget -->
     <div class="fixed bottom-6 right-6 z-40">
         <div id="waChatBox" class="hidden absolute bottom-20 right-0 w-80 bg-white dark:bg-slate-900 rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-800 overflow-hidden transition-all duration-300 transform scale-95 opacity-0 origin-bottom-right">
             <div class="bg-green-600 text-white p-4 flex justify-between items-center">
@@ -510,8 +421,34 @@
         </div>
     </footer>
 
-    <!-- JavaScript Aplikasi -->
+    <!-- JavaScript Logika & Interaksi -->
     <script>
+        // Fungsi untuk membuka / menutup sidebar navigasi & backdrop
+        function toggleSidebar() {
+            const sidebar = document.getElementById('appSidebar');
+            const overlay = document.getElementById('sidebarOverlay');
+            
+            if (sidebar.classList.contains('-translate-x-full')) {
+                sidebar.classList.remove('-translate-x-full');
+                overlay.classList.remove('hidden');
+                setTimeout(() => {
+                    overlay.classList.remove('opacity-0');
+                }, 10);
+            } else {
+                sidebar.classList.add('-translate-x-full');
+                overlay.classList.add('opacity-0');
+                setTimeout(() => {
+                    overlay.classList.add('hidden');
+                }, 300);
+            }
+        }
+
+        // Fungsi bantu untuk pindah halaman sekaligus menutup sidebar secara otomatis di mobile
+        function switchPageAndCloseSidebar(pageId) {
+            switchPage(pageId);
+            toggleSidebar();
+        }
+
         const articleData = {
             'pengeringan-optimal': {
                 title: 'Area Proses',
@@ -536,7 +473,6 @@
                 <li><strong>Pengeringan Cepat dan Steril:</strong> Mesin pengering otomatis mengeringkan pakaian dalam hitungan jam tanpa terpengaruh cuaca luar serta membantu membunuh bakteri dan tungau.</li>
                 <li><strong>Kapasitas Skala Besar:</strong> Sangat ideal untuk menangani berbagai item berat di area proses, mulai dari pencucian pakaian harian, cuci karpet, cuci selimut, cuci bedcover kecil dan besar, hingga cuci sprei 1 set secara massal.</li>
                 </ol>
-                
                 <h2>Integrasi Teknologi dalam Alur Kerja Area Proses</h2>
                 <p>Pengelolaan area proses yang optimal menuntut keseimbangan antara teknologi otomatis dan keahlian sumber daya manusia. Meskipun mesin otomatis mengambil alih pekerjaan berat seperti pencucian bertekanan tinggi dan pengeringan cepat, peran operator tetap vital dalam melakukan sortir awal—seperti memisahkan cucian berdasarkan warna, bahan, atau jenis layanan khusus seperti cuci tas dan cuci sepatu agar tidak merusak struktur material.</p>
                 <h2>Kesimpulan</h2>
@@ -554,25 +490,22 @@
                 <p>Barang-barang seperti karpet tebal dan bedcover memiliki karakteristik material yang padat dengan lapisan isian (dactron atau busa tipis). Jika tidak ditangani dengan prosedur yang benar, berbagai masalah kesehatan dan penurunan kualitas bahan dapat timbul:</p>
                 <ul>
                 <li><strong>Sarang Tungau dan Alergen:</strong> Serat karpet yang rapat dan tebal sangat disukai oleh tungau debu rumah (dust mites), bakteri, serta spora jamur yang dapat memicu alergi dan gangguan pernapasan bagi anggota keluarga.</li>
-                <li><strong>Proses Pengeringan yang Lama:</strong> Tanpa bantuan mesin ekstraktor dan pengering bertenaga tinggi, bagian tengah bedcover atau karpet basah akan memakan waktu berhari-hari untuk kering, memicu timbulnya bau lembap yang mengganggu.</li>
+                <li><strong>Proses Pengeringan yang Lama:</strong> Tanpa bantuan mesin ekstraktor dan pengering bertenaga tinggi, bagian tengah bedcover atau karpet basah akan memakan waktu berhari-hari untuk kering, memimbulkan bau lembap yang mengganggu.</li>
                 <li><strong>Kerusakan Struktur Bahan:</strong> Penggunaan sikat yang terlalu kasar atau metode pemerasan manual yang dipelintir dapat merusak rajutan karpet, membuat rontok bulu-bulunya, atau menggumpalkan isian kapas di dalam bedcover.</li>
                 </ul>
-                
                 <h2>Tahapan Proses Pencucian Mendalam (Deep Cleaning) Profesional</h2>
                 <p>Untuk memastikan kebersihan tuntas hingga ke lapisan terdalam, layanan pencucian karpet dan bedcover profesional menerapkan standar tahapan operasional yang ketat:</p>
                 <ol>
-    <li><strong>Vacuuming & Pra-Pembersihan Debu Kering:</strong> Menyedot seluruh debu kering, pasir, dan partikel kotoran yang terperangkap di dasar serat karpet menggunakan mesin vakum berdaya sedot tinggi sebelum proses pembasahan dimulai.</li>
-    <li><strong>Penghilangan Noda Spesifik (Spot Treatment):</strong> Mengidentifikasi dan memberikan cairan pembersih khusus pada noda membandel seperti bekas tumpahan kopi, makanan, noda minyak, atau kotoran hewan peliharaan.</li>
-    <li><strong>Pencucian Men menyeluruh (Deep Scrubbing/Extraction):</strong> Menggunakan mesin pembersih khusus dengan sampo karpet ber-pH seimbang yang mampu mengangkat kotoran membandel tanpa merusak warna maupun kelembutan benang.</li>
-    <li><strong>Proses Ekstraksi Air Maksimal:</strong> Mempercepat pembuangan air kotor menggunakan mesin pemeras/ekstraktor berkecepatan tinggi agar kelembapan kain drastis menurun sebelum masuk ke ruang pengeringan.</li>
-    <li><strong>Pengeringan Steril & Higienis:</strong> Pengeringan menggunakan ruangan bersirkulasi udara optimal atau mesin pengering khusus bersuhu stabil untuk memastikan karpet dan bedcover kering 100%, bebas bau apek, serta higienis.</li>
-    </ol>
-    
-    <h2>Menjaga Kenyamanan Istirahat dan Kesehatan Keluarga</h2>
-    <p>Bedcover dan selimut yang bersih secara mendalam memberikan pengaruh langsung terhadap kualitas tidur malam Anda. Kulit yang bersentuhan langsung dengan kain tidur yang higienis, harum, dan bebas kuman tentu akan terasa jauh lebih nyaman. Begitu pula dengan karpet bersih di ruang keluarga, yang membuat anak-anak dapat bermain di lantai dengan aman tanpa khawatir terpapar debu kotor.</p>
-    
-    <h2>Kesimpulan</h2>
-    <p>Pencucian mendalam untuk karpet dan bedcover besar bukan sekadar membersihkan kotoran yang terlihat dipermukaan, melainkan investasi untuk kesehatan dan keawetan tekstil rumah tangga Anda. Dengan menyerahkannya kepada penanganan profesional yang tepat, barang-barang kesayangan Anda akan kembali bersih tuntas, segar, lembut, dan siap memberikan kenyamanan maksimal di rumah atau kantor Anda.</p>
+                <li><strong>Vacuuming & Pra-Pembersihan Debu Kering:</strong> Menyedot seluruh debu kering, pasir, dan partikel kotoran yang terperangkap di dasar serat karpet menggunakan mesin vakum berdaya sedot tinggi sebelum proses pembasahan dimulai.</li>
+                <li><strong>Penghilangan Noda Spesifik (Spot Treatment):</strong> Mengidentifikasi dan memberikan cairan pembersih khusus pada noda membandel seperti bekas tumpahan kopi, makanan, noda minyak, atau kotoran hewan peliharaan.</li>
+                <li><strong>Pencucian Menyeluruh (Deep Scrubbing/Extraction):</strong> Menggunakan mesin pembersih khusus dengan sampo karpet ber-pH seimbang yang mampu mengangkat kotoran membandel tanpa merusak warna maupun kelembutan benang.</li>
+                <li><strong>Proses Ekstraksi Air Maksimal:</strong> Mempercepat pembuangan air kotor menggunakan mesin pemeras/ekstraktor berkecepatan tinggi agar kelembapan kain drastis menurun sebelum masuk ke ruang pengeringan.</li>
+                <li><strong>Pengeringan Steril & Higienis:</strong> Pengeringan menggunakan ruangan bersirkulasi udara optimal atau mesin pengering khusus bersuhu stabil untuk memastikan karpet dan bedcover kering 100%, bebas bau apek, serta higienis.</li>
+                </ol>
+                <h2>Menjaga Kenyamanan Istirahat dan Kesehatan Keluarga</h2>
+                <p>Bedcover dan selimut yang bersih secara mendalam memberikan pengaruh langsung terhadap kualitas tidur malam Anda. Kulit yang bersentuhan langsung dengan kain tidur yang higienis, harum, dan bebas kuman tentu akan terasa jauh lebih nyaman. Begitu pula dengan karpet bersih di ruang keluarga, yang membuat anak-anak dapat bermain di lantai dengan aman tanpa khawatir terpapar debu kotor.</p>
+                <h2>Kesimpulan</h2>
+                <p>Pencucian mendalam untuk karpet dan bedcover besar bukan sekadar membersihkan kotoran yang terlihat dipermukaan, melainkan investasi untuk kesehatan dan keawetan tekstil rumah tangga Anda. Dengan menyerahkannya kepada penanganan profesional yang tepat, barang-barang kesayangan Anda akan kembali bersih tuntas, segar, lembut, dan siap memberikan kenyamanan maksimal di rumah atau kantor Anda.</p>
                 `
             },
             'suasana-outlet': {
@@ -580,31 +513,26 @@
                 category: 'Tentang Outlet & Fasilitas',
                 image: 'outlet.png',
                 content: `
-<p>Berlokasi secara strategis di kawasan utama yang sangat mudah diakses oleh seluruh masyarakat, tepatnya di <strong>Jl. Soekarno Hatta Km 4, Balikpapan</strong>, Armuzna Laundry hadir sebagai pusat layanan perawatan pakaian dan tekstil terdepan yang siap memenuhi kebutuhan harian maupun gaya hidup Anda.</p>
-
-<p>Pemilihan lokasi yang sangat strategis ini bukan tanpa alasan. Berada di salah satu jalur protokol utama kota Balikpapan menjadikan outlet ini sangat mudah dijangkau, baik oleh para pekerja kantoran, mahasiswa, keluarga, maupun pelaku bisnis yang memiliki mobilitas tinggi setiap harinya.</p>
-
-<h2>Keunggulan Lokasi Strategis di Jl. Soekarno Hatta Km 4</h2>
-<p>Kehadiran outlet di kawasan yang berkembang pesat ini memberikan berbagai kemudahan nyata bagi para pelanggan:</p>
-<ul>
-    <li><strong>Aksesibilitas Tinggi:</strong> Berada di jalur utama penghubung kota membuat pelanggan dapat dengan mudah mampir saat berangkat atau pulang beraktivitas.</li>
-    <li><strong>Area Parkir yang Luas dan Aman:</strong> Menyediakan ruang singgah sementara (drop-off area) yang lapang, sehingga pengendara motor maupun mobil dapat melakukan transaksi antar-jemput cucian dengan tenang dan nyaman tanpa mengganggu arus lalu lintas.</li>
-    <li><strong>Titik Temu Layanan Cepat:</strong> Menjadi pusat operasional terpadu yang melayani berbagai jenis kebutuhan cuci, mulai dari laundry kiloan harian hingga perawatan khusus skala besar.</li>
-</ul>
-
-<h2>Fasilitas Modern Penunjang Kualitas Layanan</h2>
-<p>Tidak hanya mengandalkan lokasi yang mudah diakses, interior dan kelengkapan fasilitas di dalam outlet Armuzna Laundry dirancang secara profesional dengan standar kebersihan tinggi:</p>
-<ol>
-    <li><strong>Zona Penerimaan Tamu (Front Office) yang Nyaman:</strong> Ruang tunggu yang bersih, sejuk, dan tertata rapi menyambut setiap pelanggan yang datang dengan pelayanan staf yang ramah dan komunikatif.</li>
-    <li><strong>Area Proses Teknologi Mutakhir:</strong> Ruang mesin cuci komersial berkapasitas besar dan jajaran mesin pengering (dryer) otomatis terisolasi dengan baik guna menjamin efisiensi waktu pengerjaan yang cepat.</li>
-    <li><strong>Pusat Finishing & Perawatan Khusus (Special Care Station):</strong> Ruang khusus untuk penyetrikaan uap boiler bertekanan tinggi, area pelipatan presisi, serta tempat sterilisasi khusus untuk layanan cuci tas, cuci sepatu, karpet, dan bedcover.</li>
-</ol>
-
-<h2>Komitmen Kepada Masyarakat Balikpapan</h2>
-<p>Armuzna Laundry berkomitmen untuk terus menjaga kepercayaan masyarakat Kota Balikpapan melalui konsistensi mutu pelayanan, kecepatan waktu pengerjaan, serta transparansi harga. Setiap fasilitas yang disediakan didedikasikan penuh untuk memberikan pengalaman laundry yang praktis, higienis, dan memuaskan.</p>
-
-<h2>Kesimpulan</h2>
-<p>Dengan memadukan lokasi yang sangat strategis di Jl. Soekarno Hatta Km 4, fasilitas outlet yang modern, serta dukungan tenaga operasional yang berpengalaman, Armuzna Laundry Balikpapan siap menjadi mitra terpercaya dan andalan utama Anda dalam menjaga kebersihan serta keawetan seluruh pakaian dan perlengkapan tekstil kesayangan.</p>
+                <p>Berlokasi secara strategis di kawasan utama yang sangat mudah diakses oleh seluruh masyarakat, tepatnya di <strong>Jl. Soekarno Hatta Km 4, Balikpapan</strong>, Armuzna Laundry hadir sebagai pusat layanan perawatan pakaian dan tekstil terdepan yang siap memenuhi kebutuhan harian maupun gaya hidup Anda.</p>
+                <p>Pemilihan lokasi yang sangat strategis ini bukan tanpa alasan. Berada di salah satu jalur protokol utama kota Balikpapan menjadikan outlet ini sangat mudah dijangkau, baik oleh para pekerja kantoran, mahasiswa, keluarga, maupun pelaku bisnis yang memiliki mobilitas tinggi setiap harinya.</p>
+                <h2>Keunggulan Lokasi Strategis di Jl. Soekarno Hatta Km 4</h2>
+                <p>Kehadiran outlet di kawasan yang berkembang pesat ini memberikan berbagai kemudahan nyata bagi para pelanggan:</p>
+                <ul>
+                    <li><strong>Aksesibilitas Tinggi:</strong> Berada di jalur utama penghubung kota membuat pelanggan dapat dengan mudah mampir saat berangkat atau pulang beraktivitas.</li>
+                    <li><strong>Area Parkir yang Luas dan Aman:</strong> Menyediakan ruang singgah sementara (drop-off area) yang lapang, sehingga pengendara motor maupun mobil dapat melakukan transaksi antar-jemput cucian dengan tenang dan nyaman tanpa mengganggu arus lalu lintas.</li>
+                    <li><strong>Titik Temu Layanan Cepat:</strong> Menjadi pusat operasional terpadu yang melayani berbagai jenis kebutuhan cuci, mulai dari laundry kiloan harian hingga perawatan khusus skala besar.</li>
+                </ul>
+                <h2>Fasilitas Modern Penunjang Kualitas Layanan</h2>
+                <p>Tidak hanya mengandalkan lokasi yang mudah diakses, interior dan kelengkapan fasilitas di dalam outlet Armuzna Laundry dirancang secara profesional dengan standar kebersihan tinggi:</p>
+                <ol>
+                    <li><strong>Zona Penerimaan Tamu (Front Office) yang Nyaman:</strong> Ruang tunggu yang bersih, sejuk, dan tertata rapi menyambut setiap pelanggan yang datang dengan pelayanan staf yang ramah dan komunikatif.</li>
+                    <li><strong>Area Proses Teknologi Mutakhir:</strong> Ruang mesin cuci komersial berkapasitas besar dan jajaran mesin pengering (dryer) otomatis terisolasi dengan baik guna menjamin efisiensi waktu pengerjaan yang cepat.</li>
+                    <li><strong>Pusat Finishing & Perawatan Khusus (Special Care Station):</strong> Ruang khusus untuk penyetrikaan uap boiler bertekanan tinggi, area pelipatan presisi, serta tempat sterilisasi khusus untuk layanan cuci tas, cuci sepatu, karpet, dan bedcover.</li>
+                </ol>
+                <h2>Komitmen Kepada Masyarakat Balikpapan</h2>
+                <p>Armuzna Laundry berkomitmen untuk terus menjaga kepercayaan masyarakat Kota Balikpapan melalui konsistensi mutu pelayanan, kecepatan waktu pengerjaan, serta transparansi harga. Setiap fasilitas yang disediakan didedikasikan penuh untuk memberikan pengalaman laundry yang praktis, higienis, dan memuaskan.</p>
+                <h2>Kesimpulan</h2>
+                <p>Dengan memadukan lokasi yang sangat strategis di Jl. Soekarno Hatta Km 4, fasilitas outlet yang modern, serta dukungan tenaga operasional yang berpengalaman, Armuzna Laundry Balikpapan siap menjadi mitra terpercaya dan andalan utama Anda dalam menjaga kebersihan serta keawetan seluruh pakaian dan perlengkapan tekstil kesayangan.</p>
                 `
             }
         };
@@ -620,26 +548,6 @@
             const activeNav = document.getElementById('nav-' + pageId);
             if (activeNav) activeNav.classList.add('font-semibold', 'text-blue-600', 'dark:text-blue-400');
             window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        // Fungsi Toggle Sidebar & Navigasi Sidebar
-        function toggleSidebar() {
-            const sidebar = document.getElementById('appSidebar');
-            const overlay = document.getElementById('sidebarOverlay');
-            if (sidebar.classList.contains('translate-x-full')) {
-                sidebar.classList.remove('translate-x-full');
-                overlay.classList.remove('hidden');
-                setTimeout(() => overlay.classList.remove('opacity-0'), 10);
-            } else {
-                sidebar.classList.add('translate-x-full');
-                overlay.classList.add('opacity-0');
-                setTimeout(() => overlay.classList.add('hidden'), 300);
-            }
-        }
-
-        function sidebarNavigate(pageId) {
-            switchPage(pageId);
-            toggleSidebar();
         }
 
         function openArticle(articleKey) {
@@ -673,6 +581,7 @@
             layananSelect.dispatchEvent(new Event('change'));
         }
 
+        // Theme Toggle Script
         (function () {
             const themeToggleBtn = document.getElementById('themeToggle');
             const themeIcon = document.getElementById('themeIcon');
@@ -749,6 +658,7 @@
             }
         })();
 
+        // WhatsApp Floating Chat Script
         function toggleWaChat() {
             const chatBox = document.getElementById('waChatBox');
             if (chatBox.classList.contains('hidden')) {
